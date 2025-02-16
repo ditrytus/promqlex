@@ -1,13 +1,26 @@
 ANTLR4 = antlr4
 
-all: $(PARSER_OUTPUT) $(LEXER_OUTPUT)
+.PHONY: all
+all: parsers/promql_parser.go parsers/promqlextension_parser.go
 
-LEXER_OUTPUT = grammars/PromQLLexer.tokens grammars/PromQLLexer.interp promql_lexer.go
-$(LEXER_OUTPUT): grammars/PromQLLexer.g4
-	cd grammars && $(ANTLR4) -Dlanguage=Go -o ../parser PromQLLexer.g4
-	mv parser/PromQLLexer.tokens grammars/PromQLLexer.tokens
-	mv parser/PromQLLexer.interp grammars/PromQLLexer.interp
+define build_lexer_and_parser
 
-PARSER_OUTPUT = parser/promql_parser.go parser/promqlparser_listener.go parser/promqlparser_base_listener.go
-$(PARSER_OUTPUT): grammars/PromQLParser.g4 grammars/PromQLLexer.tokens grammars/PromQLLexer.interp
-	cd grammars && $(ANTLR4) -Dlanguage=Go -o ../parser PromQLParser.g4
+$(eval GRAMMAR_NAME := $(1))
+$(info Building lexer and parser for $(GRAMMAR_NAME))
+$(eval LOWERCASE_GRAMMAR_NAME := $(shell echo $(GRAMMAR_NAME) | tr '[:upper:]' '[:lower:]'))
+$(info Lowercase grammar name: $(LOWERCASE_GRAMMAR_NAME))
+
+$(eval LEXER_OUTPUT := grammars/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.interp $(LOWERCASE_GRAMMAR_NAME)_lexer.go)
+$(LEXER_OUTPUT): grammars/$(GRAMMAR_NAME)Lexer.g4
+	cd grammars && $(ANTLR4) -Dlanguage=Go -o ../parsers $(GRAMMAR_NAME)Lexer.g4
+	mv parsers/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.tokens
+	mv parsers/$(GRAMMAR_NAME)Lexer.interp grammars/$(GRAMMAR_NAME)Lexer.interp
+
+$(eval PARSER_OUTPUT := parsers/$(LOWERCASE_GRAMMAR_NAME)_parser.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_listener.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_base_listener.go)
+$(PARSER_OUTPUT): grammars/$(GRAMMAR_NAME)Parser.g4 grammars/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.interp
+	cd grammars && $(ANTLR4) -Dlanguage=Go -o ../parsers $(GRAMMAR_NAME)Parser.g4
+
+endef
+
+$(eval $(call build_lexer_and_parser,PromQL))
+$(eval $(call build_lexer_and_parser,PromQLExtension))
