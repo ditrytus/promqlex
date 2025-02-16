@@ -6,9 +6,7 @@ all: parsers/promql_parser.go parsers/promqlextension_parser.go
 define build_lexer_and_parser
 
 $(eval GRAMMAR_NAME := $(1))
-$(info Building lexer and parser for $(GRAMMAR_NAME))
 $(eval LOWERCASE_GRAMMAR_NAME := $(shell echo $(GRAMMAR_NAME) | tr '[:upper:]' '[:lower:]'))
-$(info Lowercase grammar name: $(LOWERCASE_GRAMMAR_NAME))
 
 $(eval LEXER_OUTPUT := grammars/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.interp $(LOWERCASE_GRAMMAR_NAME)_lexer.go)
 $(LEXER_OUTPUT): grammars/$(GRAMMAR_NAME)Lexer.g4
