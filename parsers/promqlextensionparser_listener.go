@@ -8,6 +8,90 @@ import "github.com/antlr4-go/antlr/v4"
 type PromQLExtensionParserListener interface {
 	antlr.ParseTreeListener
 
+	// EnterPromqlx is called when entering the promqlx production.
+	EnterPromqlx(c *PromqlxContext)
+
+	// EnterEx_statement_list is called when entering the ex_statement_list production.
+	EnterEx_statement_list(c *Ex_statement_listContext)
+
+	// EnterEx_statement is called when entering the ex_statement production.
+	EnterEx_statement(c *Ex_statementContext)
+
+	// EnterEx_alias_def is called when entering the ex_alias_def production.
+	EnterEx_alias_def(c *Ex_alias_defContext)
+
+	// EnterEx_macro_def is called when entering the ex_macro_def production.
+	EnterEx_macro_def(c *Ex_macro_defContext)
+
+	// EnterEx_block is called when entering the ex_block production.
+	EnterEx_block(c *Ex_blockContext)
+
+	// EnterEx_arg_list is called when entering the ex_arg_list production.
+	EnterEx_arg_list(c *Ex_arg_listContext)
+
+	// EnterEx_if_statement is called when entering the ex_if_statement production.
+	EnterEx_if_statement(c *Ex_if_statementContext)
+
+	// EnterEx_condition is called when entering the ex_condition production.
+	EnterEx_condition(c *Ex_conditionContext)
+
+	// EnterEx_compareVectorOperation is called when entering the ex_compareVectorOperation production.
+	EnterEx_compareVectorOperation(c *Ex_compareVectorOperationContext)
+
+	// EnterEx_trueConst is called when entering the ex_trueConst production.
+	EnterEx_trueConst(c *Ex_trueConstContext)
+
+	// EnterEx_falseConst is called when entering the ex_falseConst production.
+	EnterEx_falseConst(c *Ex_falseConstContext)
+
+	// EnterEx_time_instant is called when entering the ex_time_instant production.
+	EnterEx_time_instant(c *Ex_time_instantContext)
+
+	// EnterEx_iso_date_time is called when entering the ex_iso_date_time production.
+	EnterEx_iso_date_time(c *Ex_iso_date_timeContext)
+
+	// EnterEx_iso_date_time_ymdhmsf is called when entering the ex_iso_date_time_ymdhmsf production.
+	EnterEx_iso_date_time_ymdhmsf(c *Ex_iso_date_time_ymdhmsfContext)
+
+	// EnterEx_iso_date_time_ymdhms is called when entering the ex_iso_date_time_ymdhms production.
+	EnterEx_iso_date_time_ymdhms(c *Ex_iso_date_time_ymdhmsContext)
+
+	// EnterEx_iso_date_time_ymdhm is called when entering the ex_iso_date_time_ymdhm production.
+	EnterEx_iso_date_time_ymdhm(c *Ex_iso_date_time_ymdhmContext)
+
+	// EnterEx_iso_date_time_ymdh is called when entering the ex_iso_date_time_ymdh production.
+	EnterEx_iso_date_time_ymdh(c *Ex_iso_date_time_ymdhContext)
+
+	// EnterEx_iso_date_time_ymd is called when entering the ex_iso_date_time_ymd production.
+	EnterEx_iso_date_time_ymd(c *Ex_iso_date_time_ymdContext)
+
+	// EnterEx_iso_date_time_ym is called when entering the ex_iso_date_time_ym production.
+	EnterEx_iso_date_time_ym(c *Ex_iso_date_time_ymContext)
+
+	// EnterEx_iso_date_time_y is called when entering the ex_iso_date_time_y production.
+	EnterEx_iso_date_time_y(c *Ex_iso_date_time_yContext)
+
+	// EnterEx_year is called when entering the ex_year production.
+	EnterEx_year(c *Ex_yearContext)
+
+	// EnterEx_month is called when entering the ex_month production.
+	EnterEx_month(c *Ex_monthContext)
+
+	// EnterEx_day is called when entering the ex_day production.
+	EnterEx_day(c *Ex_dayContext)
+
+	// EnterEx_hour is called when entering the ex_hour production.
+	EnterEx_hour(c *Ex_hourContext)
+
+	// EnterEx_minutes is called when entering the ex_minutes production.
+	EnterEx_minutes(c *Ex_minutesContext)
+
+	// EnterEx_seconds is called when entering the ex_seconds production.
+	EnterEx_seconds(c *Ex_secondsContext)
+
+	// EnterEx_frac_sec is called when entering the ex_frac_sec production.
+	EnterEx_frac_sec(c *Ex_frac_secContext)
+
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
@@ -112,6 +196,90 @@ type PromQLExtensionParserListener interface {
 
 	// EnterLiteral is called when entering the literal production.
 	EnterLiteral(c *LiteralContext)
+
+	// ExitPromqlx is called when exiting the promqlx production.
+	ExitPromqlx(c *PromqlxContext)
+
+	// ExitEx_statement_list is called when exiting the ex_statement_list production.
+	ExitEx_statement_list(c *Ex_statement_listContext)
+
+	// ExitEx_statement is called when exiting the ex_statement production.
+	ExitEx_statement(c *Ex_statementContext)
+
+	// ExitEx_alias_def is called when exiting the ex_alias_def production.
+	ExitEx_alias_def(c *Ex_alias_defContext)
+
+	// ExitEx_macro_def is called when exiting the ex_macro_def production.
+	ExitEx_macro_def(c *Ex_macro_defContext)
+
+	// ExitEx_block is called when exiting the ex_block production.
+	ExitEx_block(c *Ex_blockContext)
+
+	// ExitEx_arg_list is called when exiting the ex_arg_list production.
+	ExitEx_arg_list(c *Ex_arg_listContext)
+
+	// ExitEx_if_statement is called when exiting the ex_if_statement production.
+	ExitEx_if_statement(c *Ex_if_statementContext)
+
+	// ExitEx_condition is called when exiting the ex_condition production.
+	ExitEx_condition(c *Ex_conditionContext)
+
+	// ExitEx_compareVectorOperation is called when exiting the ex_compareVectorOperation production.
+	ExitEx_compareVectorOperation(c *Ex_compareVectorOperationContext)
+
+	// ExitEx_trueConst is called when exiting the ex_trueConst production.
+	ExitEx_trueConst(c *Ex_trueConstContext)
+
+	// ExitEx_falseConst is called when exiting the ex_falseConst production.
+	ExitEx_falseConst(c *Ex_falseConstContext)
+
+	// ExitEx_time_instant is called when exiting the ex_time_instant production.
+	ExitEx_time_instant(c *Ex_time_instantContext)
+
+	// ExitEx_iso_date_time is called when exiting the ex_iso_date_time production.
+	ExitEx_iso_date_time(c *Ex_iso_date_timeContext)
+
+	// ExitEx_iso_date_time_ymdhmsf is called when exiting the ex_iso_date_time_ymdhmsf production.
+	ExitEx_iso_date_time_ymdhmsf(c *Ex_iso_date_time_ymdhmsfContext)
+
+	// ExitEx_iso_date_time_ymdhms is called when exiting the ex_iso_date_time_ymdhms production.
+	ExitEx_iso_date_time_ymdhms(c *Ex_iso_date_time_ymdhmsContext)
+
+	// ExitEx_iso_date_time_ymdhm is called when exiting the ex_iso_date_time_ymdhm production.
+	ExitEx_iso_date_time_ymdhm(c *Ex_iso_date_time_ymdhmContext)
+
+	// ExitEx_iso_date_time_ymdh is called when exiting the ex_iso_date_time_ymdh production.
+	ExitEx_iso_date_time_ymdh(c *Ex_iso_date_time_ymdhContext)
+
+	// ExitEx_iso_date_time_ymd is called when exiting the ex_iso_date_time_ymd production.
+	ExitEx_iso_date_time_ymd(c *Ex_iso_date_time_ymdContext)
+
+	// ExitEx_iso_date_time_ym is called when exiting the ex_iso_date_time_ym production.
+	ExitEx_iso_date_time_ym(c *Ex_iso_date_time_ymContext)
+
+	// ExitEx_iso_date_time_y is called when exiting the ex_iso_date_time_y production.
+	ExitEx_iso_date_time_y(c *Ex_iso_date_time_yContext)
+
+	// ExitEx_year is called when exiting the ex_year production.
+	ExitEx_year(c *Ex_yearContext)
+
+	// ExitEx_month is called when exiting the ex_month production.
+	ExitEx_month(c *Ex_monthContext)
+
+	// ExitEx_day is called when exiting the ex_day production.
+	ExitEx_day(c *Ex_dayContext)
+
+	// ExitEx_hour is called when exiting the ex_hour production.
+	ExitEx_hour(c *Ex_hourContext)
+
+	// ExitEx_minutes is called when exiting the ex_minutes production.
+	ExitEx_minutes(c *Ex_minutesContext)
+
+	// ExitEx_seconds is called when exiting the ex_seconds production.
+	ExitEx_seconds(c *Ex_secondsContext)
+
+	// ExitEx_frac_sec is called when exiting the ex_frac_sec production.
+	ExitEx_frac_sec(c *Ex_frac_secContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)

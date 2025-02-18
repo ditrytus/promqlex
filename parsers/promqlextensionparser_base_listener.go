@@ -21,6 +21,188 @@ func (s *BasePromQLExtensionParserListener) EnterEveryRule(ctx antlr.ParserRuleC
 // ExitEveryRule is called when any rule is exited.
 func (s *BasePromQLExtensionParserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
+// EnterPromqlx is called when production promqlx is entered.
+func (s *BasePromQLExtensionParserListener) EnterPromqlx(ctx *PromqlxContext) {}
+
+// ExitPromqlx is called when production promqlx is exited.
+func (s *BasePromQLExtensionParserListener) ExitPromqlx(ctx *PromqlxContext) {}
+
+// EnterEx_statement_list is called when production ex_statement_list is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_statement_list(ctx *Ex_statement_listContext) {}
+
+// ExitEx_statement_list is called when production ex_statement_list is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_statement_list(ctx *Ex_statement_listContext) {}
+
+// EnterEx_statement is called when production ex_statement is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_statement(ctx *Ex_statementContext) {}
+
+// ExitEx_statement is called when production ex_statement is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_statement(ctx *Ex_statementContext) {}
+
+// EnterEx_alias_def is called when production ex_alias_def is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_alias_def(ctx *Ex_alias_defContext) {}
+
+// ExitEx_alias_def is called when production ex_alias_def is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_alias_def(ctx *Ex_alias_defContext) {}
+
+// EnterEx_macro_def is called when production ex_macro_def is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_macro_def(ctx *Ex_macro_defContext) {}
+
+// ExitEx_macro_def is called when production ex_macro_def is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_macro_def(ctx *Ex_macro_defContext) {}
+
+// EnterEx_block is called when production ex_block is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_block(ctx *Ex_blockContext) {}
+
+// ExitEx_block is called when production ex_block is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_block(ctx *Ex_blockContext) {}
+
+// EnterEx_arg_list is called when production ex_arg_list is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_arg_list(ctx *Ex_arg_listContext) {}
+
+// ExitEx_arg_list is called when production ex_arg_list is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_arg_list(ctx *Ex_arg_listContext) {}
+
+// EnterEx_if_statement is called when production ex_if_statement is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_if_statement(ctx *Ex_if_statementContext) {}
+
+// ExitEx_if_statement is called when production ex_if_statement is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_if_statement(ctx *Ex_if_statementContext) {}
+
+// EnterEx_condition is called when production ex_condition is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_condition(ctx *Ex_conditionContext) {}
+
+// ExitEx_condition is called when production ex_condition is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_condition(ctx *Ex_conditionContext) {}
+
+// EnterEx_compareVectorOperation is called when production ex_compareVectorOperation is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_compareVectorOperation(ctx *Ex_compareVectorOperationContext) {
+}
+
+// ExitEx_compareVectorOperation is called when production ex_compareVectorOperation is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_compareVectorOperation(ctx *Ex_compareVectorOperationContext) {
+}
+
+// EnterEx_trueConst is called when production ex_trueConst is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_trueConst(ctx *Ex_trueConstContext) {}
+
+// ExitEx_trueConst is called when production ex_trueConst is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_trueConst(ctx *Ex_trueConstContext) {}
+
+// EnterEx_falseConst is called when production ex_falseConst is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_falseConst(ctx *Ex_falseConstContext) {}
+
+// ExitEx_falseConst is called when production ex_falseConst is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_falseConst(ctx *Ex_falseConstContext) {}
+
+// EnterEx_time_instant is called when production ex_time_instant is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_time_instant(ctx *Ex_time_instantContext) {}
+
+// ExitEx_time_instant is called when production ex_time_instant is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_time_instant(ctx *Ex_time_instantContext) {}
+
+// EnterEx_iso_date_time is called when production ex_iso_date_time is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time(ctx *Ex_iso_date_timeContext) {}
+
+// ExitEx_iso_date_time is called when production ex_iso_date_time is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time(ctx *Ex_iso_date_timeContext) {}
+
+// EnterEx_iso_date_time_ymdhmsf is called when production ex_iso_date_time_ymdhmsf is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ymdhmsf(ctx *Ex_iso_date_time_ymdhmsfContext) {
+}
+
+// ExitEx_iso_date_time_ymdhmsf is called when production ex_iso_date_time_ymdhmsf is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ymdhmsf(ctx *Ex_iso_date_time_ymdhmsfContext) {
+}
+
+// EnterEx_iso_date_time_ymdhms is called when production ex_iso_date_time_ymdhms is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ymdhms(ctx *Ex_iso_date_time_ymdhmsContext) {
+}
+
+// ExitEx_iso_date_time_ymdhms is called when production ex_iso_date_time_ymdhms is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ymdhms(ctx *Ex_iso_date_time_ymdhmsContext) {
+}
+
+// EnterEx_iso_date_time_ymdhm is called when production ex_iso_date_time_ymdhm is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ymdhm(ctx *Ex_iso_date_time_ymdhmContext) {
+}
+
+// ExitEx_iso_date_time_ymdhm is called when production ex_iso_date_time_ymdhm is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ymdhm(ctx *Ex_iso_date_time_ymdhmContext) {
+}
+
+// EnterEx_iso_date_time_ymdh is called when production ex_iso_date_time_ymdh is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ymdh(ctx *Ex_iso_date_time_ymdhContext) {
+}
+
+// ExitEx_iso_date_time_ymdh is called when production ex_iso_date_time_ymdh is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ymdh(ctx *Ex_iso_date_time_ymdhContext) {
+}
+
+// EnterEx_iso_date_time_ymd is called when production ex_iso_date_time_ymd is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ymd(ctx *Ex_iso_date_time_ymdContext) {
+}
+
+// ExitEx_iso_date_time_ymd is called when production ex_iso_date_time_ymd is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ymd(ctx *Ex_iso_date_time_ymdContext) {
+}
+
+// EnterEx_iso_date_time_ym is called when production ex_iso_date_time_ym is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_ym(ctx *Ex_iso_date_time_ymContext) {
+}
+
+// ExitEx_iso_date_time_ym is called when production ex_iso_date_time_ym is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_ym(ctx *Ex_iso_date_time_ymContext) {
+}
+
+// EnterEx_iso_date_time_y is called when production ex_iso_date_time_y is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_iso_date_time_y(ctx *Ex_iso_date_time_yContext) {}
+
+// ExitEx_iso_date_time_y is called when production ex_iso_date_time_y is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_iso_date_time_y(ctx *Ex_iso_date_time_yContext) {}
+
+// EnterEx_year is called when production ex_year is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_year(ctx *Ex_yearContext) {}
+
+// ExitEx_year is called when production ex_year is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_year(ctx *Ex_yearContext) {}
+
+// EnterEx_month is called when production ex_month is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_month(ctx *Ex_monthContext) {}
+
+// ExitEx_month is called when production ex_month is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_month(ctx *Ex_monthContext) {}
+
+// EnterEx_day is called when production ex_day is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_day(ctx *Ex_dayContext) {}
+
+// ExitEx_day is called when production ex_day is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_day(ctx *Ex_dayContext) {}
+
+// EnterEx_hour is called when production ex_hour is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_hour(ctx *Ex_hourContext) {}
+
+// ExitEx_hour is called when production ex_hour is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_hour(ctx *Ex_hourContext) {}
+
+// EnterEx_minutes is called when production ex_minutes is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_minutes(ctx *Ex_minutesContext) {}
+
+// ExitEx_minutes is called when production ex_minutes is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_minutes(ctx *Ex_minutesContext) {}
+
+// EnterEx_seconds is called when production ex_seconds is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_seconds(ctx *Ex_secondsContext) {}
+
+// ExitEx_seconds is called when production ex_seconds is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_seconds(ctx *Ex_secondsContext) {}
+
+// EnterEx_frac_sec is called when production ex_frac_sec is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_frac_sec(ctx *Ex_frac_secContext) {}
+
+// ExitEx_frac_sec is called when production ex_frac_sec is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_frac_sec(ctx *Ex_frac_secContext) {}
+
 // EnterExpression is called when production expression is entered.
 func (s *BasePromQLExtensionParserListener) EnterExpression(ctx *ExpressionContext) {}
 
