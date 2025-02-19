@@ -35,9 +35,7 @@ options {
     tokenVocab = PromQLExtensionLexer;
 }
 
-promqlx : ex_statement_list;
-
-ex_statement_list : ex_statement+ ;
+promqlx : (ex_statement EX_NL)+ ;
 
 ex_statement
     : ex_alias_def
@@ -50,11 +48,11 @@ ex_alias_def : EX_ID EQ expression;
 
 ex_macro_def : EX_ID LEFT_PAREN ex_arg_list? RIGHT_PAREN ex_block;
 
-ex_block : LEFT_BRACE ex_statement_list RIGHT_BRACE;
+ex_block : LEFT_BRACE promqlx RIGHT_BRACE;
 
 ex_arg_list : expression (COMMA expression)+;
 
-ex_if_statement : ex_condition ex_block;
+ex_if_statement : EX_IF ex_condition ex_block;
 
 ex_condition
     : ex_compareVectorOperation
@@ -69,8 +67,33 @@ ex_falseConst: EX_FALSE;
 
 // Time literals
 
-ex_time_instant
+ex_time_instant_expression
+    : ex_time_instant_literal exInstDurOp ex_abs_duration_expression
+//    | ex_time_instant_literal exInstDurOp ex_cal_duration_expression
+    | ex_time_instant_literal
+    ;
+
+ex_abs_duration_expression
+    : ex_abs_duration_expression exAbsDurOp ex_abs_duration_expression
+//    | ex_abs_duration_expression exAbsNumOp NUMBER
+    | ex_abs_duration_literal
+    ;
+
+exAbsDurOp
+    : ADD
+    | SUB
+    ;
+
+ex_abs_duration_literal : DURATION;
+
+exInstDurOp
+    : ADD
+    | SUB
+    ;
+
+ex_time_instant_literal
     : ex_iso_date_time
+    | ex_unix_timestamp
     ;
 
 ex_iso_date_time
@@ -81,6 +104,7 @@ ex_iso_date_time
     | ex_iso_date_time_ymd
     | ex_iso_date_time_ym
     | ex_iso_date_time_y
+    |
     ;
 
 ex_iso_date_time_ymdhmsf: ex_year SUB ex_month SUB ex_day EX_T ex_hour EX_COLON ex_minutes EX_COLON ex_seconds EX_DOT ex_frac_sec;
@@ -98,6 +122,8 @@ ex_hour: EX_TWO_DIGITS;
 ex_minutes: EX_TWO_DIGITS;
 ex_seconds: EX_TWO_DIGITS;
 ex_frac_sec: EX_DIGITS;
+
+ex_unix_timestamp: EX_POSITIVE_INTEGER;
 
 // Original PromQLGrammar. All alterations have additional comments
 // starting with PROMQLX.

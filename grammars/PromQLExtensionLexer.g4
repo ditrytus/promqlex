@@ -49,6 +49,8 @@ EX_ID options {
   caseInsensitive = false;
 }: [a-zA-Z] [0-9a-zA-Z_]+;
 
+EX_IF: 'if';
+
 EX_TRUE: 'true';
 EX_FALSE: 'false';
 
@@ -60,6 +62,7 @@ EX_POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
 EX_TWO_DIGITS: [0-9] [0-9];
 EX_DIGITS: [0-9]+;
 
+EX_NL: '\n' | '\r\n' ;
 
 // Original PROMQL lexer
 
