@@ -100,6 +100,30 @@ ex_frac_sec: EX_DIGITS;
 
 ex_unix_timestamp: EX_POSITIVE_INTEGER;
 
+// Constant expressions
+
+ex_const_num_expression
+    : <assoc = right> ex_num_literal powOp ex_num_literal
+    | unaryOp ex_num_literal
+    | ex_num_literal multOp ex_num_literal
+    | ex_num_literal addOp ex_num_literal
+    | ex_num_literal
+    ;
+
+ex_num_literal
+    : NUMBER
+    | DURATION
+    | ex_time_instant_literal
+    ;
+
+ex_duration : ex_const_num_expression;
+
+// This rule was converted from lexer rule TIME_RANGE.
+ex_time_range: LEFT_BRACKET ex_duration RIGHT_BRACKET;
+
+// This rule was converted from lexer rule SUBQUERY_RANGE.
+ex_subquery_range: LEFT_BRACKET ex_duration ':' ex_duration? RIGHT_BRACKET;
+
 // Original PromQLGrammar. All alterations have additional comments
 // starting with PROMQLX.
 
@@ -160,11 +184,13 @@ vectorMatchOp
     ;
 
 subqueryOp
-    : SUBQUERY_RANGE offsetOp?
+    : ex_subquery_range offsetOp?
     ;
 
 offsetOp
-    : OFFSET DURATION
+    // PROMQLX: Constant duration expressions can be used everywhere
+    // where PromQL exprects duration.
+    : OFFSET ex_duration
     ;
 
 vector
@@ -204,12 +230,14 @@ labelMatcherList
     ;
 
 matrixSelector
-    : instantSelector TIME_RANGE
+    : instantSelector ex_time_range
     ;
 
 offset
-    : instantSelector OFFSET DURATION
-    | matrixSelector OFFSET DURATION
+    // PROMQLX: Constant duration expressions can be used everywhere
+    // where PromQL exprects duration.
+    : instantSelector OFFSET ex_duration
+    | matrixSelector OFFSET ex_duration
     ;
 
 // Functions
@@ -295,20 +323,7 @@ keyword
 
 literal
     // PROMQLX: everything that can be converted to the number of seconds
+    // can be used as literal
     : ex_const_num_expression
     | STRING
-    ;
-
-ex_const_num_expression
-    : <assoc = right> ex_num_literal powOp ex_num_literal
-    | unaryOp ex_num_literal
-    | ex_num_literal multOp ex_num_literal
-    | ex_num_literal addOp ex_num_literal
-    | ex_num_literal
-    ;
-
-ex_num_literal
-    : NUMBER
-    | DURATION
-    | ex_time_instant_literal
     ;
