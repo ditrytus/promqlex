@@ -294,9 +294,21 @@ keyword
     ;
 
 literal
-    : NUMBER
+    // PROMQLX: everything that can be converted to the number of seconds
+    : ex_const_num_expression
     | STRING
-    // PROMQLX: durations and instants are also literals.
+    ;
+
+ex_const_num_expression
+    : <assoc = right> ex_num_literal powOp ex_num_literal
+    | unaryOp ex_num_literal
+    | ex_num_literal multOp ex_num_literal
+    | ex_num_literal addOp ex_num_literal
+    | ex_num_literal
+    ;
+
+ex_num_literal
+    : NUMBER
     | DURATION
     | ex_time_instant_literal
     ;
