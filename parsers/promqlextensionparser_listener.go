@@ -11,9 +11,6 @@ type PromQLExtensionParserListener interface {
 	// EnterPromqlx is called when entering the promqlx production.
 	EnterPromqlx(c *PromqlxContext)
 
-	// EnterEx_statement_list is called when entering the ex_statement_list production.
-	EnterEx_statement_list(c *Ex_statement_listContext)
-
 	// EnterEx_statement is called when entering the ex_statement production.
 	EnterEx_statement(c *Ex_statementContext)
 
@@ -44,8 +41,8 @@ type PromQLExtensionParserListener interface {
 	// EnterEx_falseConst is called when entering the ex_falseConst production.
 	EnterEx_falseConst(c *Ex_falseConstContext)
 
-	// EnterEx_time_instant is called when entering the ex_time_instant production.
-	EnterEx_time_instant(c *Ex_time_instantContext)
+	// EnterEx_time_instant_literal is called when entering the ex_time_instant_literal production.
+	EnterEx_time_instant_literal(c *Ex_time_instant_literalContext)
 
 	// EnterEx_iso_date_time is called when entering the ex_iso_date_time production.
 	EnterEx_iso_date_time(c *Ex_iso_date_timeContext)
@@ -92,8 +89,26 @@ type PromQLExtensionParserListener interface {
 	// EnterEx_frac_sec is called when entering the ex_frac_sec production.
 	EnterEx_frac_sec(c *Ex_frac_secContext)
 
-	// EnterExpression is called when entering the expression production.
-	EnterExpression(c *ExpressionContext)
+	// EnterEx_unix_timestamp is called when entering the ex_unix_timestamp production.
+	EnterEx_unix_timestamp(c *Ex_unix_timestampContext)
+
+	// EnterEx_const_num_expression is called when entering the ex_const_num_expression production.
+	EnterEx_const_num_expression(c *Ex_const_num_expressionContext)
+
+	// EnterEx_num_literal is called when entering the ex_num_literal production.
+	EnterEx_num_literal(c *Ex_num_literalContext)
+
+	// EnterEx_alias_call is called when entering the ex_alias_call production.
+	EnterEx_alias_call(c *Ex_alias_callContext)
+
+	// EnterEx_duration is called when entering the ex_duration production.
+	EnterEx_duration(c *Ex_durationContext)
+
+	// EnterEx_time_range is called when entering the ex_time_range production.
+	EnterEx_time_range(c *Ex_time_rangeContext)
+
+	// EnterEx_subquery_range is called when entering the ex_subquery_range production.
+	EnterEx_subquery_range(c *Ex_subquery_rangeContext)
 
 	// EnterVectorOperation is called when entering the vectorOperation production.
 	EnterVectorOperation(c *VectorOperationContext)
@@ -200,9 +215,6 @@ type PromQLExtensionParserListener interface {
 	// ExitPromqlx is called when exiting the promqlx production.
 	ExitPromqlx(c *PromqlxContext)
 
-	// ExitEx_statement_list is called when exiting the ex_statement_list production.
-	ExitEx_statement_list(c *Ex_statement_listContext)
-
 	// ExitEx_statement is called when exiting the ex_statement production.
 	ExitEx_statement(c *Ex_statementContext)
 
@@ -233,8 +245,8 @@ type PromQLExtensionParserListener interface {
 	// ExitEx_falseConst is called when exiting the ex_falseConst production.
 	ExitEx_falseConst(c *Ex_falseConstContext)
 
-	// ExitEx_time_instant is called when exiting the ex_time_instant production.
-	ExitEx_time_instant(c *Ex_time_instantContext)
+	// ExitEx_time_instant_literal is called when exiting the ex_time_instant_literal production.
+	ExitEx_time_instant_literal(c *Ex_time_instant_literalContext)
 
 	// ExitEx_iso_date_time is called when exiting the ex_iso_date_time production.
 	ExitEx_iso_date_time(c *Ex_iso_date_timeContext)
@@ -281,8 +293,26 @@ type PromQLExtensionParserListener interface {
 	// ExitEx_frac_sec is called when exiting the ex_frac_sec production.
 	ExitEx_frac_sec(c *Ex_frac_secContext)
 
-	// ExitExpression is called when exiting the expression production.
-	ExitExpression(c *ExpressionContext)
+	// ExitEx_unix_timestamp is called when exiting the ex_unix_timestamp production.
+	ExitEx_unix_timestamp(c *Ex_unix_timestampContext)
+
+	// ExitEx_const_num_expression is called when exiting the ex_const_num_expression production.
+	ExitEx_const_num_expression(c *Ex_const_num_expressionContext)
+
+	// ExitEx_num_literal is called when exiting the ex_num_literal production.
+	ExitEx_num_literal(c *Ex_num_literalContext)
+
+	// ExitEx_alias_call is called when exiting the ex_alias_call production.
+	ExitEx_alias_call(c *Ex_alias_callContext)
+
+	// ExitEx_duration is called when exiting the ex_duration production.
+	ExitEx_duration(c *Ex_durationContext)
+
+	// ExitEx_time_range is called when exiting the ex_time_range production.
+	ExitEx_time_range(c *Ex_time_rangeContext)
+
+	// ExitEx_subquery_range is called when exiting the ex_subquery_range production.
+	ExitEx_subquery_range(c *Ex_subquery_rangeContext)
 
 	// ExitVectorOperation is called when exiting the vectorOperation production.
 	ExitVectorOperation(c *VectorOperationContext)

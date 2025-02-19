@@ -41,16 +41,16 @@ ex_statement
     : ex_alias_def
     | ex_macro_def
     | ex_if_statement
-    | expression
+    | vectorOperation
     ;
 
-ex_alias_def : EX_ID EQ expression;
+ex_alias_def : EX_ID EQ vectorOperation;
 
 ex_macro_def : EX_ID LEFT_PAREN ex_arg_list? RIGHT_PAREN ex_block;
 
 ex_block : LEFT_BRACE promqlx RIGHT_BRACE;
 
-ex_arg_list : expression (COMMA expression)+;
+ex_arg_list : vectorOperation (COMMA vectorOperation)+;
 
 ex_if_statement : EX_IF ex_condition ex_block;
 
@@ -107,6 +107,8 @@ ex_const_num_expression
     | unaryOp ex_num_literal
     | ex_num_literal multOp ex_num_literal
     | ex_num_literal addOp ex_num_literal
+    | LEFT_PAREN ex_const_num_expression RIGHT_PAREN
+    | ex_alias_call
     | ex_num_literal
     ;
 
@@ -114,7 +116,10 @@ ex_num_literal
     : NUMBER
     | DURATION
     | ex_time_instant_literal
+    | ex_alias_call
     ;
+
+ex_alias_call : EX_ID;
 
 ex_duration : ex_const_num_expression;
 
@@ -127,9 +132,9 @@ ex_subquery_range: LEFT_BRACKET ex_duration ':' ex_duration? RIGHT_BRACKET;
 // Original PromQLGrammar. All alterations have additional comments
 // starting with PROMQLX.
 
-expression
-    : vectorOperation EOF
-    ;
+//expression
+//    : vectorOperation EOF
+//    ;
 
 // Binary operations are ordered by precedence
 
@@ -147,6 +152,8 @@ vectorOperation
     | vectorOperation vectorMatchOp vectorOperation
     | vectorOperation AT vectorOperation
     | vector
+    // PROMQLX: an alias can be used anywhere in the context of vector operation.
+    | ex_alias_call
     ;
 
 // Operators
