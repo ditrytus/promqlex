@@ -67,30 +67,6 @@ ex_falseConst: EX_FALSE;
 
 // Time literals
 
-ex_time_instant_expression
-    : ex_time_instant_literal exInstDurOp ex_abs_duration_expression
-//    | ex_time_instant_literal exInstDurOp ex_cal_duration_expression
-    | ex_time_instant_literal
-    ;
-
-ex_abs_duration_expression
-    : ex_abs_duration_expression exAbsDurOp ex_abs_duration_expression
-//    | ex_abs_duration_expression exAbsNumOp NUMBER
-    | ex_abs_duration_literal
-    ;
-
-exAbsDurOp
-    : ADD
-    | SUB
-    ;
-
-ex_abs_duration_literal : DURATION;
-
-exInstDurOp
-    : ADD
-    | SUB
-    ;
-
 ex_time_instant_literal
     : ex_iso_date_time
     | ex_unix_timestamp
@@ -104,7 +80,6 @@ ex_iso_date_time
     | ex_iso_date_time_ymd
     | ex_iso_date_time_ym
     | ex_iso_date_time_y
-    |
     ;
 
 ex_iso_date_time_ymdhmsf: ex_year SUB ex_month SUB ex_day EX_T ex_hour EX_COLON ex_minutes EX_COLON ex_seconds EX_DOT ex_frac_sec;
@@ -321,4 +296,7 @@ keyword
 literal
     : NUMBER
     | STRING
+    // PROMQLX: durations and instants are also literals.
+    | DURATION
+    | ex_time_instant_literal
     ;
