@@ -17,7 +17,8 @@ $(LEXER_OUTPUT): grammars/$(GRAMMAR_NAME)Lexer.g4
 $(eval PARSER_OUTPUT := parsers/$(LOWERCASE_GRAMMAR_NAME)_parser.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_listener.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_base_listener.go)
 $(PARSER_OUTPUT): grammars/$(GRAMMAR_NAME)Parser.g4 grammars/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.interp
 	cd grammars && $(ANTLR4) -Dlanguage=Go -o ../parsers $(GRAMMAR_NAME)Parser.g4
-
+	rm -f parsers/$(GRAMMAR_NAME)Parser.tokens
+	rm -f parsers/$(GRAMMAR_NAME)Parser.interp
 endef
 
 $(eval $(call build_lexer_and_parser,PromQL))
