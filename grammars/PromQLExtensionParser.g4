@@ -330,7 +330,6 @@ keyword
     | OFFSET
     | BOOL
     | AGGREGATION_OPERATOR
-    | FUNCTION
     ;
 
 literal

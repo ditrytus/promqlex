@@ -136,7 +136,7 @@ func promqlextensionparserParserInit() {
 		104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132,
 		134, 136, 138, 140, 0, 7, 1, 0, 3, 4, 1, 0, 5, 7, 1, 0, 13, 18, 2, 0, 9,
 		9, 11, 11, 2, 0, 11, 11, 23, 23, 3, 0, 12, 12, 14, 14, 19, 20, 2, 0, 9,
-		11, 21, 30, 597, 0, 145, 1, 0, 0, 0, 2, 153, 1, 0, 0, 0, 4, 155, 1, 0,
+		11, 21, 29, 597, 0, 145, 1, 0, 0, 0, 2, 153, 1, 0, 0, 0, 4, 155, 1, 0,
 		0, 0, 6, 160, 1, 0, 0, 0, 8, 163, 1, 0, 0, 0, 10, 172, 1, 0, 0, 0, 12,
 		181, 1, 0, 0, 0, 14, 189, 1, 0, 0, 0, 16, 191, 1, 0, 0, 0, 18, 195, 1,
 		0, 0, 0, 20, 202, 1, 0, 0, 0, 22, 209, 1, 0, 0, 0, 24, 211, 1, 0, 0, 0,
@@ -8669,7 +8669,7 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 			}
 			_la = p.GetTokenStream().LA(1)
 
-			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&3300680273408) != 0 {
+			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&3299606531584) != 0 {
 				{
 					p.SetState(448)
 					p.LabelMatcherList()
@@ -11312,7 +11312,7 @@ func (p *PromQLExtensionParser) LabelName() (localctx ILabelNameContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserAND, PromQLExtensionParserOR, PromQLExtensionParserUNLESS, PromQLExtensionParserBY, PromQLExtensionParserWITHOUT, PromQLExtensionParserON, PromQLExtensionParserIGNORING, PromQLExtensionParserGROUP_LEFT, PromQLExtensionParserGROUP_RIGHT, PromQLExtensionParserOFFSET, PromQLExtensionParserBOOL, PromQLExtensionParserAGGREGATION_OPERATOR, PromQLExtensionParserFUNCTION:
+	case PromQLExtensionParserAND, PromQLExtensionParserOR, PromQLExtensionParserUNLESS, PromQLExtensionParserBY, PromQLExtensionParserWITHOUT, PromQLExtensionParserON, PromQLExtensionParserIGNORING, PromQLExtensionParserGROUP_LEFT, PromQLExtensionParserGROUP_RIGHT, PromQLExtensionParserOFFSET, PromQLExtensionParserBOOL, PromQLExtensionParserAGGREGATION_OPERATOR:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(566)
@@ -11508,7 +11508,7 @@ func (p *PromQLExtensionParser) LabelNameList() (localctx ILabelNameListContext)
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&3300680273408) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&3299606531584) != 0 {
 		{
 			p.SetState(572)
 			p.LabelName()
@@ -11585,7 +11585,6 @@ type IKeywordContext interface {
 	OFFSET() antlr.TerminalNode
 	BOOL() antlr.TerminalNode
 	AGGREGATION_OPERATOR() antlr.TerminalNode
-	FUNCTION() antlr.TerminalNode
 
 	// IsKeywordContext differentiates from other interfaces.
 	IsKeywordContext()
@@ -11671,10 +11670,6 @@ func (s *KeywordContext) AGGREGATION_OPERATOR() antlr.TerminalNode {
 	return s.GetToken(PromQLExtensionParserAGGREGATION_OPERATOR, 0)
 }
 
-func (s *KeywordContext) FUNCTION() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserFUNCTION, 0)
-}
-
 func (s *KeywordContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -11705,7 +11700,7 @@ func (p *PromQLExtensionParser) Keyword() (localctx IKeywordContext) {
 		p.SetState(584)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2145390080) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1071648256) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
