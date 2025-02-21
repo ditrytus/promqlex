@@ -17,8 +17,20 @@ type PromQLExtensionParserListener interface {
 	// EnterEx_alias_def is called when entering the ex_alias_def production.
 	EnterEx_alias_def(c *Ex_alias_defContext)
 
+	// EnterEx_alias_call is called when entering the ex_alias_call production.
+	EnterEx_alias_call(c *Ex_alias_callContext)
+
 	// EnterEx_macro_def is called when entering the ex_macro_def production.
 	EnterEx_macro_def(c *Ex_macro_defContext)
+
+	// EnterEx_macro_call is called when entering the ex_macro_call production.
+	EnterEx_macro_call(c *Ex_macro_callContext)
+
+	// EnterEx_args_decl is called when entering the ex_args_decl production.
+	EnterEx_args_decl(c *Ex_args_declContext)
+
+	// EnterEx_arg_name is called when entering the ex_arg_name production.
+	EnterEx_arg_name(c *Ex_arg_nameContext)
 
 	// EnterEx_block is called when entering the ex_block production.
 	EnterEx_block(c *Ex_blockContext)
@@ -97,9 +109,6 @@ type PromQLExtensionParserListener interface {
 
 	// EnterEx_num_literal is called when entering the ex_num_literal production.
 	EnterEx_num_literal(c *Ex_num_literalContext)
-
-	// EnterEx_alias_call is called when entering the ex_alias_call production.
-	EnterEx_alias_call(c *Ex_alias_callContext)
 
 	// EnterEx_duration is called when entering the ex_duration production.
 	EnterEx_duration(c *Ex_durationContext)
@@ -221,8 +230,20 @@ type PromQLExtensionParserListener interface {
 	// ExitEx_alias_def is called when exiting the ex_alias_def production.
 	ExitEx_alias_def(c *Ex_alias_defContext)
 
+	// ExitEx_alias_call is called when exiting the ex_alias_call production.
+	ExitEx_alias_call(c *Ex_alias_callContext)
+
 	// ExitEx_macro_def is called when exiting the ex_macro_def production.
 	ExitEx_macro_def(c *Ex_macro_defContext)
+
+	// ExitEx_macro_call is called when exiting the ex_macro_call production.
+	ExitEx_macro_call(c *Ex_macro_callContext)
+
+	// ExitEx_args_decl is called when exiting the ex_args_decl production.
+	ExitEx_args_decl(c *Ex_args_declContext)
+
+	// ExitEx_arg_name is called when exiting the ex_arg_name production.
+	ExitEx_arg_name(c *Ex_arg_nameContext)
 
 	// ExitEx_block is called when exiting the ex_block production.
 	ExitEx_block(c *Ex_blockContext)
@@ -301,9 +322,6 @@ type PromQLExtensionParserListener interface {
 
 	// ExitEx_num_literal is called when exiting the ex_num_literal production.
 	ExitEx_num_literal(c *Ex_num_literalContext)
-
-	// ExitEx_alias_call is called when exiting the ex_alias_call production.
-	ExitEx_alias_call(c *Ex_alias_callContext)
 
 	// ExitEx_duration is called when exiting the ex_duration production.
 	ExitEx_duration(c *Ex_durationContext)

@@ -44,9 +44,15 @@ ex_statement
     | vectorOperation
     ;
 
-ex_alias_def : EX_ID EQ vectorOperation;
+ex_alias_def : EX_DEF EX_ID EQ vectorOperation;
+ex_alias_call : EX_CALL_SIGN EX_ID;
 
-ex_macro_def : EX_ID LEFT_PAREN ex_arg_list? RIGHT_PAREN ex_block;
+ex_macro_def : EX_DEF EX_ID LEFT_PAREN ex_args_decl? RIGHT_PAREN ex_block;
+ex_macro_call: EX_CALL_SIGN EX_ID EX_ID LEFT_PAREN ex_arg_list? RIGHT_PAREN;
+
+ex_args_decl : ex_arg_name (COMMA ex_arg_name)*;
+
+ex_arg_name : EX_ID;
 
 ex_block : LEFT_BRACE promqlx RIGHT_BRACE;
 
@@ -108,7 +114,6 @@ ex_const_num_expression
     | ex_num_literal multOp ex_num_literal
     | ex_num_literal addOp ex_num_literal
     | LEFT_PAREN ex_const_num_expression RIGHT_PAREN
-    | ex_alias_call
     | ex_num_literal
     ;
 
@@ -118,8 +123,6 @@ ex_num_literal
     | ex_time_instant_literal
     | ex_alias_call
     ;
-
-ex_alias_call : EX_ID;
 
 ex_duration : ex_const_num_expression;
 
@@ -132,6 +135,7 @@ ex_subquery_range: LEFT_BRACKET ex_duration ':' ex_duration? RIGHT_BRACKET;
 // Original PromQLGrammar. All alterations have additional comments
 // starting with PROMQLX.
 
+// PROMQLX: entry rule now is promqlx which can consist of multiple vectorOperation.
 //expression
 //    : vectorOperation EOF
 //    ;
@@ -152,7 +156,8 @@ vectorOperation
     | vectorOperation vectorMatchOp vectorOperation
     | vectorOperation AT vectorOperation
     | vector
-    // PROMQLX: an alias can be used anywhere in the context of vector operation.
+    // PROMQLX: an alias or macro call can be used anywhere in the context of vector operation.
+    | ex_macro_call
     | ex_alias_call
     ;
 

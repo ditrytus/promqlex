@@ -39,11 +39,35 @@ func (s *BasePromQLExtensionParserListener) EnterEx_alias_def(ctx *Ex_alias_defC
 // ExitEx_alias_def is called when production ex_alias_def is exited.
 func (s *BasePromQLExtensionParserListener) ExitEx_alias_def(ctx *Ex_alias_defContext) {}
 
+// EnterEx_alias_call is called when production ex_alias_call is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_alias_call(ctx *Ex_alias_callContext) {}
+
+// ExitEx_alias_call is called when production ex_alias_call is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_alias_call(ctx *Ex_alias_callContext) {}
+
 // EnterEx_macro_def is called when production ex_macro_def is entered.
 func (s *BasePromQLExtensionParserListener) EnterEx_macro_def(ctx *Ex_macro_defContext) {}
 
 // ExitEx_macro_def is called when production ex_macro_def is exited.
 func (s *BasePromQLExtensionParserListener) ExitEx_macro_def(ctx *Ex_macro_defContext) {}
+
+// EnterEx_macro_call is called when production ex_macro_call is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_macro_call(ctx *Ex_macro_callContext) {}
+
+// ExitEx_macro_call is called when production ex_macro_call is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_macro_call(ctx *Ex_macro_callContext) {}
+
+// EnterEx_args_decl is called when production ex_args_decl is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_args_decl(ctx *Ex_args_declContext) {}
+
+// ExitEx_args_decl is called when production ex_args_decl is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_args_decl(ctx *Ex_args_declContext) {}
+
+// EnterEx_arg_name is called when production ex_arg_name is entered.
+func (s *BasePromQLExtensionParserListener) EnterEx_arg_name(ctx *Ex_arg_nameContext) {}
+
+// ExitEx_arg_name is called when production ex_arg_name is exited.
+func (s *BasePromQLExtensionParserListener) ExitEx_arg_name(ctx *Ex_arg_nameContext) {}
 
 // EnterEx_block is called when production ex_block is entered.
 func (s *BasePromQLExtensionParserListener) EnterEx_block(ctx *Ex_blockContext) {}
@@ -218,12 +242,6 @@ func (s *BasePromQLExtensionParserListener) EnterEx_num_literal(ctx *Ex_num_lite
 
 // ExitEx_num_literal is called when production ex_num_literal is exited.
 func (s *BasePromQLExtensionParserListener) ExitEx_num_literal(ctx *Ex_num_literalContext) {}
-
-// EnterEx_alias_call is called when production ex_alias_call is entered.
-func (s *BasePromQLExtensionParserListener) EnterEx_alias_call(ctx *Ex_alias_callContext) {}
-
-// ExitEx_alias_call is called when production ex_alias_call is exited.
-func (s *BasePromQLExtensionParserListener) ExitEx_alias_call(ctx *Ex_alias_callContext) {}
 
 // EnterEx_duration is called when production ex_duration is entered.
 func (s *BasePromQLExtensionParserListener) EnterEx_duration(ctx *Ex_durationContext) {}

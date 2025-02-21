@@ -231,4 +231,10 @@ EX_POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
 EX_TWO_DIGITS: [0-9] [0-9];
 EX_DIGITS: [0-9]+;
 
+EX_METRIC_KEYWORD: 'metric';
+EX_LABEL_KEYWORD: 'label';
+
+EX_DEF: 'def';
+EX_CALL_SIGN: '$';
+
 EX_NL: '\n' | '\r\n' ;
