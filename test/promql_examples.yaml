@@ -1,0 +1,130 @@
+source: https://prometheus.io/docs/prometheus/latest/querying/examples/
+queries:
+  - http_requests_total
+  - http_requests_total{job="apiserver", handler="/api/comments"}
+  - http_requests_total{job="apiserver", handler="/api/comments"}[5m]
+  - http_requests_total{job=~".*server"}
+  - http_requests_total{status!~"4.."}
+  - rate(http_requests_total[5m])[30m:1m]
+  - max_over_time(deriv(rate(distance_covered_total[5s])[30s:5s])[10m:])
+  - rate(http_requests_total[5m])
+  - |-
+    sum by (job) (
+      rate(http_requests_total[5m])
+    )
+  - (instance_memory_limit_bytes - instance_memory_usage_bytes) / 1024 / 1024
+  - |-
+    sum by (app, proc) (
+      instance_memory_limit_bytes - instance_memory_usage_bytes
+    ) / 1024 / 1024
+  - instance_cpu_time_ns{app="lion", proc="web", rev="34d0f99", env="prod", job="cluster-manager"}
+  - topk(3, sum by (app, proc) (rate(instance_cpu_time_ns[5m])))
+  - count by (app) (instance_cpu_time_ns)
+  - limitk(10, app_foo_metric_bar)
+  - limit_ratio(0.1, app_foo_metric_bar)
+---
+source: https://promlabs.com/blog/2020/12/17/promql-queries-for-exploring-your-metrics/
+queries:
+  - {__name__!=""}
+  - demo_cpu_usage_seconds_total
+  - group by(__name__) ({__name__!=""})
+  - group by(mode) (demo_cpu_usage_seconds_total)
+  - group by(mode) ({__name__!=""})
+  - sort_desc(count by(__name__) ({__name__!=""}))
+  - sort_desc(count by(instance) ({__name__!=""}))
+  - sort_desc(count by(job, __name__) ({__name__!=""}))
+  - count(group by(le) (demo_api_request_duration_seconds_bucket))
+  - count(group by(le, job) (demo_api_request_duration_seconds_bucket))
+---
+source: https://sysdig.com/blog/prometheus-query-examples/
+queries:
+  - sum by (namespace) (kube_pod_info)
+  - count by (namespace)(sum by (namespace,pod,container)(kube_pod_container_info{container!=""}) unless sum by (namespace,pod,container)(kube_pod_container_resource_limits{resource="cpu"}))
+  - sum by (namespace)(changes(kube_pod_status_ready{condition="true"}[5m]))
+  - sum by (namespace) (kube_pod_status_ready{condition="false"})
+  - sum(kube_pod_container_resource_limits{resource="cpu"}) - sum(kube_node_status_capacity_cpu_cores)
+  - sum(kube_pod_container_resource_limits{resource="memory"}) - sum(kube_node_status_capacity_memory_bytes)
+  - sum(kube_node_status_condition{condition="Ready", status="true"}==1)
+  - sum(changes(kube_node_status_condition{status="true",condition="Ready"}[15m])) by (node) > 2
+  - sum((rate(container_cpu_usage_seconds_total{container!="POD",container!=""}[30m]) - on (namespace,pod,container) group_left avg by (namespace,pod,container)(kube_pod_container_resource_requests{resource="cpu"})) * -1 >0)
+  - sum((container_memory_usage_bytes{container!="POD",container!=""} - on (namespace,pod,container) avg by (namespace,pod,container)(kube_pod_container_resource_requests{resource="memory"})) * -1 >0 ) / (1024*1024*1024)
+---
+source: https://github.com/infinityworks/prometheus-example-queries
+queries:
+  - "100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[5m])))"
+  - >
+    rate(demo_api_request_duration_seconds_count{status="500",job="demo"}[5m]) * 50
+      > on(job, instance, method, path)
+    rate(demo_api_request_duration_seconds_count{status="200",job="demo"}[5m])
+  - >
+    histogram_quantile(0.9, rate(demo_api_request_duration_seconds_bucket{job="demo"}[5m])) > 0.05
+      and
+    rate(demo_api_request_duration_seconds_count{job="demo"}[5m]) > 1
+  - rate(api_http_requests_total{status=500}[5m] offset 1h)
+  - sum by(kubernetes_pod_name) (container_memory_usage_bytes{kubernetes_namespace="kube-system"})
+  - topk(10, count by (__name__)({__name__=~".+"}))
+  - topk(10, count by (job)({__name__=~".+"}))
+  - sort_desc(sum(sum_over_time(ALERTS{alertstate=`firing`}[24h])) by (alertname))
+  - predict_linear(node_filesystem_free{mountpoint="/"}[4h], 4 * 3600) < 0
+  - (sum(node_memory_MemTotal) - sum(node_memory_MemFree + node_memory_Buffers + node_memory_Cached) ) / sum(node_memory_MemTotal) * 100 > 85
+  - 100 - (avg by(instance) (irate(node_cpu{mode="idle"}[5m])) * 100) > 70
+  - prometheus_local_storage_persistence_urgency_score > 0.95
+---
+source: https://github.com/antlr/grammars-v4/tree/master/promql/examples
+queries:
+  - count_values ('pod', container_cpu_usage_seconds_total) by (node)
+  - count_values by (node) ('pod', container_cpu_usage_seconds_total)
+  - last_over_time(container_cpu_usage_seconds_total[1m])
+  - http_requests_total @ 1609746000
+  - http_requests_total @ timestamp(metric_name{label="value"})
+  - |
+    # testing
+    # comments
+    max by (
+      some_entry,
+      # comment here too
+      another_one
+    )
+    (
+      max_over_time (
+        a_metric
+        {
+          # another comment here
+          important="thing"
+        }
+      )
+    )
+  - |
+    max without (revision) (
+      kube_statefulset_status_current_revision{job="kube-state-metrics"}
+        unless
+      kube_statefulset_status_update_revision{job="kube-state-metrics"}
+    )
+      *
+    (
+      kube_statefulset_replicas{job="kube-state-metrics"}
+        !=
+      kube_statefulset_status_replicas_updated{job="kube-state-metrics"}
+    )
+  - container_cpu_usage_seconds_total offset 1y5m900ms
+  - day_of_month(timestamp(up{job="prometheus"}))
+  - sin(rate(http_requests_total[5m]))
+  - clamp(node_load1{job="example_job"}, 0, 10)
+  - container_cpu_usage_seconds_total
+  - container_cpu_usage_seconds_total{}
+  - container_cpu_usage_seconds_total{job='kubelet'}
+  - {__name__='container_cpu_usage_seconds_total'}
+  - container_cpu_usage_seconds_total * kube_pod_info
+  - container_cpu_usage_seconds_total * on(pod) kube_pod_info
+  - container_cpu_usage_seconds_total * on(pod) group_left(node) kube_pod_info
+  - rate(container_cpu_usage_seconds_total[1m]) / on(instance, job) group_left test_num_cpus
+  - important_metric{name="testing",service="cassandra", comma="trailing",} > 100000
+  - container_cpu_usage_seconds_total[5m]
+  - container_cpu_usage_seconds_total[5m:]
+  - container_cpu_usage_seconds_total[5m:1m]
+  - container_cpu_usage_seconds_total offset 5m
+  - ((- a ^ 2 * b + c) > 1) and d or e or (a < -1e-05 > 1e-05)
+  - rate(http_requests_total[5m])[30m:1m]
+  - max by (very, second)(foo_metric{very=~'important', something='else'}) > 0 AND ON(host,project)(metric_name) > 0
+  - time() - kube_cronjob_next_schedule_time > 3600
+
