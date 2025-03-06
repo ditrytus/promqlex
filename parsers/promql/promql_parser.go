@@ -1,6 +1,6 @@
 // Code generated from PromQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package parsers // PromQLParser
+package promql // PromQLParser
 import (
 	"fmt"
 	"strconv"

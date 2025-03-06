@@ -1,9 +1,9 @@
 ANTLR4 = antlr4
 ANTLR4_OUTPUT_DIR = parsers/$(LOWERCASE_GRAMMAR_NAME)
-ANTLR4_ARGS = -Dlanguage=Go -o ../$(ANTLR4_OUTPUT_DIR) -package parsers
+ANTLR4_ARGS = -Dlanguage=Go -o ../$(ANTLR4_OUTPUT_DIR) -package $(LOWERCASE_GRAMMAR_NAME)
 
 .PHONY: all
-all: parsers/promql_parser.go parsers/promqlextension_parser.go
+all: parsers/promql/promql_parser.go parsers/promqlextension/promqlextension_parser.go
 
 define build_lexer_and_parser
 
@@ -18,7 +18,7 @@ $(LEXER_OUTPUT): grammars/$(GRAMMAR_NAME)Lexer.g4
 	rm -frd gen
 	rm -frd grammars/gen
 
-$(eval PARSER_OUTPUT := parsers/$(LOWERCASE_GRAMMAR_NAME)_parser.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_listener.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_base_listener.go)
+$(eval PARSER_OUTPUT := $(ANTLR4_OUTPUT_DIR)/$(LOWERCASE_GRAMMAR_NAME)_parser.go $(ANTLR4_OUTPUT_DIR)/$(LOWERCASE_GRAMMAR_NAME)parser_listener.go parsers/$(LOWERCASE_GRAMMAR_NAME)parser_base_listener.go)
 $(PARSER_OUTPUT): grammars/$(GRAMMAR_NAME)Parser.g4 grammars/$(GRAMMAR_NAME)Lexer.tokens grammars/$(GRAMMAR_NAME)Lexer.interp
 	cd grammars && $(ANTLR4) $(ANTLR4_ARGS) $(GRAMMAR_NAME)Parser.g4
 	rm -f $(ANTLR4_OUTPUT_DIR)/$(GRAMMAR_NAME)Parser.tokens

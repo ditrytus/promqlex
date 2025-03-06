@@ -1,6 +1,6 @@
 // Code generated from PromQLExtensionParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package parsers // PromQLExtensionParser
+package promqlextension // PromQLExtensionParser
 import (
 	"fmt"
 	"strconv"
