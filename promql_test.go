@@ -64,6 +64,7 @@ func TestPromQLParser_Parse(t *testing.T) {
 						promql.PromQLLexerFUNCTION,
 						promql.PromQLLexerAGGREGATION_OPERATOR,
 					)
+					functionSet.AddAggregationOperators(PrometheusExperimentalAggregationOperators)
 					providerInput := NewFunctionProviderInputStream(input, functionSet)
 					lexer := promql.NewPromQLLexer(providerInput)
 					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
