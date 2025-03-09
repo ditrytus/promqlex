@@ -60,7 +60,7 @@ queries:
     histogram_quantile(0.9, rate(demo_api_request_duration_seconds_bucket{job="demo"}[5m])) > 0.05
       and
     rate(demo_api_request_duration_seconds_count{job="demo"}[5m]) > 1
-  - rate(api_http_requests_total{status=500}[5m] offset 1h)
+  - rate(api_http_requests_total{status="500"}[5m] offset 1h)
   - sum by(kubernetes_pod_name) (container_memory_usage_bytes{kubernetes_namespace="kube-system"})
   - topk(10, count by (__name__)({__name__=~".+"}))
   - topk(10, count by (job)({__name__=~".+"}))
