@@ -31,7 +31,7 @@ func NewFunctionsSet(
 	return functionsSet
 }
 
-func (f FunctionsSet) GetTokenType(text string) (int, bool) {
+func (f *FunctionsSet) GetTokenType(text string) (int, bool) {
 	if _, ok := f.Functions[text]; ok {
 		return f.functionTokenType, true
 	}
@@ -41,7 +41,13 @@ func (f FunctionsSet) GetTokenType(text string) (int, bool) {
 	return antlr.TokenInvalidType, false
 }
 
-var prometheusFunctions = []string{
+func (f *FunctionsSet) AddAggregationOperators(aggregationOperators []string) {
+	for _, aggregationOperator := range aggregationOperators {
+		f.AggregationOperators[strings.ToLower(aggregationOperator)] = struct{}{}
+	}
+}
+
+var PrometheusFunctions = []string{
 	"abs",
 	"absent",
 	"absent_over_time",
@@ -114,7 +120,7 @@ var prometheusFunctions = []string{
 	"rad",
 }
 
-var prometheusAggregationOperators = []string{
+var PrometheusAggregationOperators = []string{
 	"sum",
 	"min",
 	"max",
@@ -131,9 +137,14 @@ var prometheusAggregationOperators = []string{
 
 func NewPrometheusFunctionSet(functionTokenType, aggregationOperatorTokenType int) FunctionsSet {
 	return NewFunctionsSet(
-		prometheusFunctions,
-		prometheusAggregationOperators,
+		PrometheusFunctions,
+		PrometheusAggregationOperators,
 		functionTokenType,
 		aggregationOperatorTokenType,
 	)
+}
+
+var PrometheusExperimentalAggregationOperators = []string{
+	"limitk",
+	"limit_ratio",
 }
