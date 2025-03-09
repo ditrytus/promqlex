@@ -229,3 +229,9 @@ func (s *BasePromQLParserListener) EnterLiteral(ctx *LiteralContext) {}
 
 // ExitLiteral is called when production literal is exited.
 func (s *BasePromQLParserListener) ExitLiteral(ctx *LiteralContext) {}
+
+// EnterString is called when production string is entered.
+func (s *BasePromQLParserListener) EnterString(ctx *StringContext) {}
+
+// ExitString is called when production string is exited.
+func (s *BasePromQLParserListener) ExitString(ctx *StringContext) {}

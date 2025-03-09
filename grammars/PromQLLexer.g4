@@ -59,7 +59,11 @@ fragment SCIENTIFIC_NUMBER: NUMERAL ('e' [-+]? NUMERAL)?;
 
 NUMBER: NUMERAL | SCIENTIFIC_NUMBER;
 
-STRING: '\'' (~('\'' | '\\') | '\\' .)* '\'' | '"' (~('"' | '\\') | '\\' .)* '"';
+STRING
+    : '\'' (~('\'' | '\\') | '\\' .)* '\''
+    | '"' (~('"' | '\\') | '\\' .)* '"';
+
+BACKTICK_OPEN : '`' -> more, pushMode(RAW_STRING_MODE);
 
 // Binary operators
 
@@ -223,3 +227,9 @@ LABEL_NAME  : [a-z_] [a-z0-9_]*;
 
 WS         : [\r\t\n ]+   -> channel(WHITESPACE);
 SL_COMMENT : '#' .*? '\n' -> channel(COMMENTS);
+
+mode RAW_STRING_MODE;
+
+RAW_STRING_CONTENT: (~('`' | '\\') | '\\`')+ -> more;
+
+RAW_STRING : '`' -> popMode;

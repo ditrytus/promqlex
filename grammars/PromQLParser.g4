@@ -121,7 +121,7 @@ instantSelector
     ;
 
 labelMatcher
-    : labelName labelMatcherOperator STRING
+    : labelName labelMatcherOperator string
     ;
 
 labelMatcherOperator
@@ -227,5 +227,10 @@ keyword
 
 literal
     : NUMBER
-    | STRING
+    | string
+    ;
+
+string
+    : STRING
+    | RAW_STRING
     ;

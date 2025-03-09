@@ -112,6 +112,9 @@ type PromQLParserListener interface {
 	// EnterLiteral is called when entering the literal production.
 	EnterLiteral(c *LiteralContext)
 
+	// EnterString is called when entering the string production.
+	EnterString(c *StringContext)
+
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
 
@@ -216,4 +219,7 @@ type PromQLParserListener interface {
 
 	// ExitLiteral is called when exiting the literal production.
 	ExitLiteral(c *LiteralContext)
+
+	// ExitString is called when exiting the string production.
+	ExitString(c *StringContext)
 }
