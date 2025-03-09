@@ -32,18 +32,11 @@
 
 lexer grammar PromQLLexer;
 
-@header {
-
-import (
-    "slices"
-)
-
-}
-
 @members {
 
-var Functions []string
-var AggregationOperators []string
+type FunctionsProvider interface {
+	GetTokenType(text string) (int, bool)
+}
 
 }
 
@@ -220,11 +213,10 @@ TIME_RANGE: LEFT_BRACKET DURATION RIGHT_BRACKET;
 DURATION: ([0-9]+ ('ms' | [smhdwy]))+;
 
 METRIC_NAME : [a-z_:] [a-z0-9_:]* {
-    if slices.Contains(AggregationOperators, l.GetText()) {
-        l.SetType(PromQLLexerAGGREGATION_OPERATOR)
-    }
-    if slices.Contains(Functions, l.GetText()) {
-        l.SetType(PromQLLexerAGGREGATION_OPERATOR)
+    if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
+        if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
+            l.SetType(tokenType)
+        }
     }
 };
 LABEL_NAME  : [a-z_] [a-z0-9_]*;

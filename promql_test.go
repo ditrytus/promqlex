@@ -60,7 +60,12 @@ func TestPromQLParser_Parse(t *testing.T) {
 			for _, query := range example.Queries {
 				t.Run(query, func(t *testing.T) {
 					input := antlr.NewInputStream(query)
-					lexer := promql.NewPromQLLexer(input)
+					functionSet := NewPrometheusFunctionSet(
+						promql.PromQLLexerFUNCTION,
+						promql.PromQLLexerAGGREGATION_OPERATOR,
+					)
+					providerInput := NewFunctionProviderInputStream(input, functionSet)
+					lexer := promql.NewPromQLLexer(providerInput)
 					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 					p := promql.NewPromQLParser(tokens)
 					p.RemoveErrorListeners()

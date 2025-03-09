@@ -9,10 +9,6 @@ import (
 	"unicode"
 )
 
-import (
-	"slices"
-)
-
 // Suppress unused import error
 var _ = fmt.Printf
 var _ = sync.Once{}
@@ -317,8 +313,9 @@ const (
 	PromQLLexerCOMMENTS   = 3
 )
 
-var Functions []string
-var AggregationOperators []string
+type FunctionsProvider interface {
+	GetTokenType(text string) (int, bool)
+}
 
 func (l *PromQLLexer) Action(localctx antlr.RuleContext, ruleIndex, actionIndex int) {
 	switch ruleIndex {
@@ -334,11 +331,10 @@ func (l *PromQLLexer) METRIC_NAME_Action(localctx antlr.RuleContext, actionIndex
 	switch actionIndex {
 	case 0:
 
-		if slices.Contains(AggregationOperators, l.GetText()) {
-			l.SetType(PromQLLexerAGGREGATION_OPERATOR)
-		}
-		if slices.Contains(Functions, l.GetText()) {
-			l.SetType(PromQLLexerAGGREGATION_OPERATOR)
+		if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
+			if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
+				l.SetType(tokenType)
+			}
 		}
 
 	default:
