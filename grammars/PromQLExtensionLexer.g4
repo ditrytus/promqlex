@@ -20,27 +20,27 @@ fragment TIME_RANGE: ;
 
 // PROMQX: extensions
 
-EX_ID options {
+ID options {
   caseInsensitive = false;
 }: [a-zA-Z] [0-9a-zA-Z_]+;
 
-EX_IF: 'if';
+IF: 'if';
 
-EX_TRUE: 'true';
-EX_FALSE: 'false';
+TRUE: 'true';
+FALSE: 'false';
 
-EX_T: 'T';
-EX_COLON: ':';
-EX_DOT: '.';
+T: 'T';
+COLON: ':';
+DOT: '.';
 
-EX_POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
-EX_TWO_DIGITS: [0-9] [0-9];
-EX_DIGITS: [0-9]+;
+POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
+TWO_DIGITS: [0-9] [0-9];
+DIGITS: [0-9]+;
 
-EX_METRIC_KEYWORD: 'metric';
-EX_LABEL_KEYWORD: 'label';
+METRIC_KEYWORD: 'metric';
+LABEL_KEYWORD: 'label';
 
-EX_DEF: 'def';
-EX_CALL_SIGN: '$';
+DEF: 'def';
+CALL_SIGN: '$';
 
-EX_NL: '\n' | '\r\n' ;
+NL: '\n' | '\r\n' ;

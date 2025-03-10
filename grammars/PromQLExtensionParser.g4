@@ -9,7 +9,7 @@ options {
     tokenVocab = PromQLExtensionLexer;
 }
 
-promqlx : (statement EX_NL)+ ;
+promqlx : (statement NL)+ ;
 
 statement
     : alias_def
@@ -18,21 +18,21 @@ statement
     | vectorOperation
     ;
 
-alias_def : EX_DEF EX_ID EQ vectorOperation;
-alias_call : EX_CALL_SIGN EX_ID;
+alias_def : DEF ID EQ vectorOperation;
+alias_call : CALL_SIGN ID;
 
-macro_def : EX_DEF EX_ID LEFT_PAREN args_decl? RIGHT_PAREN statement_block;
-macro_call: EX_CALL_SIGN EX_ID EX_ID LEFT_PAREN arg_list? RIGHT_PAREN;
+macro_def : DEF ID LEFT_PAREN args_decl? RIGHT_PAREN statement_block;
+macro_call: CALL_SIGN ID ID LEFT_PAREN arg_list? RIGHT_PAREN;
 
 args_decl : arg_name (COMMA arg_name)*;
 
-arg_name : EX_ID;
+arg_name : ID;
 
 statement_block : LEFT_BRACE promqlx RIGHT_BRACE;
 
 arg_list : vectorOperation (COMMA vectorOperation)+;
 
-if_statement : EX_IF condition statement_block;
+if_statement : IF condition statement_block;
 
 condition
     : compareVectorOperation
@@ -42,8 +42,8 @@ condition
 
 compareVectorOperation: vectorOperation compareOp vectorOperation;
 
-trueConst : EX_TRUE;
-falseConst: EX_FALSE;
+trueConst : TRUE;
+falseConst: FALSE;
 
 // Time literals
 
@@ -62,23 +62,23 @@ iso_date_time
     | iso_date_time_y
     ;
 
-iso_date_time_ymdhmsf: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes EX_COLON iso_seconds EX_DOT is_frac_sec;
-iso_date_time_ymdhms: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes EX_COLON iso_seconds;
-iso_date_time_ymdhm: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes;
-iso_date_time_ymdh: iso_year SUB iso_month SUB iso_day EX_T iso_hour;
+iso_date_time_ymdhmsf: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes COLON iso_seconds DOT is_frac_sec;
+iso_date_time_ymdhms: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes COLON iso_seconds;
+iso_date_time_ymdhm: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes;
+iso_date_time_ymdh: iso_year SUB iso_month SUB iso_day T iso_hour;
 iso_date_time_ymd: iso_year SUB iso_month SUB iso_day;
 iso_date_time_ym: iso_year SUB iso_month;
 iso_date_time_y: iso_year;
 
-iso_year : EX_POSITIVE_INTEGER;
-iso_month: EX_TWO_DIGITS;
-iso_day: EX_TWO_DIGITS;
-iso_hour: EX_TWO_DIGITS;
-iso_minutes: EX_TWO_DIGITS;
-iso_seconds: EX_TWO_DIGITS;
-is_frac_sec: EX_DIGITS;
+iso_year : POSITIVE_INTEGER;
+iso_month: TWO_DIGITS;
+iso_day: TWO_DIGITS;
+iso_hour: TWO_DIGITS;
+iso_minutes: TWO_DIGITS;
+iso_seconds: TWO_DIGITS;
+is_frac_sec: DIGITS;
 
-unix_timestamp: EX_POSITIVE_INTEGER;
+unix_timestamp: POSITIVE_INTEGER;
 
 // Constant expressions
 
