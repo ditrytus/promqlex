@@ -9,107 +9,106 @@ options {
     tokenVocab = PromQLExtensionLexer;
 }
 
-promqlx : (ex_statement EX_NL)+ ;
+promqlx : (statement EX_NL)+ ;
 
-ex_statement
-    : ex_alias_def
-    | ex_macro_def
-    | ex_if_statement
+statement
+    : alias_def
+    | macro_def
+    | if_statement
     | vectorOperation
     ;
 
-ex_alias_def : EX_DEF EX_ID EQ vectorOperation;
-ex_alias_call : EX_CALL_SIGN EX_ID;
+alias_def : EX_DEF EX_ID EQ vectorOperation;
+alias_call : EX_CALL_SIGN EX_ID;
 
-ex_macro_def : EX_DEF EX_ID LEFT_PAREN ex_args_decl? RIGHT_PAREN ex_block;
-ex_macro_call: EX_CALL_SIGN EX_ID EX_ID LEFT_PAREN ex_arg_list? RIGHT_PAREN;
+macro_def : EX_DEF EX_ID LEFT_PAREN args_decl? RIGHT_PAREN statement_block;
+macro_call: EX_CALL_SIGN EX_ID EX_ID LEFT_PAREN arg_list? RIGHT_PAREN;
 
-ex_args_decl : ex_arg_name (COMMA ex_arg_name)*;
+args_decl : arg_name (COMMA arg_name)*;
 
-ex_arg_name : EX_ID;
+arg_name : EX_ID;
 
-ex_block : LEFT_BRACE promqlx RIGHT_BRACE;
+statement_block : LEFT_BRACE promqlx RIGHT_BRACE;
 
-ex_arg_list : vectorOperation (COMMA vectorOperation)+;
+arg_list : vectorOperation (COMMA vectorOperation)+;
 
-ex_if_statement : EX_IF ex_condition ex_block;
+if_statement : EX_IF condition statement_block;
 
-ex_condition
-    : ex_compareVectorOperation
-    | ex_trueConst
-    | ex_falseConst
+condition
+    : compareVectorOperation
+    | trueConst
+    | falseConst
     ;
 
-ex_compareVectorOperation: vectorOperation compareOp vectorOperation;
+compareVectorOperation: vectorOperation compareOp vectorOperation;
 
-ex_trueConst : EX_TRUE;
-ex_falseConst: EX_FALSE;
+trueConst : EX_TRUE;
+falseConst: EX_FALSE;
 
 // Time literals
 
-ex_time_instant_literal
-    : ex_iso_date_time
-    | ex_unix_timestamp
+time_instant_literal
+    : iso_date_time
+    | unix_timestamp
     ;
 
-ex_iso_date_time
-    : ex_iso_date_time_ymdhmsf
-    | ex_iso_date_time_ymdhms
-    | ex_iso_date_time_ymdhm
-    | ex_iso_date_time_ymdh
-    | ex_iso_date_time_ymd
-    | ex_iso_date_time_ym
-    | ex_iso_date_time_y
+iso_date_time
+    : iso_date_time_ymdhmsf
+    | iso_date_time_ymdhms
+    | iso_date_time_ymdhm
+    | iso_date_time_ymdh
+    | iso_date_time_ymd
+    | iso_date_time_ym
+    | iso_date_time_y
     ;
 
-ex_iso_date_time_ymdhmsf: ex_year SUB ex_month SUB ex_day EX_T ex_hour EX_COLON ex_minutes EX_COLON ex_seconds EX_DOT ex_frac_sec;
-ex_iso_date_time_ymdhms: ex_year SUB ex_month SUB ex_day EX_T ex_hour EX_COLON ex_minutes EX_COLON ex_seconds;
-ex_iso_date_time_ymdhm: ex_year SUB ex_month SUB ex_day EX_T ex_hour EX_COLON ex_minutes;
-ex_iso_date_time_ymdh: ex_year SUB ex_month SUB ex_day EX_T ex_hour;
-ex_iso_date_time_ymd: ex_year SUB ex_month SUB ex_day;
-ex_iso_date_time_ym: ex_year SUB ex_month;
-ex_iso_date_time_y: ex_year;
+iso_date_time_ymdhmsf: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes EX_COLON iso_seconds EX_DOT is_frac_sec;
+iso_date_time_ymdhms: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes EX_COLON iso_seconds;
+iso_date_time_ymdhm: iso_year SUB iso_month SUB iso_day EX_T iso_hour EX_COLON iso_minutes;
+iso_date_time_ymdh: iso_year SUB iso_month SUB iso_day EX_T iso_hour;
+iso_date_time_ymd: iso_year SUB iso_month SUB iso_day;
+iso_date_time_ym: iso_year SUB iso_month;
+iso_date_time_y: iso_year;
 
-ex_year : EX_POSITIVE_INTEGER;
-ex_month: EX_TWO_DIGITS;
-ex_day: EX_TWO_DIGITS;
-ex_hour: EX_TWO_DIGITS;
-ex_minutes: EX_TWO_DIGITS;
-ex_seconds: EX_TWO_DIGITS;
-ex_frac_sec: EX_DIGITS;
+iso_year : EX_POSITIVE_INTEGER;
+iso_month: EX_TWO_DIGITS;
+iso_day: EX_TWO_DIGITS;
+iso_hour: EX_TWO_DIGITS;
+iso_minutes: EX_TWO_DIGITS;
+iso_seconds: EX_TWO_DIGITS;
+is_frac_sec: EX_DIGITS;
 
-ex_unix_timestamp: EX_POSITIVE_INTEGER;
+unix_timestamp: EX_POSITIVE_INTEGER;
 
 // Constant expressions
 
-ex_const_num_expression
-    : <assoc = right> ex_num_literal powOp ex_num_literal
-    | unaryOp ex_num_literal
-    | ex_num_literal multOp ex_num_literal
-    | ex_num_literal addOp ex_num_literal
-    | LEFT_PAREN ex_const_num_expression RIGHT_PAREN
-    | ex_num_literal
+const_num_expression
+    : <assoc = right> num_literal powOp num_literal
+    | unaryOp num_literal
+    | num_literal multOp num_literal
+    | num_literal addOp num_literal
+    | LEFT_PAREN const_num_expression RIGHT_PAREN
+    | num_literal
     ;
 
-ex_num_literal
+num_literal
     : NUMBER
     | DURATION
-    | ex_time_instant_literal
-    | ex_alias_call
+    | time_instant_literal
+    | alias_call
     ;
 
-ex_duration : ex_const_num_expression;
+duration : const_num_expression;
+
+// Lexer rules converted to parser rules
 
 // This rule was converted from lexer rule TIME_RANGE.
-ex_time_range: LEFT_BRACKET ex_duration RIGHT_BRACKET;
+time_range: LEFT_BRACKET duration RIGHT_BRACKET;
 
 // This rule was converted from lexer rule SUBQUERY_RANGE.
-ex_subquery_range: LEFT_BRACKET ex_duration ':' ex_duration? RIGHT_BRACKET;
+subquery_range: LEFT_BRACKET duration ':' duration? RIGHT_BRACKET;
 
-// PROMQLX: entry rule now is promqlx which can consist of multiple vectorOperation.
-// expression
-//    : vectorOperation EOF
-//    ;
+// Overrides of PromQLParser parser rules
 
 vectorOperation
     : <assoc = right> vectorOperation powOp vectorOperation
@@ -124,37 +123,37 @@ vectorOperation
     | vectorOperation AT vectorOperation
     | vector
     // PROMQLX: an alias or macro call can be used anywhere in the context of vector operation.
-    | ex_macro_call
-    | ex_alias_call
+    | macro_call
+    | alias_call
     ;
 
 subqueryOp
     // PROMQLX: SUBQUERY_RANGE was converted from token to rule.
-    : ex_subquery_range offsetOp?
+    : subquery_range offsetOp?
     ;
 
 offsetOp
     // PROMQLX: Constant duration expressions can be used everywhere
     // where PromQL exprects duration.
-    : OFFSET ex_duration
+    : OFFSET duration
     ;
 
 matrixSelector
     // PROMQLX: Constant duration expressions can be used everywhere
     // where PromQL exprects duration.
-    : instantSelector ex_time_range
+    : instantSelector time_range
     ;
 
 offset
     // PROMQLX: Constant duration expressions can be used everywhere
     // where PromQL exprects duration.
-    : instantSelector OFFSET ex_duration
-    | matrixSelector OFFSET ex_duration
+    : instantSelector OFFSET duration
+    | matrixSelector OFFSET duration
     ;
 
 literal
     // PROMQLX: everything that can be converted to the number of seconds
     // can be used as literal
-    : ex_const_num_expression
+    : const_num_expression
     | string
     ;
