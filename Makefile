@@ -27,3 +27,7 @@ endef
 
 $(eval $(call build_lexer_and_parser,PromQL))
 $(eval $(call build_lexer_and_parser,PromQLExtension))
+
+.PHONY: test
+test:
+	go test ./...
