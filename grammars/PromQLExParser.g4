@@ -9,7 +9,7 @@ options {
     tokenVocab = PromQLExLexer;
 }
 
-promqlx : (statement NL)+ ;
+promqlx : statement (NL statement)+ EOF;
 
 statement
     : alias_def
@@ -156,4 +156,20 @@ literal
     // can be used as literal
     : const_num_expression
     | string
+    ;
+
+instantSelector
+    : metric_name (LEFT_BRACE labelMatcherList? RIGHT_BRACE)?
+    | LEFT_BRACE labelMatcherList RIGHT_BRACE
+    ;
+
+labelName
+    : keyword
+    | metric_name
+    | LABEL_NAME
+    ;
+
+metric_name
+    : ID
+    | METRIC_NAME
     ;

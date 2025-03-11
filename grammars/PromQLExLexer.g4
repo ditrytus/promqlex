@@ -22,7 +22,15 @@ fragment TIME_RANGE: ;
 
 ID options {
   caseInsensitive = false;
-}: [a-zA-Z] [0-9a-zA-Z_]+;
+}: [a-zA-Z] [0-9a-zA-Z_]* {
+  if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
+      if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
+          l.SetType(tokenType)
+      }
+  }
+};
+
+METRIC_NAME : [a-z_:] [a-z0-9_:]*;
 
 IF: 'if';
 

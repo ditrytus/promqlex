@@ -136,6 +136,15 @@ type PromQLExParserListener interface {
 	// EnterLiteral is called when entering the literal production.
 	EnterLiteral(c *LiteralContext)
 
+	// EnterInstantSelector is called when entering the instantSelector production.
+	EnterInstantSelector(c *InstantSelectorContext)
+
+	// EnterLabelName is called when entering the labelName production.
+	EnterLabelName(c *LabelNameContext)
+
+	// EnterMetric_name is called when entering the metric_name production.
+	EnterMetric_name(c *Metric_nameContext)
+
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
@@ -168,9 +177,6 @@ type PromQLExParserListener interface {
 
 	// EnterParens is called when entering the parens production.
 	EnterParens(c *ParensContext)
-
-	// EnterInstantSelector is called when entering the instantSelector production.
-	EnterInstantSelector(c *InstantSelectorContext)
 
 	// EnterLabelMatcher is called when entering the labelMatcher production.
 	EnterLabelMatcher(c *LabelMatcherContext)
@@ -213,9 +219,6 @@ type PromQLExParserListener interface {
 
 	// EnterGroupRight is called when entering the groupRight production.
 	EnterGroupRight(c *GroupRightContext)
-
-	// EnterLabelName is called when entering the labelName production.
-	EnterLabelName(c *LabelNameContext)
 
 	// EnterLabelNameList is called when entering the labelNameList production.
 	EnterLabelNameList(c *LabelNameListContext)
@@ -355,6 +358,15 @@ type PromQLExParserListener interface {
 	// ExitLiteral is called when exiting the literal production.
 	ExitLiteral(c *LiteralContext)
 
+	// ExitInstantSelector is called when exiting the instantSelector production.
+	ExitInstantSelector(c *InstantSelectorContext)
+
+	// ExitLabelName is called when exiting the labelName production.
+	ExitLabelName(c *LabelNameContext)
+
+	// ExitMetric_name is called when exiting the metric_name production.
+	ExitMetric_name(c *Metric_nameContext)
+
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
 
@@ -387,9 +399,6 @@ type PromQLExParserListener interface {
 
 	// ExitParens is called when exiting the parens production.
 	ExitParens(c *ParensContext)
-
-	// ExitInstantSelector is called when exiting the instantSelector production.
-	ExitInstantSelector(c *InstantSelectorContext)
 
 	// ExitLabelMatcher is called when exiting the labelMatcher production.
 	ExitLabelMatcher(c *LabelMatcherContext)
@@ -432,9 +441,6 @@ type PromQLExParserListener interface {
 
 	// ExitGroupRight is called when exiting the groupRight production.
 	ExitGroupRight(c *GroupRightContext)
-
-	// ExitLabelName is called when exiting the labelName production.
-	ExitLabelName(c *LabelNameContext)
 
 	// ExitLabelNameList is called when exiting the labelNameList production.
 	ExitLabelNameList(c *LabelNameListContext)

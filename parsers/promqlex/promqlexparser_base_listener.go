@@ -279,6 +279,24 @@ func (s *BasePromQLExParserListener) EnterLiteral(ctx *LiteralContext) {}
 // ExitLiteral is called when production literal is exited.
 func (s *BasePromQLExParserListener) ExitLiteral(ctx *LiteralContext) {}
 
+// EnterInstantSelector is called when production instantSelector is entered.
+func (s *BasePromQLExParserListener) EnterInstantSelector(ctx *InstantSelectorContext) {}
+
+// ExitInstantSelector is called when production instantSelector is exited.
+func (s *BasePromQLExParserListener) ExitInstantSelector(ctx *InstantSelectorContext) {}
+
+// EnterLabelName is called when production labelName is entered.
+func (s *BasePromQLExParserListener) EnterLabelName(ctx *LabelNameContext) {}
+
+// ExitLabelName is called when production labelName is exited.
+func (s *BasePromQLExParserListener) ExitLabelName(ctx *LabelNameContext) {}
+
+// EnterMetric_name is called when production metric_name is entered.
+func (s *BasePromQLExParserListener) EnterMetric_name(ctx *Metric_nameContext) {}
+
+// ExitMetric_name is called when production metric_name is exited.
+func (s *BasePromQLExParserListener) ExitMetric_name(ctx *Metric_nameContext) {}
+
 // EnterExpression is called when production expression is entered.
 func (s *BasePromQLExParserListener) EnterExpression(ctx *ExpressionContext) {}
 
@@ -344,12 +362,6 @@ func (s *BasePromQLExParserListener) EnterParens(ctx *ParensContext) {}
 
 // ExitParens is called when production parens is exited.
 func (s *BasePromQLExParserListener) ExitParens(ctx *ParensContext) {}
-
-// EnterInstantSelector is called when production instantSelector is entered.
-func (s *BasePromQLExParserListener) EnterInstantSelector(ctx *InstantSelectorContext) {}
-
-// ExitInstantSelector is called when production instantSelector is exited.
-func (s *BasePromQLExParserListener) ExitInstantSelector(ctx *InstantSelectorContext) {}
 
 // EnterLabelMatcher is called when production labelMatcher is entered.
 func (s *BasePromQLExParserListener) EnterLabelMatcher(ctx *LabelMatcherContext) {}
@@ -434,12 +446,6 @@ func (s *BasePromQLExParserListener) EnterGroupRight(ctx *GroupRightContext) {}
 
 // ExitGroupRight is called when production groupRight is exited.
 func (s *BasePromQLExParserListener) ExitGroupRight(ctx *GroupRightContext) {}
-
-// EnterLabelName is called when production labelName is entered.
-func (s *BasePromQLExParserListener) EnterLabelName(ctx *LabelNameContext) {}
-
-// ExitLabelName is called when production labelName is exited.
-func (s *BasePromQLExParserListener) ExitLabelName(ctx *LabelNameContext) {}
 
 // EnterLabelNameList is called when production labelNameList is entered.
 func (s *BasePromQLExParserListener) EnterLabelNameList(ctx *LabelNameListContext) {}
