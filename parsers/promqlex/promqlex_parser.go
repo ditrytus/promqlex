@@ -1,6 +1,6 @@
-// Code generated from PromQLExtensionParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
+// Code generated from PromQLExParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package promqlextension // PromQLExtensionParser
+package promqlex // PromQLExParser
 import (
 	"fmt"
 	"strconv"
@@ -14,11 +14,11 @@ var _ = fmt.Printf
 var _ = strconv.Itoa
 var _ = sync.Once{}
 
-type PromQLExtensionParser struct {
+type PromQLExParser struct {
 	*antlr.BaseParser
 }
 
-var PromQLExtensionParserParserStaticData struct {
+var PromQLExParserParserStaticData struct {
 	once                   sync.Once
 	serializedATN          []int32
 	LiteralNames           []string
@@ -29,8 +29,8 @@ var PromQLExtensionParserParserStaticData struct {
 	decisionToDFA          []*antlr.DFA
 }
 
-func promqlextensionparserParserInit() {
-	staticData := &PromQLExtensionParserParserStaticData
+func promqlexparserParserInit() {
+	staticData := &PromQLExParserParserStaticData
 	staticData.LiteralNames = []string{
 		"", "", "", "", "'if'", "'true'", "'false'", "'T'", "':'", "'.'", "",
 		"", "", "'metric'", "'label'", "'def'", "'$'", "", "", "", "'+'", "'-'",
@@ -338,170 +338,170 @@ func promqlextensionparserParserInit() {
 	}
 }
 
-// PromQLExtensionParserInit initializes any static state used to implement PromQLExtensionParser. By default the
+// PromQLExParserInit initializes any static state used to implement PromQLExParser. By default the
 // static state used to implement the parser is lazily initialized during the first call to
-// NewPromQLExtensionParser(). You can call this function if you wish to initialize the static state ahead
+// NewPromQLExParser(). You can call this function if you wish to initialize the static state ahead
 // of time.
-func PromQLExtensionParserInit() {
-	staticData := &PromQLExtensionParserParserStaticData
-	staticData.once.Do(promqlextensionparserParserInit)
+func PromQLExParserInit() {
+	staticData := &PromQLExParserParserStaticData
+	staticData.once.Do(promqlexparserParserInit)
 }
 
-// NewPromQLExtensionParser produces a new parser instance for the optional input antlr.TokenStream.
-func NewPromQLExtensionParser(input antlr.TokenStream) *PromQLExtensionParser {
-	PromQLExtensionParserInit()
-	this := new(PromQLExtensionParser)
+// NewPromQLExParser produces a new parser instance for the optional input antlr.TokenStream.
+func NewPromQLExParser(input antlr.TokenStream) *PromQLExParser {
+	PromQLExParserInit()
+	this := new(PromQLExParser)
 	this.BaseParser = antlr.NewBaseParser(input)
-	staticData := &PromQLExtensionParserParserStaticData
+	staticData := &PromQLExParserParserStaticData
 	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
 	this.RuleNames = staticData.RuleNames
 	this.LiteralNames = staticData.LiteralNames
 	this.SymbolicNames = staticData.SymbolicNames
-	this.GrammarFileName = "PromQLExtensionParser.g4"
+	this.GrammarFileName = "PromQLExParser.g4"
 
 	return this
 }
 
-// PromQLExtensionParser tokens.
+// PromQLExParser tokens.
 const (
-	PromQLExtensionParserEOF                  = antlr.TokenEOF
-	PromQLExtensionParserAGGREGATION_OPERATOR = 1
-	PromQLExtensionParserFUNCTION             = 2
-	PromQLExtensionParserID                   = 3
-	PromQLExtensionParserIF                   = 4
-	PromQLExtensionParserTRUE                 = 5
-	PromQLExtensionParserFALSE                = 6
-	PromQLExtensionParserT                    = 7
-	PromQLExtensionParserCOLON                = 8
-	PromQLExtensionParserDOT                  = 9
-	PromQLExtensionParserPOSITIVE_INTEGER     = 10
-	PromQLExtensionParserTWO_DIGITS           = 11
-	PromQLExtensionParserDIGITS               = 12
-	PromQLExtensionParserMETRIC_KEYWORD       = 13
-	PromQLExtensionParserLABEL_KEYWORD        = 14
-	PromQLExtensionParserDEF                  = 15
-	PromQLExtensionParserCALL_SIGN            = 16
-	PromQLExtensionParserNL                   = 17
-	PromQLExtensionParserNUMBER               = 18
-	PromQLExtensionParserSTRING               = 19
-	PromQLExtensionParserADD                  = 20
-	PromQLExtensionParserSUB                  = 21
-	PromQLExtensionParserMULT                 = 22
-	PromQLExtensionParserDIV                  = 23
-	PromQLExtensionParserMOD                  = 24
-	PromQLExtensionParserPOW                  = 25
-	PromQLExtensionParserAND                  = 26
-	PromQLExtensionParserOR                   = 27
-	PromQLExtensionParserUNLESS               = 28
-	PromQLExtensionParserEQ                   = 29
-	PromQLExtensionParserDEQ                  = 30
-	PromQLExtensionParserNE                   = 31
-	PromQLExtensionParserGT                   = 32
-	PromQLExtensionParserLT                   = 33
-	PromQLExtensionParserGE                   = 34
-	PromQLExtensionParserLE                   = 35
-	PromQLExtensionParserRE                   = 36
-	PromQLExtensionParserNRE                  = 37
-	PromQLExtensionParserBY                   = 38
-	PromQLExtensionParserWITHOUT              = 39
-	PromQLExtensionParserON                   = 40
-	PromQLExtensionParserIGNORING             = 41
-	PromQLExtensionParserGROUP_LEFT           = 42
-	PromQLExtensionParserGROUP_RIGHT          = 43
-	PromQLExtensionParserOFFSET               = 44
-	PromQLExtensionParserBOOL                 = 45
-	PromQLExtensionParserLEFT_BRACE           = 46
-	PromQLExtensionParserRIGHT_BRACE          = 47
-	PromQLExtensionParserLEFT_PAREN           = 48
-	PromQLExtensionParserRIGHT_PAREN          = 49
-	PromQLExtensionParserLEFT_BRACKET         = 50
-	PromQLExtensionParserRIGHT_BRACKET        = 51
-	PromQLExtensionParserCOMMA                = 52
-	PromQLExtensionParserAT                   = 53
-	PromQLExtensionParserDURATION             = 54
-	PromQLExtensionParserMETRIC_NAME          = 55
-	PromQLExtensionParserLABEL_NAME           = 56
-	PromQLExtensionParserWS                   = 57
-	PromQLExtensionParserSL_COMMENT           = 58
-	PromQLExtensionParserRAW_STRING           = 59
-	PromQLExtensionParserBACKTICK_OPEN        = 60
+	PromQLExParserEOF                  = antlr.TokenEOF
+	PromQLExParserAGGREGATION_OPERATOR = 1
+	PromQLExParserFUNCTION             = 2
+	PromQLExParserID                   = 3
+	PromQLExParserIF                   = 4
+	PromQLExParserTRUE                 = 5
+	PromQLExParserFALSE                = 6
+	PromQLExParserT                    = 7
+	PromQLExParserCOLON                = 8
+	PromQLExParserDOT                  = 9
+	PromQLExParserPOSITIVE_INTEGER     = 10
+	PromQLExParserTWO_DIGITS           = 11
+	PromQLExParserDIGITS               = 12
+	PromQLExParserMETRIC_KEYWORD       = 13
+	PromQLExParserLABEL_KEYWORD        = 14
+	PromQLExParserDEF                  = 15
+	PromQLExParserCALL_SIGN            = 16
+	PromQLExParserNL                   = 17
+	PromQLExParserNUMBER               = 18
+	PromQLExParserSTRING               = 19
+	PromQLExParserADD                  = 20
+	PromQLExParserSUB                  = 21
+	PromQLExParserMULT                 = 22
+	PromQLExParserDIV                  = 23
+	PromQLExParserMOD                  = 24
+	PromQLExParserPOW                  = 25
+	PromQLExParserAND                  = 26
+	PromQLExParserOR                   = 27
+	PromQLExParserUNLESS               = 28
+	PromQLExParserEQ                   = 29
+	PromQLExParserDEQ                  = 30
+	PromQLExParserNE                   = 31
+	PromQLExParserGT                   = 32
+	PromQLExParserLT                   = 33
+	PromQLExParserGE                   = 34
+	PromQLExParserLE                   = 35
+	PromQLExParserRE                   = 36
+	PromQLExParserNRE                  = 37
+	PromQLExParserBY                   = 38
+	PromQLExParserWITHOUT              = 39
+	PromQLExParserON                   = 40
+	PromQLExParserIGNORING             = 41
+	PromQLExParserGROUP_LEFT           = 42
+	PromQLExParserGROUP_RIGHT          = 43
+	PromQLExParserOFFSET               = 44
+	PromQLExParserBOOL                 = 45
+	PromQLExParserLEFT_BRACE           = 46
+	PromQLExParserRIGHT_BRACE          = 47
+	PromQLExParserLEFT_PAREN           = 48
+	PromQLExParserRIGHT_PAREN          = 49
+	PromQLExParserLEFT_BRACKET         = 50
+	PromQLExParserRIGHT_BRACKET        = 51
+	PromQLExParserCOMMA                = 52
+	PromQLExParserAT                   = 53
+	PromQLExParserDURATION             = 54
+	PromQLExParserMETRIC_NAME          = 55
+	PromQLExParserLABEL_NAME           = 56
+	PromQLExParserWS                   = 57
+	PromQLExParserSL_COMMENT           = 58
+	PromQLExParserRAW_STRING           = 59
+	PromQLExParserBACKTICK_OPEN        = 60
 )
 
-// PromQLExtensionParser rules.
+// PromQLExParser rules.
 const (
-	PromQLExtensionParserRULE_promqlx                = 0
-	PromQLExtensionParserRULE_statement              = 1
-	PromQLExtensionParserRULE_alias_def              = 2
-	PromQLExtensionParserRULE_alias_call             = 3
-	PromQLExtensionParserRULE_macro_def              = 4
-	PromQLExtensionParserRULE_macro_call             = 5
-	PromQLExtensionParserRULE_args_decl              = 6
-	PromQLExtensionParserRULE_arg_name               = 7
-	PromQLExtensionParserRULE_statement_block        = 8
-	PromQLExtensionParserRULE_arg_list               = 9
-	PromQLExtensionParserRULE_if_statement           = 10
-	PromQLExtensionParserRULE_condition              = 11
-	PromQLExtensionParserRULE_compareVectorOperation = 12
-	PromQLExtensionParserRULE_trueConst              = 13
-	PromQLExtensionParserRULE_falseConst             = 14
-	PromQLExtensionParserRULE_time_instant_literal   = 15
-	PromQLExtensionParserRULE_iso_date_time          = 16
-	PromQLExtensionParserRULE_iso_date_time_ymdhmsf  = 17
-	PromQLExtensionParserRULE_iso_date_time_ymdhms   = 18
-	PromQLExtensionParserRULE_iso_date_time_ymdhm    = 19
-	PromQLExtensionParserRULE_iso_date_time_ymdh     = 20
-	PromQLExtensionParserRULE_iso_date_time_ymd      = 21
-	PromQLExtensionParserRULE_iso_date_time_ym       = 22
-	PromQLExtensionParserRULE_iso_date_time_y        = 23
-	PromQLExtensionParserRULE_iso_year               = 24
-	PromQLExtensionParserRULE_iso_month              = 25
-	PromQLExtensionParserRULE_iso_day                = 26
-	PromQLExtensionParserRULE_iso_hour               = 27
-	PromQLExtensionParserRULE_iso_minutes            = 28
-	PromQLExtensionParserRULE_iso_seconds            = 29
-	PromQLExtensionParserRULE_is_frac_sec            = 30
-	PromQLExtensionParserRULE_unix_timestamp         = 31
-	PromQLExtensionParserRULE_const_num_expression   = 32
-	PromQLExtensionParserRULE_num_literal            = 33
-	PromQLExtensionParserRULE_duration               = 34
-	PromQLExtensionParserRULE_time_range             = 35
-	PromQLExtensionParserRULE_subquery_range         = 36
-	PromQLExtensionParserRULE_vectorOperation        = 37
-	PromQLExtensionParserRULE_subqueryOp             = 38
-	PromQLExtensionParserRULE_offsetOp               = 39
-	PromQLExtensionParserRULE_matrixSelector         = 40
-	PromQLExtensionParserRULE_offset                 = 41
-	PromQLExtensionParserRULE_literal                = 42
-	PromQLExtensionParserRULE_expression             = 43
-	PromQLExtensionParserRULE_unaryOp                = 44
-	PromQLExtensionParserRULE_powOp                  = 45
-	PromQLExtensionParserRULE_multOp                 = 46
-	PromQLExtensionParserRULE_addOp                  = 47
-	PromQLExtensionParserRULE_compareOp              = 48
-	PromQLExtensionParserRULE_andUnlessOp            = 49
-	PromQLExtensionParserRULE_orOp                   = 50
-	PromQLExtensionParserRULE_vectorMatchOp          = 51
-	PromQLExtensionParserRULE_vector                 = 52
-	PromQLExtensionParserRULE_parens                 = 53
-	PromQLExtensionParserRULE_instantSelector        = 54
-	PromQLExtensionParserRULE_labelMatcher           = 55
-	PromQLExtensionParserRULE_labelMatcherOperator   = 56
-	PromQLExtensionParserRULE_labelMatcherList       = 57
-	PromQLExtensionParserRULE_function_              = 58
-	PromQLExtensionParserRULE_parameter              = 59
-	PromQLExtensionParserRULE_parameterList          = 60
-	PromQLExtensionParserRULE_aggregation            = 61
-	PromQLExtensionParserRULE_by                     = 62
-	PromQLExtensionParserRULE_without                = 63
-	PromQLExtensionParserRULE_grouping               = 64
-	PromQLExtensionParserRULE_on_                    = 65
-	PromQLExtensionParserRULE_ignoring               = 66
-	PromQLExtensionParserRULE_groupLeft              = 67
-	PromQLExtensionParserRULE_groupRight             = 68
-	PromQLExtensionParserRULE_labelName              = 69
-	PromQLExtensionParserRULE_labelNameList          = 70
-	PromQLExtensionParserRULE_keyword                = 71
-	PromQLExtensionParserRULE_string                 = 72
+	PromQLExParserRULE_promqlx                = 0
+	PromQLExParserRULE_statement              = 1
+	PromQLExParserRULE_alias_def              = 2
+	PromQLExParserRULE_alias_call             = 3
+	PromQLExParserRULE_macro_def              = 4
+	PromQLExParserRULE_macro_call             = 5
+	PromQLExParserRULE_args_decl              = 6
+	PromQLExParserRULE_arg_name               = 7
+	PromQLExParserRULE_statement_block        = 8
+	PromQLExParserRULE_arg_list               = 9
+	PromQLExParserRULE_if_statement           = 10
+	PromQLExParserRULE_condition              = 11
+	PromQLExParserRULE_compareVectorOperation = 12
+	PromQLExParserRULE_trueConst              = 13
+	PromQLExParserRULE_falseConst             = 14
+	PromQLExParserRULE_time_instant_literal   = 15
+	PromQLExParserRULE_iso_date_time          = 16
+	PromQLExParserRULE_iso_date_time_ymdhmsf  = 17
+	PromQLExParserRULE_iso_date_time_ymdhms   = 18
+	PromQLExParserRULE_iso_date_time_ymdhm    = 19
+	PromQLExParserRULE_iso_date_time_ymdh     = 20
+	PromQLExParserRULE_iso_date_time_ymd      = 21
+	PromQLExParserRULE_iso_date_time_ym       = 22
+	PromQLExParserRULE_iso_date_time_y        = 23
+	PromQLExParserRULE_iso_year               = 24
+	PromQLExParserRULE_iso_month              = 25
+	PromQLExParserRULE_iso_day                = 26
+	PromQLExParserRULE_iso_hour               = 27
+	PromQLExParserRULE_iso_minutes            = 28
+	PromQLExParserRULE_iso_seconds            = 29
+	PromQLExParserRULE_is_frac_sec            = 30
+	PromQLExParserRULE_unix_timestamp         = 31
+	PromQLExParserRULE_const_num_expression   = 32
+	PromQLExParserRULE_num_literal            = 33
+	PromQLExParserRULE_duration               = 34
+	PromQLExParserRULE_time_range             = 35
+	PromQLExParserRULE_subquery_range         = 36
+	PromQLExParserRULE_vectorOperation        = 37
+	PromQLExParserRULE_subqueryOp             = 38
+	PromQLExParserRULE_offsetOp               = 39
+	PromQLExParserRULE_matrixSelector         = 40
+	PromQLExParserRULE_offset                 = 41
+	PromQLExParserRULE_literal                = 42
+	PromQLExParserRULE_expression             = 43
+	PromQLExParserRULE_unaryOp                = 44
+	PromQLExParserRULE_powOp                  = 45
+	PromQLExParserRULE_multOp                 = 46
+	PromQLExParserRULE_addOp                  = 47
+	PromQLExParserRULE_compareOp              = 48
+	PromQLExParserRULE_andUnlessOp            = 49
+	PromQLExParserRULE_orOp                   = 50
+	PromQLExParserRULE_vectorMatchOp          = 51
+	PromQLExParserRULE_vector                 = 52
+	PromQLExParserRULE_parens                 = 53
+	PromQLExParserRULE_instantSelector        = 54
+	PromQLExParserRULE_labelMatcher           = 55
+	PromQLExParserRULE_labelMatcherOperator   = 56
+	PromQLExParserRULE_labelMatcherList       = 57
+	PromQLExParserRULE_function_              = 58
+	PromQLExParserRULE_parameter              = 59
+	PromQLExParserRULE_parameterList          = 60
+	PromQLExParserRULE_aggregation            = 61
+	PromQLExParserRULE_by                     = 62
+	PromQLExParserRULE_without                = 63
+	PromQLExParserRULE_grouping               = 64
+	PromQLExParserRULE_on_                    = 65
+	PromQLExParserRULE_ignoring               = 66
+	PromQLExParserRULE_groupLeft              = 67
+	PromQLExParserRULE_groupRight             = 68
+	PromQLExParserRULE_labelName              = 69
+	PromQLExParserRULE_labelNameList          = 70
+	PromQLExParserRULE_keyword                = 71
+	PromQLExParserRULE_string                 = 72
 )
 
 // IPromqlxContext is an interface to support dynamic dispatch.
@@ -529,13 +529,13 @@ type PromqlxContext struct {
 func NewEmptyPromqlxContext() *PromqlxContext {
 	var p = new(PromqlxContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_promqlx
+	p.RuleIndex = PromQLExParserRULE_promqlx
 	return p
 }
 
 func InitEmptyPromqlxContext(p *PromqlxContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_promqlx
+	p.RuleIndex = PromQLExParserRULE_promqlx
 }
 
 func (*PromqlxContext) IsPromqlxContext() {}
@@ -546,7 +546,7 @@ func NewPromqlxContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_promqlx
+	p.RuleIndex = PromQLExParserRULE_promqlx
 
 	return p
 }
@@ -595,11 +595,11 @@ func (s *PromqlxContext) Statement(i int) IStatementContext {
 }
 
 func (s *PromqlxContext) AllNL() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserNL)
+	return s.GetTokens(PromQLExParserNL)
 }
 
 func (s *PromqlxContext) NL(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserNL, i)
+	return s.GetToken(PromQLExParserNL, i)
 }
 
 func (s *PromqlxContext) GetRuleContext() antlr.RuleContext {
@@ -611,20 +611,20 @@ func (s *PromqlxContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *PromqlxContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterPromqlx(s)
 	}
 }
 
 func (s *PromqlxContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitPromqlx(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Promqlx() (localctx IPromqlxContext) {
+func (p *PromQLExParser) Promqlx() (localctx IPromqlxContext) {
 	localctx = NewPromqlxContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 0, PromQLExtensionParserRULE_promqlx)
+	p.EnterRule(localctx, 0, PromQLExParserRULE_promqlx)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -642,7 +642,7 @@ func (p *PromQLExtensionParser) Promqlx() (localctx IPromqlxContext) {
 		}
 		{
 			p.SetState(147)
-			p.Match(PromQLExtensionParserNL)
+			p.Match(PromQLExParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -695,13 +695,13 @@ type StatementContext struct {
 func NewEmptyStatementContext() *StatementContext {
 	var p = new(StatementContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_statement
+	p.RuleIndex = PromQLExParserRULE_statement
 	return p
 }
 
 func InitEmptyStatementContext(p *StatementContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_statement
+	p.RuleIndex = PromQLExParserRULE_statement
 }
 
 func (*StatementContext) IsStatementContext() {}
@@ -712,7 +712,7 @@ func NewStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_statement
+	p.RuleIndex = PromQLExParserRULE_statement
 
 	return p
 }
@@ -792,20 +792,20 @@ func (s *StatementContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *StatementContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterStatement(s)
 	}
 }
 
 func (s *StatementContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitStatement(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Statement() (localctx IStatementContext) {
+func (p *PromQLExParser) Statement() (localctx IStatementContext) {
 	localctx = NewStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 2, PromQLExtensionParserRULE_statement)
+	p.EnterRule(localctx, 2, PromQLExParserRULE_statement)
 	p.SetState(157)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -883,13 +883,13 @@ type Alias_defContext struct {
 func NewEmptyAlias_defContext() *Alias_defContext {
 	var p = new(Alias_defContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_alias_def
+	p.RuleIndex = PromQLExParserRULE_alias_def
 	return p
 }
 
 func InitEmptyAlias_defContext(p *Alias_defContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_alias_def
+	p.RuleIndex = PromQLExParserRULE_alias_def
 }
 
 func (*Alias_defContext) IsAlias_defContext() {}
@@ -900,7 +900,7 @@ func NewAlias_defContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_alias_def
+	p.RuleIndex = PromQLExParserRULE_alias_def
 
 	return p
 }
@@ -908,15 +908,15 @@ func NewAlias_defContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *Alias_defContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Alias_defContext) DEF() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDEF, 0)
+	return s.GetToken(PromQLExParserDEF, 0)
 }
 
 func (s *Alias_defContext) ID() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserID, 0)
+	return s.GetToken(PromQLExParserID, 0)
 }
 
 func (s *Alias_defContext) EQ() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserEQ, 0)
+	return s.GetToken(PromQLExParserEQ, 0)
 }
 
 func (s *Alias_defContext) VectorOperation() IVectorOperationContext {
@@ -944,24 +944,24 @@ func (s *Alias_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *Alias_defContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterAlias_def(s)
 	}
 }
 
 func (s *Alias_defContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitAlias_def(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Alias_def() (localctx IAlias_defContext) {
+func (p *PromQLExParser) Alias_def() (localctx IAlias_defContext) {
 	localctx = NewAlias_defContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 4, PromQLExtensionParserRULE_alias_def)
+	p.EnterRule(localctx, 4, PromQLExParserRULE_alias_def)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(159)
-		p.Match(PromQLExtensionParserDEF)
+		p.Match(PromQLExParserDEF)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -969,7 +969,7 @@ func (p *PromQLExtensionParser) Alias_def() (localctx IAlias_defContext) {
 	}
 	{
 		p.SetState(160)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -977,7 +977,7 @@ func (p *PromQLExtensionParser) Alias_def() (localctx IAlias_defContext) {
 	}
 	{
 		p.SetState(161)
-		p.Match(PromQLExtensionParserEQ)
+		p.Match(PromQLExParserEQ)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1024,13 +1024,13 @@ type Alias_callContext struct {
 func NewEmptyAlias_callContext() *Alias_callContext {
 	var p = new(Alias_callContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_alias_call
+	p.RuleIndex = PromQLExParserRULE_alias_call
 	return p
 }
 
 func InitEmptyAlias_callContext(p *Alias_callContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_alias_call
+	p.RuleIndex = PromQLExParserRULE_alias_call
 }
 
 func (*Alias_callContext) IsAlias_callContext() {}
@@ -1041,7 +1041,7 @@ func NewAlias_callContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_alias_call
+	p.RuleIndex = PromQLExParserRULE_alias_call
 
 	return p
 }
@@ -1049,11 +1049,11 @@ func NewAlias_callContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 func (s *Alias_callContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Alias_callContext) CALL_SIGN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCALL_SIGN, 0)
+	return s.GetToken(PromQLExParserCALL_SIGN, 0)
 }
 
 func (s *Alias_callContext) ID() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserID, 0)
+	return s.GetToken(PromQLExParserID, 0)
 }
 
 func (s *Alias_callContext) GetRuleContext() antlr.RuleContext {
@@ -1065,24 +1065,24 @@ func (s *Alias_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *Alias_callContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterAlias_call(s)
 	}
 }
 
 func (s *Alias_callContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitAlias_call(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Alias_call() (localctx IAlias_callContext) {
+func (p *PromQLExParser) Alias_call() (localctx IAlias_callContext) {
 	localctx = NewAlias_callContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, PromQLExtensionParserRULE_alias_call)
+	p.EnterRule(localctx, 6, PromQLExParserRULE_alias_call)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(164)
-		p.Match(PromQLExtensionParserCALL_SIGN)
+		p.Match(PromQLExParserCALL_SIGN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1090,7 +1090,7 @@ func (p *PromQLExtensionParser) Alias_call() (localctx IAlias_callContext) {
 	}
 	{
 		p.SetState(165)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1137,13 +1137,13 @@ type Macro_defContext struct {
 func NewEmptyMacro_defContext() *Macro_defContext {
 	var p = new(Macro_defContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_macro_def
+	p.RuleIndex = PromQLExParserRULE_macro_def
 	return p
 }
 
 func InitEmptyMacro_defContext(p *Macro_defContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_macro_def
+	p.RuleIndex = PromQLExParserRULE_macro_def
 }
 
 func (*Macro_defContext) IsMacro_defContext() {}
@@ -1154,7 +1154,7 @@ func NewMacro_defContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_macro_def
+	p.RuleIndex = PromQLExParserRULE_macro_def
 
 	return p
 }
@@ -1162,19 +1162,19 @@ func NewMacro_defContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *Macro_defContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Macro_defContext) DEF() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDEF, 0)
+	return s.GetToken(PromQLExParserDEF, 0)
 }
 
 func (s *Macro_defContext) ID() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserID, 0)
+	return s.GetToken(PromQLExParserID, 0)
 }
 
 func (s *Macro_defContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *Macro_defContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *Macro_defContext) Statement_block() IStatement_blockContext {
@@ -1218,26 +1218,26 @@ func (s *Macro_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *Macro_defContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterMacro_def(s)
 	}
 }
 
 func (s *Macro_defContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitMacro_def(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Macro_def() (localctx IMacro_defContext) {
+func (p *PromQLExParser) Macro_def() (localctx IMacro_defContext) {
 	localctx = NewMacro_defContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, PromQLExtensionParserRULE_macro_def)
+	p.EnterRule(localctx, 8, PromQLExParserRULE_macro_def)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(167)
-		p.Match(PromQLExtensionParserDEF)
+		p.Match(PromQLExParserDEF)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1245,7 +1245,7 @@ func (p *PromQLExtensionParser) Macro_def() (localctx IMacro_defContext) {
 	}
 	{
 		p.SetState(168)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1253,7 +1253,7 @@ func (p *PromQLExtensionParser) Macro_def() (localctx IMacro_defContext) {
 	}
 	{
 		p.SetState(169)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1266,7 +1266,7 @@ func (p *PromQLExtensionParser) Macro_def() (localctx IMacro_defContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserID {
+	if _la == PromQLExParserID {
 		{
 			p.SetState(170)
 			p.Args_decl()
@@ -1275,7 +1275,7 @@ func (p *PromQLExtensionParser) Macro_def() (localctx IMacro_defContext) {
 	}
 	{
 		p.SetState(173)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1326,13 +1326,13 @@ type Macro_callContext struct {
 func NewEmptyMacro_callContext() *Macro_callContext {
 	var p = new(Macro_callContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_macro_call
+	p.RuleIndex = PromQLExParserRULE_macro_call
 	return p
 }
 
 func InitEmptyMacro_callContext(p *Macro_callContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_macro_call
+	p.RuleIndex = PromQLExParserRULE_macro_call
 }
 
 func (*Macro_callContext) IsMacro_callContext() {}
@@ -1343,7 +1343,7 @@ func NewMacro_callContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_macro_call
+	p.RuleIndex = PromQLExParserRULE_macro_call
 
 	return p
 }
@@ -1351,23 +1351,23 @@ func NewMacro_callContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 func (s *Macro_callContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Macro_callContext) CALL_SIGN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCALL_SIGN, 0)
+	return s.GetToken(PromQLExParserCALL_SIGN, 0)
 }
 
 func (s *Macro_callContext) AllID() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserID)
+	return s.GetTokens(PromQLExParserID)
 }
 
 func (s *Macro_callContext) ID(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserID, i)
+	return s.GetToken(PromQLExParserID, i)
 }
 
 func (s *Macro_callContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *Macro_callContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *Macro_callContext) Arg_list() IArg_listContext {
@@ -1395,26 +1395,26 @@ func (s *Macro_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *Macro_callContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterMacro_call(s)
 	}
 }
 
 func (s *Macro_callContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitMacro_call(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Macro_call() (localctx IMacro_callContext) {
+func (p *PromQLExParser) Macro_call() (localctx IMacro_callContext) {
 	localctx = NewMacro_callContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, PromQLExtensionParserRULE_macro_call)
+	p.EnterRule(localctx, 10, PromQLExParserRULE_macro_call)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(176)
-		p.Match(PromQLExtensionParserCALL_SIGN)
+		p.Match(PromQLExParserCALL_SIGN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1422,7 +1422,7 @@ func (p *PromQLExtensionParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	{
 		p.SetState(177)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1430,7 +1430,7 @@ func (p *PromQLExtensionParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	{
 		p.SetState(178)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1438,7 +1438,7 @@ func (p *PromQLExtensionParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	{
 		p.SetState(179)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1460,7 +1460,7 @@ func (p *PromQLExtensionParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	{
 		p.SetState(183)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1505,13 +1505,13 @@ type Args_declContext struct {
 func NewEmptyArgs_declContext() *Args_declContext {
 	var p = new(Args_declContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_args_decl
+	p.RuleIndex = PromQLExParserRULE_args_decl
 	return p
 }
 
 func InitEmptyArgs_declContext(p *Args_declContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_args_decl
+	p.RuleIndex = PromQLExParserRULE_args_decl
 }
 
 func (*Args_declContext) IsArgs_declContext() {}
@@ -1522,7 +1522,7 @@ func NewArgs_declContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_args_decl
+	p.RuleIndex = PromQLExParserRULE_args_decl
 
 	return p
 }
@@ -1571,11 +1571,11 @@ func (s *Args_declContext) Arg_name(i int) IArg_nameContext {
 }
 
 func (s *Args_declContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *Args_declContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *Args_declContext) GetRuleContext() antlr.RuleContext {
@@ -1587,20 +1587,20 @@ func (s *Args_declContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *Args_declContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterArgs_decl(s)
 	}
 }
 
 func (s *Args_declContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitArgs_decl(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Args_decl() (localctx IArgs_declContext) {
+func (p *PromQLExParser) Args_decl() (localctx IArgs_declContext) {
 	localctx = NewArgs_declContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, PromQLExtensionParserRULE_args_decl)
+	p.EnterRule(localctx, 12, PromQLExParserRULE_args_decl)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -1615,10 +1615,10 @@ func (p *PromQLExtensionParser) Args_decl() (localctx IArgs_declContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for _la == PromQLExtensionParserCOMMA {
+	for _la == PromQLExParserCOMMA {
 		{
 			p.SetState(186)
-			p.Match(PromQLExtensionParserCOMMA)
+			p.Match(PromQLExParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -1672,13 +1672,13 @@ type Arg_nameContext struct {
 func NewEmptyArg_nameContext() *Arg_nameContext {
 	var p = new(Arg_nameContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_arg_name
+	p.RuleIndex = PromQLExParserRULE_arg_name
 	return p
 }
 
 func InitEmptyArg_nameContext(p *Arg_nameContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_arg_name
+	p.RuleIndex = PromQLExParserRULE_arg_name
 }
 
 func (*Arg_nameContext) IsArg_nameContext() {}
@@ -1689,7 +1689,7 @@ func NewArg_nameContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_arg_name
+	p.RuleIndex = PromQLExParserRULE_arg_name
 
 	return p
 }
@@ -1697,7 +1697,7 @@ func NewArg_nameContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *Arg_nameContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Arg_nameContext) ID() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserID, 0)
+	return s.GetToken(PromQLExParserID, 0)
 }
 
 func (s *Arg_nameContext) GetRuleContext() antlr.RuleContext {
@@ -1709,24 +1709,24 @@ func (s *Arg_nameContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *Arg_nameContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterArg_name(s)
 	}
 }
 
 func (s *Arg_nameContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitArg_name(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Arg_name() (localctx IArg_nameContext) {
+func (p *PromQLExParser) Arg_name() (localctx IArg_nameContext) {
 	localctx = NewArg_nameContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, PromQLExtensionParserRULE_arg_name)
+	p.EnterRule(localctx, 14, PromQLExParserRULE_arg_name)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(193)
-		p.Match(PromQLExtensionParserID)
+		p.Match(PromQLExParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1770,13 +1770,13 @@ type Statement_blockContext struct {
 func NewEmptyStatement_blockContext() *Statement_blockContext {
 	var p = new(Statement_blockContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_statement_block
+	p.RuleIndex = PromQLExParserRULE_statement_block
 	return p
 }
 
 func InitEmptyStatement_blockContext(p *Statement_blockContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_statement_block
+	p.RuleIndex = PromQLExParserRULE_statement_block
 }
 
 func (*Statement_blockContext) IsStatement_blockContext() {}
@@ -1787,7 +1787,7 @@ func NewStatement_blockContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_statement_block
+	p.RuleIndex = PromQLExParserRULE_statement_block
 
 	return p
 }
@@ -1795,7 +1795,7 @@ func NewStatement_blockContext(parser antlr.Parser, parent antlr.ParserRuleConte
 func (s *Statement_blockContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Statement_blockContext) LEFT_BRACE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_BRACE, 0)
+	return s.GetToken(PromQLExParserLEFT_BRACE, 0)
 }
 
 func (s *Statement_blockContext) Promqlx() IPromqlxContext {
@@ -1815,7 +1815,7 @@ func (s *Statement_blockContext) Promqlx() IPromqlxContext {
 }
 
 func (s *Statement_blockContext) RIGHT_BRACE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_BRACE, 0)
+	return s.GetToken(PromQLExParserRIGHT_BRACE, 0)
 }
 
 func (s *Statement_blockContext) GetRuleContext() antlr.RuleContext {
@@ -1827,24 +1827,24 @@ func (s *Statement_blockContext) ToStringTree(ruleNames []string, recog antlr.Re
 }
 
 func (s *Statement_blockContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterStatement_block(s)
 	}
 }
 
 func (s *Statement_blockContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitStatement_block(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Statement_block() (localctx IStatement_blockContext) {
+func (p *PromQLExParser) Statement_block() (localctx IStatement_blockContext) {
 	localctx = NewStatement_blockContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, PromQLExtensionParserRULE_statement_block)
+	p.EnterRule(localctx, 16, PromQLExParserRULE_statement_block)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(195)
-		p.Match(PromQLExtensionParserLEFT_BRACE)
+		p.Match(PromQLExParserLEFT_BRACE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1856,7 +1856,7 @@ func (p *PromQLExtensionParser) Statement_block() (localctx IStatement_blockCont
 	}
 	{
 		p.SetState(197)
-		p.Match(PromQLExtensionParserRIGHT_BRACE)
+		p.Match(PromQLExParserRIGHT_BRACE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1901,13 +1901,13 @@ type Arg_listContext struct {
 func NewEmptyArg_listContext() *Arg_listContext {
 	var p = new(Arg_listContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_arg_list
+	p.RuleIndex = PromQLExParserRULE_arg_list
 	return p
 }
 
 func InitEmptyArg_listContext(p *Arg_listContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_arg_list
+	p.RuleIndex = PromQLExParserRULE_arg_list
 }
 
 func (*Arg_listContext) IsArg_listContext() {}
@@ -1918,7 +1918,7 @@ func NewArg_listContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_arg_list
+	p.RuleIndex = PromQLExParserRULE_arg_list
 
 	return p
 }
@@ -1967,11 +1967,11 @@ func (s *Arg_listContext) VectorOperation(i int) IVectorOperationContext {
 }
 
 func (s *Arg_listContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *Arg_listContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *Arg_listContext) GetRuleContext() antlr.RuleContext {
@@ -1983,20 +1983,20 @@ func (s *Arg_listContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *Arg_listContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterArg_list(s)
 	}
 }
 
 func (s *Arg_listContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitArg_list(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Arg_list() (localctx IArg_listContext) {
+func (p *PromQLExParser) Arg_list() (localctx IArg_listContext) {
 	localctx = NewArg_listContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, PromQLExtensionParserRULE_arg_list)
+	p.EnterRule(localctx, 18, PromQLExParserRULE_arg_list)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -2011,10 +2011,10 @@ func (p *PromQLExtensionParser) Arg_list() (localctx IArg_listContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = _la == PromQLExtensionParserCOMMA {
+	for ok := true; ok; ok = _la == PromQLExParserCOMMA {
 		{
 			p.SetState(200)
-			p.Match(PromQLExtensionParserCOMMA)
+			p.Match(PromQLExParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -2070,13 +2070,13 @@ type If_statementContext struct {
 func NewEmptyIf_statementContext() *If_statementContext {
 	var p = new(If_statementContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_if_statement
+	p.RuleIndex = PromQLExParserRULE_if_statement
 	return p
 }
 
 func InitEmptyIf_statementContext(p *If_statementContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_if_statement
+	p.RuleIndex = PromQLExParserRULE_if_statement
 }
 
 func (*If_statementContext) IsIf_statementContext() {}
@@ -2087,7 +2087,7 @@ func NewIf_statementContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_if_statement
+	p.RuleIndex = PromQLExParserRULE_if_statement
 
 	return p
 }
@@ -2095,7 +2095,7 @@ func NewIf_statementContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 func (s *If_statementContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *If_statementContext) IF() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserIF, 0)
+	return s.GetToken(PromQLExParserIF, 0)
 }
 
 func (s *If_statementContext) Condition() IConditionContext {
@@ -2139,24 +2139,24 @@ func (s *If_statementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 }
 
 func (s *If_statementContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIf_statement(s)
 	}
 }
 
 func (s *If_statementContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIf_statement(s)
 	}
 }
 
-func (p *PromQLExtensionParser) If_statement() (localctx IIf_statementContext) {
+func (p *PromQLExParser) If_statement() (localctx IIf_statementContext) {
 	localctx = NewIf_statementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, PromQLExtensionParserRULE_if_statement)
+	p.EnterRule(localctx, 20, PromQLExParserRULE_if_statement)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(206)
-		p.Match(PromQLExtensionParserIF)
+		p.Match(PromQLExParserIF)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -2208,13 +2208,13 @@ type ConditionContext struct {
 func NewEmptyConditionContext() *ConditionContext {
 	var p = new(ConditionContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_condition
+	p.RuleIndex = PromQLExParserRULE_condition
 	return p
 }
 
 func InitEmptyConditionContext(p *ConditionContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_condition
+	p.RuleIndex = PromQLExParserRULE_condition
 }
 
 func (*ConditionContext) IsConditionContext() {}
@@ -2225,7 +2225,7 @@ func NewConditionContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_condition
+	p.RuleIndex = PromQLExParserRULE_condition
 
 	return p
 }
@@ -2289,20 +2289,20 @@ func (s *ConditionContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *ConditionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterCondition(s)
 	}
 }
 
 func (s *ConditionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitCondition(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Condition() (localctx IConditionContext) {
+func (p *PromQLExParser) Condition() (localctx IConditionContext) {
 	localctx = NewConditionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, PromQLExtensionParserRULE_condition)
+	p.EnterRule(localctx, 22, PromQLExParserRULE_condition)
 	p.SetState(213)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -2310,21 +2310,21 @@ func (p *PromQLExtensionParser) Condition() (localctx IConditionContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserAGGREGATION_OPERATOR, PromQLExtensionParserFUNCTION, PromQLExtensionParserPOSITIVE_INTEGER, PromQLExtensionParserCALL_SIGN, PromQLExtensionParserNUMBER, PromQLExtensionParserSTRING, PromQLExtensionParserADD, PromQLExtensionParserSUB, PromQLExtensionParserLEFT_BRACE, PromQLExtensionParserLEFT_PAREN, PromQLExtensionParserDURATION, PromQLExtensionParserMETRIC_NAME, PromQLExtensionParserRAW_STRING:
+	case PromQLExParserAGGREGATION_OPERATOR, PromQLExParserFUNCTION, PromQLExParserPOSITIVE_INTEGER, PromQLExParserCALL_SIGN, PromQLExParserNUMBER, PromQLExParserSTRING, PromQLExParserADD, PromQLExParserSUB, PromQLExParserLEFT_BRACE, PromQLExParserLEFT_PAREN, PromQLExParserDURATION, PromQLExParserMETRIC_NAME, PromQLExParserRAW_STRING:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(210)
 			p.CompareVectorOperation()
 		}
 
-	case PromQLExtensionParserTRUE:
+	case PromQLExParserTRUE:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(211)
 			p.TrueConst()
 		}
 
-	case PromQLExtensionParserFALSE:
+	case PromQLExParserFALSE:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(212)
@@ -2373,13 +2373,13 @@ type CompareVectorOperationContext struct {
 func NewEmptyCompareVectorOperationContext() *CompareVectorOperationContext {
 	var p = new(CompareVectorOperationContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_compareVectorOperation
+	p.RuleIndex = PromQLExParserRULE_compareVectorOperation
 	return p
 }
 
 func InitEmptyCompareVectorOperationContext(p *CompareVectorOperationContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_compareVectorOperation
+	p.RuleIndex = PromQLExParserRULE_compareVectorOperation
 }
 
 func (*CompareVectorOperationContext) IsCompareVectorOperationContext() {}
@@ -2390,7 +2390,7 @@ func NewCompareVectorOperationContext(parser antlr.Parser, parent antlr.ParserRu
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_compareVectorOperation
+	p.RuleIndex = PromQLExParserRULE_compareVectorOperation
 
 	return p
 }
@@ -2463,20 +2463,20 @@ func (s *CompareVectorOperationContext) ToStringTree(ruleNames []string, recog a
 }
 
 func (s *CompareVectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterCompareVectorOperation(s)
 	}
 }
 
 func (s *CompareVectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitCompareVectorOperation(s)
 	}
 }
 
-func (p *PromQLExtensionParser) CompareVectorOperation() (localctx ICompareVectorOperationContext) {
+func (p *PromQLExParser) CompareVectorOperation() (localctx ICompareVectorOperationContext) {
 	localctx = NewCompareVectorOperationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, PromQLExtensionParserRULE_compareVectorOperation)
+	p.EnterRule(localctx, 24, PromQLExParserRULE_compareVectorOperation)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(215)
@@ -2526,13 +2526,13 @@ type TrueConstContext struct {
 func NewEmptyTrueConstContext() *TrueConstContext {
 	var p = new(TrueConstContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_trueConst
+	p.RuleIndex = PromQLExParserRULE_trueConst
 	return p
 }
 
 func InitEmptyTrueConstContext(p *TrueConstContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_trueConst
+	p.RuleIndex = PromQLExParserRULE_trueConst
 }
 
 func (*TrueConstContext) IsTrueConstContext() {}
@@ -2543,7 +2543,7 @@ func NewTrueConstContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_trueConst
+	p.RuleIndex = PromQLExParserRULE_trueConst
 
 	return p
 }
@@ -2551,7 +2551,7 @@ func NewTrueConstContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *TrueConstContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *TrueConstContext) TRUE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTRUE, 0)
+	return s.GetToken(PromQLExParserTRUE, 0)
 }
 
 func (s *TrueConstContext) GetRuleContext() antlr.RuleContext {
@@ -2563,24 +2563,24 @@ func (s *TrueConstContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *TrueConstContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterTrueConst(s)
 	}
 }
 
 func (s *TrueConstContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitTrueConst(s)
 	}
 }
 
-func (p *PromQLExtensionParser) TrueConst() (localctx ITrueConstContext) {
+func (p *PromQLExParser) TrueConst() (localctx ITrueConstContext) {
 	localctx = NewTrueConstContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, PromQLExtensionParserRULE_trueConst)
+	p.EnterRule(localctx, 26, PromQLExParserRULE_trueConst)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(219)
-		p.Match(PromQLExtensionParserTRUE)
+		p.Match(PromQLExParserTRUE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -2622,13 +2622,13 @@ type FalseConstContext struct {
 func NewEmptyFalseConstContext() *FalseConstContext {
 	var p = new(FalseConstContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_falseConst
+	p.RuleIndex = PromQLExParserRULE_falseConst
 	return p
 }
 
 func InitEmptyFalseConstContext(p *FalseConstContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_falseConst
+	p.RuleIndex = PromQLExParserRULE_falseConst
 }
 
 func (*FalseConstContext) IsFalseConstContext() {}
@@ -2639,7 +2639,7 @@ func NewFalseConstContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_falseConst
+	p.RuleIndex = PromQLExParserRULE_falseConst
 
 	return p
 }
@@ -2647,7 +2647,7 @@ func NewFalseConstContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 func (s *FalseConstContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *FalseConstContext) FALSE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserFALSE, 0)
+	return s.GetToken(PromQLExParserFALSE, 0)
 }
 
 func (s *FalseConstContext) GetRuleContext() antlr.RuleContext {
@@ -2659,24 +2659,24 @@ func (s *FalseConstContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *FalseConstContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterFalseConst(s)
 	}
 }
 
 func (s *FalseConstContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitFalseConst(s)
 	}
 }
 
-func (p *PromQLExtensionParser) FalseConst() (localctx IFalseConstContext) {
+func (p *PromQLExParser) FalseConst() (localctx IFalseConstContext) {
 	localctx = NewFalseConstContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, PromQLExtensionParserRULE_falseConst)
+	p.EnterRule(localctx, 28, PromQLExParserRULE_falseConst)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(221)
-		p.Match(PromQLExtensionParserFALSE)
+		p.Match(PromQLExParserFALSE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -2719,13 +2719,13 @@ type Time_instant_literalContext struct {
 func NewEmptyTime_instant_literalContext() *Time_instant_literalContext {
 	var p = new(Time_instant_literalContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_time_instant_literal
+	p.RuleIndex = PromQLExParserRULE_time_instant_literal
 	return p
 }
 
 func InitEmptyTime_instant_literalContext(p *Time_instant_literalContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_time_instant_literal
+	p.RuleIndex = PromQLExParserRULE_time_instant_literal
 }
 
 func (*Time_instant_literalContext) IsTime_instant_literalContext() {}
@@ -2736,7 +2736,7 @@ func NewTime_instant_literalContext(parser antlr.Parser, parent antlr.ParserRule
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_time_instant_literal
+	p.RuleIndex = PromQLExParserRULE_time_instant_literal
 
 	return p
 }
@@ -2784,20 +2784,20 @@ func (s *Time_instant_literalContext) ToStringTree(ruleNames []string, recog ant
 }
 
 func (s *Time_instant_literalContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterTime_instant_literal(s)
 	}
 }
 
 func (s *Time_instant_literalContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitTime_instant_literal(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Time_instant_literal() (localctx ITime_instant_literalContext) {
+func (p *PromQLExParser) Time_instant_literal() (localctx ITime_instant_literalContext) {
 	localctx = NewTime_instant_literalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, PromQLExtensionParserRULE_time_instant_literal)
+	p.EnterRule(localctx, 30, PromQLExParserRULE_time_instant_literal)
 	p.SetState(225)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -2864,13 +2864,13 @@ type Iso_date_timeContext struct {
 func NewEmptyIso_date_timeContext() *Iso_date_timeContext {
 	var p = new(Iso_date_timeContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time
+	p.RuleIndex = PromQLExParserRULE_iso_date_time
 	return p
 }
 
 func InitEmptyIso_date_timeContext(p *Iso_date_timeContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time
+	p.RuleIndex = PromQLExParserRULE_iso_date_time
 }
 
 func (*Iso_date_timeContext) IsIso_date_timeContext() {}
@@ -2881,7 +2881,7 @@ func NewIso_date_timeContext(parser antlr.Parser, parent antlr.ParserRuleContext
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time
+	p.RuleIndex = PromQLExParserRULE_iso_date_time
 
 	return p
 }
@@ -3009,20 +3009,20 @@ func (s *Iso_date_timeContext) ToStringTree(ruleNames []string, recog antlr.Reco
 }
 
 func (s *Iso_date_timeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time(s)
 	}
 }
 
 func (s *Iso_date_timeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time() (localctx IIso_date_timeContext) {
+func (p *PromQLExParser) Iso_date_time() (localctx IIso_date_timeContext) {
 	localctx = NewIso_date_timeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, PromQLExtensionParserRULE_iso_date_time)
+	p.EnterRule(localctx, 32, PromQLExParserRULE_iso_date_time)
 	p.SetState(234)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -3130,13 +3130,13 @@ type Iso_date_time_ymdhmsfContext struct {
 func NewEmptyIso_date_time_ymdhmsfContext() *Iso_date_time_ymdhmsfContext {
 	var p = new(Iso_date_time_ymdhmsfContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhmsf
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhmsf
 	return p
 }
 
 func InitEmptyIso_date_time_ymdhmsfContext(p *Iso_date_time_ymdhmsfContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhmsf
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhmsf
 }
 
 func (*Iso_date_time_ymdhmsfContext) IsIso_date_time_ymdhmsfContext() {}
@@ -3147,7 +3147,7 @@ func NewIso_date_time_ymdhmsfContext(parser antlr.Parser, parent antlr.ParserRul
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhmsf
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhmsf
 
 	return p
 }
@@ -3171,11 +3171,11 @@ func (s *Iso_date_time_ymdhmsfContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymdhmsfContext) AllSUB() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserSUB)
+	return s.GetTokens(PromQLExParserSUB)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) SUB(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, i)
+	return s.GetToken(PromQLExParserSUB, i)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) Iso_month() IIso_monthContext {
@@ -3211,7 +3211,7 @@ func (s *Iso_date_time_ymdhmsfContext) Iso_day() IIso_dayContext {
 }
 
 func (s *Iso_date_time_ymdhmsfContext) T() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserT, 0)
+	return s.GetToken(PromQLExParserT, 0)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) Iso_hour() IIso_hourContext {
@@ -3231,11 +3231,11 @@ func (s *Iso_date_time_ymdhmsfContext) Iso_hour() IIso_hourContext {
 }
 
 func (s *Iso_date_time_ymdhmsfContext) AllCOLON() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOLON)
+	return s.GetTokens(PromQLExParserCOLON)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) COLON(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOLON, i)
+	return s.GetToken(PromQLExParserCOLON, i)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) Iso_minutes() IIso_minutesContext {
@@ -3271,7 +3271,7 @@ func (s *Iso_date_time_ymdhmsfContext) Iso_seconds() IIso_secondsContext {
 }
 
 func (s *Iso_date_time_ymdhmsfContext) DOT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDOT, 0)
+	return s.GetToken(PromQLExParserDOT, 0)
 }
 
 func (s *Iso_date_time_ymdhmsfContext) Is_frac_sec() IIs_frac_secContext {
@@ -3299,20 +3299,20 @@ func (s *Iso_date_time_ymdhmsfContext) ToStringTree(ruleNames []string, recog an
 }
 
 func (s *Iso_date_time_ymdhmsfContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ymdhmsf(s)
 	}
 }
 
 func (s *Iso_date_time_ymdhmsfContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ymdhmsf(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time_ymdhmsfContext) {
+func (p *PromQLExParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time_ymdhmsfContext) {
 	localctx = NewIso_date_time_ymdhmsfContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, PromQLExtensionParserRULE_iso_date_time_ymdhmsf)
+	p.EnterRule(localctx, 34, PromQLExParserRULE_iso_date_time_ymdhmsf)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(236)
@@ -3320,7 +3320,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(237)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3332,7 +3332,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(239)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3344,7 +3344,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(241)
-		p.Match(PromQLExtensionParserT)
+		p.Match(PromQLExParserT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3356,7 +3356,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(243)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3368,7 +3368,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(245)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3380,7 +3380,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhmsf() (localctx IIso_date_time
 	}
 	{
 		p.SetState(247)
-		p.Match(PromQLExtensionParserDOT)
+		p.Match(PromQLExParserDOT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3436,13 +3436,13 @@ type Iso_date_time_ymdhmsContext struct {
 func NewEmptyIso_date_time_ymdhmsContext() *Iso_date_time_ymdhmsContext {
 	var p = new(Iso_date_time_ymdhmsContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhms
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhms
 	return p
 }
 
 func InitEmptyIso_date_time_ymdhmsContext(p *Iso_date_time_ymdhmsContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhms
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhms
 }
 
 func (*Iso_date_time_ymdhmsContext) IsIso_date_time_ymdhmsContext() {}
@@ -3453,7 +3453,7 @@ func NewIso_date_time_ymdhmsContext(parser antlr.Parser, parent antlr.ParserRule
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhms
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhms
 
 	return p
 }
@@ -3477,11 +3477,11 @@ func (s *Iso_date_time_ymdhmsContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymdhmsContext) AllSUB() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserSUB)
+	return s.GetTokens(PromQLExParserSUB)
 }
 
 func (s *Iso_date_time_ymdhmsContext) SUB(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, i)
+	return s.GetToken(PromQLExParserSUB, i)
 }
 
 func (s *Iso_date_time_ymdhmsContext) Iso_month() IIso_monthContext {
@@ -3517,7 +3517,7 @@ func (s *Iso_date_time_ymdhmsContext) Iso_day() IIso_dayContext {
 }
 
 func (s *Iso_date_time_ymdhmsContext) T() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserT, 0)
+	return s.GetToken(PromQLExParserT, 0)
 }
 
 func (s *Iso_date_time_ymdhmsContext) Iso_hour() IIso_hourContext {
@@ -3537,11 +3537,11 @@ func (s *Iso_date_time_ymdhmsContext) Iso_hour() IIso_hourContext {
 }
 
 func (s *Iso_date_time_ymdhmsContext) AllCOLON() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOLON)
+	return s.GetTokens(PromQLExParserCOLON)
 }
 
 func (s *Iso_date_time_ymdhmsContext) COLON(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOLON, i)
+	return s.GetToken(PromQLExParserCOLON, i)
 }
 
 func (s *Iso_date_time_ymdhmsContext) Iso_minutes() IIso_minutesContext {
@@ -3585,20 +3585,20 @@ func (s *Iso_date_time_ymdhmsContext) ToStringTree(ruleNames []string, recog ant
 }
 
 func (s *Iso_date_time_ymdhmsContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ymdhms(s)
 	}
 }
 
 func (s *Iso_date_time_ymdhmsContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ymdhms(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_ymdhmsContext) {
+func (p *PromQLExParser) Iso_date_time_ymdhms() (localctx IIso_date_time_ymdhmsContext) {
 	localctx = NewIso_date_time_ymdhmsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, PromQLExtensionParserRULE_iso_date_time_ymdhms)
+	p.EnterRule(localctx, 36, PromQLExParserRULE_iso_date_time_ymdhms)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(250)
@@ -3606,7 +3606,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_
 	}
 	{
 		p.SetState(251)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3618,7 +3618,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_
 	}
 	{
 		p.SetState(253)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3630,7 +3630,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_
 	}
 	{
 		p.SetState(255)
-		p.Match(PromQLExtensionParserT)
+		p.Match(PromQLExParserT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3642,7 +3642,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_
 	}
 	{
 		p.SetState(257)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3654,7 +3654,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhms() (localctx IIso_date_time_
 	}
 	{
 		p.SetState(259)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3708,13 +3708,13 @@ type Iso_date_time_ymdhmContext struct {
 func NewEmptyIso_date_time_ymdhmContext() *Iso_date_time_ymdhmContext {
 	var p = new(Iso_date_time_ymdhmContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhm
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhm
 	return p
 }
 
 func InitEmptyIso_date_time_ymdhmContext(p *Iso_date_time_ymdhmContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhm
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhm
 }
 
 func (*Iso_date_time_ymdhmContext) IsIso_date_time_ymdhmContext() {}
@@ -3725,7 +3725,7 @@ func NewIso_date_time_ymdhmContext(parser antlr.Parser, parent antlr.ParserRuleC
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdhm
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdhm
 
 	return p
 }
@@ -3749,11 +3749,11 @@ func (s *Iso_date_time_ymdhmContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymdhmContext) AllSUB() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserSUB)
+	return s.GetTokens(PromQLExParserSUB)
 }
 
 func (s *Iso_date_time_ymdhmContext) SUB(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, i)
+	return s.GetToken(PromQLExParserSUB, i)
 }
 
 func (s *Iso_date_time_ymdhmContext) Iso_month() IIso_monthContext {
@@ -3789,7 +3789,7 @@ func (s *Iso_date_time_ymdhmContext) Iso_day() IIso_dayContext {
 }
 
 func (s *Iso_date_time_ymdhmContext) T() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserT, 0)
+	return s.GetToken(PromQLExParserT, 0)
 }
 
 func (s *Iso_date_time_ymdhmContext) Iso_hour() IIso_hourContext {
@@ -3809,7 +3809,7 @@ func (s *Iso_date_time_ymdhmContext) Iso_hour() IIso_hourContext {
 }
 
 func (s *Iso_date_time_ymdhmContext) COLON() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOLON, 0)
+	return s.GetToken(PromQLExParserCOLON, 0)
 }
 
 func (s *Iso_date_time_ymdhmContext) Iso_minutes() IIso_minutesContext {
@@ -3837,20 +3837,20 @@ func (s *Iso_date_time_ymdhmContext) ToStringTree(ruleNames []string, recog antl
 }
 
 func (s *Iso_date_time_ymdhmContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ymdhm(s)
 	}
 }
 
 func (s *Iso_date_time_ymdhmContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ymdhm(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ymdhm() (localctx IIso_date_time_ymdhmContext) {
+func (p *PromQLExParser) Iso_date_time_ymdhm() (localctx IIso_date_time_ymdhmContext) {
 	localctx = NewIso_date_time_ymdhmContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, PromQLExtensionParserRULE_iso_date_time_ymdhm)
+	p.EnterRule(localctx, 38, PromQLExParserRULE_iso_date_time_ymdhm)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(262)
@@ -3858,7 +3858,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhm() (localctx IIso_date_time_y
 	}
 	{
 		p.SetState(263)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3870,7 +3870,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhm() (localctx IIso_date_time_y
 	}
 	{
 		p.SetState(265)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3882,7 +3882,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhm() (localctx IIso_date_time_y
 	}
 	{
 		p.SetState(267)
-		p.Match(PromQLExtensionParserT)
+		p.Match(PromQLExParserT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3894,7 +3894,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdhm() (localctx IIso_date_time_y
 	}
 	{
 		p.SetState(269)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -3946,13 +3946,13 @@ type Iso_date_time_ymdhContext struct {
 func NewEmptyIso_date_time_ymdhContext() *Iso_date_time_ymdhContext {
 	var p = new(Iso_date_time_ymdhContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdh
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdh
 	return p
 }
 
 func InitEmptyIso_date_time_ymdhContext(p *Iso_date_time_ymdhContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdh
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdh
 }
 
 func (*Iso_date_time_ymdhContext) IsIso_date_time_ymdhContext() {}
@@ -3963,7 +3963,7 @@ func NewIso_date_time_ymdhContext(parser antlr.Parser, parent antlr.ParserRuleCo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymdh
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymdh
 
 	return p
 }
@@ -3987,11 +3987,11 @@ func (s *Iso_date_time_ymdhContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymdhContext) AllSUB() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserSUB)
+	return s.GetTokens(PromQLExParserSUB)
 }
 
 func (s *Iso_date_time_ymdhContext) SUB(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, i)
+	return s.GetToken(PromQLExParserSUB, i)
 }
 
 func (s *Iso_date_time_ymdhContext) Iso_month() IIso_monthContext {
@@ -4027,7 +4027,7 @@ func (s *Iso_date_time_ymdhContext) Iso_day() IIso_dayContext {
 }
 
 func (s *Iso_date_time_ymdhContext) T() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserT, 0)
+	return s.GetToken(PromQLExParserT, 0)
 }
 
 func (s *Iso_date_time_ymdhContext) Iso_hour() IIso_hourContext {
@@ -4055,20 +4055,20 @@ func (s *Iso_date_time_ymdhContext) ToStringTree(ruleNames []string, recog antlr
 }
 
 func (s *Iso_date_time_ymdhContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ymdh(s)
 	}
 }
 
 func (s *Iso_date_time_ymdhContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ymdh(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ymdh() (localctx IIso_date_time_ymdhContext) {
+func (p *PromQLExParser) Iso_date_time_ymdh() (localctx IIso_date_time_ymdhContext) {
 	localctx = NewIso_date_time_ymdhContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, PromQLExtensionParserRULE_iso_date_time_ymdh)
+	p.EnterRule(localctx, 40, PromQLExParserRULE_iso_date_time_ymdh)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(272)
@@ -4076,7 +4076,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdh() (localctx IIso_date_time_ym
 	}
 	{
 		p.SetState(273)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4088,7 +4088,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdh() (localctx IIso_date_time_ym
 	}
 	{
 		p.SetState(275)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4100,7 +4100,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymdh() (localctx IIso_date_time_ym
 	}
 	{
 		p.SetState(277)
-		p.Match(PromQLExtensionParserT)
+		p.Match(PromQLExParserT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4150,13 +4150,13 @@ type Iso_date_time_ymdContext struct {
 func NewEmptyIso_date_time_ymdContext() *Iso_date_time_ymdContext {
 	var p = new(Iso_date_time_ymdContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymd
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymd
 	return p
 }
 
 func InitEmptyIso_date_time_ymdContext(p *Iso_date_time_ymdContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymd
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymd
 }
 
 func (*Iso_date_time_ymdContext) IsIso_date_time_ymdContext() {}
@@ -4167,7 +4167,7 @@ func NewIso_date_time_ymdContext(parser antlr.Parser, parent antlr.ParserRuleCon
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ymd
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ymd
 
 	return p
 }
@@ -4191,11 +4191,11 @@ func (s *Iso_date_time_ymdContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymdContext) AllSUB() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserSUB)
+	return s.GetTokens(PromQLExParserSUB)
 }
 
 func (s *Iso_date_time_ymdContext) SUB(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, i)
+	return s.GetToken(PromQLExParserSUB, i)
 }
 
 func (s *Iso_date_time_ymdContext) Iso_month() IIso_monthContext {
@@ -4239,20 +4239,20 @@ func (s *Iso_date_time_ymdContext) ToStringTree(ruleNames []string, recog antlr.
 }
 
 func (s *Iso_date_time_ymdContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ymd(s)
 	}
 }
 
 func (s *Iso_date_time_ymdContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ymd(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ymd() (localctx IIso_date_time_ymdContext) {
+func (p *PromQLExParser) Iso_date_time_ymd() (localctx IIso_date_time_ymdContext) {
 	localctx = NewIso_date_time_ymdContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, PromQLExtensionParserRULE_iso_date_time_ymd)
+	p.EnterRule(localctx, 42, PromQLExParserRULE_iso_date_time_ymd)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(280)
@@ -4260,7 +4260,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymd() (localctx IIso_date_time_ymd
 	}
 	{
 		p.SetState(281)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4272,7 +4272,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ymd() (localctx IIso_date_time_ymd
 	}
 	{
 		p.SetState(283)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4320,13 +4320,13 @@ type Iso_date_time_ymContext struct {
 func NewEmptyIso_date_time_ymContext() *Iso_date_time_ymContext {
 	var p = new(Iso_date_time_ymContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ym
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ym
 	return p
 }
 
 func InitEmptyIso_date_time_ymContext(p *Iso_date_time_ymContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ym
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ym
 }
 
 func (*Iso_date_time_ymContext) IsIso_date_time_ymContext() {}
@@ -4337,7 +4337,7 @@ func NewIso_date_time_ymContext(parser antlr.Parser, parent antlr.ParserRuleCont
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_ym
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_ym
 
 	return p
 }
@@ -4361,7 +4361,7 @@ func (s *Iso_date_time_ymContext) Iso_year() IIso_yearContext {
 }
 
 func (s *Iso_date_time_ymContext) SUB() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, 0)
+	return s.GetToken(PromQLExParserSUB, 0)
 }
 
 func (s *Iso_date_time_ymContext) Iso_month() IIso_monthContext {
@@ -4389,20 +4389,20 @@ func (s *Iso_date_time_ymContext) ToStringTree(ruleNames []string, recog antlr.R
 }
 
 func (s *Iso_date_time_ymContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_ym(s)
 	}
 }
 
 func (s *Iso_date_time_ymContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_ym(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_ym() (localctx IIso_date_time_ymContext) {
+func (p *PromQLExParser) Iso_date_time_ym() (localctx IIso_date_time_ymContext) {
 	localctx = NewIso_date_time_ymContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, PromQLExtensionParserRULE_iso_date_time_ym)
+	p.EnterRule(localctx, 44, PromQLExParserRULE_iso_date_time_ym)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(286)
@@ -4410,7 +4410,7 @@ func (p *PromQLExtensionParser) Iso_date_time_ym() (localctx IIso_date_time_ymCo
 	}
 	{
 		p.SetState(287)
-		p.Match(PromQLExtensionParserSUB)
+		p.Match(PromQLExParserSUB)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4456,13 +4456,13 @@ type Iso_date_time_yContext struct {
 func NewEmptyIso_date_time_yContext() *Iso_date_time_yContext {
 	var p = new(Iso_date_time_yContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_y
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_y
 	return p
 }
 
 func InitEmptyIso_date_time_yContext(p *Iso_date_time_yContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_y
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_y
 }
 
 func (*Iso_date_time_yContext) IsIso_date_time_yContext() {}
@@ -4473,7 +4473,7 @@ func NewIso_date_time_yContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_date_time_y
+	p.RuleIndex = PromQLExParserRULE_iso_date_time_y
 
 	return p
 }
@@ -4505,20 +4505,20 @@ func (s *Iso_date_time_yContext) ToStringTree(ruleNames []string, recog antlr.Re
 }
 
 func (s *Iso_date_time_yContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_date_time_y(s)
 	}
 }
 
 func (s *Iso_date_time_yContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_date_time_y(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_date_time_y() (localctx IIso_date_time_yContext) {
+func (p *PromQLExParser) Iso_date_time_y() (localctx IIso_date_time_yContext) {
 	localctx = NewIso_date_time_yContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, PromQLExtensionParserRULE_iso_date_time_y)
+	p.EnterRule(localctx, 46, PromQLExParserRULE_iso_date_time_y)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(290)
@@ -4560,13 +4560,13 @@ type Iso_yearContext struct {
 func NewEmptyIso_yearContext() *Iso_yearContext {
 	var p = new(Iso_yearContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_year
+	p.RuleIndex = PromQLExParserRULE_iso_year
 	return p
 }
 
 func InitEmptyIso_yearContext(p *Iso_yearContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_year
+	p.RuleIndex = PromQLExParserRULE_iso_year
 }
 
 func (*Iso_yearContext) IsIso_yearContext() {}
@@ -4577,7 +4577,7 @@ func NewIso_yearContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_year
+	p.RuleIndex = PromQLExParserRULE_iso_year
 
 	return p
 }
@@ -4585,7 +4585,7 @@ func NewIso_yearContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *Iso_yearContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_yearContext) POSITIVE_INTEGER() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserPOSITIVE_INTEGER, 0)
+	return s.GetToken(PromQLExParserPOSITIVE_INTEGER, 0)
 }
 
 func (s *Iso_yearContext) GetRuleContext() antlr.RuleContext {
@@ -4597,24 +4597,24 @@ func (s *Iso_yearContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *Iso_yearContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_year(s)
 	}
 }
 
 func (s *Iso_yearContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_year(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_year() (localctx IIso_yearContext) {
+func (p *PromQLExParser) Iso_year() (localctx IIso_yearContext) {
 	localctx = NewIso_yearContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, PromQLExtensionParserRULE_iso_year)
+	p.EnterRule(localctx, 48, PromQLExParserRULE_iso_year)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(292)
-		p.Match(PromQLExtensionParserPOSITIVE_INTEGER)
+		p.Match(PromQLExParserPOSITIVE_INTEGER)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4656,13 +4656,13 @@ type Iso_monthContext struct {
 func NewEmptyIso_monthContext() *Iso_monthContext {
 	var p = new(Iso_monthContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_month
+	p.RuleIndex = PromQLExParserRULE_iso_month
 	return p
 }
 
 func InitEmptyIso_monthContext(p *Iso_monthContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_month
+	p.RuleIndex = PromQLExParserRULE_iso_month
 }
 
 func (*Iso_monthContext) IsIso_monthContext() {}
@@ -4673,7 +4673,7 @@ func NewIso_monthContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_month
+	p.RuleIndex = PromQLExParserRULE_iso_month
 
 	return p
 }
@@ -4681,7 +4681,7 @@ func NewIso_monthContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *Iso_monthContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_monthContext) TWO_DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTWO_DIGITS, 0)
+	return s.GetToken(PromQLExParserTWO_DIGITS, 0)
 }
 
 func (s *Iso_monthContext) GetRuleContext() antlr.RuleContext {
@@ -4693,24 +4693,24 @@ func (s *Iso_monthContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *Iso_monthContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_month(s)
 	}
 }
 
 func (s *Iso_monthContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_month(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_month() (localctx IIso_monthContext) {
+func (p *PromQLExParser) Iso_month() (localctx IIso_monthContext) {
 	localctx = NewIso_monthContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, PromQLExtensionParserRULE_iso_month)
+	p.EnterRule(localctx, 50, PromQLExParserRULE_iso_month)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(294)
-		p.Match(PromQLExtensionParserTWO_DIGITS)
+		p.Match(PromQLExParserTWO_DIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4752,13 +4752,13 @@ type Iso_dayContext struct {
 func NewEmptyIso_dayContext() *Iso_dayContext {
 	var p = new(Iso_dayContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_day
+	p.RuleIndex = PromQLExParserRULE_iso_day
 	return p
 }
 
 func InitEmptyIso_dayContext(p *Iso_dayContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_day
+	p.RuleIndex = PromQLExParserRULE_iso_day
 }
 
 func (*Iso_dayContext) IsIso_dayContext() {}
@@ -4769,7 +4769,7 @@ func NewIso_dayContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_day
+	p.RuleIndex = PromQLExParserRULE_iso_day
 
 	return p
 }
@@ -4777,7 +4777,7 @@ func NewIso_dayContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 func (s *Iso_dayContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_dayContext) TWO_DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTWO_DIGITS, 0)
+	return s.GetToken(PromQLExParserTWO_DIGITS, 0)
 }
 
 func (s *Iso_dayContext) GetRuleContext() antlr.RuleContext {
@@ -4789,24 +4789,24 @@ func (s *Iso_dayContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *Iso_dayContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_day(s)
 	}
 }
 
 func (s *Iso_dayContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_day(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_day() (localctx IIso_dayContext) {
+func (p *PromQLExParser) Iso_day() (localctx IIso_dayContext) {
 	localctx = NewIso_dayContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, PromQLExtensionParserRULE_iso_day)
+	p.EnterRule(localctx, 52, PromQLExParserRULE_iso_day)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(296)
-		p.Match(PromQLExtensionParserTWO_DIGITS)
+		p.Match(PromQLExParserTWO_DIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4848,13 +4848,13 @@ type Iso_hourContext struct {
 func NewEmptyIso_hourContext() *Iso_hourContext {
 	var p = new(Iso_hourContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_hour
+	p.RuleIndex = PromQLExParserRULE_iso_hour
 	return p
 }
 
 func InitEmptyIso_hourContext(p *Iso_hourContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_hour
+	p.RuleIndex = PromQLExParserRULE_iso_hour
 }
 
 func (*Iso_hourContext) IsIso_hourContext() {}
@@ -4865,7 +4865,7 @@ func NewIso_hourContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_hour
+	p.RuleIndex = PromQLExParserRULE_iso_hour
 
 	return p
 }
@@ -4873,7 +4873,7 @@ func NewIso_hourContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *Iso_hourContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_hourContext) TWO_DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTWO_DIGITS, 0)
+	return s.GetToken(PromQLExParserTWO_DIGITS, 0)
 }
 
 func (s *Iso_hourContext) GetRuleContext() antlr.RuleContext {
@@ -4885,24 +4885,24 @@ func (s *Iso_hourContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *Iso_hourContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_hour(s)
 	}
 }
 
 func (s *Iso_hourContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_hour(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_hour() (localctx IIso_hourContext) {
+func (p *PromQLExParser) Iso_hour() (localctx IIso_hourContext) {
 	localctx = NewIso_hourContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 54, PromQLExtensionParserRULE_iso_hour)
+	p.EnterRule(localctx, 54, PromQLExParserRULE_iso_hour)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(298)
-		p.Match(PromQLExtensionParserTWO_DIGITS)
+		p.Match(PromQLExParserTWO_DIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -4944,13 +4944,13 @@ type Iso_minutesContext struct {
 func NewEmptyIso_minutesContext() *Iso_minutesContext {
 	var p = new(Iso_minutesContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_minutes
+	p.RuleIndex = PromQLExParserRULE_iso_minutes
 	return p
 }
 
 func InitEmptyIso_minutesContext(p *Iso_minutesContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_minutes
+	p.RuleIndex = PromQLExParserRULE_iso_minutes
 }
 
 func (*Iso_minutesContext) IsIso_minutesContext() {}
@@ -4961,7 +4961,7 @@ func NewIso_minutesContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_minutes
+	p.RuleIndex = PromQLExParserRULE_iso_minutes
 
 	return p
 }
@@ -4969,7 +4969,7 @@ func NewIso_minutesContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *Iso_minutesContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_minutesContext) TWO_DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTWO_DIGITS, 0)
+	return s.GetToken(PromQLExParserTWO_DIGITS, 0)
 }
 
 func (s *Iso_minutesContext) GetRuleContext() antlr.RuleContext {
@@ -4981,24 +4981,24 @@ func (s *Iso_minutesContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *Iso_minutesContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_minutes(s)
 	}
 }
 
 func (s *Iso_minutesContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_minutes(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_minutes() (localctx IIso_minutesContext) {
+func (p *PromQLExParser) Iso_minutes() (localctx IIso_minutesContext) {
 	localctx = NewIso_minutesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, PromQLExtensionParserRULE_iso_minutes)
+	p.EnterRule(localctx, 56, PromQLExParserRULE_iso_minutes)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(300)
-		p.Match(PromQLExtensionParserTWO_DIGITS)
+		p.Match(PromQLExParserTWO_DIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -5040,13 +5040,13 @@ type Iso_secondsContext struct {
 func NewEmptyIso_secondsContext() *Iso_secondsContext {
 	var p = new(Iso_secondsContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_seconds
+	p.RuleIndex = PromQLExParserRULE_iso_seconds
 	return p
 }
 
 func InitEmptyIso_secondsContext(p *Iso_secondsContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_iso_seconds
+	p.RuleIndex = PromQLExParserRULE_iso_seconds
 }
 
 func (*Iso_secondsContext) IsIso_secondsContext() {}
@@ -5057,7 +5057,7 @@ func NewIso_secondsContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_iso_seconds
+	p.RuleIndex = PromQLExParserRULE_iso_seconds
 
 	return p
 }
@@ -5065,7 +5065,7 @@ func NewIso_secondsContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *Iso_secondsContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Iso_secondsContext) TWO_DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserTWO_DIGITS, 0)
+	return s.GetToken(PromQLExParserTWO_DIGITS, 0)
 }
 
 func (s *Iso_secondsContext) GetRuleContext() antlr.RuleContext {
@@ -5077,24 +5077,24 @@ func (s *Iso_secondsContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *Iso_secondsContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIso_seconds(s)
 	}
 }
 
 func (s *Iso_secondsContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIso_seconds(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Iso_seconds() (localctx IIso_secondsContext) {
+func (p *PromQLExParser) Iso_seconds() (localctx IIso_secondsContext) {
 	localctx = NewIso_secondsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, PromQLExtensionParserRULE_iso_seconds)
+	p.EnterRule(localctx, 58, PromQLExParserRULE_iso_seconds)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(302)
-		p.Match(PromQLExtensionParserTWO_DIGITS)
+		p.Match(PromQLExParserTWO_DIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -5136,13 +5136,13 @@ type Is_frac_secContext struct {
 func NewEmptyIs_frac_secContext() *Is_frac_secContext {
 	var p = new(Is_frac_secContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_is_frac_sec
+	p.RuleIndex = PromQLExParserRULE_is_frac_sec
 	return p
 }
 
 func InitEmptyIs_frac_secContext(p *Is_frac_secContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_is_frac_sec
+	p.RuleIndex = PromQLExParserRULE_is_frac_sec
 }
 
 func (*Is_frac_secContext) IsIs_frac_secContext() {}
@@ -5153,7 +5153,7 @@ func NewIs_frac_secContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_is_frac_sec
+	p.RuleIndex = PromQLExParserRULE_is_frac_sec
 
 	return p
 }
@@ -5161,7 +5161,7 @@ func NewIs_frac_secContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *Is_frac_secContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Is_frac_secContext) DIGITS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDIGITS, 0)
+	return s.GetToken(PromQLExParserDIGITS, 0)
 }
 
 func (s *Is_frac_secContext) GetRuleContext() antlr.RuleContext {
@@ -5173,24 +5173,24 @@ func (s *Is_frac_secContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *Is_frac_secContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIs_frac_sec(s)
 	}
 }
 
 func (s *Is_frac_secContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIs_frac_sec(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Is_frac_sec() (localctx IIs_frac_secContext) {
+func (p *PromQLExParser) Is_frac_sec() (localctx IIs_frac_secContext) {
 	localctx = NewIs_frac_secContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, PromQLExtensionParserRULE_is_frac_sec)
+	p.EnterRule(localctx, 60, PromQLExParserRULE_is_frac_sec)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(304)
-		p.Match(PromQLExtensionParserDIGITS)
+		p.Match(PromQLExParserDIGITS)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -5232,13 +5232,13 @@ type Unix_timestampContext struct {
 func NewEmptyUnix_timestampContext() *Unix_timestampContext {
 	var p = new(Unix_timestampContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_unix_timestamp
+	p.RuleIndex = PromQLExParserRULE_unix_timestamp
 	return p
 }
 
 func InitEmptyUnix_timestampContext(p *Unix_timestampContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_unix_timestamp
+	p.RuleIndex = PromQLExParserRULE_unix_timestamp
 }
 
 func (*Unix_timestampContext) IsUnix_timestampContext() {}
@@ -5249,7 +5249,7 @@ func NewUnix_timestampContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_unix_timestamp
+	p.RuleIndex = PromQLExParserRULE_unix_timestamp
 
 	return p
 }
@@ -5257,7 +5257,7 @@ func NewUnix_timestampContext(parser antlr.Parser, parent antlr.ParserRuleContex
 func (s *Unix_timestampContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Unix_timestampContext) POSITIVE_INTEGER() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserPOSITIVE_INTEGER, 0)
+	return s.GetToken(PromQLExParserPOSITIVE_INTEGER, 0)
 }
 
 func (s *Unix_timestampContext) GetRuleContext() antlr.RuleContext {
@@ -5269,24 +5269,24 @@ func (s *Unix_timestampContext) ToStringTree(ruleNames []string, recog antlr.Rec
 }
 
 func (s *Unix_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterUnix_timestamp(s)
 	}
 }
 
 func (s *Unix_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitUnix_timestamp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Unix_timestamp() (localctx IUnix_timestampContext) {
+func (p *PromQLExParser) Unix_timestamp() (localctx IUnix_timestampContext) {
 	localctx = NewUnix_timestampContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, PromQLExtensionParserRULE_unix_timestamp)
+	p.EnterRule(localctx, 62, PromQLExParserRULE_unix_timestamp)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(306)
-		p.Match(PromQLExtensionParserPOSITIVE_INTEGER)
+		p.Match(PromQLExParserPOSITIVE_INTEGER)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -5336,13 +5336,13 @@ type Const_num_expressionContext struct {
 func NewEmptyConst_num_expressionContext() *Const_num_expressionContext {
 	var p = new(Const_num_expressionContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_const_num_expression
+	p.RuleIndex = PromQLExParserRULE_const_num_expression
 	return p
 }
 
 func InitEmptyConst_num_expressionContext(p *Const_num_expressionContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_const_num_expression
+	p.RuleIndex = PromQLExParserRULE_const_num_expression
 }
 
 func (*Const_num_expressionContext) IsConst_num_expressionContext() {}
@@ -5353,7 +5353,7 @@ func NewConst_num_expressionContext(parser antlr.Parser, parent antlr.ParserRule
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_const_num_expression
+	p.RuleIndex = PromQLExParserRULE_const_num_expression
 
 	return p
 }
@@ -5466,7 +5466,7 @@ func (s *Const_num_expressionContext) AddOp() IAddOpContext {
 }
 
 func (s *Const_num_expressionContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *Const_num_expressionContext) Const_num_expression() IConst_num_expressionContext {
@@ -5486,7 +5486,7 @@ func (s *Const_num_expressionContext) Const_num_expression() IConst_num_expressi
 }
 
 func (s *Const_num_expressionContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *Const_num_expressionContext) GetRuleContext() antlr.RuleContext {
@@ -5498,20 +5498,20 @@ func (s *Const_num_expressionContext) ToStringTree(ruleNames []string, recog ant
 }
 
 func (s *Const_num_expressionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterConst_num_expression(s)
 	}
 }
 
 func (s *Const_num_expressionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitConst_num_expression(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Const_num_expression() (localctx IConst_num_expressionContext) {
+func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionContext) {
 	localctx = NewConst_num_expressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 64, PromQLExtensionParserRULE_const_num_expression)
+	p.EnterRule(localctx, 64, PromQLExParserRULE_const_num_expression)
 	p.SetState(328)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -5579,7 +5579,7 @@ func (p *PromQLExtensionParser) Const_num_expression() (localctx IConst_num_expr
 		p.EnterOuterAlt(localctx, 5)
 		{
 			p.SetState(323)
-			p.Match(PromQLExtensionParserLEFT_PAREN)
+			p.Match(PromQLExParserLEFT_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -5591,7 +5591,7 @@ func (p *PromQLExtensionParser) Const_num_expression() (localctx IConst_num_expr
 		}
 		{
 			p.SetState(325)
-			p.Match(PromQLExtensionParserRIGHT_PAREN)
+			p.Match(PromQLExParserRIGHT_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -5647,13 +5647,13 @@ type Num_literalContext struct {
 func NewEmptyNum_literalContext() *Num_literalContext {
 	var p = new(Num_literalContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_num_literal
+	p.RuleIndex = PromQLExParserRULE_num_literal
 	return p
 }
 
 func InitEmptyNum_literalContext(p *Num_literalContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_num_literal
+	p.RuleIndex = PromQLExParserRULE_num_literal
 }
 
 func (*Num_literalContext) IsNum_literalContext() {}
@@ -5664,7 +5664,7 @@ func NewNum_literalContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_num_literal
+	p.RuleIndex = PromQLExParserRULE_num_literal
 
 	return p
 }
@@ -5672,11 +5672,11 @@ func NewNum_literalContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *Num_literalContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Num_literalContext) NUMBER() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserNUMBER, 0)
+	return s.GetToken(PromQLExParserNUMBER, 0)
 }
 
 func (s *Num_literalContext) DURATION() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDURATION, 0)
+	return s.GetToken(PromQLExParserDURATION, 0)
 }
 
 func (s *Num_literalContext) Time_instant_literal() ITime_instant_literalContext {
@@ -5720,20 +5720,20 @@ func (s *Num_literalContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *Num_literalContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterNum_literal(s)
 	}
 }
 
 func (s *Num_literalContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitNum_literal(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Num_literal() (localctx INum_literalContext) {
+func (p *PromQLExParser) Num_literal() (localctx INum_literalContext) {
 	localctx = NewNum_literalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, PromQLExtensionParserRULE_num_literal)
+	p.EnterRule(localctx, 66, PromQLExParserRULE_num_literal)
 	p.SetState(334)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -5741,36 +5741,36 @@ func (p *PromQLExtensionParser) Num_literal() (localctx INum_literalContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserNUMBER:
+	case PromQLExParserNUMBER:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(330)
-			p.Match(PromQLExtensionParserNUMBER)
+			p.Match(PromQLExParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 
-	case PromQLExtensionParserDURATION:
+	case PromQLExParserDURATION:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(331)
-			p.Match(PromQLExtensionParserDURATION)
+			p.Match(PromQLExParserDURATION)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 
-	case PromQLExtensionParserPOSITIVE_INTEGER:
+	case PromQLExParserPOSITIVE_INTEGER:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(332)
 			p.Time_instant_literal()
 		}
 
-	case PromQLExtensionParserCALL_SIGN:
+	case PromQLExParserCALL_SIGN:
 		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(333)
@@ -5817,13 +5817,13 @@ type DurationContext struct {
 func NewEmptyDurationContext() *DurationContext {
 	var p = new(DurationContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_duration
+	p.RuleIndex = PromQLExParserRULE_duration
 	return p
 }
 
 func InitEmptyDurationContext(p *DurationContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_duration
+	p.RuleIndex = PromQLExParserRULE_duration
 }
 
 func (*DurationContext) IsDurationContext() {}
@@ -5834,7 +5834,7 @@ func NewDurationContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_duration
+	p.RuleIndex = PromQLExParserRULE_duration
 
 	return p
 }
@@ -5866,20 +5866,20 @@ func (s *DurationContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *DurationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterDuration(s)
 	}
 }
 
 func (s *DurationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitDuration(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Duration() (localctx IDurationContext) {
+func (p *PromQLExParser) Duration() (localctx IDurationContext) {
 	localctx = NewDurationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, PromQLExtensionParserRULE_duration)
+	p.EnterRule(localctx, 68, PromQLExParserRULE_duration)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(336)
@@ -5923,13 +5923,13 @@ type Time_rangeContext struct {
 func NewEmptyTime_rangeContext() *Time_rangeContext {
 	var p = new(Time_rangeContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_time_range
+	p.RuleIndex = PromQLExParserRULE_time_range
 	return p
 }
 
 func InitEmptyTime_rangeContext(p *Time_rangeContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_time_range
+	p.RuleIndex = PromQLExParserRULE_time_range
 }
 
 func (*Time_rangeContext) IsTime_rangeContext() {}
@@ -5940,7 +5940,7 @@ func NewTime_rangeContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_time_range
+	p.RuleIndex = PromQLExParserRULE_time_range
 
 	return p
 }
@@ -5948,7 +5948,7 @@ func NewTime_rangeContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 func (s *Time_rangeContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Time_rangeContext) LEFT_BRACKET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_BRACKET, 0)
+	return s.GetToken(PromQLExParserLEFT_BRACKET, 0)
 }
 
 func (s *Time_rangeContext) Duration() IDurationContext {
@@ -5968,7 +5968,7 @@ func (s *Time_rangeContext) Duration() IDurationContext {
 }
 
 func (s *Time_rangeContext) RIGHT_BRACKET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_BRACKET, 0)
+	return s.GetToken(PromQLExParserRIGHT_BRACKET, 0)
 }
 
 func (s *Time_rangeContext) GetRuleContext() antlr.RuleContext {
@@ -5980,24 +5980,24 @@ func (s *Time_rangeContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *Time_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterTime_range(s)
 	}
 }
 
 func (s *Time_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitTime_range(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Time_range() (localctx ITime_rangeContext) {
+func (p *PromQLExParser) Time_range() (localctx ITime_rangeContext) {
 	localctx = NewTime_rangeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, PromQLExtensionParserRULE_time_range)
+	p.EnterRule(localctx, 70, PromQLExParserRULE_time_range)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(338)
-		p.Match(PromQLExtensionParserLEFT_BRACKET)
+		p.Match(PromQLExParserLEFT_BRACKET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -6009,7 +6009,7 @@ func (p *PromQLExtensionParser) Time_range() (localctx ITime_rangeContext) {
 	}
 	{
 		p.SetState(340)
-		p.Match(PromQLExtensionParserRIGHT_BRACKET)
+		p.Match(PromQLExParserRIGHT_BRACKET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -6055,13 +6055,13 @@ type Subquery_rangeContext struct {
 func NewEmptySubquery_rangeContext() *Subquery_rangeContext {
 	var p = new(Subquery_rangeContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_subquery_range
+	p.RuleIndex = PromQLExParserRULE_subquery_range
 	return p
 }
 
 func InitEmptySubquery_rangeContext(p *Subquery_rangeContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_subquery_range
+	p.RuleIndex = PromQLExParserRULE_subquery_range
 }
 
 func (*Subquery_rangeContext) IsSubquery_rangeContext() {}
@@ -6072,7 +6072,7 @@ func NewSubquery_rangeContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_subquery_range
+	p.RuleIndex = PromQLExParserRULE_subquery_range
 
 	return p
 }
@@ -6080,7 +6080,7 @@ func NewSubquery_rangeContext(parser antlr.Parser, parent antlr.ParserRuleContex
 func (s *Subquery_rangeContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *Subquery_rangeContext) LEFT_BRACKET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_BRACKET, 0)
+	return s.GetToken(PromQLExParserLEFT_BRACKET, 0)
 }
 
 func (s *Subquery_rangeContext) AllDuration() []IDurationContext {
@@ -6125,11 +6125,11 @@ func (s *Subquery_rangeContext) Duration(i int) IDurationContext {
 }
 
 func (s *Subquery_rangeContext) COLON() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOLON, 0)
+	return s.GetToken(PromQLExParserCOLON, 0)
 }
 
 func (s *Subquery_rangeContext) RIGHT_BRACKET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_BRACKET, 0)
+	return s.GetToken(PromQLExParserRIGHT_BRACKET, 0)
 }
 
 func (s *Subquery_rangeContext) GetRuleContext() antlr.RuleContext {
@@ -6141,26 +6141,26 @@ func (s *Subquery_rangeContext) ToStringTree(ruleNames []string, recog antlr.Rec
 }
 
 func (s *Subquery_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterSubquery_range(s)
 	}
 }
 
 func (s *Subquery_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitSubquery_range(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Subquery_range() (localctx ISubquery_rangeContext) {
+func (p *PromQLExParser) Subquery_range() (localctx ISubquery_rangeContext) {
 	localctx = NewSubquery_rangeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 72, PromQLExtensionParserRULE_subquery_range)
+	p.EnterRule(localctx, 72, PromQLExParserRULE_subquery_range)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(342)
-		p.Match(PromQLExtensionParserLEFT_BRACKET)
+		p.Match(PromQLExParserLEFT_BRACKET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -6172,7 +6172,7 @@ func (p *PromQLExtensionParser) Subquery_range() (localctx ISubquery_rangeContex
 	}
 	{
 		p.SetState(344)
-		p.Match(PromQLExtensionParserCOLON)
+		p.Match(PromQLExParserCOLON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -6194,7 +6194,7 @@ func (p *PromQLExtensionParser) Subquery_range() (localctx ISubquery_rangeContex
 	}
 	{
 		p.SetState(348)
-		p.Match(PromQLExtensionParserRIGHT_BRACKET)
+		p.Match(PromQLExParserRIGHT_BRACKET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -6250,13 +6250,13 @@ type VectorOperationContext struct {
 func NewEmptyVectorOperationContext() *VectorOperationContext {
 	var p = new(VectorOperationContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vectorOperation
+	p.RuleIndex = PromQLExParserRULE_vectorOperation
 	return p
 }
 
 func InitEmptyVectorOperationContext(p *VectorOperationContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vectorOperation
+	p.RuleIndex = PromQLExParserRULE_vectorOperation
 }
 
 func (*VectorOperationContext) IsVectorOperationContext() {}
@@ -6267,7 +6267,7 @@ func NewVectorOperationContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_vectorOperation
+	p.RuleIndex = PromQLExParserRULE_vectorOperation
 
 	return p
 }
@@ -6492,7 +6492,7 @@ func (s *VectorOperationContext) VectorMatchOp() IVectorMatchOpContext {
 }
 
 func (s *VectorOperationContext) AT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserAT, 0)
+	return s.GetToken(PromQLExParserAT, 0)
 }
 
 func (s *VectorOperationContext) SubqueryOp() ISubqueryOpContext {
@@ -6520,22 +6520,22 @@ func (s *VectorOperationContext) ToStringTree(ruleNames []string, recog antlr.Re
 }
 
 func (s *VectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterVectorOperation(s)
 	}
 }
 
 func (s *VectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitVectorOperation(s)
 	}
 }
 
-func (p *PromQLExtensionParser) VectorOperation() (localctx IVectorOperationContext) {
+func (p *PromQLExParser) VectorOperation() (localctx IVectorOperationContext) {
 	return p.vectorOperation(0)
 }
 
-func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperationContext) {
+func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationContext) {
 	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
 
 	_parentState := p.GetState()
@@ -6543,7 +6543,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 	var _prevctx IVectorOperationContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
 	_startState := 74
-	p.EnterRecursionRule(localctx, 74, PromQLExtensionParserRULE_vectorOperation, _p)
+	p.EnterRecursionRule(localctx, 74, PromQLExParserRULE_vectorOperation, _p)
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -6610,7 +6610,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(359)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 13)) {
@@ -6628,7 +6628,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 2:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(363)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
@@ -6646,7 +6646,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 3:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(367)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
@@ -6664,7 +6664,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 4:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(371)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
@@ -6682,7 +6682,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 5:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(375)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
@@ -6700,7 +6700,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 6:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(379)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
@@ -6718,7 +6718,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 7:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(383)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
@@ -6736,7 +6736,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 8:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(387)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
@@ -6745,7 +6745,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 				}
 				{
 					p.SetState(388)
-					p.Match(PromQLExtensionParserAT)
+					p.Match(PromQLExParserAT)
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
@@ -6758,7 +6758,7 @@ func (p *PromQLExtensionParser) vectorOperation(_p int) (localctx IVectorOperati
 
 			case 9:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLExtensionParserRULE_vectorOperation)
+				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(390)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 12)) {
@@ -6822,13 +6822,13 @@ type SubqueryOpContext struct {
 func NewEmptySubqueryOpContext() *SubqueryOpContext {
 	var p = new(SubqueryOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_subqueryOp
+	p.RuleIndex = PromQLExParserRULE_subqueryOp
 	return p
 }
 
 func InitEmptySubqueryOpContext(p *SubqueryOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_subqueryOp
+	p.RuleIndex = PromQLExParserRULE_subqueryOp
 }
 
 func (*SubqueryOpContext) IsSubqueryOpContext() {}
@@ -6839,7 +6839,7 @@ func NewSubqueryOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_subqueryOp
+	p.RuleIndex = PromQLExParserRULE_subqueryOp
 
 	return p
 }
@@ -6887,20 +6887,20 @@ func (s *SubqueryOpContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *SubqueryOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterSubqueryOp(s)
 	}
 }
 
 func (s *SubqueryOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitSubqueryOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) SubqueryOp() (localctx ISubqueryOpContext) {
+func (p *PromQLExParser) SubqueryOp() (localctx ISubqueryOpContext) {
 	localctx = NewSubqueryOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 76, PromQLExtensionParserRULE_subqueryOp)
+	p.EnterRule(localctx, 76, PromQLExParserRULE_subqueryOp)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(397)
@@ -6955,13 +6955,13 @@ type OffsetOpContext struct {
 func NewEmptyOffsetOpContext() *OffsetOpContext {
 	var p = new(OffsetOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_offsetOp
+	p.RuleIndex = PromQLExParserRULE_offsetOp
 	return p
 }
 
 func InitEmptyOffsetOpContext(p *OffsetOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_offsetOp
+	p.RuleIndex = PromQLExParserRULE_offsetOp
 }
 
 func (*OffsetOpContext) IsOffsetOpContext() {}
@@ -6972,7 +6972,7 @@ func NewOffsetOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_offsetOp
+	p.RuleIndex = PromQLExParserRULE_offsetOp
 
 	return p
 }
@@ -6980,7 +6980,7 @@ func NewOffsetOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *OffsetOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *OffsetOpContext) OFFSET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserOFFSET, 0)
+	return s.GetToken(PromQLExParserOFFSET, 0)
 }
 
 func (s *OffsetOpContext) Duration() IDurationContext {
@@ -7008,24 +7008,24 @@ func (s *OffsetOpContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *OffsetOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterOffsetOp(s)
 	}
 }
 
 func (s *OffsetOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitOffsetOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) OffsetOp() (localctx IOffsetOpContext) {
+func (p *PromQLExParser) OffsetOp() (localctx IOffsetOpContext) {
 	localctx = NewOffsetOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 78, PromQLExtensionParserRULE_offsetOp)
+	p.EnterRule(localctx, 78, PromQLExParserRULE_offsetOp)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(401)
-		p.Match(PromQLExtensionParserOFFSET)
+		p.Match(PromQLExParserOFFSET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -7072,13 +7072,13 @@ type MatrixSelectorContext struct {
 func NewEmptyMatrixSelectorContext() *MatrixSelectorContext {
 	var p = new(MatrixSelectorContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_matrixSelector
+	p.RuleIndex = PromQLExParserRULE_matrixSelector
 	return p
 }
 
 func InitEmptyMatrixSelectorContext(p *MatrixSelectorContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_matrixSelector
+	p.RuleIndex = PromQLExParserRULE_matrixSelector
 }
 
 func (*MatrixSelectorContext) IsMatrixSelectorContext() {}
@@ -7089,7 +7089,7 @@ func NewMatrixSelectorContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_matrixSelector
+	p.RuleIndex = PromQLExParserRULE_matrixSelector
 
 	return p
 }
@@ -7137,20 +7137,20 @@ func (s *MatrixSelectorContext) ToStringTree(ruleNames []string, recog antlr.Rec
 }
 
 func (s *MatrixSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterMatrixSelector(s)
 	}
 }
 
 func (s *MatrixSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitMatrixSelector(s)
 	}
 }
 
-func (p *PromQLExtensionParser) MatrixSelector() (localctx IMatrixSelectorContext) {
+func (p *PromQLExParser) MatrixSelector() (localctx IMatrixSelectorContext) {
 	localctx = NewMatrixSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 80, PromQLExtensionParserRULE_matrixSelector)
+	p.EnterRule(localctx, 80, PromQLExParserRULE_matrixSelector)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(404)
@@ -7199,13 +7199,13 @@ type OffsetContext struct {
 func NewEmptyOffsetContext() *OffsetContext {
 	var p = new(OffsetContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_offset
+	p.RuleIndex = PromQLExParserRULE_offset
 	return p
 }
 
 func InitEmptyOffsetContext(p *OffsetContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_offset
+	p.RuleIndex = PromQLExParserRULE_offset
 }
 
 func (*OffsetContext) IsOffsetContext() {}
@@ -7216,7 +7216,7 @@ func NewOffsetContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_offset
+	p.RuleIndex = PromQLExParserRULE_offset
 
 	return p
 }
@@ -7240,7 +7240,7 @@ func (s *OffsetContext) InstantSelector() IInstantSelectorContext {
 }
 
 func (s *OffsetContext) OFFSET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserOFFSET, 0)
+	return s.GetToken(PromQLExParserOFFSET, 0)
 }
 
 func (s *OffsetContext) Duration() IDurationContext {
@@ -7284,20 +7284,20 @@ func (s *OffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *OffsetContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterOffset(s)
 	}
 }
 
 func (s *OffsetContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitOffset(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Offset() (localctx IOffsetContext) {
+func (p *PromQLExParser) Offset() (localctx IOffsetContext) {
 	localctx = NewOffsetContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 82, PromQLExtensionParserRULE_offset)
+	p.EnterRule(localctx, 82, PromQLExParserRULE_offset)
 	p.SetState(415)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -7313,7 +7313,7 @@ func (p *PromQLExtensionParser) Offset() (localctx IOffsetContext) {
 		}
 		{
 			p.SetState(408)
-			p.Match(PromQLExtensionParserOFFSET)
+			p.Match(PromQLExParserOFFSET)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -7332,7 +7332,7 @@ func (p *PromQLExtensionParser) Offset() (localctx IOffsetContext) {
 		}
 		{
 			p.SetState(412)
-			p.Match(PromQLExtensionParserOFFSET)
+			p.Match(PromQLExParserOFFSET)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -7383,13 +7383,13 @@ type LiteralContext struct {
 func NewEmptyLiteralContext() *LiteralContext {
 	var p = new(LiteralContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_literal
+	p.RuleIndex = PromQLExParserRULE_literal
 	return p
 }
 
 func InitEmptyLiteralContext(p *LiteralContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_literal
+	p.RuleIndex = PromQLExParserRULE_literal
 }
 
 func (*LiteralContext) IsLiteralContext() {}
@@ -7400,7 +7400,7 @@ func NewLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_literal
+	p.RuleIndex = PromQLExParserRULE_literal
 
 	return p
 }
@@ -7448,20 +7448,20 @@ func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *LiteralContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLiteral(s)
 	}
 }
 
 func (s *LiteralContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLiteral(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Literal() (localctx ILiteralContext) {
+func (p *PromQLExParser) Literal() (localctx ILiteralContext) {
 	localctx = NewLiteralContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 84, PromQLExtensionParserRULE_literal)
+	p.EnterRule(localctx, 84, PromQLExParserRULE_literal)
 	p.SetState(419)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -7469,14 +7469,14 @@ func (p *PromQLExtensionParser) Literal() (localctx ILiteralContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserPOSITIVE_INTEGER, PromQLExtensionParserCALL_SIGN, PromQLExtensionParserNUMBER, PromQLExtensionParserADD, PromQLExtensionParserSUB, PromQLExtensionParserLEFT_PAREN, PromQLExtensionParserDURATION:
+	case PromQLExParserPOSITIVE_INTEGER, PromQLExParserCALL_SIGN, PromQLExParserNUMBER, PromQLExParserADD, PromQLExParserSUB, PromQLExParserLEFT_PAREN, PromQLExParserDURATION:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(417)
 			p.Const_num_expression()
 		}
 
-	case PromQLExtensionParserSTRING, PromQLExtensionParserRAW_STRING:
+	case PromQLExParserSTRING, PromQLExParserRAW_STRING:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(418)
@@ -7524,13 +7524,13 @@ type ExpressionContext struct {
 func NewEmptyExpressionContext() *ExpressionContext {
 	var p = new(ExpressionContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_expression
+	p.RuleIndex = PromQLExParserRULE_expression
 	return p
 }
 
 func InitEmptyExpressionContext(p *ExpressionContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_expression
+	p.RuleIndex = PromQLExParserRULE_expression
 }
 
 func (*ExpressionContext) IsExpressionContext() {}
@@ -7541,7 +7541,7 @@ func NewExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_expression
+	p.RuleIndex = PromQLExParserRULE_expression
 
 	return p
 }
@@ -7565,7 +7565,7 @@ func (s *ExpressionContext) VectorOperation() IVectorOperationContext {
 }
 
 func (s *ExpressionContext) EOF() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserEOF, 0)
+	return s.GetToken(PromQLExParserEOF, 0)
 }
 
 func (s *ExpressionContext) GetRuleContext() antlr.RuleContext {
@@ -7577,20 +7577,20 @@ func (s *ExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *ExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterExpression(s)
 	}
 }
 
 func (s *ExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitExpression(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Expression() (localctx IExpressionContext) {
+func (p *PromQLExParser) Expression() (localctx IExpressionContext) {
 	localctx = NewExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 86, PromQLExtensionParserRULE_expression)
+	p.EnterRule(localctx, 86, PromQLExParserRULE_expression)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(421)
@@ -7598,7 +7598,7 @@ func (p *PromQLExtensionParser) Expression() (localctx IExpressionContext) {
 	}
 	{
 		p.SetState(422)
-		p.Match(PromQLExtensionParserEOF)
+		p.Match(PromQLExParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -7641,13 +7641,13 @@ type UnaryOpContext struct {
 func NewEmptyUnaryOpContext() *UnaryOpContext {
 	var p = new(UnaryOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_unaryOp
+	p.RuleIndex = PromQLExParserRULE_unaryOp
 	return p
 }
 
 func InitEmptyUnaryOpContext(p *UnaryOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_unaryOp
+	p.RuleIndex = PromQLExParserRULE_unaryOp
 }
 
 func (*UnaryOpContext) IsUnaryOpContext() {}
@@ -7658,7 +7658,7 @@ func NewUnaryOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_unaryOp
+	p.RuleIndex = PromQLExParserRULE_unaryOp
 
 	return p
 }
@@ -7666,11 +7666,11 @@ func NewUnaryOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 func (s *UnaryOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *UnaryOpContext) ADD() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserADD, 0)
+	return s.GetToken(PromQLExParserADD, 0)
 }
 
 func (s *UnaryOpContext) SUB() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, 0)
+	return s.GetToken(PromQLExParserSUB, 0)
 }
 
 func (s *UnaryOpContext) GetRuleContext() antlr.RuleContext {
@@ -7682,20 +7682,20 @@ func (s *UnaryOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *UnaryOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterUnaryOp(s)
 	}
 }
 
 func (s *UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitUnaryOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) UnaryOp() (localctx IUnaryOpContext) {
+func (p *PromQLExParser) UnaryOp() (localctx IUnaryOpContext) {
 	localctx = NewUnaryOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 88, PromQLExtensionParserRULE_unaryOp)
+	p.EnterRule(localctx, 88, PromQLExParserRULE_unaryOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -7703,7 +7703,7 @@ func (p *PromQLExtensionParser) UnaryOp() (localctx IUnaryOpContext) {
 		p.SetState(424)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == PromQLExtensionParserADD || _la == PromQLExtensionParserSUB) {
+		if !(_la == PromQLExParserADD || _la == PromQLExParserSUB) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -7747,13 +7747,13 @@ type PowOpContext struct {
 func NewEmptyPowOpContext() *PowOpContext {
 	var p = new(PowOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_powOp
+	p.RuleIndex = PromQLExParserRULE_powOp
 	return p
 }
 
 func InitEmptyPowOpContext(p *PowOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_powOp
+	p.RuleIndex = PromQLExParserRULE_powOp
 }
 
 func (*PowOpContext) IsPowOpContext() {}
@@ -7764,7 +7764,7 @@ func NewPowOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_powOp
+	p.RuleIndex = PromQLExParserRULE_powOp
 
 	return p
 }
@@ -7772,7 +7772,7 @@ func NewPowOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 func (s *PowOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *PowOpContext) POW() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserPOW, 0)
+	return s.GetToken(PromQLExParserPOW, 0)
 }
 
 func (s *PowOpContext) Grouping() IGroupingContext {
@@ -7800,26 +7800,26 @@ func (s *PowOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 }
 
 func (s *PowOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterPowOp(s)
 	}
 }
 
 func (s *PowOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitPowOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) PowOp() (localctx IPowOpContext) {
+func (p *PromQLExParser) PowOp() (localctx IPowOpContext) {
 	localctx = NewPowOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 90, PromQLExtensionParserRULE_powOp)
+	p.EnterRule(localctx, 90, PromQLExParserRULE_powOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(426)
-		p.Match(PromQLExtensionParserPOW)
+		p.Match(PromQLExParserPOW)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -7832,7 +7832,7 @@ func (p *PromQLExtensionParser) PowOp() (localctx IPowOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(427)
 			p.Grouping()
@@ -7878,13 +7878,13 @@ type MultOpContext struct {
 func NewEmptyMultOpContext() *MultOpContext {
 	var p = new(MultOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_multOp
+	p.RuleIndex = PromQLExParserRULE_multOp
 	return p
 }
 
 func InitEmptyMultOpContext(p *MultOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_multOp
+	p.RuleIndex = PromQLExParserRULE_multOp
 }
 
 func (*MultOpContext) IsMultOpContext() {}
@@ -7895,7 +7895,7 @@ func NewMultOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_multOp
+	p.RuleIndex = PromQLExParserRULE_multOp
 
 	return p
 }
@@ -7903,15 +7903,15 @@ func NewMultOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 func (s *MultOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *MultOpContext) MULT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserMULT, 0)
+	return s.GetToken(PromQLExParserMULT, 0)
 }
 
 func (s *MultOpContext) DIV() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDIV, 0)
+	return s.GetToken(PromQLExParserDIV, 0)
 }
 
 func (s *MultOpContext) MOD() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserMOD, 0)
+	return s.GetToken(PromQLExParserMOD, 0)
 }
 
 func (s *MultOpContext) Grouping() IGroupingContext {
@@ -7939,20 +7939,20 @@ func (s *MultOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *MultOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterMultOp(s)
 	}
 }
 
 func (s *MultOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitMultOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) MultOp() (localctx IMultOpContext) {
+func (p *PromQLExParser) MultOp() (localctx IMultOpContext) {
 	localctx = NewMultOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 92, PromQLExtensionParserRULE_multOp)
+	p.EnterRule(localctx, 92, PromQLExParserRULE_multOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -7974,7 +7974,7 @@ func (p *PromQLExtensionParser) MultOp() (localctx IMultOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(431)
 			p.Grouping()
@@ -8019,13 +8019,13 @@ type AddOpContext struct {
 func NewEmptyAddOpContext() *AddOpContext {
 	var p = new(AddOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_addOp
+	p.RuleIndex = PromQLExParserRULE_addOp
 	return p
 }
 
 func InitEmptyAddOpContext(p *AddOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_addOp
+	p.RuleIndex = PromQLExParserRULE_addOp
 }
 
 func (*AddOpContext) IsAddOpContext() {}
@@ -8036,7 +8036,7 @@ func NewAddOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_addOp
+	p.RuleIndex = PromQLExParserRULE_addOp
 
 	return p
 }
@@ -8044,11 +8044,11 @@ func NewAddOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 func (s *AddOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *AddOpContext) ADD() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserADD, 0)
+	return s.GetToken(PromQLExParserADD, 0)
 }
 
 func (s *AddOpContext) SUB() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSUB, 0)
+	return s.GetToken(PromQLExParserSUB, 0)
 }
 
 func (s *AddOpContext) Grouping() IGroupingContext {
@@ -8076,20 +8076,20 @@ func (s *AddOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 }
 
 func (s *AddOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterAddOp(s)
 	}
 }
 
 func (s *AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitAddOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) AddOp() (localctx IAddOpContext) {
+func (p *PromQLExParser) AddOp() (localctx IAddOpContext) {
 	localctx = NewAddOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 94, PromQLExtensionParserRULE_addOp)
+	p.EnterRule(localctx, 94, PromQLExParserRULE_addOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -8097,7 +8097,7 @@ func (p *PromQLExtensionParser) AddOp() (localctx IAddOpContext) {
 		p.SetState(434)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == PromQLExtensionParserADD || _la == PromQLExtensionParserSUB) {
+		if !(_la == PromQLExParserADD || _la == PromQLExParserSUB) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -8111,7 +8111,7 @@ func (p *PromQLExtensionParser) AddOp() (localctx IAddOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(435)
 			p.Grouping()
@@ -8161,13 +8161,13 @@ type CompareOpContext struct {
 func NewEmptyCompareOpContext() *CompareOpContext {
 	var p = new(CompareOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_compareOp
+	p.RuleIndex = PromQLExParserRULE_compareOp
 	return p
 }
 
 func InitEmptyCompareOpContext(p *CompareOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_compareOp
+	p.RuleIndex = PromQLExParserRULE_compareOp
 }
 
 func (*CompareOpContext) IsCompareOpContext() {}
@@ -8178,7 +8178,7 @@ func NewCompareOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_compareOp
+	p.RuleIndex = PromQLExParserRULE_compareOp
 
 	return p
 }
@@ -8186,31 +8186,31 @@ func NewCompareOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *CompareOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *CompareOpContext) DEQ() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserDEQ, 0)
+	return s.GetToken(PromQLExParserDEQ, 0)
 }
 
 func (s *CompareOpContext) NE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserNE, 0)
+	return s.GetToken(PromQLExParserNE, 0)
 }
 
 func (s *CompareOpContext) GT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGT, 0)
+	return s.GetToken(PromQLExParserGT, 0)
 }
 
 func (s *CompareOpContext) LT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLT, 0)
+	return s.GetToken(PromQLExParserLT, 0)
 }
 
 func (s *CompareOpContext) GE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGE, 0)
+	return s.GetToken(PromQLExParserGE, 0)
 }
 
 func (s *CompareOpContext) LE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLE, 0)
+	return s.GetToken(PromQLExParserLE, 0)
 }
 
 func (s *CompareOpContext) BOOL() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserBOOL, 0)
+	return s.GetToken(PromQLExParserBOOL, 0)
 }
 
 func (s *CompareOpContext) Grouping() IGroupingContext {
@@ -8238,20 +8238,20 @@ func (s *CompareOpContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *CompareOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterCompareOp(s)
 	}
 }
 
 func (s *CompareOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitCompareOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) CompareOp() (localctx ICompareOpContext) {
+func (p *PromQLExParser) CompareOp() (localctx ICompareOpContext) {
 	localctx = NewCompareOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 96, PromQLExtensionParserRULE_compareOp)
+	p.EnterRule(localctx, 96, PromQLExParserRULE_compareOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -8273,10 +8273,10 @@ func (p *PromQLExtensionParser) CompareOp() (localctx ICompareOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserBOOL {
+	if _la == PromQLExParserBOOL {
 		{
 			p.SetState(439)
-			p.Match(PromQLExtensionParserBOOL)
+			p.Match(PromQLExParserBOOL)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -8291,7 +8291,7 @@ func (p *PromQLExtensionParser) CompareOp() (localctx ICompareOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(442)
 			p.Grouping()
@@ -8336,13 +8336,13 @@ type AndUnlessOpContext struct {
 func NewEmptyAndUnlessOpContext() *AndUnlessOpContext {
 	var p = new(AndUnlessOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_andUnlessOp
+	p.RuleIndex = PromQLExParserRULE_andUnlessOp
 	return p
 }
 
 func InitEmptyAndUnlessOpContext(p *AndUnlessOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_andUnlessOp
+	p.RuleIndex = PromQLExParserRULE_andUnlessOp
 }
 
 func (*AndUnlessOpContext) IsAndUnlessOpContext() {}
@@ -8353,7 +8353,7 @@ func NewAndUnlessOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_andUnlessOp
+	p.RuleIndex = PromQLExParserRULE_andUnlessOp
 
 	return p
 }
@@ -8361,11 +8361,11 @@ func NewAndUnlessOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *AndUnlessOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *AndUnlessOpContext) AND() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserAND, 0)
+	return s.GetToken(PromQLExParserAND, 0)
 }
 
 func (s *AndUnlessOpContext) UNLESS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserUNLESS, 0)
+	return s.GetToken(PromQLExParserUNLESS, 0)
 }
 
 func (s *AndUnlessOpContext) Grouping() IGroupingContext {
@@ -8393,20 +8393,20 @@ func (s *AndUnlessOpContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *AndUnlessOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterAndUnlessOp(s)
 	}
 }
 
 func (s *AndUnlessOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitAndUnlessOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
+func (p *PromQLExParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 	localctx = NewAndUnlessOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 98, PromQLExtensionParserRULE_andUnlessOp)
+	p.EnterRule(localctx, 98, PromQLExParserRULE_andUnlessOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -8414,7 +8414,7 @@ func (p *PromQLExtensionParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 		p.SetState(445)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == PromQLExtensionParserAND || _la == PromQLExtensionParserUNLESS) {
+		if !(_la == PromQLExParserAND || _la == PromQLExParserUNLESS) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -8428,7 +8428,7 @@ func (p *PromQLExtensionParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(446)
 			p.Grouping()
@@ -8472,13 +8472,13 @@ type OrOpContext struct {
 func NewEmptyOrOpContext() *OrOpContext {
 	var p = new(OrOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_orOp
+	p.RuleIndex = PromQLExParserRULE_orOp
 	return p
 }
 
 func InitEmptyOrOpContext(p *OrOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_orOp
+	p.RuleIndex = PromQLExParserRULE_orOp
 }
 
 func (*OrOpContext) IsOrOpContext() {}
@@ -8489,7 +8489,7 @@ func NewOrOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_orOp
+	p.RuleIndex = PromQLExParserRULE_orOp
 
 	return p
 }
@@ -8497,7 +8497,7 @@ func NewOrOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *OrOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *OrOpContext) OR() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserOR, 0)
+	return s.GetToken(PromQLExParserOR, 0)
 }
 
 func (s *OrOpContext) Grouping() IGroupingContext {
@@ -8525,26 +8525,26 @@ func (s *OrOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *OrOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterOrOp(s)
 	}
 }
 
 func (s *OrOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitOrOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) OrOp() (localctx IOrOpContext) {
+func (p *PromQLExParser) OrOp() (localctx IOrOpContext) {
 	localctx = NewOrOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 100, PromQLExtensionParserRULE_orOp)
+	p.EnterRule(localctx, 100, PromQLExParserRULE_orOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(449)
-		p.Match(PromQLExtensionParserOR)
+		p.Match(PromQLExParserOR)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -8557,7 +8557,7 @@ func (p *PromQLExtensionParser) OrOp() (localctx IOrOpContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(450)
 			p.Grouping()
@@ -8602,13 +8602,13 @@ type VectorMatchOpContext struct {
 func NewEmptyVectorMatchOpContext() *VectorMatchOpContext {
 	var p = new(VectorMatchOpContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vectorMatchOp
+	p.RuleIndex = PromQLExParserRULE_vectorMatchOp
 	return p
 }
 
 func InitEmptyVectorMatchOpContext(p *VectorMatchOpContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vectorMatchOp
+	p.RuleIndex = PromQLExParserRULE_vectorMatchOp
 }
 
 func (*VectorMatchOpContext) IsVectorMatchOpContext() {}
@@ -8619,7 +8619,7 @@ func NewVectorMatchOpContext(parser antlr.Parser, parent antlr.ParserRuleContext
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_vectorMatchOp
+	p.RuleIndex = PromQLExParserRULE_vectorMatchOp
 
 	return p
 }
@@ -8627,11 +8627,11 @@ func NewVectorMatchOpContext(parser antlr.Parser, parent antlr.ParserRuleContext
 func (s *VectorMatchOpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *VectorMatchOpContext) ON() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserON, 0)
+	return s.GetToken(PromQLExParserON, 0)
 }
 
 func (s *VectorMatchOpContext) UNLESS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserUNLESS, 0)
+	return s.GetToken(PromQLExParserUNLESS, 0)
 }
 
 func (s *VectorMatchOpContext) Grouping() IGroupingContext {
@@ -8659,20 +8659,20 @@ func (s *VectorMatchOpContext) ToStringTree(ruleNames []string, recog antlr.Reco
 }
 
 func (s *VectorMatchOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterVectorMatchOp(s)
 	}
 }
 
 func (s *VectorMatchOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitVectorMatchOp(s)
 	}
 }
 
-func (p *PromQLExtensionParser) VectorMatchOp() (localctx IVectorMatchOpContext) {
+func (p *PromQLExParser) VectorMatchOp() (localctx IVectorMatchOpContext) {
 	localctx = NewVectorMatchOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 102, PromQLExtensionParserRULE_vectorMatchOp)
+	p.EnterRule(localctx, 102, PromQLExParserRULE_vectorMatchOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -8680,7 +8680,7 @@ func (p *PromQLExtensionParser) VectorMatchOp() (localctx IVectorMatchOpContext)
 		p.SetState(453)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == PromQLExtensionParserUNLESS || _la == PromQLExtensionParserON) {
+		if !(_la == PromQLExParserUNLESS || _la == PromQLExParserON) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -8694,7 +8694,7 @@ func (p *PromQLExtensionParser) VectorMatchOp() (localctx IVectorMatchOpContext)
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserON || _la == PromQLExtensionParserIGNORING {
+	if _la == PromQLExParserON || _la == PromQLExParserIGNORING {
 		{
 			p.SetState(454)
 			p.Grouping()
@@ -8743,13 +8743,13 @@ type VectorContext struct {
 func NewEmptyVectorContext() *VectorContext {
 	var p = new(VectorContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vector
+	p.RuleIndex = PromQLExParserRULE_vector
 	return p
 }
 
 func InitEmptyVectorContext(p *VectorContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_vector
+	p.RuleIndex = PromQLExParserRULE_vector
 }
 
 func (*VectorContext) IsVectorContext() {}
@@ -8760,7 +8760,7 @@ func NewVectorContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_vector
+	p.RuleIndex = PromQLExParserRULE_vector
 
 	return p
 }
@@ -8888,20 +8888,20 @@ func (s *VectorContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *VectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterVector(s)
 	}
 }
 
 func (s *VectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitVector(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Vector() (localctx IVectorContext) {
+func (p *PromQLExParser) Vector() (localctx IVectorContext) {
 	localctx = NewVectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 104, PromQLExtensionParserRULE_vector)
+	p.EnterRule(localctx, 104, PromQLExParserRULE_vector)
 	p.SetState(464)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -8999,13 +8999,13 @@ type ParensContext struct {
 func NewEmptyParensContext() *ParensContext {
 	var p = new(ParensContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parens
+	p.RuleIndex = PromQLExParserRULE_parens
 	return p
 }
 
 func InitEmptyParensContext(p *ParensContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parens
+	p.RuleIndex = PromQLExParserRULE_parens
 }
 
 func (*ParensContext) IsParensContext() {}
@@ -9016,7 +9016,7 @@ func NewParensContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_parens
+	p.RuleIndex = PromQLExParserRULE_parens
 
 	return p
 }
@@ -9024,7 +9024,7 @@ func NewParensContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 func (s *ParensContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ParensContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *ParensContext) VectorOperation() IVectorOperationContext {
@@ -9044,7 +9044,7 @@ func (s *ParensContext) VectorOperation() IVectorOperationContext {
 }
 
 func (s *ParensContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *ParensContext) GetRuleContext() antlr.RuleContext {
@@ -9056,24 +9056,24 @@ func (s *ParensContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *ParensContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterParens(s)
 	}
 }
 
 func (s *ParensContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitParens(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Parens() (localctx IParensContext) {
+func (p *PromQLExParser) Parens() (localctx IParensContext) {
 	localctx = NewParensContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 106, PromQLExtensionParserRULE_parens)
+	p.EnterRule(localctx, 106, PromQLExParserRULE_parens)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(466)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -9085,7 +9085,7 @@ func (p *PromQLExtensionParser) Parens() (localctx IParensContext) {
 	}
 	{
 		p.SetState(468)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -9130,13 +9130,13 @@ type InstantSelectorContext struct {
 func NewEmptyInstantSelectorContext() *InstantSelectorContext {
 	var p = new(InstantSelectorContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_instantSelector
+	p.RuleIndex = PromQLExParserRULE_instantSelector
 	return p
 }
 
 func InitEmptyInstantSelectorContext(p *InstantSelectorContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_instantSelector
+	p.RuleIndex = PromQLExParserRULE_instantSelector
 }
 
 func (*InstantSelectorContext) IsInstantSelectorContext() {}
@@ -9147,7 +9147,7 @@ func NewInstantSelectorContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_instantSelector
+	p.RuleIndex = PromQLExParserRULE_instantSelector
 
 	return p
 }
@@ -9155,15 +9155,15 @@ func NewInstantSelectorContext(parser antlr.Parser, parent antlr.ParserRuleConte
 func (s *InstantSelectorContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *InstantSelectorContext) METRIC_NAME() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserMETRIC_NAME, 0)
+	return s.GetToken(PromQLExParserMETRIC_NAME, 0)
 }
 
 func (s *InstantSelectorContext) LEFT_BRACE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_BRACE, 0)
+	return s.GetToken(PromQLExParserLEFT_BRACE, 0)
 }
 
 func (s *InstantSelectorContext) RIGHT_BRACE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_BRACE, 0)
+	return s.GetToken(PromQLExParserRIGHT_BRACE, 0)
 }
 
 func (s *InstantSelectorContext) LabelMatcherList() ILabelMatcherListContext {
@@ -9191,20 +9191,20 @@ func (s *InstantSelectorContext) ToStringTree(ruleNames []string, recog antlr.Re
 }
 
 func (s *InstantSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterInstantSelector(s)
 	}
 }
 
 func (s *InstantSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitInstantSelector(s)
 	}
 }
 
-func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorContext) {
+func (p *PromQLExParser) InstantSelector() (localctx IInstantSelectorContext) {
 	localctx = NewInstantSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 108, PromQLExtensionParserRULE_instantSelector)
+	p.EnterRule(localctx, 108, PromQLExParserRULE_instantSelector)
 	var _la int
 
 	p.SetState(482)
@@ -9214,11 +9214,11 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserMETRIC_NAME:
+	case PromQLExParserMETRIC_NAME:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(470)
-			p.Match(PromQLExtensionParserMETRIC_NAME)
+			p.Match(PromQLExParserMETRIC_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -9230,7 +9230,7 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 28, p.GetParserRuleContext()) == 1 {
 			{
 				p.SetState(471)
-				p.Match(PromQLExtensionParserLEFT_BRACE)
+				p.Match(PromQLExParserLEFT_BRACE)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -9252,7 +9252,7 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 			}
 			{
 				p.SetState(475)
-				p.Match(PromQLExtensionParserRIGHT_BRACE)
+				p.Match(PromQLExParserRIGHT_BRACE)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -9263,11 +9263,11 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 			goto errorExit
 		}
 
-	case PromQLExtensionParserLEFT_BRACE:
+	case PromQLExParserLEFT_BRACE:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(478)
-			p.Match(PromQLExtensionParserLEFT_BRACE)
+			p.Match(PromQLExParserLEFT_BRACE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -9279,7 +9279,7 @@ func (p *PromQLExtensionParser) InstantSelector() (localctx IInstantSelectorCont
 		}
 		{
 			p.SetState(480)
-			p.Match(PromQLExtensionParserRIGHT_BRACE)
+			p.Match(PromQLExParserRIGHT_BRACE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -9328,13 +9328,13 @@ type LabelMatcherContext struct {
 func NewEmptyLabelMatcherContext() *LabelMatcherContext {
 	var p = new(LabelMatcherContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcher
+	p.RuleIndex = PromQLExParserRULE_labelMatcher
 	return p
 }
 
 func InitEmptyLabelMatcherContext(p *LabelMatcherContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcher
+	p.RuleIndex = PromQLExParserRULE_labelMatcher
 }
 
 func (*LabelMatcherContext) IsLabelMatcherContext() {}
@@ -9345,7 +9345,7 @@ func NewLabelMatcherContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcher
+	p.RuleIndex = PromQLExParserRULE_labelMatcher
 
 	return p
 }
@@ -9409,20 +9409,20 @@ func (s *LabelMatcherContext) ToStringTree(ruleNames []string, recog antlr.Recog
 }
 
 func (s *LabelMatcherContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLabelMatcher(s)
 	}
 }
 
 func (s *LabelMatcherContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLabelMatcher(s)
 	}
 }
 
-func (p *PromQLExtensionParser) LabelMatcher() (localctx ILabelMatcherContext) {
+func (p *PromQLExParser) LabelMatcher() (localctx ILabelMatcherContext) {
 	localctx = NewLabelMatcherContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 110, PromQLExtensionParserRULE_labelMatcher)
+	p.EnterRule(localctx, 110, PromQLExParserRULE_labelMatcher)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(484)
@@ -9475,13 +9475,13 @@ type LabelMatcherOperatorContext struct {
 func NewEmptyLabelMatcherOperatorContext() *LabelMatcherOperatorContext {
 	var p = new(LabelMatcherOperatorContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherOperator
+	p.RuleIndex = PromQLExParserRULE_labelMatcherOperator
 	return p
 }
 
 func InitEmptyLabelMatcherOperatorContext(p *LabelMatcherOperatorContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherOperator
+	p.RuleIndex = PromQLExParserRULE_labelMatcherOperator
 }
 
 func (*LabelMatcherOperatorContext) IsLabelMatcherOperatorContext() {}
@@ -9492,7 +9492,7 @@ func NewLabelMatcherOperatorContext(parser antlr.Parser, parent antlr.ParserRule
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherOperator
+	p.RuleIndex = PromQLExParserRULE_labelMatcherOperator
 
 	return p
 }
@@ -9500,19 +9500,19 @@ func NewLabelMatcherOperatorContext(parser antlr.Parser, parent antlr.ParserRule
 func (s *LabelMatcherOperatorContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *LabelMatcherOperatorContext) EQ() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserEQ, 0)
+	return s.GetToken(PromQLExParserEQ, 0)
 }
 
 func (s *LabelMatcherOperatorContext) NE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserNE, 0)
+	return s.GetToken(PromQLExParserNE, 0)
 }
 
 func (s *LabelMatcherOperatorContext) RE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRE, 0)
+	return s.GetToken(PromQLExParserRE, 0)
 }
 
 func (s *LabelMatcherOperatorContext) NRE() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserNRE, 0)
+	return s.GetToken(PromQLExParserNRE, 0)
 }
 
 func (s *LabelMatcherOperatorContext) GetRuleContext() antlr.RuleContext {
@@ -9524,20 +9524,20 @@ func (s *LabelMatcherOperatorContext) ToStringTree(ruleNames []string, recog ant
 }
 
 func (s *LabelMatcherOperatorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLabelMatcherOperator(s)
 	}
 }
 
 func (s *LabelMatcherOperatorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLabelMatcherOperator(s)
 	}
 }
 
-func (p *PromQLExtensionParser) LabelMatcherOperator() (localctx ILabelMatcherOperatorContext) {
+func (p *PromQLExParser) LabelMatcherOperator() (localctx ILabelMatcherOperatorContext) {
 	localctx = NewLabelMatcherOperatorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 112, PromQLExtensionParserRULE_labelMatcherOperator)
+	p.EnterRule(localctx, 112, PromQLExParserRULE_labelMatcherOperator)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -9591,13 +9591,13 @@ type LabelMatcherListContext struct {
 func NewEmptyLabelMatcherListContext() *LabelMatcherListContext {
 	var p = new(LabelMatcherListContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherList
+	p.RuleIndex = PromQLExParserRULE_labelMatcherList
 	return p
 }
 
 func InitEmptyLabelMatcherListContext(p *LabelMatcherListContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherList
+	p.RuleIndex = PromQLExParserRULE_labelMatcherList
 }
 
 func (*LabelMatcherListContext) IsLabelMatcherListContext() {}
@@ -9608,7 +9608,7 @@ func NewLabelMatcherListContext(parser antlr.Parser, parent antlr.ParserRuleCont
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_labelMatcherList
+	p.RuleIndex = PromQLExParserRULE_labelMatcherList
 
 	return p
 }
@@ -9657,11 +9657,11 @@ func (s *LabelMatcherListContext) LabelMatcher(i int) ILabelMatcherContext {
 }
 
 func (s *LabelMatcherListContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *LabelMatcherListContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *LabelMatcherListContext) GetRuleContext() antlr.RuleContext {
@@ -9673,20 +9673,20 @@ func (s *LabelMatcherListContext) ToStringTree(ruleNames []string, recog antlr.R
 }
 
 func (s *LabelMatcherListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLabelMatcherList(s)
 	}
 }
 
 func (s *LabelMatcherListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLabelMatcherList(s)
 	}
 }
 
-func (p *PromQLExtensionParser) LabelMatcherList() (localctx ILabelMatcherListContext) {
+func (p *PromQLExParser) LabelMatcherList() (localctx ILabelMatcherListContext) {
 	localctx = NewLabelMatcherListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 114, PromQLExtensionParserRULE_labelMatcherList)
+	p.EnterRule(localctx, 114, PromQLExParserRULE_labelMatcherList)
 	var _la int
 
 	var _alt int
@@ -9709,7 +9709,7 @@ func (p *PromQLExtensionParser) LabelMatcherList() (localctx ILabelMatcherListCo
 		if _alt == 1 {
 			{
 				p.SetState(491)
-				p.Match(PromQLExtensionParserCOMMA)
+				p.Match(PromQLExParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -9738,10 +9738,10 @@ func (p *PromQLExtensionParser) LabelMatcherList() (localctx ILabelMatcherListCo
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == PromQLExtensionParserCOMMA {
+	if _la == PromQLExParserCOMMA {
 		{
 			p.SetState(498)
-			p.Match(PromQLExtensionParserCOMMA)
+			p.Match(PromQLExParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -9791,13 +9791,13 @@ type Function_Context struct {
 func NewEmptyFunction_Context() *Function_Context {
 	var p = new(Function_Context)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_function_
+	p.RuleIndex = PromQLExParserRULE_function_
 	return p
 }
 
 func InitEmptyFunction_Context(p *Function_Context) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_function_
+	p.RuleIndex = PromQLExParserRULE_function_
 }
 
 func (*Function_Context) IsFunction_Context() {}
@@ -9808,7 +9808,7 @@ func NewFunction_Context(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_function_
+	p.RuleIndex = PromQLExParserRULE_function_
 
 	return p
 }
@@ -9816,15 +9816,15 @@ func NewFunction_Context(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *Function_Context) GetParser() antlr.Parser { return s.parser }
 
 func (s *Function_Context) FUNCTION() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserFUNCTION, 0)
+	return s.GetToken(PromQLExParserFUNCTION, 0)
 }
 
 func (s *Function_Context) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *Function_Context) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *Function_Context) AllParameter() []IParameterContext {
@@ -9869,11 +9869,11 @@ func (s *Function_Context) Parameter(i int) IParameterContext {
 }
 
 func (s *Function_Context) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *Function_Context) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *Function_Context) GetRuleContext() antlr.RuleContext {
@@ -9885,26 +9885,26 @@ func (s *Function_Context) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *Function_Context) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterFunction_(s)
 	}
 }
 
 func (s *Function_Context) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitFunction_(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Function_() (localctx IFunction_Context) {
+func (p *PromQLExParser) Function_() (localctx IFunction_Context) {
 	localctx = NewFunction_Context(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 116, PromQLExtensionParserRULE_function_)
+	p.EnterRule(localctx, 116, PromQLExParserRULE_function_)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(501)
-		p.Match(PromQLExtensionParserFUNCTION)
+		p.Match(PromQLExParserFUNCTION)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -9912,7 +9912,7 @@ func (p *PromQLExtensionParser) Function_() (localctx IFunction_Context) {
 	}
 	{
 		p.SetState(502)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -9937,10 +9937,10 @@ func (p *PromQLExtensionParser) Function_() (localctx IFunction_Context) {
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == PromQLExtensionParserCOMMA {
+		for _la == PromQLExParserCOMMA {
 			{
 				p.SetState(504)
-				p.Match(PromQLExtensionParserCOMMA)
+				p.Match(PromQLExParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -9962,7 +9962,7 @@ func (p *PromQLExtensionParser) Function_() (localctx IFunction_Context) {
 	}
 	{
 		p.SetState(513)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -10005,13 +10005,13 @@ type ParameterContext struct {
 func NewEmptyParameterContext() *ParameterContext {
 	var p = new(ParameterContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parameter
+	p.RuleIndex = PromQLExParserRULE_parameter
 	return p
 }
 
 func InitEmptyParameterContext(p *ParameterContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parameter
+	p.RuleIndex = PromQLExParserRULE_parameter
 }
 
 func (*ParameterContext) IsParameterContext() {}
@@ -10022,7 +10022,7 @@ func NewParameterContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_parameter
+	p.RuleIndex = PromQLExParserRULE_parameter
 
 	return p
 }
@@ -10070,20 +10070,20 @@ func (s *ParameterContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *ParameterContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterParameter(s)
 	}
 }
 
 func (s *ParameterContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitParameter(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Parameter() (localctx IParameterContext) {
+func (p *PromQLExParser) Parameter() (localctx IParameterContext) {
 	localctx = NewParameterContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 118, PromQLExtensionParserRULE_parameter)
+	p.EnterRule(localctx, 118, PromQLExParserRULE_parameter)
 	p.SetState(517)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -10149,13 +10149,13 @@ type ParameterListContext struct {
 func NewEmptyParameterListContext() *ParameterListContext {
 	var p = new(ParameterListContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parameterList
+	p.RuleIndex = PromQLExParserRULE_parameterList
 	return p
 }
 
 func InitEmptyParameterListContext(p *ParameterListContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_parameterList
+	p.RuleIndex = PromQLExParserRULE_parameterList
 }
 
 func (*ParameterListContext) IsParameterListContext() {}
@@ -10166,7 +10166,7 @@ func NewParameterListContext(parser antlr.Parser, parent antlr.ParserRuleContext
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_parameterList
+	p.RuleIndex = PromQLExParserRULE_parameterList
 
 	return p
 }
@@ -10174,11 +10174,11 @@ func NewParameterListContext(parser antlr.Parser, parent antlr.ParserRuleContext
 func (s *ParameterListContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ParameterListContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *ParameterListContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *ParameterListContext) AllParameter() []IParameterContext {
@@ -10223,11 +10223,11 @@ func (s *ParameterListContext) Parameter(i int) IParameterContext {
 }
 
 func (s *ParameterListContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *ParameterListContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *ParameterListContext) GetRuleContext() antlr.RuleContext {
@@ -10239,26 +10239,26 @@ func (s *ParameterListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 }
 
 func (s *ParameterListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterParameterList(s)
 	}
 }
 
 func (s *ParameterListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitParameterList(s)
 	}
 }
 
-func (p *PromQLExtensionParser) ParameterList() (localctx IParameterListContext) {
+func (p *PromQLExParser) ParameterList() (localctx IParameterListContext) {
 	localctx = NewParameterListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 120, PromQLExtensionParserRULE_parameterList)
+	p.EnterRule(localctx, 120, PromQLExParserRULE_parameterList)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(519)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -10283,10 +10283,10 @@ func (p *PromQLExtensionParser) ParameterList() (localctx IParameterListContext)
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == PromQLExtensionParserCOMMA {
+		for _la == PromQLExParserCOMMA {
 			{
 				p.SetState(521)
-				p.Match(PromQLExtensionParserCOMMA)
+				p.Match(PromQLExParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -10308,7 +10308,7 @@ func (p *PromQLExtensionParser) ParameterList() (localctx IParameterListContext)
 	}
 	{
 		p.SetState(530)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -10353,13 +10353,13 @@ type AggregationContext struct {
 func NewEmptyAggregationContext() *AggregationContext {
 	var p = new(AggregationContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_aggregation
+	p.RuleIndex = PromQLExParserRULE_aggregation
 	return p
 }
 
 func InitEmptyAggregationContext(p *AggregationContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_aggregation
+	p.RuleIndex = PromQLExParserRULE_aggregation
 }
 
 func (*AggregationContext) IsAggregationContext() {}
@@ -10370,7 +10370,7 @@ func NewAggregationContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_aggregation
+	p.RuleIndex = PromQLExParserRULE_aggregation
 
 	return p
 }
@@ -10378,7 +10378,7 @@ func NewAggregationContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *AggregationContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *AggregationContext) AGGREGATION_OPERATOR() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserAGGREGATION_OPERATOR, 0)
+	return s.GetToken(PromQLExParserAGGREGATION_OPERATOR, 0)
 }
 
 func (s *AggregationContext) ParameterList() IParameterListContext {
@@ -10438,20 +10438,20 @@ func (s *AggregationContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 func (s *AggregationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterAggregation(s)
 	}
 }
 
 func (s *AggregationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitAggregation(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
+func (p *PromQLExParser) Aggregation() (localctx IAggregationContext) {
 	localctx = NewAggregationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 122, PromQLExtensionParserRULE_aggregation)
+	p.EnterRule(localctx, 122, PromQLExParserRULE_aggregation)
 	p.SetState(547)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -10463,7 +10463,7 @@ func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(532)
-			p.Match(PromQLExtensionParserAGGREGATION_OPERATOR)
+			p.Match(PromQLExParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -10478,7 +10478,7 @@ func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(534)
-			p.Match(PromQLExtensionParserAGGREGATION_OPERATOR)
+			p.Match(PromQLExParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -10491,13 +10491,13 @@ func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
 		}
 
 		switch p.GetTokenStream().LA(1) {
-		case PromQLExtensionParserBY:
+		case PromQLExParserBY:
 			{
 				p.SetState(535)
 				p.By()
 			}
 
-		case PromQLExtensionParserWITHOUT:
+		case PromQLExParserWITHOUT:
 			{
 				p.SetState(536)
 				p.Without()
@@ -10516,7 +10516,7 @@ func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(541)
-			p.Match(PromQLExtensionParserAGGREGATION_OPERATOR)
+			p.Match(PromQLExParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -10533,13 +10533,13 @@ func (p *PromQLExtensionParser) Aggregation() (localctx IAggregationContext) {
 		}
 
 		switch p.GetTokenStream().LA(1) {
-		case PromQLExtensionParserBY:
+		case PromQLExParserBY:
 			{
 				p.SetState(543)
 				p.By()
 			}
 
-		case PromQLExtensionParserWITHOUT:
+		case PromQLExParserWITHOUT:
 			{
 				p.SetState(544)
 				p.Without()
@@ -10590,13 +10590,13 @@ type ByContext struct {
 func NewEmptyByContext() *ByContext {
 	var p = new(ByContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_by
+	p.RuleIndex = PromQLExParserRULE_by
 	return p
 }
 
 func InitEmptyByContext(p *ByContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_by
+	p.RuleIndex = PromQLExParserRULE_by
 }
 
 func (*ByContext) IsByContext() {}
@@ -10607,7 +10607,7 @@ func NewByContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingS
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_by
+	p.RuleIndex = PromQLExParserRULE_by
 
 	return p
 }
@@ -10615,7 +10615,7 @@ func NewByContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingS
 func (s *ByContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ByContext) BY() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserBY, 0)
+	return s.GetToken(PromQLExParserBY, 0)
 }
 
 func (s *ByContext) LabelNameList() ILabelNameListContext {
@@ -10643,24 +10643,24 @@ func (s *ByContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) str
 }
 
 func (s *ByContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterBy(s)
 	}
 }
 
 func (s *ByContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitBy(s)
 	}
 }
 
-func (p *PromQLExtensionParser) By() (localctx IByContext) {
+func (p *PromQLExParser) By() (localctx IByContext) {
 	localctx = NewByContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 124, PromQLExtensionParserRULE_by)
+	p.EnterRule(localctx, 124, PromQLExParserRULE_by)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(549)
-		p.Match(PromQLExtensionParserBY)
+		p.Match(PromQLExParserBY)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -10707,13 +10707,13 @@ type WithoutContext struct {
 func NewEmptyWithoutContext() *WithoutContext {
 	var p = new(WithoutContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_without
+	p.RuleIndex = PromQLExParserRULE_without
 	return p
 }
 
 func InitEmptyWithoutContext(p *WithoutContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_without
+	p.RuleIndex = PromQLExParserRULE_without
 }
 
 func (*WithoutContext) IsWithoutContext() {}
@@ -10724,7 +10724,7 @@ func NewWithoutContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_without
+	p.RuleIndex = PromQLExParserRULE_without
 
 	return p
 }
@@ -10732,7 +10732,7 @@ func NewWithoutContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 func (s *WithoutContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *WithoutContext) WITHOUT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserWITHOUT, 0)
+	return s.GetToken(PromQLExParserWITHOUT, 0)
 }
 
 func (s *WithoutContext) LabelNameList() ILabelNameListContext {
@@ -10760,24 +10760,24 @@ func (s *WithoutContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *WithoutContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterWithout(s)
 	}
 }
 
 func (s *WithoutContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitWithout(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Without() (localctx IWithoutContext) {
+func (p *PromQLExParser) Without() (localctx IWithoutContext) {
 	localctx = NewWithoutContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 126, PromQLExtensionParserRULE_without)
+	p.EnterRule(localctx, 126, PromQLExParserRULE_without)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(552)
-		p.Match(PromQLExtensionParserWITHOUT)
+		p.Match(PromQLExParserWITHOUT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -10826,13 +10826,13 @@ type GroupingContext struct {
 func NewEmptyGroupingContext() *GroupingContext {
 	var p = new(GroupingContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_grouping
+	p.RuleIndex = PromQLExParserRULE_grouping
 	return p
 }
 
 func InitEmptyGroupingContext(p *GroupingContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_grouping
+	p.RuleIndex = PromQLExParserRULE_grouping
 }
 
 func (*GroupingContext) IsGroupingContext() {}
@@ -10843,7 +10843,7 @@ func NewGroupingContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_grouping
+	p.RuleIndex = PromQLExParserRULE_grouping
 
 	return p
 }
@@ -10923,20 +10923,20 @@ func (s *GroupingContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *GroupingContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterGrouping(s)
 	}
 }
 
 func (s *GroupingContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitGrouping(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Grouping() (localctx IGroupingContext) {
+func (p *PromQLExParser) Grouping() (localctx IGroupingContext) {
 	localctx = NewGroupingContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 128, PromQLExtensionParserRULE_grouping)
+	p.EnterRule(localctx, 128, PromQLExParserRULE_grouping)
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(557)
 	p.GetErrorHandler().Sync(p)
@@ -10945,13 +10945,13 @@ func (p *PromQLExtensionParser) Grouping() (localctx IGroupingContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserON:
+	case PromQLExParserON:
 		{
 			p.SetState(555)
 			p.On_()
 		}
 
-	case PromQLExtensionParserIGNORING:
+	case PromQLExParserIGNORING:
 		{
 			p.SetState(556)
 			p.Ignoring()
@@ -10967,19 +10967,19 @@ func (p *PromQLExtensionParser) Grouping() (localctx IGroupingContext) {
 		goto errorExit
 	}
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserGROUP_LEFT:
+	case PromQLExParserGROUP_LEFT:
 		{
 			p.SetState(559)
 			p.GroupLeft()
 		}
 
-	case PromQLExtensionParserGROUP_RIGHT:
+	case PromQLExParserGROUP_RIGHT:
 		{
 			p.SetState(560)
 			p.GroupRight()
 		}
 
-	case PromQLExtensionParserAGGREGATION_OPERATOR, PromQLExtensionParserFUNCTION, PromQLExtensionParserPOSITIVE_INTEGER, PromQLExtensionParserCALL_SIGN, PromQLExtensionParserNUMBER, PromQLExtensionParserSTRING, PromQLExtensionParserADD, PromQLExtensionParserSUB, PromQLExtensionParserLEFT_BRACE, PromQLExtensionParserLEFT_PAREN, PromQLExtensionParserDURATION, PromQLExtensionParserMETRIC_NAME, PromQLExtensionParserRAW_STRING:
+	case PromQLExParserAGGREGATION_OPERATOR, PromQLExParserFUNCTION, PromQLExParserPOSITIVE_INTEGER, PromQLExParserCALL_SIGN, PromQLExParserNUMBER, PromQLExParserSTRING, PromQLExParserADD, PromQLExParserSUB, PromQLExParserLEFT_BRACE, PromQLExParserLEFT_PAREN, PromQLExParserDURATION, PromQLExParserMETRIC_NAME, PromQLExParserRAW_STRING:
 
 	default:
 	}
@@ -11020,13 +11020,13 @@ type On_Context struct {
 func NewEmptyOn_Context() *On_Context {
 	var p = new(On_Context)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_on_
+	p.RuleIndex = PromQLExParserRULE_on_
 	return p
 }
 
 func InitEmptyOn_Context(p *On_Context) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_on_
+	p.RuleIndex = PromQLExParserRULE_on_
 }
 
 func (*On_Context) IsOn_Context() {}
@@ -11037,7 +11037,7 @@ func NewOn_Context(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_on_
+	p.RuleIndex = PromQLExParserRULE_on_
 
 	return p
 }
@@ -11045,7 +11045,7 @@ func NewOn_Context(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 func (s *On_Context) GetParser() antlr.Parser { return s.parser }
 
 func (s *On_Context) ON() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserON, 0)
+	return s.GetToken(PromQLExParserON, 0)
 }
 
 func (s *On_Context) LabelNameList() ILabelNameListContext {
@@ -11073,24 +11073,24 @@ func (s *On_Context) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 }
 
 func (s *On_Context) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterOn_(s)
 	}
 }
 
 func (s *On_Context) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitOn_(s)
 	}
 }
 
-func (p *PromQLExtensionParser) On_() (localctx IOn_Context) {
+func (p *PromQLExParser) On_() (localctx IOn_Context) {
 	localctx = NewOn_Context(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 130, PromQLExtensionParserRULE_on_)
+	p.EnterRule(localctx, 130, PromQLExParserRULE_on_)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(563)
-		p.Match(PromQLExtensionParserON)
+		p.Match(PromQLExParserON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11137,13 +11137,13 @@ type IgnoringContext struct {
 func NewEmptyIgnoringContext() *IgnoringContext {
 	var p = new(IgnoringContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_ignoring
+	p.RuleIndex = PromQLExParserRULE_ignoring
 	return p
 }
 
 func InitEmptyIgnoringContext(p *IgnoringContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_ignoring
+	p.RuleIndex = PromQLExParserRULE_ignoring
 }
 
 func (*IgnoringContext) IsIgnoringContext() {}
@@ -11154,7 +11154,7 @@ func NewIgnoringContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_ignoring
+	p.RuleIndex = PromQLExParserRULE_ignoring
 
 	return p
 }
@@ -11162,7 +11162,7 @@ func NewIgnoringContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *IgnoringContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IgnoringContext) IGNORING() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserIGNORING, 0)
+	return s.GetToken(PromQLExParserIGNORING, 0)
 }
 
 func (s *IgnoringContext) LabelNameList() ILabelNameListContext {
@@ -11190,24 +11190,24 @@ func (s *IgnoringContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *IgnoringContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterIgnoring(s)
 	}
 }
 
 func (s *IgnoringContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitIgnoring(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Ignoring() (localctx IIgnoringContext) {
+func (p *PromQLExParser) Ignoring() (localctx IIgnoringContext) {
 	localctx = NewIgnoringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 132, PromQLExtensionParserRULE_ignoring)
+	p.EnterRule(localctx, 132, PromQLExParserRULE_ignoring)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(566)
-		p.Match(PromQLExtensionParserIGNORING)
+		p.Match(PromQLExParserIGNORING)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11254,13 +11254,13 @@ type GroupLeftContext struct {
 func NewEmptyGroupLeftContext() *GroupLeftContext {
 	var p = new(GroupLeftContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_groupLeft
+	p.RuleIndex = PromQLExParserRULE_groupLeft
 	return p
 }
 
 func InitEmptyGroupLeftContext(p *GroupLeftContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_groupLeft
+	p.RuleIndex = PromQLExParserRULE_groupLeft
 }
 
 func (*GroupLeftContext) IsGroupLeftContext() {}
@@ -11271,7 +11271,7 @@ func NewGroupLeftContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_groupLeft
+	p.RuleIndex = PromQLExParserRULE_groupLeft
 
 	return p
 }
@@ -11279,7 +11279,7 @@ func NewGroupLeftContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *GroupLeftContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *GroupLeftContext) GROUP_LEFT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGROUP_LEFT, 0)
+	return s.GetToken(PromQLExParserGROUP_LEFT, 0)
 }
 
 func (s *GroupLeftContext) LabelNameList() ILabelNameListContext {
@@ -11307,24 +11307,24 @@ func (s *GroupLeftContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *GroupLeftContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterGroupLeft(s)
 	}
 }
 
 func (s *GroupLeftContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitGroupLeft(s)
 	}
 }
 
-func (p *PromQLExtensionParser) GroupLeft() (localctx IGroupLeftContext) {
+func (p *PromQLExParser) GroupLeft() (localctx IGroupLeftContext) {
 	localctx = NewGroupLeftContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 134, PromQLExtensionParserRULE_groupLeft)
+	p.EnterRule(localctx, 134, PromQLExParserRULE_groupLeft)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(569)
-		p.Match(PromQLExtensionParserGROUP_LEFT)
+		p.Match(PromQLExParserGROUP_LEFT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11379,13 +11379,13 @@ type GroupRightContext struct {
 func NewEmptyGroupRightContext() *GroupRightContext {
 	var p = new(GroupRightContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_groupRight
+	p.RuleIndex = PromQLExParserRULE_groupRight
 	return p
 }
 
 func InitEmptyGroupRightContext(p *GroupRightContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_groupRight
+	p.RuleIndex = PromQLExParserRULE_groupRight
 }
 
 func (*GroupRightContext) IsGroupRightContext() {}
@@ -11396,7 +11396,7 @@ func NewGroupRightContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_groupRight
+	p.RuleIndex = PromQLExParserRULE_groupRight
 
 	return p
 }
@@ -11404,7 +11404,7 @@ func NewGroupRightContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 func (s *GroupRightContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *GroupRightContext) GROUP_RIGHT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGROUP_RIGHT, 0)
+	return s.GetToken(PromQLExParserGROUP_RIGHT, 0)
 }
 
 func (s *GroupRightContext) LabelNameList() ILabelNameListContext {
@@ -11432,24 +11432,24 @@ func (s *GroupRightContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 }
 
 func (s *GroupRightContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterGroupRight(s)
 	}
 }
 
 func (s *GroupRightContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitGroupRight(s)
 	}
 }
 
-func (p *PromQLExtensionParser) GroupRight() (localctx IGroupRightContext) {
+func (p *PromQLExParser) GroupRight() (localctx IGroupRightContext) {
 	localctx = NewGroupRightContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 136, PromQLExtensionParserRULE_groupRight)
+	p.EnterRule(localctx, 136, PromQLExParserRULE_groupRight)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(573)
-		p.Match(PromQLExtensionParserGROUP_RIGHT)
+		p.Match(PromQLExParserGROUP_RIGHT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11505,13 +11505,13 @@ type LabelNameContext struct {
 func NewEmptyLabelNameContext() *LabelNameContext {
 	var p = new(LabelNameContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelName
+	p.RuleIndex = PromQLExParserRULE_labelName
 	return p
 }
 
 func InitEmptyLabelNameContext(p *LabelNameContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelName
+	p.RuleIndex = PromQLExParserRULE_labelName
 }
 
 func (*LabelNameContext) IsLabelNameContext() {}
@@ -11522,7 +11522,7 @@ func NewLabelNameContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_labelName
+	p.RuleIndex = PromQLExParserRULE_labelName
 
 	return p
 }
@@ -11546,11 +11546,11 @@ func (s *LabelNameContext) Keyword() IKeywordContext {
 }
 
 func (s *LabelNameContext) METRIC_NAME() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserMETRIC_NAME, 0)
+	return s.GetToken(PromQLExParserMETRIC_NAME, 0)
 }
 
 func (s *LabelNameContext) LABEL_NAME() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLABEL_NAME, 0)
+	return s.GetToken(PromQLExParserLABEL_NAME, 0)
 }
 
 func (s *LabelNameContext) GetRuleContext() antlr.RuleContext {
@@ -11562,20 +11562,20 @@ func (s *LabelNameContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 }
 
 func (s *LabelNameContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLabelName(s)
 	}
 }
 
 func (s *LabelNameContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLabelName(s)
 	}
 }
 
-func (p *PromQLExtensionParser) LabelName() (localctx ILabelNameContext) {
+func (p *PromQLExParser) LabelName() (localctx ILabelNameContext) {
 	localctx = NewLabelNameContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 138, PromQLExtensionParserRULE_labelName)
+	p.EnterRule(localctx, 138, PromQLExParserRULE_labelName)
 	p.SetState(580)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
@@ -11583,29 +11583,29 @@ func (p *PromQLExtensionParser) LabelName() (localctx ILabelNameContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLExtensionParserAGGREGATION_OPERATOR, PromQLExtensionParserFUNCTION, PromQLExtensionParserAND, PromQLExtensionParserOR, PromQLExtensionParserUNLESS, PromQLExtensionParserBY, PromQLExtensionParserWITHOUT, PromQLExtensionParserON, PromQLExtensionParserIGNORING, PromQLExtensionParserGROUP_LEFT, PromQLExtensionParserGROUP_RIGHT, PromQLExtensionParserOFFSET, PromQLExtensionParserBOOL:
+	case PromQLExParserAGGREGATION_OPERATOR, PromQLExParserFUNCTION, PromQLExParserAND, PromQLExParserOR, PromQLExParserUNLESS, PromQLExParserBY, PromQLExParserWITHOUT, PromQLExParserON, PromQLExParserIGNORING, PromQLExParserGROUP_LEFT, PromQLExParserGROUP_RIGHT, PromQLExParserOFFSET, PromQLExParserBOOL:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(577)
 			p.Keyword()
 		}
 
-	case PromQLExtensionParserMETRIC_NAME:
+	case PromQLExParserMETRIC_NAME:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(578)
-			p.Match(PromQLExtensionParserMETRIC_NAME)
+			p.Match(PromQLExParserMETRIC_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 
-	case PromQLExtensionParserLABEL_NAME:
+	case PromQLExParserLABEL_NAME:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(579)
-			p.Match(PromQLExtensionParserLABEL_NAME)
+			p.Match(PromQLExParserLABEL_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -11657,13 +11657,13 @@ type LabelNameListContext struct {
 func NewEmptyLabelNameListContext() *LabelNameListContext {
 	var p = new(LabelNameListContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelNameList
+	p.RuleIndex = PromQLExParserRULE_labelNameList
 	return p
 }
 
 func InitEmptyLabelNameListContext(p *LabelNameListContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_labelNameList
+	p.RuleIndex = PromQLExParserRULE_labelNameList
 }
 
 func (*LabelNameListContext) IsLabelNameListContext() {}
@@ -11674,7 +11674,7 @@ func NewLabelNameListContext(parser antlr.Parser, parent antlr.ParserRuleContext
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_labelNameList
+	p.RuleIndex = PromQLExParserRULE_labelNameList
 
 	return p
 }
@@ -11682,11 +11682,11 @@ func NewLabelNameListContext(parser antlr.Parser, parent antlr.ParserRuleContext
 func (s *LabelNameListContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *LabelNameListContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserLEFT_PAREN, 0)
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
 func (s *LabelNameListContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRIGHT_PAREN, 0)
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
 func (s *LabelNameListContext) AllLabelName() []ILabelNameContext {
@@ -11731,11 +11731,11 @@ func (s *LabelNameListContext) LabelName(i int) ILabelNameContext {
 }
 
 func (s *LabelNameListContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExtensionParserCOMMA)
+	return s.GetTokens(PromQLExParserCOMMA)
 }
 
 func (s *LabelNameListContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserCOMMA, i)
+	return s.GetToken(PromQLExParserCOMMA, i)
 }
 
 func (s *LabelNameListContext) GetRuleContext() antlr.RuleContext {
@@ -11747,26 +11747,26 @@ func (s *LabelNameListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 }
 
 func (s *LabelNameListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterLabelNameList(s)
 	}
 }
 
 func (s *LabelNameListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitLabelNameList(s)
 	}
 }
 
-func (p *PromQLExtensionParser) LabelNameList() (localctx ILabelNameListContext) {
+func (p *PromQLExParser) LabelNameList() (localctx ILabelNameListContext) {
 	localctx = NewLabelNameListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 140, PromQLExtensionParserRULE_labelNameList)
+	p.EnterRule(localctx, 140, PromQLExParserRULE_labelNameList)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(582)
-		p.Match(PromQLExtensionParserLEFT_PAREN)
+		p.Match(PromQLExParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11791,10 +11791,10 @@ func (p *PromQLExtensionParser) LabelNameList() (localctx ILabelNameListContext)
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == PromQLExtensionParserCOMMA {
+		for _la == PromQLExParserCOMMA {
 			{
 				p.SetState(584)
-				p.Match(PromQLExtensionParserCOMMA)
+				p.Match(PromQLExParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
@@ -11816,7 +11816,7 @@ func (p *PromQLExtensionParser) LabelNameList() (localctx ILabelNameListContext)
 	}
 	{
 		p.SetState(593)
-		p.Match(PromQLExtensionParserRIGHT_PAREN)
+		p.Match(PromQLExParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11870,13 +11870,13 @@ type KeywordContext struct {
 func NewEmptyKeywordContext() *KeywordContext {
 	var p = new(KeywordContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_keyword
+	p.RuleIndex = PromQLExParserRULE_keyword
 	return p
 }
 
 func InitEmptyKeywordContext(p *KeywordContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_keyword
+	p.RuleIndex = PromQLExParserRULE_keyword
 }
 
 func (*KeywordContext) IsKeywordContext() {}
@@ -11887,7 +11887,7 @@ func NewKeywordContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_keyword
+	p.RuleIndex = PromQLExParserRULE_keyword
 
 	return p
 }
@@ -11895,55 +11895,55 @@ func NewKeywordContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 func (s *KeywordContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *KeywordContext) AND() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserAND, 0)
+	return s.GetToken(PromQLExParserAND, 0)
 }
 
 func (s *KeywordContext) OR() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserOR, 0)
+	return s.GetToken(PromQLExParserOR, 0)
 }
 
 func (s *KeywordContext) UNLESS() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserUNLESS, 0)
+	return s.GetToken(PromQLExParserUNLESS, 0)
 }
 
 func (s *KeywordContext) BY() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserBY, 0)
+	return s.GetToken(PromQLExParserBY, 0)
 }
 
 func (s *KeywordContext) WITHOUT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserWITHOUT, 0)
+	return s.GetToken(PromQLExParserWITHOUT, 0)
 }
 
 func (s *KeywordContext) ON() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserON, 0)
+	return s.GetToken(PromQLExParserON, 0)
 }
 
 func (s *KeywordContext) IGNORING() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserIGNORING, 0)
+	return s.GetToken(PromQLExParserIGNORING, 0)
 }
 
 func (s *KeywordContext) GROUP_LEFT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGROUP_LEFT, 0)
+	return s.GetToken(PromQLExParserGROUP_LEFT, 0)
 }
 
 func (s *KeywordContext) GROUP_RIGHT() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserGROUP_RIGHT, 0)
+	return s.GetToken(PromQLExParserGROUP_RIGHT, 0)
 }
 
 func (s *KeywordContext) OFFSET() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserOFFSET, 0)
+	return s.GetToken(PromQLExParserOFFSET, 0)
 }
 
 func (s *KeywordContext) BOOL() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserBOOL, 0)
+	return s.GetToken(PromQLExParserBOOL, 0)
 }
 
 func (s *KeywordContext) AGGREGATION_OPERATOR() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserAGGREGATION_OPERATOR, 0)
+	return s.GetToken(PromQLExParserAGGREGATION_OPERATOR, 0)
 }
 
 func (s *KeywordContext) FUNCTION() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserFUNCTION, 0)
+	return s.GetToken(PromQLExParserFUNCTION, 0)
 }
 
 func (s *KeywordContext) GetRuleContext() antlr.RuleContext {
@@ -11955,20 +11955,20 @@ func (s *KeywordContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *KeywordContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterKeyword(s)
 	}
 }
 
 func (s *KeywordContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitKeyword(s)
 	}
 }
 
-func (p *PromQLExtensionParser) Keyword() (localctx IKeywordContext) {
+func (p *PromQLExParser) Keyword() (localctx IKeywordContext) {
 	localctx = NewKeywordContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 142, PromQLExtensionParserRULE_keyword)
+	p.EnterRule(localctx, 142, PromQLExParserRULE_keyword)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -12020,13 +12020,13 @@ type StringContext struct {
 func NewEmptyStringContext() *StringContext {
 	var p = new(StringContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_string
+	p.RuleIndex = PromQLExParserRULE_string
 	return p
 }
 
 func InitEmptyStringContext(p *StringContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = PromQLExtensionParserRULE_string
+	p.RuleIndex = PromQLExParserRULE_string
 }
 
 func (*StringContext) IsStringContext() {}
@@ -12037,7 +12037,7 @@ func NewStringContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = PromQLExtensionParserRULE_string
+	p.RuleIndex = PromQLExParserRULE_string
 
 	return p
 }
@@ -12045,11 +12045,11 @@ func NewStringContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 func (s *StringContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *StringContext) STRING() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserSTRING, 0)
+	return s.GetToken(PromQLExParserSTRING, 0)
 }
 
 func (s *StringContext) RAW_STRING() antlr.TerminalNode {
-	return s.GetToken(PromQLExtensionParserRAW_STRING, 0)
+	return s.GetToken(PromQLExParserRAW_STRING, 0)
 }
 
 func (s *StringContext) GetRuleContext() antlr.RuleContext {
@@ -12061,20 +12061,20 @@ func (s *StringContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *StringContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.EnterString(s)
 	}
 }
 
 func (s *StringContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExtensionParserListener); ok {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
 		listenerT.ExitString(s)
 	}
 }
 
-func (p *PromQLExtensionParser) String_() (localctx IStringContext) {
+func (p *PromQLExParser) String_() (localctx IStringContext) {
 	localctx = NewStringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 144, PromQLExtensionParserRULE_string)
+	p.EnterRule(localctx, 144, PromQLExParserRULE_string)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -12082,7 +12082,7 @@ func (p *PromQLExtensionParser) String_() (localctx IStringContext) {
 		p.SetState(597)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == PromQLExtensionParserSTRING || _la == PromQLExtensionParserRAW_STRING) {
+		if !(_la == PromQLExParserSTRING || _la == PromQLExParserRAW_STRING) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -12103,7 +12103,7 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-func (p *PromQLExtensionParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
+func (p *PromQLExParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
 	switch ruleIndex {
 	case 37:
 		var t *VectorOperationContext = nil
@@ -12117,7 +12117,7 @@ func (p *PromQLExtensionParser) Sempred(localctx antlr.RuleContext, ruleIndex, p
 	}
 }
 
-func (p *PromQLExtensionParser) VectorOperation_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+func (p *PromQLExParser) VectorOperation_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	switch predIndex {
 	case 0:
 		return p.Precpred(p.GetParserRuleContext(), 13)

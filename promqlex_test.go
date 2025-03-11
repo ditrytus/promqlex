@@ -3,14 +3,14 @@ package promqlex
 import (
 	"errors"
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/ditrytus/promqlex/parsers/promqlextension"
+	parser "github.com/ditrytus/promqlex/parsers/promqlex"
 	"gopkg.in/yaml.v3"
 	"io"
 	"strings"
 	"testing"
 )
 
-func TestPromQLExtensionParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
+func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 	yamlDecoder := yaml.NewDecoder(strings.NewReader(promqlExamplesYaml))
 	for {
 		var example Examples
@@ -26,15 +26,14 @@ func TestPromQLExtensionParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 				t.Run(query, func(t *testing.T) {
 					input := antlr.NewInputStream(query)
 					functionSet := NewPrometheusFunctionSet(
-						promqlextension.PromQLExtensionLexerFUNCTION,
-						promqlextension.PromQLExtensionLexerAGGREGATION_OPERATOR,
+						parser.PromQLExLexerFUNCTION,
+						parser.PromQLExLexerAGGREGATION_OPERATOR,
 					)
 					functionSet.AddAggregationOperators(PrometheusExperimentalAggregationOperators)
 					providerInput := NewFunctionProviderInputStream(input, functionSet)
-					lexer := promqlextension.NewPromQLExtensionLexer(providerInput)
-					//readLexer(lexer)
+					lexer := parser.NewPromQLExLexer(providerInput)
 					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-					p := promqlextension.NewPromQLExtensionParser(tokens)
+					p := parser.NewPromQLExParser(tokens)
 					p.RemoveErrorListeners()
 					p.AddErrorListener(NewFailTestErrorListener(t))
 					p.AddErrorListener(antlr.NewConsoleErrorListener())

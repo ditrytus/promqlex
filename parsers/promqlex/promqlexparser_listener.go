@@ -1,10 +1,10 @@
-// Code generated from PromQLExtensionParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
+// Code generated from PromQLExParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package promqlextension // PromQLExtensionParser
+package promqlex // PromQLExParser
 import "github.com/antlr4-go/antlr/v4"
 
-// PromQLExtensionParserListener is a complete listener for a parse tree produced by PromQLExtensionParser.
-type PromQLExtensionParserListener interface {
+// PromQLExParserListener is a complete listener for a parse tree produced by PromQLExParser.
+type PromQLExParserListener interface {
 	antlr.ParseTreeListener
 
 	// EnterPromqlx is called when entering the promqlx production.

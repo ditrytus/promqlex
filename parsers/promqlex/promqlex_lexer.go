@@ -1,6 +1,6 @@
-// Code generated from PromQLExtensionLexer.g4 by ANTLR 4.13.2. DO NOT EDIT.
+// Code generated from PromQLExLexer.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package promqlextension
+package promqlex
 
 import (
 	"fmt"
@@ -14,14 +14,14 @@ var _ = fmt.Printf
 var _ = sync.Once{}
 var _ = unicode.IsLetter
 
-type PromQLExtensionLexer struct {
+type PromQLExLexer struct {
 	*antlr.BaseLexer
 	channelNames []string
 	modeNames    []string
 	// TODO: EOF string
 }
 
-var PromQLExtensionLexerLexerStaticData struct {
+var PromQLExLexerLexerStaticData struct {
 	once                   sync.Once
 	serializedATN          []int32
 	ChannelNames           []string
@@ -34,8 +34,8 @@ var PromQLExtensionLexerLexerStaticData struct {
 	decisionToDFA          []*antlr.DFA
 }
 
-func promqlextensionlexerLexerInit() {
-	staticData := &PromQLExtensionLexerLexerStaticData
+func promqlexlexerLexerInit() {
+	staticData := &PromQLExLexerLexerStaticData
 	staticData.ChannelNames = []string{
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN", "WHITESPACE", "COMMENTS",
 	}
@@ -291,111 +291,111 @@ func promqlextensionlexerLexerInit() {
 	}
 }
 
-// PromQLExtensionLexerInit initializes any static state used to implement PromQLExtensionLexer. By default the
+// PromQLExLexerInit initializes any static state used to implement PromQLExLexer. By default the
 // static state used to implement the lexer is lazily initialized during the first call to
-// NewPromQLExtensionLexer(). You can call this function if you wish to initialize the static state ahead
+// NewPromQLExLexer(). You can call this function if you wish to initialize the static state ahead
 // of time.
-func PromQLExtensionLexerInit() {
-	staticData := &PromQLExtensionLexerLexerStaticData
-	staticData.once.Do(promqlextensionlexerLexerInit)
+func PromQLExLexerInit() {
+	staticData := &PromQLExLexerLexerStaticData
+	staticData.once.Do(promqlexlexerLexerInit)
 }
 
-// NewPromQLExtensionLexer produces a new lexer instance for the optional input antlr.CharStream.
-func NewPromQLExtensionLexer(input antlr.CharStream) *PromQLExtensionLexer {
-	PromQLExtensionLexerInit()
-	l := new(PromQLExtensionLexer)
+// NewPromQLExLexer produces a new lexer instance for the optional input antlr.CharStream.
+func NewPromQLExLexer(input antlr.CharStream) *PromQLExLexer {
+	PromQLExLexerInit()
+	l := new(PromQLExLexer)
 	l.BaseLexer = antlr.NewBaseLexer(input)
-	staticData := &PromQLExtensionLexerLexerStaticData
+	staticData := &PromQLExLexerLexerStaticData
 	l.Interpreter = antlr.NewLexerATNSimulator(l, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
 	l.channelNames = staticData.ChannelNames
 	l.modeNames = staticData.ModeNames
 	l.RuleNames = staticData.RuleNames
 	l.LiteralNames = staticData.LiteralNames
 	l.SymbolicNames = staticData.SymbolicNames
-	l.GrammarFileName = "PromQLExtensionLexer.g4"
+	l.GrammarFileName = "PromQLExLexer.g4"
 	// TODO: l.EOF = antlr.TokenEOF
 
 	return l
 }
 
-// PromQLExtensionLexer tokens.
+// PromQLExLexer tokens.
 const (
-	PromQLExtensionLexerAGGREGATION_OPERATOR = 1
-	PromQLExtensionLexerFUNCTION             = 2
-	PromQLExtensionLexerID                   = 3
-	PromQLExtensionLexerIF                   = 4
-	PromQLExtensionLexerTRUE                 = 5
-	PromQLExtensionLexerFALSE                = 6
-	PromQLExtensionLexerT                    = 7
-	PromQLExtensionLexerCOLON                = 8
-	PromQLExtensionLexerDOT                  = 9
-	PromQLExtensionLexerPOSITIVE_INTEGER     = 10
-	PromQLExtensionLexerTWO_DIGITS           = 11
-	PromQLExtensionLexerDIGITS               = 12
-	PromQLExtensionLexerMETRIC_KEYWORD       = 13
-	PromQLExtensionLexerLABEL_KEYWORD        = 14
-	PromQLExtensionLexerDEF                  = 15
-	PromQLExtensionLexerCALL_SIGN            = 16
-	PromQLExtensionLexerNL                   = 17
-	PromQLExtensionLexerNUMBER               = 18
-	PromQLExtensionLexerSTRING               = 19
-	PromQLExtensionLexerADD                  = 20
-	PromQLExtensionLexerSUB                  = 21
-	PromQLExtensionLexerMULT                 = 22
-	PromQLExtensionLexerDIV                  = 23
-	PromQLExtensionLexerMOD                  = 24
-	PromQLExtensionLexerPOW                  = 25
-	PromQLExtensionLexerAND                  = 26
-	PromQLExtensionLexerOR                   = 27
-	PromQLExtensionLexerUNLESS               = 28
-	PromQLExtensionLexerEQ                   = 29
-	PromQLExtensionLexerDEQ                  = 30
-	PromQLExtensionLexerNE                   = 31
-	PromQLExtensionLexerGT                   = 32
-	PromQLExtensionLexerLT                   = 33
-	PromQLExtensionLexerGE                   = 34
-	PromQLExtensionLexerLE                   = 35
-	PromQLExtensionLexerRE                   = 36
-	PromQLExtensionLexerNRE                  = 37
-	PromQLExtensionLexerBY                   = 38
-	PromQLExtensionLexerWITHOUT              = 39
-	PromQLExtensionLexerON                   = 40
-	PromQLExtensionLexerIGNORING             = 41
-	PromQLExtensionLexerGROUP_LEFT           = 42
-	PromQLExtensionLexerGROUP_RIGHT          = 43
-	PromQLExtensionLexerOFFSET               = 44
-	PromQLExtensionLexerBOOL                 = 45
-	PromQLExtensionLexerLEFT_BRACE           = 46
-	PromQLExtensionLexerRIGHT_BRACE          = 47
-	PromQLExtensionLexerLEFT_PAREN           = 48
-	PromQLExtensionLexerRIGHT_PAREN          = 49
-	PromQLExtensionLexerLEFT_BRACKET         = 50
-	PromQLExtensionLexerRIGHT_BRACKET        = 51
-	PromQLExtensionLexerCOMMA                = 52
-	PromQLExtensionLexerAT                   = 53
-	PromQLExtensionLexerDURATION             = 54
-	PromQLExtensionLexerMETRIC_NAME          = 55
-	PromQLExtensionLexerLABEL_NAME           = 56
-	PromQLExtensionLexerWS                   = 57
-	PromQLExtensionLexerSL_COMMENT           = 58
-	PromQLExtensionLexerRAW_STRING           = 59
-	PromQLExtensionLexerBACKTICK_OPEN        = 60
+	PromQLExLexerAGGREGATION_OPERATOR = 1
+	PromQLExLexerFUNCTION             = 2
+	PromQLExLexerID                   = 3
+	PromQLExLexerIF                   = 4
+	PromQLExLexerTRUE                 = 5
+	PromQLExLexerFALSE                = 6
+	PromQLExLexerT                    = 7
+	PromQLExLexerCOLON                = 8
+	PromQLExLexerDOT                  = 9
+	PromQLExLexerPOSITIVE_INTEGER     = 10
+	PromQLExLexerTWO_DIGITS           = 11
+	PromQLExLexerDIGITS               = 12
+	PromQLExLexerMETRIC_KEYWORD       = 13
+	PromQLExLexerLABEL_KEYWORD        = 14
+	PromQLExLexerDEF                  = 15
+	PromQLExLexerCALL_SIGN            = 16
+	PromQLExLexerNL                   = 17
+	PromQLExLexerNUMBER               = 18
+	PromQLExLexerSTRING               = 19
+	PromQLExLexerADD                  = 20
+	PromQLExLexerSUB                  = 21
+	PromQLExLexerMULT                 = 22
+	PromQLExLexerDIV                  = 23
+	PromQLExLexerMOD                  = 24
+	PromQLExLexerPOW                  = 25
+	PromQLExLexerAND                  = 26
+	PromQLExLexerOR                   = 27
+	PromQLExLexerUNLESS               = 28
+	PromQLExLexerEQ                   = 29
+	PromQLExLexerDEQ                  = 30
+	PromQLExLexerNE                   = 31
+	PromQLExLexerGT                   = 32
+	PromQLExLexerLT                   = 33
+	PromQLExLexerGE                   = 34
+	PromQLExLexerLE                   = 35
+	PromQLExLexerRE                   = 36
+	PromQLExLexerNRE                  = 37
+	PromQLExLexerBY                   = 38
+	PromQLExLexerWITHOUT              = 39
+	PromQLExLexerON                   = 40
+	PromQLExLexerIGNORING             = 41
+	PromQLExLexerGROUP_LEFT           = 42
+	PromQLExLexerGROUP_RIGHT          = 43
+	PromQLExLexerOFFSET               = 44
+	PromQLExLexerBOOL                 = 45
+	PromQLExLexerLEFT_BRACE           = 46
+	PromQLExLexerRIGHT_BRACE          = 47
+	PromQLExLexerLEFT_PAREN           = 48
+	PromQLExLexerRIGHT_PAREN          = 49
+	PromQLExLexerLEFT_BRACKET         = 50
+	PromQLExLexerRIGHT_BRACKET        = 51
+	PromQLExLexerCOMMA                = 52
+	PromQLExLexerAT                   = 53
+	PromQLExLexerDURATION             = 54
+	PromQLExLexerMETRIC_NAME          = 55
+	PromQLExLexerLABEL_NAME           = 56
+	PromQLExLexerWS                   = 57
+	PromQLExLexerSL_COMMENT           = 58
+	PromQLExLexerRAW_STRING           = 59
+	PromQLExLexerBACKTICK_OPEN        = 60
 )
 
-// PromQLExtensionLexer escapedChannels.
+// PromQLExLexer escapedChannels.
 const (
-	PromQLExtensionLexerWHITESPACE = 2
-	PromQLExtensionLexerCOMMENTS   = 3
+	PromQLExLexerWHITESPACE = 2
+	PromQLExLexerCOMMENTS   = 3
 )
 
-// PromQLExtensionLexerRAW_STRING_MODE is the PromQLExtensionLexer mode.
-const PromQLExtensionLexerRAW_STRING_MODE = 1
+// PromQLExLexerRAW_STRING_MODE is the PromQLExLexer mode.
+const PromQLExLexerRAW_STRING_MODE = 1
 
 type FunctionsProvider interface {
 	GetTokenType(text string) (int, bool)
 }
 
-func (l *PromQLExtensionLexer) Action(localctx antlr.RuleContext, ruleIndex, actionIndex int) {
+func (l *PromQLExLexer) Action(localctx antlr.RuleContext, ruleIndex, actionIndex int) {
 	switch ruleIndex {
 	case 57:
 		l.METRIC_NAME_Action(localctx, actionIndex)
@@ -405,7 +405,7 @@ func (l *PromQLExtensionLexer) Action(localctx antlr.RuleContext, ruleIndex, act
 	}
 }
 
-func (l *PromQLExtensionLexer) METRIC_NAME_Action(localctx antlr.RuleContext, actionIndex int) {
+func (l *PromQLExLexer) METRIC_NAME_Action(localctx antlr.RuleContext, actionIndex int) {
 	switch actionIndex {
 	case 0:
 

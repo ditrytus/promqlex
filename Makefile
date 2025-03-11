@@ -3,7 +3,7 @@ ANTLR4_OUTPUT_DIR = parsers/$(LOWERCASE_GRAMMAR_NAME)
 ANTLR4_ARGS = -Dlanguage=Go -o ../$(ANTLR4_OUTPUT_DIR) -package $(LOWERCASE_GRAMMAR_NAME)
 
 .PHONY: all
-all: parsers/promql/promql_parser.go parsers/promqlextension/promqlextension_parser.go
+all: parsers/promql/promql_parser.go parsers/promqlex/promqlex_parser.go
 
 define build_lexer_and_parser
 
@@ -26,7 +26,7 @@ $(PARSER_OUTPUT): grammars/$(GRAMMAR_NAME)Parser.g4 grammars/$(GRAMMAR_NAME)Lexe
 endef
 
 $(eval $(call build_lexer_and_parser,PromQL))
-$(eval $(call build_lexer_and_parser,PromQLExtension))
+$(eval $(call build_lexer_and_parser,PromQLEx))
 
 .PHONY: test
 test:
