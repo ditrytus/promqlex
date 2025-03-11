@@ -2,6 +2,7 @@ package promqlex
 
 import (
 	_ "embed"
+	"fmt"
 	"github.com/antlr4-go/antlr/v4"
 	"testing"
 )
@@ -30,5 +31,15 @@ func (f FailTestErrorListener) ReportContextSensitivity(antlr.Parser, *antlr.DFA
 func NewFailTestErrorListener(t *testing.T) *FailTestErrorListener {
 	return &FailTestErrorListener{
 		t: t,
+	}
+}
+
+func readLexer(lexer antlr.Lexer) {
+	for {
+		token := lexer.NextToken()
+		if token.GetTokenType() == antlr.TokenEOF {
+			break
+		}
+		fmt.Println(token.String())
 	}
 }
