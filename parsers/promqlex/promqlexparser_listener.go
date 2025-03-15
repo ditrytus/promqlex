@@ -58,48 +58,6 @@ type PromQLExParserListener interface {
 	// EnterIso_date_time is called when entering the iso_date_time production.
 	EnterIso_date_time(c *Iso_date_timeContext)
 
-	// EnterIso_date_time_ymdhmsf is called when entering the iso_date_time_ymdhmsf production.
-	EnterIso_date_time_ymdhmsf(c *Iso_date_time_ymdhmsfContext)
-
-	// EnterIso_date_time_ymdhms is called when entering the iso_date_time_ymdhms production.
-	EnterIso_date_time_ymdhms(c *Iso_date_time_ymdhmsContext)
-
-	// EnterIso_date_time_ymdhm is called when entering the iso_date_time_ymdhm production.
-	EnterIso_date_time_ymdhm(c *Iso_date_time_ymdhmContext)
-
-	// EnterIso_date_time_ymdh is called when entering the iso_date_time_ymdh production.
-	EnterIso_date_time_ymdh(c *Iso_date_time_ymdhContext)
-
-	// EnterIso_date_time_ymd is called when entering the iso_date_time_ymd production.
-	EnterIso_date_time_ymd(c *Iso_date_time_ymdContext)
-
-	// EnterIso_date_time_ym is called when entering the iso_date_time_ym production.
-	EnterIso_date_time_ym(c *Iso_date_time_ymContext)
-
-	// EnterIso_date_time_y is called when entering the iso_date_time_y production.
-	EnterIso_date_time_y(c *Iso_date_time_yContext)
-
-	// EnterIso_year is called when entering the iso_year production.
-	EnterIso_year(c *Iso_yearContext)
-
-	// EnterIso_month is called when entering the iso_month production.
-	EnterIso_month(c *Iso_monthContext)
-
-	// EnterIso_day is called when entering the iso_day production.
-	EnterIso_day(c *Iso_dayContext)
-
-	// EnterIso_hour is called when entering the iso_hour production.
-	EnterIso_hour(c *Iso_hourContext)
-
-	// EnterIso_minutes is called when entering the iso_minutes production.
-	EnterIso_minutes(c *Iso_minutesContext)
-
-	// EnterIso_seconds is called when entering the iso_seconds production.
-	EnterIso_seconds(c *Iso_secondsContext)
-
-	// EnterIs_frac_sec is called when entering the is_frac_sec production.
-	EnterIs_frac_sec(c *Is_frac_secContext)
-
 	// EnterUnix_timestamp is called when entering the unix_timestamp production.
 	EnterUnix_timestamp(c *Unix_timestampContext)
 
@@ -145,11 +103,11 @@ type PromQLExParserListener interface {
 	// EnterMetric_name is called when entering the metric_name production.
 	EnterMetric_name(c *Metric_nameContext)
 
-	// EnterExpression is called when entering the expression production.
-	EnterExpression(c *ExpressionContext)
-
 	// EnterAt_modifier_timestamp is called when entering the at_modifier_timestamp production.
 	EnterAt_modifier_timestamp(c *At_modifier_timestampContext)
+
+	// EnterExpression is called when entering the expression production.
+	EnterExpression(c *ExpressionContext)
 
 	// EnterUnaryOp is called when entering the unaryOp production.
 	EnterUnaryOp(c *UnaryOpContext)
@@ -283,48 +241,6 @@ type PromQLExParserListener interface {
 	// ExitIso_date_time is called when exiting the iso_date_time production.
 	ExitIso_date_time(c *Iso_date_timeContext)
 
-	// ExitIso_date_time_ymdhmsf is called when exiting the iso_date_time_ymdhmsf production.
-	ExitIso_date_time_ymdhmsf(c *Iso_date_time_ymdhmsfContext)
-
-	// ExitIso_date_time_ymdhms is called when exiting the iso_date_time_ymdhms production.
-	ExitIso_date_time_ymdhms(c *Iso_date_time_ymdhmsContext)
-
-	// ExitIso_date_time_ymdhm is called when exiting the iso_date_time_ymdhm production.
-	ExitIso_date_time_ymdhm(c *Iso_date_time_ymdhmContext)
-
-	// ExitIso_date_time_ymdh is called when exiting the iso_date_time_ymdh production.
-	ExitIso_date_time_ymdh(c *Iso_date_time_ymdhContext)
-
-	// ExitIso_date_time_ymd is called when exiting the iso_date_time_ymd production.
-	ExitIso_date_time_ymd(c *Iso_date_time_ymdContext)
-
-	// ExitIso_date_time_ym is called when exiting the iso_date_time_ym production.
-	ExitIso_date_time_ym(c *Iso_date_time_ymContext)
-
-	// ExitIso_date_time_y is called when exiting the iso_date_time_y production.
-	ExitIso_date_time_y(c *Iso_date_time_yContext)
-
-	// ExitIso_year is called when exiting the iso_year production.
-	ExitIso_year(c *Iso_yearContext)
-
-	// ExitIso_month is called when exiting the iso_month production.
-	ExitIso_month(c *Iso_monthContext)
-
-	// ExitIso_day is called when exiting the iso_day production.
-	ExitIso_day(c *Iso_dayContext)
-
-	// ExitIso_hour is called when exiting the iso_hour production.
-	ExitIso_hour(c *Iso_hourContext)
-
-	// ExitIso_minutes is called when exiting the iso_minutes production.
-	ExitIso_minutes(c *Iso_minutesContext)
-
-	// ExitIso_seconds is called when exiting the iso_seconds production.
-	ExitIso_seconds(c *Iso_secondsContext)
-
-	// ExitIs_frac_sec is called when exiting the is_frac_sec production.
-	ExitIs_frac_sec(c *Is_frac_secContext)
-
 	// ExitUnix_timestamp is called when exiting the unix_timestamp production.
 	ExitUnix_timestamp(c *Unix_timestampContext)
 
@@ -370,11 +286,11 @@ type PromQLExParserListener interface {
 	// ExitMetric_name is called when exiting the metric_name production.
 	ExitMetric_name(c *Metric_nameContext)
 
-	// ExitExpression is called when exiting the expression production.
-	ExitExpression(c *ExpressionContext)
-
 	// ExitAt_modifier_timestamp is called when exiting the at_modifier_timestamp production.
 	ExitAt_modifier_timestamp(c *At_modifier_timestampContext)
+
+	// ExitExpression is called when exiting the expression production.
+	ExitExpression(c *ExpressionContext)
 
 	// ExitUnaryOp is called when exiting the unaryOp production.
 	ExitUnaryOp(c *UnaryOpContext)

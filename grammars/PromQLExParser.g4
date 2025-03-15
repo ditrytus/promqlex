@@ -53,32 +53,19 @@ time_instant_literal
     ;
 
 iso_date_time
-    : iso_date_time_ymdhmsf
-    | iso_date_time_ymdhms
-    | iso_date_time_ymdhm
-    | iso_date_time_ymdh
-    | iso_date_time_ymd
-    | iso_date_time_ym
-    | iso_date_time_y
-    ;
+    : year=NUMBER SUB (
+        month=NUMBER (
+            SUB day=NUMBER (
+                T hour=NUMBER (
+                    COLON minutes=NUMBER (
+                        COLON seconds=NUMBER
+                    )?
+                )?
+            )?
+        )?
+    )?;
 
-iso_date_time_ymdhmsf: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes COLON iso_seconds DOT is_frac_sec;
-iso_date_time_ymdhms: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes COLON iso_seconds;
-iso_date_time_ymdhm: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_minutes;
-iso_date_time_ymdh: iso_year SUB iso_month SUB iso_day T iso_hour;
-iso_date_time_ymd: iso_year SUB iso_month SUB iso_day;
-iso_date_time_ym: iso_year SUB iso_month;
-iso_date_time_y: iso_year SUB;
-
-iso_year : POSITIVE_INTEGER;
-iso_month: TWO_DIGITS;
-iso_day: TWO_DIGITS;
-iso_hour: TWO_DIGITS;
-iso_minutes: TWO_DIGITS;
-iso_seconds: TWO_DIGITS;
-is_frac_sec: DIGITS;
-
-unix_timestamp: POSITIVE_INTEGER;
+unix_timestamp: NUMBER;
 
 // Constant expressions
 
@@ -172,4 +159,10 @@ labelName
 metric_name
     : ID
     | METRIC_NAME
+    ;
+
+at_modifier_timestamp
+    : const_num_expression
+    | START LEFT_PAREN RIGHT_PAREN
+    | END LEFT_PAREN RIGHT_PAREN
     ;

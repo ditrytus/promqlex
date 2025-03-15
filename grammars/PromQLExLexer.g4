@@ -69,10 +69,6 @@ COLON: ':';
 SEMICOLON: ';';
 DOT: '.';
 
-POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
-TWO_DIGITS: [0-9] [0-9];
-DIGITS: [0-9]+;
-
 METRIC_KEYWORD: 'metric';
 LABEL_KEYWORD: 'label';
 
