@@ -9,7 +9,7 @@ options {
     tokenVocab = PromQLExLexer;
 }
 
-promqlx : statement (NL statement)* EOF;
+promqlx : statement (SEMICOLON statement)* EOF;
 
 statement
     : alias_def

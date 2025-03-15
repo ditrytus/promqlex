@@ -32,8 +32,8 @@ var PromQLExParserParserStaticData struct {
 func promqlexparserParserInit() {
 	staticData := &PromQLExParserParserStaticData
 	staticData.LiteralNames = []string{
-		"", "", "", "", "'if'", "'true'", "'false'", "'T'", "':'", "'.'", "",
-		"", "", "'metric'", "'label'", "'def'", "'$'", "", "'['", "']'", "",
+		"", "", "", "", "'if'", "'true'", "'false'", "'T'", "':'", "';'", "'.'",
+		"", "", "", "'metric'", "'label'", "'def'", "'$'", "'['", "']'", "",
 		"", "'+'", "'-'", "'*'", "'/'", "'%'", "'^'", "'and'", "'or'", "'unless'",
 		"'='", "'=='", "'!='", "'>'", "'<'", "'>='", "'<='", "'=~'", "'!~'",
 		"'by'", "'without'", "'on'", "'ignoring'", "'group_left'", "'group_right'",
@@ -41,8 +41,8 @@ func promqlexparserParserInit() {
 	}
 	staticData.SymbolicNames = []string{
 		"", "AGGREGATION_OPERATOR", "FUNCTION", "METRIC_NAME", "IF", "TRUE",
-		"FALSE", "T", "COLON", "DOT", "POSITIVE_INTEGER", "TWO_DIGITS", "DIGITS",
-		"METRIC_KEYWORD", "LABEL_KEYWORD", "DEF", "CALL_SIGN", "NL", "LEFT_BRACKET",
+		"FALSE", "T", "COLON", "SEMICOLON", "DOT", "POSITIVE_INTEGER", "TWO_DIGITS",
+		"DIGITS", "METRIC_KEYWORD", "LABEL_KEYWORD", "DEF", "CALL_SIGN", "LEFT_BRACKET",
 		"RIGHT_BRACKET", "NUMBER", "STRING", "ADD", "SUB", "MULT", "DIV", "MOD",
 		"POW", "AND", "OR", "UNLESS", "EQ", "DEQ", "NE", "GT", "LT", "GE", "LE",
 		"RE", "NRE", "BY", "WITHOUT", "ON", "IGNORING", "GROUP_LEFT", "GROUP_RIGHT",
@@ -159,19 +159,19 @@ func promqlexparserParserInit() {
 		559, 1, 0, 0, 0, 128, 561, 1, 0, 0, 0, 130, 564, 1, 0, 0, 0, 132, 569,
 		1, 0, 0, 0, 134, 575, 1, 0, 0, 0, 136, 578, 1, 0, 0, 0, 138, 581, 1, 0,
 		0, 0, 140, 585, 1, 0, 0, 0, 142, 589, 1, 0, 0, 0, 144, 602, 1, 0, 0, 0,
-		146, 604, 1, 0, 0, 0, 148, 153, 3, 2, 1, 0, 149, 150, 5, 17, 0, 0, 150,
+		146, 604, 1, 0, 0, 0, 148, 153, 3, 2, 1, 0, 149, 150, 5, 9, 0, 0, 150,
 		152, 3, 2, 1, 0, 151, 149, 1, 0, 0, 0, 152, 155, 1, 0, 0, 0, 153, 151,
 		1, 0, 0, 0, 153, 154, 1, 0, 0, 0, 154, 156, 1, 0, 0, 0, 155, 153, 1, 0,
 		0, 0, 156, 157, 5, 0, 0, 1, 157, 1, 1, 0, 0, 0, 158, 163, 3, 4, 2, 0, 159,
 		163, 3, 8, 4, 0, 160, 163, 3, 20, 10, 0, 161, 163, 3, 74, 37, 0, 162, 158,
 		1, 0, 0, 0, 162, 159, 1, 0, 0, 0, 162, 160, 1, 0, 0, 0, 162, 161, 1, 0,
-		0, 0, 163, 3, 1, 0, 0, 0, 164, 165, 5, 15, 0, 0, 165, 166, 5, 58, 0, 0,
+		0, 0, 163, 3, 1, 0, 0, 0, 164, 165, 5, 16, 0, 0, 165, 166, 5, 58, 0, 0,
 		166, 167, 5, 31, 0, 0, 167, 168, 3, 74, 37, 0, 168, 5, 1, 0, 0, 0, 169,
-		170, 5, 16, 0, 0, 170, 171, 5, 58, 0, 0, 171, 7, 1, 0, 0, 0, 172, 173,
-		5, 15, 0, 0, 173, 174, 5, 58, 0, 0, 174, 176, 5, 50, 0, 0, 175, 177, 3,
+		170, 5, 17, 0, 0, 170, 171, 5, 58, 0, 0, 171, 7, 1, 0, 0, 0, 172, 173,
+		5, 16, 0, 0, 173, 174, 5, 58, 0, 0, 174, 176, 5, 50, 0, 0, 175, 177, 3,
 		12, 6, 0, 176, 175, 1, 0, 0, 0, 176, 177, 1, 0, 0, 0, 177, 178, 1, 0, 0,
 		0, 178, 179, 5, 51, 0, 0, 179, 180, 3, 16, 8, 0, 180, 9, 1, 0, 0, 0, 181,
-		182, 5, 16, 0, 0, 182, 183, 5, 58, 0, 0, 183, 184, 5, 58, 0, 0, 184, 186,
+		182, 5, 17, 0, 0, 182, 183, 5, 58, 0, 0, 183, 184, 5, 58, 0, 0, 184, 186,
 		5, 50, 0, 0, 185, 187, 3, 18, 9, 0, 186, 185, 1, 0, 0, 0, 186, 187, 1,
 		0, 0, 0, 187, 188, 1, 0, 0, 0, 188, 189, 5, 51, 0, 0, 189, 11, 1, 0, 0,
 		0, 190, 195, 3, 14, 7, 0, 191, 192, 5, 52, 0, 0, 192, 194, 3, 14, 7, 0,
@@ -197,7 +197,7 @@ func promqlexparserParserInit() {
 		0, 243, 244, 3, 50, 25, 0, 244, 245, 5, 23, 0, 0, 245, 246, 3, 52, 26,
 		0, 246, 247, 5, 7, 0, 0, 247, 248, 3, 54, 27, 0, 248, 249, 5, 8, 0, 0,
 		249, 250, 3, 56, 28, 0, 250, 251, 5, 8, 0, 0, 251, 252, 3, 58, 29, 0, 252,
-		253, 5, 9, 0, 0, 253, 254, 3, 60, 30, 0, 254, 35, 1, 0, 0, 0, 255, 256,
+		253, 5, 10, 0, 0, 253, 254, 3, 60, 30, 0, 254, 35, 1, 0, 0, 0, 255, 256,
 		3, 48, 24, 0, 256, 257, 5, 23, 0, 0, 257, 258, 3, 50, 25, 0, 258, 259,
 		5, 23, 0, 0, 259, 260, 3, 52, 26, 0, 260, 261, 5, 7, 0, 0, 261, 262, 3,
 		54, 27, 0, 262, 263, 5, 8, 0, 0, 263, 264, 3, 56, 28, 0, 264, 265, 5, 8,
@@ -211,11 +211,11 @@ func promqlexparserParserInit() {
 		0, 0, 287, 288, 3, 50, 25, 0, 288, 289, 5, 23, 0, 0, 289, 290, 3, 52, 26,
 		0, 290, 43, 1, 0, 0, 0, 291, 292, 3, 48, 24, 0, 292, 293, 5, 23, 0, 0,
 		293, 294, 3, 50, 25, 0, 294, 45, 1, 0, 0, 0, 295, 296, 3, 48, 24, 0, 296,
-		47, 1, 0, 0, 0, 297, 298, 5, 10, 0, 0, 298, 49, 1, 0, 0, 0, 299, 300, 5,
-		11, 0, 0, 300, 51, 1, 0, 0, 0, 301, 302, 5, 11, 0, 0, 302, 53, 1, 0, 0,
-		0, 303, 304, 5, 11, 0, 0, 304, 55, 1, 0, 0, 0, 305, 306, 5, 11, 0, 0, 306,
-		57, 1, 0, 0, 0, 307, 308, 5, 11, 0, 0, 308, 59, 1, 0, 0, 0, 309, 310, 5,
-		12, 0, 0, 310, 61, 1, 0, 0, 0, 311, 312, 5, 10, 0, 0, 312, 63, 1, 0, 0,
+		47, 1, 0, 0, 0, 297, 298, 5, 11, 0, 0, 298, 49, 1, 0, 0, 0, 299, 300, 5,
+		12, 0, 0, 300, 51, 1, 0, 0, 0, 301, 302, 5, 12, 0, 0, 302, 53, 1, 0, 0,
+		0, 303, 304, 5, 12, 0, 0, 304, 55, 1, 0, 0, 0, 305, 306, 5, 12, 0, 0, 306,
+		57, 1, 0, 0, 0, 307, 308, 5, 12, 0, 0, 308, 59, 1, 0, 0, 0, 309, 310, 5,
+		13, 0, 0, 310, 61, 1, 0, 0, 0, 311, 312, 5, 11, 0, 0, 312, 63, 1, 0, 0,
 		0, 313, 314, 3, 66, 33, 0, 314, 315, 3, 96, 48, 0, 315, 316, 3, 66, 33,
 		0, 316, 334, 1, 0, 0, 0, 317, 318, 3, 94, 47, 0, 318, 319, 3, 66, 33, 0,
 		319, 334, 1, 0, 0, 0, 320, 321, 3, 66, 33, 0, 321, 322, 3, 98, 49, 0, 322,
@@ -377,15 +377,15 @@ const (
 	PromQLExParserFALSE                = 6
 	PromQLExParserT                    = 7
 	PromQLExParserCOLON                = 8
-	PromQLExParserDOT                  = 9
-	PromQLExParserPOSITIVE_INTEGER     = 10
-	PromQLExParserTWO_DIGITS           = 11
-	PromQLExParserDIGITS               = 12
-	PromQLExParserMETRIC_KEYWORD       = 13
-	PromQLExParserLABEL_KEYWORD        = 14
-	PromQLExParserDEF                  = 15
-	PromQLExParserCALL_SIGN            = 16
-	PromQLExParserNL                   = 17
+	PromQLExParserSEMICOLON            = 9
+	PromQLExParserDOT                  = 10
+	PromQLExParserPOSITIVE_INTEGER     = 11
+	PromQLExParserTWO_DIGITS           = 12
+	PromQLExParserDIGITS               = 13
+	PromQLExParserMETRIC_KEYWORD       = 14
+	PromQLExParserLABEL_KEYWORD        = 15
+	PromQLExParserDEF                  = 16
+	PromQLExParserCALL_SIGN            = 17
 	PromQLExParserLEFT_BRACKET         = 18
 	PromQLExParserRIGHT_BRACKET        = 19
 	PromQLExParserNUMBER               = 20
@@ -520,8 +520,8 @@ type IPromqlxContext interface {
 	AllStatement() []IStatementContext
 	Statement(i int) IStatementContext
 	EOF() antlr.TerminalNode
-	AllNL() []antlr.TerminalNode
-	NL(i int) antlr.TerminalNode
+	AllSEMICOLON() []antlr.TerminalNode
+	SEMICOLON(i int) antlr.TerminalNode
 
 	// IsPromqlxContext differentiates from other interfaces.
 	IsPromqlxContext()
@@ -604,12 +604,12 @@ func (s *PromqlxContext) EOF() antlr.TerminalNode {
 	return s.GetToken(PromQLExParserEOF, 0)
 }
 
-func (s *PromqlxContext) AllNL() []antlr.TerminalNode {
-	return s.GetTokens(PromQLExParserNL)
+func (s *PromqlxContext) AllSEMICOLON() []antlr.TerminalNode {
+	return s.GetTokens(PromQLExParserSEMICOLON)
 }
 
-func (s *PromqlxContext) NL(i int) antlr.TerminalNode {
-	return s.GetToken(PromQLExParserNL, i)
+func (s *PromqlxContext) SEMICOLON(i int) antlr.TerminalNode {
+	return s.GetToken(PromQLExParserSEMICOLON, i)
 }
 
 func (s *PromqlxContext) GetRuleContext() antlr.RuleContext {
@@ -649,10 +649,10 @@ func (p *PromQLExParser) Promqlx() (localctx IPromqlxContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for _la == PromQLExParserNL {
+	for _la == PromQLExParserSEMICOLON {
 		{
 			p.SetState(149)
-			p.Match(PromQLExParserNL)
+			p.Match(PromQLExParserSEMICOLON)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -1473,7 +1473,7 @@ func (p *PromQLExParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901863965710) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901864032270) != 0 {
 		{
 			p.SetState(185)
 			p.Arg_list()
@@ -6207,7 +6207,7 @@ func (p *PromQLExParser) Subquery_range() (localctx ISubquery_rangeContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&19140298430022656) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&19140298430089216) != 0 {
 		{
 			p.SetState(350)
 			p.Duration()
@@ -10218,7 +10218,7 @@ func (p *PromQLExParser) Function_() (localctx IFunction_Context) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901863965710) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901864032270) != 0 {
 		{
 			p.SetState(515)
 			p.Parameter()
@@ -10564,7 +10564,7 @@ func (p *PromQLExParser) ParameterList() (localctx IParameterListContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901863965710) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&884112901864032270) != 0 {
 		{
 			p.SetState(532)
 			p.Parameter()

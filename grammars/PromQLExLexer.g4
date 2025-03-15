@@ -66,6 +66,7 @@ FALSE: 'false';
 
 T: 'T';
 COLON: ':';
+SEMICOLON: ';';
 DOT: '.';
 
 POSITIVE_INTEGER: [0-9] | [1-9]+ [0-9]*;
@@ -77,8 +78,6 @@ LABEL_KEYWORD: 'label';
 
 DEF: 'def' -> pushMode(ID_MODE);
 CALL_SIGN: '$' -> pushMode(ID_MODE);
-
-NL: '\n' | '\r\n' ;
 
 LEFT_BRACKET  : '[' {
     if cnt, ok := l.GetInputStream().(BracketCounter); ok {
