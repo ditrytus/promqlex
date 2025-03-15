@@ -28,10 +28,6 @@ func (f FailTestErrorListener) SyntaxError(antlr.Recognizer, interface{}, int, i
 	f.t.Error("Syntax Error")
 }
 
-func (f FailTestErrorListener) ReportContextSensitivity(antlr.Parser, *antlr.DFA, int, int, int, *antlr.ATNConfigSet) {
-	f.t.Error("Context Sensitivity")
-}
-
 func NewFailTestErrorListener(t *testing.T) *FailTestErrorListener {
 	return &FailTestErrorListener{
 		t: t,
@@ -44,7 +40,7 @@ func debugPrintLexer(lexer antlr.Lexer) {
 		if token.GetTokenType() == antlr.TokenEOF {
 			break
 		}
-		fmt.Println(token.String())
+		fmt.Println(tokenStringWithName(token, lexer))
 	}
 }
 
@@ -118,15 +114,20 @@ func (a *AsciiAstPrinter) VisitTerminal(node antlr.TerminalNode) interface{} {
 }
 
 func (a *AsciiAstPrinter) tokenStringWithName(node antlr.TerminalNode) string {
+	tokenString := tokenStringWithName(node.GetSymbol(), a.lexer)
+	return tokenString
+}
+
+func tokenStringWithName(token antlr.Token, lexer antlr.Recognizer) string {
 	re := regexp.MustCompile("<(-?\\d+)>")
-	tokenString := node.GetSymbol().String()
+	tokenString := token.String()
 	tokenString = re.ReplaceAllStringFunc(tokenString, func(match string) string {
 		subMatches := re.FindStringSubmatch(match)
 		tokenType, _ := strconv.Atoi(subMatches[1])
 		if tokenType == antlr.TokenEOF {
 			return "EOF"
 		}
-		return a.lexer.GetSymbolicNames()[tokenType]
+		return lexer.GetSymbolicNames()[tokenType]
 	})
 	return tokenString
 }
