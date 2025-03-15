@@ -33,21 +33,19 @@ func promqlparserParserInit() {
 	staticData := &PromQLParserParserStaticData
 	staticData.LiteralNames = []string{
 		"", "", "", "", "", "'+'", "'-'", "'*'", "'/'", "'%'", "'^'", "'and'",
-		"'or'", "'unless'", "'='", "'=='", "'!='", "'>'", "'<'", "'>='", "'<='",
-		"'=~'", "'!~'", "'by'", "'without'", "'on'", "'ignoring'", "'group_left'",
-		"'group_right'", "'offset'", "'bool'", "'{'", "'}'", "'('", "')'", "'['",
-		"']'", "','", "'@'", "", "", "", "", "", "", "", "", "", "'start'",
-		"'end'",
+		"'or'", "'unless'", "'start'", "'end'", "'='", "'=='", "'!='", "'>'",
+		"'<'", "'>='", "'<='", "'=~'", "'!~'", "'by'", "'without'", "'on'",
+		"'ignoring'", "'group_left'", "'group_right'", "'offset'", "'bool'",
+		"'{'", "'}'", "'('", "')'", "'['", "']'", "','", "'@'",
 	}
 	staticData.SymbolicNames = []string{
 		"", "AGGREGATION_OPERATOR", "FUNCTION", "NUMBER", "STRING", "ADD", "SUB",
-		"MULT", "DIV", "MOD", "POW", "AND", "OR", "UNLESS", "EQ", "DEQ", "NE",
-		"GT", "LT", "GE", "LE", "RE", "NRE", "BY", "WITHOUT", "ON", "IGNORING",
-		"GROUP_LEFT", "GROUP_RIGHT", "OFFSET", "BOOL", "LEFT_BRACE", "RIGHT_BRACE",
-		"LEFT_PAREN", "RIGHT_PAREN", "LEFT_BRACKET", "RIGHT_BRACKET", "COMMA",
-		"AT", "SUBQUERY_RANGE", "TIME_RANGE", "DURATION", "METRIC_NAME", "LABEL_NAME",
-		"WS", "SL_COMMENT", "RAW_STRING", "AT_NUMBER", "START", "END", "AT_WS",
-		"AT_OTHER", "BACKTICK_OPEN",
+		"MULT", "DIV", "MOD", "POW", "AND", "OR", "UNLESS", "START", "END",
+		"EQ", "DEQ", "NE", "GT", "LT", "GE", "LE", "RE", "NRE", "BY", "WITHOUT",
+		"ON", "IGNORING", "GROUP_LEFT", "GROUP_RIGHT", "OFFSET", "BOOL", "LEFT_BRACE",
+		"RIGHT_BRACE", "LEFT_PAREN", "RIGHT_PAREN", "LEFT_BRACKET", "RIGHT_BRACKET",
+		"COMMA", "AT", "SUBQUERY_RANGE", "TIME_RANGE", "DURATION", "METRIC_NAME",
+		"LABEL_NAME", "WS", "SL_COMMENT", "RAW_STRING", "BACKTICK_OPEN",
 	}
 	staticData.RuleNames = []string{
 		"expression", "vectorOperation", "at_modifier_timestamp", "unaryOp",
@@ -60,7 +58,7 @@ func promqlparserParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 52, 331, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 49, 331, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -96,8 +94,8 @@ func promqlparserParserInit() {
 		35, 327, 8, 35, 1, 36, 1, 36, 1, 36, 0, 1, 2, 37, 0, 2, 4, 6, 8, 10, 12,
 		14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48,
 		50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 0, 8, 1, 0, 5, 6, 1, 0,
-		7, 9, 1, 0, 15, 20, 2, 0, 11, 11, 13, 13, 2, 0, 13, 13, 25, 25, 3, 0, 14,
-		14, 16, 16, 21, 22, 3, 0, 1, 2, 11, 13, 23, 30, 2, 0, 4, 4, 46, 46, 345,
+		7, 9, 1, 0, 17, 22, 2, 0, 11, 11, 13, 13, 2, 0, 13, 13, 27, 27, 3, 0, 16,
+		16, 18, 18, 23, 24, 3, 0, 1, 2, 11, 13, 25, 32, 2, 0, 4, 4, 48, 48, 345,
 		0, 74, 1, 0, 0, 0, 2, 82, 1, 0, 0, 0, 4, 129, 1, 0, 0, 0, 6, 131, 1, 0,
 		0, 0, 8, 133, 1, 0, 0, 0, 10, 137, 1, 0, 0, 0, 12, 141, 1, 0, 0, 0, 14,
 		145, 1, 0, 0, 0, 16, 152, 1, 0, 0, 0, 18, 156, 1, 0, 0, 0, 20, 160, 1,
@@ -121,20 +119,20 @@ func promqlparserParserInit() {
 		3, 18, 9, 0, 106, 107, 3, 2, 1, 5, 107, 118, 1, 0, 0, 0, 108, 109, 10,
 		3, 0, 0, 109, 110, 3, 20, 10, 0, 110, 111, 3, 2, 1, 4, 111, 118, 1, 0,
 		0, 0, 112, 113, 10, 10, 0, 0, 113, 118, 3, 22, 11, 0, 114, 115, 10, 2,
-		0, 0, 115, 116, 5, 38, 0, 0, 116, 118, 3, 4, 2, 0, 117, 84, 1, 0, 0, 0,
+		0, 0, 115, 116, 5, 40, 0, 0, 116, 118, 3, 4, 2, 0, 117, 84, 1, 0, 0, 0,
 		117, 88, 1, 0, 0, 0, 117, 92, 1, 0, 0, 0, 117, 96, 1, 0, 0, 0, 117, 100,
 		1, 0, 0, 0, 117, 104, 1, 0, 0, 0, 117, 108, 1, 0, 0, 0, 117, 112, 1, 0,
 		0, 0, 117, 114, 1, 0, 0, 0, 118, 121, 1, 0, 0, 0, 119, 117, 1, 0, 0, 0,
 		119, 120, 1, 0, 0, 0, 120, 3, 1, 0, 0, 0, 121, 119, 1, 0, 0, 0, 122, 130,
-		5, 47, 0, 0, 123, 124, 5, 48, 0, 0, 124, 125, 5, 33, 0, 0, 125, 130, 5,
-		34, 0, 0, 126, 127, 5, 49, 0, 0, 127, 128, 5, 33, 0, 0, 128, 130, 5, 34,
+		5, 3, 0, 0, 123, 124, 5, 14, 0, 0, 124, 125, 5, 35, 0, 0, 125, 130, 5,
+		36, 0, 0, 126, 127, 5, 15, 0, 0, 127, 128, 5, 35, 0, 0, 128, 130, 5, 36,
 		0, 0, 129, 122, 1, 0, 0, 0, 129, 123, 1, 0, 0, 0, 129, 126, 1, 0, 0, 0,
 		130, 5, 1, 0, 0, 0, 131, 132, 7, 0, 0, 0, 132, 7, 1, 0, 0, 0, 133, 135,
 		5, 10, 0, 0, 134, 136, 3, 54, 27, 0, 135, 134, 1, 0, 0, 0, 135, 136, 1,
 		0, 0, 0, 136, 9, 1, 0, 0, 0, 137, 139, 7, 1, 0, 0, 138, 140, 3, 54, 27,
 		0, 139, 138, 1, 0, 0, 0, 139, 140, 1, 0, 0, 0, 140, 11, 1, 0, 0, 0, 141,
 		143, 7, 0, 0, 0, 142, 144, 3, 54, 27, 0, 143, 142, 1, 0, 0, 0, 143, 144,
-		1, 0, 0, 0, 144, 13, 1, 0, 0, 0, 145, 147, 7, 2, 0, 0, 146, 148, 5, 30,
+		1, 0, 0, 0, 144, 13, 1, 0, 0, 0, 145, 147, 7, 2, 0, 0, 146, 148, 5, 32,
 		0, 0, 147, 146, 1, 0, 0, 0, 147, 148, 1, 0, 0, 0, 148, 150, 1, 0, 0, 0,
 		149, 151, 3, 54, 27, 0, 150, 149, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0, 151,
 		15, 1, 0, 0, 0, 152, 154, 7, 3, 0, 0, 153, 155, 3, 54, 27, 0, 154, 153,
@@ -142,65 +140,65 @@ func promqlparserParserInit() {
 		0, 0, 157, 159, 3, 54, 27, 0, 158, 157, 1, 0, 0, 0, 158, 159, 1, 0, 0,
 		0, 159, 19, 1, 0, 0, 0, 160, 162, 7, 4, 0, 0, 161, 163, 3, 54, 27, 0, 162,
 		161, 1, 0, 0, 0, 162, 163, 1, 0, 0, 0, 163, 21, 1, 0, 0, 0, 164, 166, 5,
-		39, 0, 0, 165, 167, 3, 24, 12, 0, 166, 165, 1, 0, 0, 0, 166, 167, 1, 0,
-		0, 0, 167, 23, 1, 0, 0, 0, 168, 169, 5, 29, 0, 0, 169, 170, 5, 41, 0, 0,
+		41, 0, 0, 165, 167, 3, 24, 12, 0, 166, 165, 1, 0, 0, 0, 166, 167, 1, 0,
+		0, 0, 167, 23, 1, 0, 0, 0, 168, 169, 5, 31, 0, 0, 169, 170, 5, 43, 0, 0,
 		170, 25, 1, 0, 0, 0, 171, 179, 3, 42, 21, 0, 172, 179, 3, 48, 24, 0, 173,
 		179, 3, 30, 15, 0, 174, 179, 3, 38, 19, 0, 175, 179, 3, 40, 20, 0, 176,
 		179, 3, 70, 35, 0, 177, 179, 3, 28, 14, 0, 178, 171, 1, 0, 0, 0, 178, 172,
 		1, 0, 0, 0, 178, 173, 1, 0, 0, 0, 178, 174, 1, 0, 0, 0, 178, 175, 1, 0,
 		0, 0, 178, 176, 1, 0, 0, 0, 178, 177, 1, 0, 0, 0, 179, 27, 1, 0, 0, 0,
-		180, 181, 5, 33, 0, 0, 181, 182, 3, 2, 1, 0, 182, 183, 5, 34, 0, 0, 183,
-		29, 1, 0, 0, 0, 184, 190, 5, 42, 0, 0, 185, 187, 5, 31, 0, 0, 186, 188,
+		180, 181, 5, 35, 0, 0, 181, 182, 3, 2, 1, 0, 182, 183, 5, 36, 0, 0, 183,
+		29, 1, 0, 0, 0, 184, 190, 5, 44, 0, 0, 185, 187, 5, 33, 0, 0, 186, 188,
 		3, 36, 18, 0, 187, 186, 1, 0, 0, 0, 187, 188, 1, 0, 0, 0, 188, 189, 1,
-		0, 0, 0, 189, 191, 5, 32, 0, 0, 190, 185, 1, 0, 0, 0, 190, 191, 1, 0, 0,
-		0, 191, 197, 1, 0, 0, 0, 192, 193, 5, 31, 0, 0, 193, 194, 3, 36, 18, 0,
-		194, 195, 5, 32, 0, 0, 195, 197, 1, 0, 0, 0, 196, 184, 1, 0, 0, 0, 196,
+		0, 0, 0, 189, 191, 5, 34, 0, 0, 190, 185, 1, 0, 0, 0, 190, 191, 1, 0, 0,
+		0, 191, 197, 1, 0, 0, 0, 192, 193, 5, 33, 0, 0, 193, 194, 3, 36, 18, 0,
+		194, 195, 5, 34, 0, 0, 195, 197, 1, 0, 0, 0, 196, 184, 1, 0, 0, 0, 196,
 		192, 1, 0, 0, 0, 197, 31, 1, 0, 0, 0, 198, 199, 3, 64, 32, 0, 199, 200,
 		3, 34, 17, 0, 200, 201, 3, 72, 36, 0, 201, 33, 1, 0, 0, 0, 202, 203, 7,
-		5, 0, 0, 203, 35, 1, 0, 0, 0, 204, 209, 3, 32, 16, 0, 205, 206, 5, 37,
+		5, 0, 0, 203, 35, 1, 0, 0, 0, 204, 209, 3, 32, 16, 0, 205, 206, 5, 39,
 		0, 0, 206, 208, 3, 32, 16, 0, 207, 205, 1, 0, 0, 0, 208, 211, 1, 0, 0,
 		0, 209, 207, 1, 0, 0, 0, 209, 210, 1, 0, 0, 0, 210, 213, 1, 0, 0, 0, 211,
-		209, 1, 0, 0, 0, 212, 214, 5, 37, 0, 0, 213, 212, 1, 0, 0, 0, 213, 214,
-		1, 0, 0, 0, 214, 37, 1, 0, 0, 0, 215, 216, 3, 30, 15, 0, 216, 217, 5, 40,
-		0, 0, 217, 39, 1, 0, 0, 0, 218, 219, 3, 30, 15, 0, 219, 220, 5, 29, 0,
-		0, 220, 221, 5, 41, 0, 0, 221, 227, 1, 0, 0, 0, 222, 223, 3, 38, 19, 0,
-		223, 224, 5, 29, 0, 0, 224, 225, 5, 41, 0, 0, 225, 227, 1, 0, 0, 0, 226,
+		209, 1, 0, 0, 0, 212, 214, 5, 39, 0, 0, 213, 212, 1, 0, 0, 0, 213, 214,
+		1, 0, 0, 0, 214, 37, 1, 0, 0, 0, 215, 216, 3, 30, 15, 0, 216, 217, 5, 42,
+		0, 0, 217, 39, 1, 0, 0, 0, 218, 219, 3, 30, 15, 0, 219, 220, 5, 31, 0,
+		0, 220, 221, 5, 43, 0, 0, 221, 227, 1, 0, 0, 0, 222, 223, 3, 38, 19, 0,
+		223, 224, 5, 31, 0, 0, 224, 225, 5, 43, 0, 0, 225, 227, 1, 0, 0, 0, 226,
 		218, 1, 0, 0, 0, 226, 222, 1, 0, 0, 0, 227, 41, 1, 0, 0, 0, 228, 229, 5,
-		2, 0, 0, 229, 238, 5, 33, 0, 0, 230, 235, 3, 44, 22, 0, 231, 232, 5, 37,
+		2, 0, 0, 229, 238, 5, 35, 0, 0, 230, 235, 3, 44, 22, 0, 231, 232, 5, 39,
 		0, 0, 232, 234, 3, 44, 22, 0, 233, 231, 1, 0, 0, 0, 234, 237, 1, 0, 0,
 		0, 235, 233, 1, 0, 0, 0, 235, 236, 1, 0, 0, 0, 236, 239, 1, 0, 0, 0, 237,
 		235, 1, 0, 0, 0, 238, 230, 1, 0, 0, 0, 238, 239, 1, 0, 0, 0, 239, 240,
-		1, 0, 0, 0, 240, 241, 5, 34, 0, 0, 241, 43, 1, 0, 0, 0, 242, 245, 3, 70,
+		1, 0, 0, 0, 240, 241, 5, 36, 0, 0, 241, 43, 1, 0, 0, 0, 242, 245, 3, 70,
 		35, 0, 243, 245, 3, 2, 1, 0, 244, 242, 1, 0, 0, 0, 244, 243, 1, 0, 0, 0,
-		245, 45, 1, 0, 0, 0, 246, 255, 5, 33, 0, 0, 247, 252, 3, 44, 22, 0, 248,
-		249, 5, 37, 0, 0, 249, 251, 3, 44, 22, 0, 250, 248, 1, 0, 0, 0, 251, 254,
+		245, 45, 1, 0, 0, 0, 246, 255, 5, 35, 0, 0, 247, 252, 3, 44, 22, 0, 248,
+		249, 5, 39, 0, 0, 249, 251, 3, 44, 22, 0, 250, 248, 1, 0, 0, 0, 251, 254,
 		1, 0, 0, 0, 252, 250, 1, 0, 0, 0, 252, 253, 1, 0, 0, 0, 253, 256, 1, 0,
 		0, 0, 254, 252, 1, 0, 0, 0, 255, 247, 1, 0, 0, 0, 255, 256, 1, 0, 0, 0,
-		256, 257, 1, 0, 0, 0, 257, 258, 5, 34, 0, 0, 258, 47, 1, 0, 0, 0, 259,
+		256, 257, 1, 0, 0, 0, 257, 258, 5, 36, 0, 0, 258, 47, 1, 0, 0, 0, 259,
 		260, 5, 1, 0, 0, 260, 275, 3, 46, 23, 0, 261, 264, 5, 1, 0, 0, 262, 265,
 		3, 50, 25, 0, 263, 265, 3, 52, 26, 0, 264, 262, 1, 0, 0, 0, 264, 263, 1,
 		0, 0, 0, 265, 266, 1, 0, 0, 0, 266, 267, 3, 46, 23, 0, 267, 275, 1, 0,
 		0, 0, 268, 269, 5, 1, 0, 0, 269, 272, 3, 46, 23, 0, 270, 273, 3, 50, 25,
 		0, 271, 273, 3, 52, 26, 0, 272, 270, 1, 0, 0, 0, 272, 271, 1, 0, 0, 0,
 		273, 275, 1, 0, 0, 0, 274, 259, 1, 0, 0, 0, 274, 261, 1, 0, 0, 0, 274,
-		268, 1, 0, 0, 0, 275, 49, 1, 0, 0, 0, 276, 277, 5, 23, 0, 0, 277, 278,
-		3, 66, 33, 0, 278, 51, 1, 0, 0, 0, 279, 280, 5, 24, 0, 0, 280, 281, 3,
+		268, 1, 0, 0, 0, 275, 49, 1, 0, 0, 0, 276, 277, 5, 25, 0, 0, 277, 278,
+		3, 66, 33, 0, 278, 51, 1, 0, 0, 0, 279, 280, 5, 26, 0, 0, 280, 281, 3,
 		66, 33, 0, 281, 53, 1, 0, 0, 0, 282, 285, 3, 56, 28, 0, 283, 285, 3, 58,
 		29, 0, 284, 282, 1, 0, 0, 0, 284, 283, 1, 0, 0, 0, 285, 288, 1, 0, 0, 0,
 		286, 289, 3, 60, 30, 0, 287, 289, 3, 62, 31, 0, 288, 286, 1, 0, 0, 0, 288,
 		287, 1, 0, 0, 0, 288, 289, 1, 0, 0, 0, 289, 55, 1, 0, 0, 0, 290, 291, 5,
-		25, 0, 0, 291, 292, 3, 66, 33, 0, 292, 57, 1, 0, 0, 0, 293, 294, 5, 26,
-		0, 0, 294, 295, 3, 66, 33, 0, 295, 59, 1, 0, 0, 0, 296, 298, 5, 27, 0,
+		27, 0, 0, 291, 292, 3, 66, 33, 0, 292, 57, 1, 0, 0, 0, 293, 294, 5, 28,
+		0, 0, 294, 295, 3, 66, 33, 0, 295, 59, 1, 0, 0, 0, 296, 298, 5, 29, 0,
 		0, 297, 299, 3, 66, 33, 0, 298, 297, 1, 0, 0, 0, 298, 299, 1, 0, 0, 0,
-		299, 61, 1, 0, 0, 0, 300, 302, 5, 28, 0, 0, 301, 303, 3, 66, 33, 0, 302,
+		299, 61, 1, 0, 0, 0, 300, 302, 5, 30, 0, 0, 301, 303, 3, 66, 33, 0, 302,
 		301, 1, 0, 0, 0, 302, 303, 1, 0, 0, 0, 303, 63, 1, 0, 0, 0, 304, 308, 3,
-		68, 34, 0, 305, 308, 5, 42, 0, 0, 306, 308, 5, 43, 0, 0, 307, 304, 1, 0,
+		68, 34, 0, 305, 308, 5, 44, 0, 0, 306, 308, 5, 45, 0, 0, 307, 304, 1, 0,
 		0, 0, 307, 305, 1, 0, 0, 0, 307, 306, 1, 0, 0, 0, 308, 65, 1, 0, 0, 0,
-		309, 318, 5, 33, 0, 0, 310, 315, 3, 64, 32, 0, 311, 312, 5, 37, 0, 0, 312,
+		309, 318, 5, 35, 0, 0, 310, 315, 3, 64, 32, 0, 311, 312, 5, 39, 0, 0, 312,
 		314, 3, 64, 32, 0, 313, 311, 1, 0, 0, 0, 314, 317, 1, 0, 0, 0, 315, 313,
 		1, 0, 0, 0, 315, 316, 1, 0, 0, 0, 316, 319, 1, 0, 0, 0, 317, 315, 1, 0,
 		0, 0, 318, 310, 1, 0, 0, 0, 318, 319, 1, 0, 0, 0, 319, 320, 1, 0, 0, 0,
-		320, 321, 5, 34, 0, 0, 321, 67, 1, 0, 0, 0, 322, 323, 7, 6, 0, 0, 323,
+		320, 321, 5, 36, 0, 0, 321, 67, 1, 0, 0, 0, 322, 323, 7, 6, 0, 0, 323,
 		69, 1, 0, 0, 0, 324, 327, 5, 3, 0, 0, 325, 327, 3, 72, 36, 0, 326, 324,
 		1, 0, 0, 0, 326, 325, 1, 0, 0, 0, 327, 71, 1, 0, 0, 0, 328, 329, 7, 7,
 		0, 0, 329, 73, 1, 0, 0, 0, 36, 82, 117, 119, 129, 135, 139, 143, 147, 150,
@@ -257,45 +255,42 @@ const (
 	PromQLParserAND                  = 11
 	PromQLParserOR                   = 12
 	PromQLParserUNLESS               = 13
-	PromQLParserEQ                   = 14
-	PromQLParserDEQ                  = 15
-	PromQLParserNE                   = 16
-	PromQLParserGT                   = 17
-	PromQLParserLT                   = 18
-	PromQLParserGE                   = 19
-	PromQLParserLE                   = 20
-	PromQLParserRE                   = 21
-	PromQLParserNRE                  = 22
-	PromQLParserBY                   = 23
-	PromQLParserWITHOUT              = 24
-	PromQLParserON                   = 25
-	PromQLParserIGNORING             = 26
-	PromQLParserGROUP_LEFT           = 27
-	PromQLParserGROUP_RIGHT          = 28
-	PromQLParserOFFSET               = 29
-	PromQLParserBOOL                 = 30
-	PromQLParserLEFT_BRACE           = 31
-	PromQLParserRIGHT_BRACE          = 32
-	PromQLParserLEFT_PAREN           = 33
-	PromQLParserRIGHT_PAREN          = 34
-	PromQLParserLEFT_BRACKET         = 35
-	PromQLParserRIGHT_BRACKET        = 36
-	PromQLParserCOMMA                = 37
-	PromQLParserAT                   = 38
-	PromQLParserSUBQUERY_RANGE       = 39
-	PromQLParserTIME_RANGE           = 40
-	PromQLParserDURATION             = 41
-	PromQLParserMETRIC_NAME          = 42
-	PromQLParserLABEL_NAME           = 43
-	PromQLParserWS                   = 44
-	PromQLParserSL_COMMENT           = 45
-	PromQLParserRAW_STRING           = 46
-	PromQLParserAT_NUMBER            = 47
-	PromQLParserSTART                = 48
-	PromQLParserEND                  = 49
-	PromQLParserAT_WS                = 50
-	PromQLParserAT_OTHER             = 51
-	PromQLParserBACKTICK_OPEN        = 52
+	PromQLParserSTART                = 14
+	PromQLParserEND                  = 15
+	PromQLParserEQ                   = 16
+	PromQLParserDEQ                  = 17
+	PromQLParserNE                   = 18
+	PromQLParserGT                   = 19
+	PromQLParserLT                   = 20
+	PromQLParserGE                   = 21
+	PromQLParserLE                   = 22
+	PromQLParserRE                   = 23
+	PromQLParserNRE                  = 24
+	PromQLParserBY                   = 25
+	PromQLParserWITHOUT              = 26
+	PromQLParserON                   = 27
+	PromQLParserIGNORING             = 28
+	PromQLParserGROUP_LEFT           = 29
+	PromQLParserGROUP_RIGHT          = 30
+	PromQLParserOFFSET               = 31
+	PromQLParserBOOL                 = 32
+	PromQLParserLEFT_BRACE           = 33
+	PromQLParserRIGHT_BRACE          = 34
+	PromQLParserLEFT_PAREN           = 35
+	PromQLParserRIGHT_PAREN          = 36
+	PromQLParserLEFT_BRACKET         = 37
+	PromQLParserRIGHT_BRACKET        = 38
+	PromQLParserCOMMA                = 39
+	PromQLParserAT                   = 40
+	PromQLParserSUBQUERY_RANGE       = 41
+	PromQLParserTIME_RANGE           = 42
+	PromQLParserDURATION             = 43
+	PromQLParserMETRIC_NAME          = 44
+	PromQLParserLABEL_NAME           = 45
+	PromQLParserWS                   = 46
+	PromQLParserSL_COMMENT           = 47
+	PromQLParserRAW_STRING           = 48
+	PromQLParserBACKTICK_OPEN        = 49
 )
 
 // PromQLParser rules.
@@ -1021,7 +1016,7 @@ type IAt_modifier_timestampContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AT_NUMBER() antlr.TerminalNode
+	NUMBER() antlr.TerminalNode
 	START() antlr.TerminalNode
 	LEFT_PAREN() antlr.TerminalNode
 	RIGHT_PAREN() antlr.TerminalNode
@@ -1063,8 +1058,8 @@ func NewAt_modifier_timestampContext(parser antlr.Parser, parent antlr.ParserRul
 
 func (s *At_modifier_timestampContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *At_modifier_timestampContext) AT_NUMBER() antlr.TerminalNode {
-	return s.GetToken(PromQLParserAT_NUMBER, 0)
+func (s *At_modifier_timestampContext) NUMBER() antlr.TerminalNode {
+	return s.GetToken(PromQLParserNUMBER, 0)
 }
 
 func (s *At_modifier_timestampContext) START() antlr.TerminalNode {
@@ -1113,11 +1108,11 @@ func (p *PromQLParser) At_modifier_timestamp() (localctx IAt_modifier_timestampC
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case PromQLParserAT_NUMBER:
+	case PromQLParserNUMBER:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(122)
-			p.Match(PromQLParserAT_NUMBER)
+			p.Match(PromQLParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -1837,7 +1832,7 @@ func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 		p.SetState(145)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2064384) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8257536) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -3055,7 +3050,7 @@ func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 			}
 			_la = p.GetTokenStream().LA(1)
 
-			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&13196278642694) != 0 {
+			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&52785114527750) != 0 {
 				{
 					p.SetState(186)
 					p.LabelMatcherList()
@@ -3357,7 +3352,7 @@ func (p *PromQLParser) LabelMatcherOperator() (localctx ILabelMatcherOperatorCon
 		p.SetState(202)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&6373376) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&25493504) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -4036,7 +4031,7 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&74777528107134) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&299110112428158) != 0 {
 		{
 			p.SetState(230)
 			p.Parameter()
@@ -4382,7 +4377,7 @@ func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&74777528107134) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&299110112428158) != 0 {
 		{
 			p.SetState(247)
 			p.Parameter()
@@ -5890,7 +5885,7 @@ func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&13196278642694) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&52785114527750) != 0 {
 		{
 			p.SetState(310)
 			p.LabelName()
@@ -6087,7 +6082,7 @@ func (p *PromQLParser) Keyword() (localctx IKeywordContext) {
 		p.SetState(322)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2139109382) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8556394502) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)

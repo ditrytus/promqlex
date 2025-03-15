@@ -60,7 +60,7 @@ vectorOperation
 // At modifier
 
 at_modifier_timestamp
-    : AT_NUMBER
+    : NUMBER
     | START LEFT_PAREN RIGHT_PAREN
     | END LEFT_PAREN RIGHT_PAREN
     ;
