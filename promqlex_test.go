@@ -31,7 +31,7 @@ func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 						parser.PromQLExLexerAGGREGATION_OPERATOR,
 					)
 					functionSet.AddAggregationOperators(PrometheusExperimentalAggregationOperators)
-					providerInput := NewFunctionProviderInputStream(input, functionSet)
+					providerInput := NewInputStream(input, functionSet)
 					lexer := parser.NewPromQLExLexer(providerInput)
 					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 					p := parser.NewPromQLExParser(tokens)

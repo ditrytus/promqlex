@@ -106,7 +106,7 @@ duration : const_num_expression;
 time_range: LEFT_BRACKET duration RIGHT_BRACKET;
 
 // This rule was converted from lexer rule SUBQUERY_RANGE.
-subquery_range: LEFT_BRACKET duration ':' duration? RIGHT_BRACKET;
+subquery_range: LEFT_BRACKET duration COLON duration? RIGHT_BRACKET;
 
 // Overrides of PromQLParser parser rules
 

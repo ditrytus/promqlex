@@ -6,6 +6,15 @@ lexer grammar PromQLExLexer;
 
 import PromQLLexer;
 
+@members {
+
+type BracketCounter interface {
+    BracketCount() int
+    SetBracketCount(val int)
+}
+
+}
+
 // All keywords in PromQL are case insensitive, it is just function,
 // label and metric names that are not.
 options {
@@ -30,7 +39,11 @@ ID options {
   }
 };
 
-METRIC_NAME : [a-z_:] [a-z0-9_:]*;
+METRIC_NAME : { func() bool {
+        cnt, ok := p.GetInputStream().(BracketCounter)
+        return !ok || (ok && cnt.BracketCount() == 0)
+    }()
+}? [a-z_:] [a-z0-9_:]*;
 
 IF: 'if';
 
@@ -52,3 +65,15 @@ DEF: 'def';
 CALL_SIGN: '$';
 
 NL: '\n' | '\r\n' ;
+
+LEFT_BRACKET  : '[' {
+    if cnt, ok := l.GetInputStream().(BracketCounter); ok {
+        cnt.SetBracketCount(cnt.BracketCount()+1)
+    }
+};
+
+RIGHT_BRACKET : ']' {
+    if cnt, ok := l.GetInputStream().(BracketCounter); ok {
+        cnt.SetBracketCount(cnt.BracketCount()-1)
+    }
+};

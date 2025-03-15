@@ -119,7 +119,7 @@ func (a *AsciiAstPrinter) VisitTerminal(node antlr.TerminalNode) interface{} {
 		if tokenType == antlr.TokenEOF {
 			return "EOF"
 		}
-		return a.lexer.GetRuleNames()[tokenType]
+		return a.lexer.GetSymbolicNames()[tokenType]
 	})
 	line := fmt.Sprintf("%s%s\n", a.prefix, tokenString)
 	_, _ = a.writer.Write([]byte(line))
