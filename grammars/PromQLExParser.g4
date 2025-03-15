@@ -68,7 +68,7 @@ iso_date_time_ymdhm: iso_year SUB iso_month SUB iso_day T iso_hour COLON iso_min
 iso_date_time_ymdh: iso_year SUB iso_month SUB iso_day T iso_hour;
 iso_date_time_ymd: iso_year SUB iso_month SUB iso_day;
 iso_date_time_ym: iso_year SUB iso_month;
-iso_date_time_y: iso_year;
+iso_date_time_y: iso_year SUB;
 
 iso_year : POSITIVE_INTEGER;
 iso_month: TWO_DIGITS;
