@@ -120,7 +120,7 @@ vectorOperation
     | vectorOperation andUnlessOp vectorOperation
     | vectorOperation orOp vectorOperation
     | vectorOperation vectorMatchOp vectorOperation
-    | vectorOperation AT vectorOperation
+    | vectorOperation AT at_modifier_timestamp
     | vector
     // PROMQLX: an alias or macro call can be used anywhere in the context of vector operation.
     | macro_call

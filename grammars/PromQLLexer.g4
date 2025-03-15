@@ -117,7 +117,7 @@ RIGHT_BRACKET : ']';
 
 COMMA: ',';
 
-AT: '@';
+AT: '@' -> pushMode(AT_MODE);
 
 SUBQUERY_RANGE: LEFT_BRACKET DURATION ':' DURATION? RIGHT_BRACKET;
 
@@ -143,3 +143,16 @@ mode RAW_STRING_MODE;
 RAW_STRING_CONTENT: (~('`' | '\\') | '\\`')+ -> more;
 
 RAW_STRING : '`' -> popMode;
+
+// Preprocessor functions
+
+mode AT_MODE;
+
+AT_NUMBER : NUMBER;
+START : 'start' -> popMode;
+END : 'end' -> popMode;
+
+AT_WS    : [\r\t\n ]+   -> channel(WHITESPACE);
+AT_OTHER : .+? -> popMode;
+
+

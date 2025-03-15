@@ -76,7 +76,10 @@ queries:
   - count_values by (node) ('pod', container_cpu_usage_seconds_total)
   - last_over_time(container_cpu_usage_seconds_total[1m])
   - http_requests_total @ 1609746000
-  - http_requests_total @ timestamp(metric_name{label="value"})
+  # This query is not a valid PromQL query but was used in original grammar test
+  # - http_requests_total @ timestamp(metric_name{label="value"})
+  - http_requests_total @ start()
+  - http_requests_total @ end()
   - |
     # testing
     # comments

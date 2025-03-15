@@ -13,6 +13,9 @@ type PromQLParserListener interface {
 	// EnterVectorOperation is called when entering the vectorOperation production.
 	EnterVectorOperation(c *VectorOperationContext)
 
+	// EnterAt_modifier_timestamp is called when entering the at_modifier_timestamp production.
+	EnterAt_modifier_timestamp(c *At_modifier_timestampContext)
+
 	// EnterUnaryOp is called when entering the unaryOp production.
 	EnterUnaryOp(c *UnaryOpContext)
 
@@ -120,6 +123,9 @@ type PromQLParserListener interface {
 
 	// ExitVectorOperation is called when exiting the vectorOperation production.
 	ExitVectorOperation(c *VectorOperationContext)
+
+	// ExitAt_modifier_timestamp is called when exiting the at_modifier_timestamp production.
+	ExitAt_modifier_timestamp(c *At_modifier_timestampContext)
 
 	// ExitUnaryOp is called when exiting the unaryOp production.
 	ExitUnaryOp(c *UnaryOpContext)

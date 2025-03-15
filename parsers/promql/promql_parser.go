@@ -36,7 +36,8 @@ func promqlparserParserInit() {
 		"'or'", "'unless'", "'='", "'=='", "'!='", "'>'", "'<'", "'>='", "'<='",
 		"'=~'", "'!~'", "'by'", "'without'", "'on'", "'ignoring'", "'group_left'",
 		"'group_right'", "'offset'", "'bool'", "'{'", "'}'", "'('", "')'", "'['",
-		"']'", "','", "'@'",
+		"']'", "','", "'@'", "", "", "", "", "", "", "", "", "", "'start'",
+		"'end'",
 	}
 	staticData.SymbolicNames = []string{
 		"", "AGGREGATION_OPERATOR", "FUNCTION", "NUMBER", "STRING", "ADD", "SUB",
@@ -45,160 +46,166 @@ func promqlparserParserInit() {
 		"GROUP_LEFT", "GROUP_RIGHT", "OFFSET", "BOOL", "LEFT_BRACE", "RIGHT_BRACE",
 		"LEFT_PAREN", "RIGHT_PAREN", "LEFT_BRACKET", "RIGHT_BRACKET", "COMMA",
 		"AT", "SUBQUERY_RANGE", "TIME_RANGE", "DURATION", "METRIC_NAME", "LABEL_NAME",
-		"WS", "SL_COMMENT", "RAW_STRING", "BACKTICK_OPEN",
+		"WS", "SL_COMMENT", "RAW_STRING", "AT_NUMBER", "START", "END", "AT_WS",
+		"AT_OTHER", "BACKTICK_OPEN",
 	}
 	staticData.RuleNames = []string{
-		"expression", "vectorOperation", "unaryOp", "powOp", "multOp", "addOp",
-		"compareOp", "andUnlessOp", "orOp", "vectorMatchOp", "subqueryOp", "offsetOp",
-		"vector", "parens", "instantSelector", "labelMatcher", "labelMatcherOperator",
-		"labelMatcherList", "matrixSelector", "offset", "function_", "parameter",
-		"parameterList", "aggregation", "by", "without", "grouping", "on_",
-		"ignoring", "groupLeft", "groupRight", "labelName", "labelNameList",
-		"keyword", "literal", "string",
+		"expression", "vectorOperation", "at_modifier_timestamp", "unaryOp",
+		"powOp", "multOp", "addOp", "compareOp", "andUnlessOp", "orOp", "vectorMatchOp",
+		"subqueryOp", "offsetOp", "vector", "parens", "instantSelector", "labelMatcher",
+		"labelMatcherOperator", "labelMatcherList", "matrixSelector", "offset",
+		"function_", "parameter", "parameterList", "aggregation", "by", "without",
+		"grouping", "on_", "ignoring", "groupLeft", "groupRight", "labelName",
+		"labelNameList", "keyword", "literal", "string",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 47, 320, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 52, 331, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
 		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
 		7, 26, 2, 27, 7, 27, 2, 28, 7, 28, 2, 29, 7, 29, 2, 30, 7, 30, 2, 31, 7,
-		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 1, 0, 1, 0,
-		1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 81, 8, 1, 1, 1, 1, 1, 1, 1, 1,
+		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 2, 36, 7, 36,
+		1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 83, 8, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 116, 8, 1, 10, 1, 12, 1, 119, 9,
-		1, 1, 2, 1, 2, 1, 3, 1, 3, 3, 3, 125, 8, 3, 1, 4, 1, 4, 3, 4, 129, 8, 4,
-		1, 5, 1, 5, 3, 5, 133, 8, 5, 1, 6, 1, 6, 3, 6, 137, 8, 6, 1, 6, 3, 6, 140,
-		8, 6, 1, 7, 1, 7, 3, 7, 144, 8, 7, 1, 8, 1, 8, 3, 8, 148, 8, 8, 1, 9, 1,
-		9, 3, 9, 152, 8, 9, 1, 10, 1, 10, 3, 10, 156, 8, 10, 1, 11, 1, 11, 1, 11,
-		1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 168, 8, 12, 1,
-		13, 1, 13, 1, 13, 1, 13, 1, 14, 1, 14, 1, 14, 3, 14, 177, 8, 14, 1, 14,
-		3, 14, 180, 8, 14, 1, 14, 1, 14, 1, 14, 1, 14, 3, 14, 186, 8, 14, 1, 15,
-		1, 15, 1, 15, 1, 15, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 5, 17, 197, 8,
-		17, 10, 17, 12, 17, 200, 9, 17, 1, 17, 3, 17, 203, 8, 17, 1, 18, 1, 18,
-		1, 18, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 3, 19, 216,
-		8, 19, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 5, 20, 223, 8, 20, 10, 20, 12,
-		20, 226, 9, 20, 3, 20, 228, 8, 20, 1, 20, 1, 20, 1, 21, 1, 21, 3, 21, 234,
-		8, 21, 1, 22, 1, 22, 1, 22, 1, 22, 5, 22, 240, 8, 22, 10, 22, 12, 22, 243,
-		9, 22, 3, 22, 245, 8, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1, 23, 1, 23, 1,
-		23, 3, 23, 254, 8, 23, 1, 23, 1, 23, 1, 23, 1, 23, 1, 23, 1, 23, 3, 23,
-		262, 8, 23, 3, 23, 264, 8, 23, 1, 24, 1, 24, 1, 24, 1, 25, 1, 25, 1, 25,
-		1, 26, 1, 26, 3, 26, 274, 8, 26, 1, 26, 1, 26, 3, 26, 278, 8, 26, 1, 27,
-		1, 27, 1, 27, 1, 28, 1, 28, 1, 28, 1, 29, 1, 29, 3, 29, 288, 8, 29, 1,
-		30, 1, 30, 3, 30, 292, 8, 30, 1, 31, 1, 31, 1, 31, 3, 31, 297, 8, 31, 1,
-		32, 1, 32, 1, 32, 1, 32, 5, 32, 303, 8, 32, 10, 32, 12, 32, 306, 9, 32,
-		3, 32, 308, 8, 32, 1, 32, 1, 32, 1, 33, 1, 33, 1, 34, 1, 34, 3, 34, 316,
-		8, 34, 1, 35, 1, 35, 1, 35, 0, 1, 2, 36, 0, 2, 4, 6, 8, 10, 12, 14, 16,
-		18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52,
-		54, 56, 58, 60, 62, 64, 66, 68, 70, 0, 8, 1, 0, 5, 6, 1, 0, 7, 9, 1, 0,
-		15, 20, 2, 0, 11, 11, 13, 13, 2, 0, 13, 13, 25, 25, 3, 0, 14, 14, 16, 16,
-		21, 22, 3, 0, 1, 2, 11, 13, 23, 30, 2, 0, 4, 4, 46, 46, 333, 0, 72, 1,
-		0, 0, 0, 2, 80, 1, 0, 0, 0, 4, 120, 1, 0, 0, 0, 6, 122, 1, 0, 0, 0, 8,
-		126, 1, 0, 0, 0, 10, 130, 1, 0, 0, 0, 12, 134, 1, 0, 0, 0, 14, 141, 1,
-		0, 0, 0, 16, 145, 1, 0, 0, 0, 18, 149, 1, 0, 0, 0, 20, 153, 1, 0, 0, 0,
-		22, 157, 1, 0, 0, 0, 24, 167, 1, 0, 0, 0, 26, 169, 1, 0, 0, 0, 28, 185,
-		1, 0, 0, 0, 30, 187, 1, 0, 0, 0, 32, 191, 1, 0, 0, 0, 34, 193, 1, 0, 0,
-		0, 36, 204, 1, 0, 0, 0, 38, 215, 1, 0, 0, 0, 40, 217, 1, 0, 0, 0, 42, 233,
-		1, 0, 0, 0, 44, 235, 1, 0, 0, 0, 46, 263, 1, 0, 0, 0, 48, 265, 1, 0, 0,
-		0, 50, 268, 1, 0, 0, 0, 52, 273, 1, 0, 0, 0, 54, 279, 1, 0, 0, 0, 56, 282,
-		1, 0, 0, 0, 58, 285, 1, 0, 0, 0, 60, 289, 1, 0, 0, 0, 62, 296, 1, 0, 0,
-		0, 64, 298, 1, 0, 0, 0, 66, 311, 1, 0, 0, 0, 68, 315, 1, 0, 0, 0, 70, 317,
-		1, 0, 0, 0, 72, 73, 3, 2, 1, 0, 73, 74, 5, 0, 0, 1, 74, 1, 1, 0, 0, 0,
-		75, 76, 6, 1, -1, 0, 76, 77, 3, 4, 2, 0, 77, 78, 3, 2, 1, 9, 78, 81, 1,
-		0, 0, 0, 79, 81, 3, 24, 12, 0, 80, 75, 1, 0, 0, 0, 80, 79, 1, 0, 0, 0,
-		81, 117, 1, 0, 0, 0, 82, 83, 10, 11, 0, 0, 83, 84, 3, 6, 3, 0, 84, 85,
-		3, 2, 1, 11, 85, 116, 1, 0, 0, 0, 86, 87, 10, 8, 0, 0, 87, 88, 3, 8, 4,
-		0, 88, 89, 3, 2, 1, 9, 89, 116, 1, 0, 0, 0, 90, 91, 10, 7, 0, 0, 91, 92,
-		3, 10, 5, 0, 92, 93, 3, 2, 1, 8, 93, 116, 1, 0, 0, 0, 94, 95, 10, 6, 0,
-		0, 95, 96, 3, 12, 6, 0, 96, 97, 3, 2, 1, 7, 97, 116, 1, 0, 0, 0, 98, 99,
-		10, 5, 0, 0, 99, 100, 3, 14, 7, 0, 100, 101, 3, 2, 1, 6, 101, 116, 1, 0,
-		0, 0, 102, 103, 10, 4, 0, 0, 103, 104, 3, 16, 8, 0, 104, 105, 3, 2, 1,
-		5, 105, 116, 1, 0, 0, 0, 106, 107, 10, 3, 0, 0, 107, 108, 3, 18, 9, 0,
-		108, 109, 3, 2, 1, 4, 109, 116, 1, 0, 0, 0, 110, 111, 10, 2, 0, 0, 111,
-		112, 5, 38, 0, 0, 112, 116, 3, 2, 1, 3, 113, 114, 10, 10, 0, 0, 114, 116,
-		3, 20, 10, 0, 115, 82, 1, 0, 0, 0, 115, 86, 1, 0, 0, 0, 115, 90, 1, 0,
-		0, 0, 115, 94, 1, 0, 0, 0, 115, 98, 1, 0, 0, 0, 115, 102, 1, 0, 0, 0, 115,
-		106, 1, 0, 0, 0, 115, 110, 1, 0, 0, 0, 115, 113, 1, 0, 0, 0, 116, 119,
-		1, 0, 0, 0, 117, 115, 1, 0, 0, 0, 117, 118, 1, 0, 0, 0, 118, 3, 1, 0, 0,
-		0, 119, 117, 1, 0, 0, 0, 120, 121, 7, 0, 0, 0, 121, 5, 1, 0, 0, 0, 122,
-		124, 5, 10, 0, 0, 123, 125, 3, 52, 26, 0, 124, 123, 1, 0, 0, 0, 124, 125,
-		1, 0, 0, 0, 125, 7, 1, 0, 0, 0, 126, 128, 7, 1, 0, 0, 127, 129, 3, 52,
-		26, 0, 128, 127, 1, 0, 0, 0, 128, 129, 1, 0, 0, 0, 129, 9, 1, 0, 0, 0,
-		130, 132, 7, 0, 0, 0, 131, 133, 3, 52, 26, 0, 132, 131, 1, 0, 0, 0, 132,
-		133, 1, 0, 0, 0, 133, 11, 1, 0, 0, 0, 134, 136, 7, 2, 0, 0, 135, 137, 5,
-		30, 0, 0, 136, 135, 1, 0, 0, 0, 136, 137, 1, 0, 0, 0, 137, 139, 1, 0, 0,
-		0, 138, 140, 3, 52, 26, 0, 139, 138, 1, 0, 0, 0, 139, 140, 1, 0, 0, 0,
-		140, 13, 1, 0, 0, 0, 141, 143, 7, 3, 0, 0, 142, 144, 3, 52, 26, 0, 143,
-		142, 1, 0, 0, 0, 143, 144, 1, 0, 0, 0, 144, 15, 1, 0, 0, 0, 145, 147, 5,
-		12, 0, 0, 146, 148, 3, 52, 26, 0, 147, 146, 1, 0, 0, 0, 147, 148, 1, 0,
-		0, 0, 148, 17, 1, 0, 0, 0, 149, 151, 7, 4, 0, 0, 150, 152, 3, 52, 26, 0,
-		151, 150, 1, 0, 0, 0, 151, 152, 1, 0, 0, 0, 152, 19, 1, 0, 0, 0, 153, 155,
-		5, 39, 0, 0, 154, 156, 3, 22, 11, 0, 155, 154, 1, 0, 0, 0, 155, 156, 1,
-		0, 0, 0, 156, 21, 1, 0, 0, 0, 157, 158, 5, 29, 0, 0, 158, 159, 5, 41, 0,
-		0, 159, 23, 1, 0, 0, 0, 160, 168, 3, 40, 20, 0, 161, 168, 3, 46, 23, 0,
-		162, 168, 3, 28, 14, 0, 163, 168, 3, 36, 18, 0, 164, 168, 3, 38, 19, 0,
-		165, 168, 3, 68, 34, 0, 166, 168, 3, 26, 13, 0, 167, 160, 1, 0, 0, 0, 167,
-		161, 1, 0, 0, 0, 167, 162, 1, 0, 0, 0, 167, 163, 1, 0, 0, 0, 167, 164,
-		1, 0, 0, 0, 167, 165, 1, 0, 0, 0, 167, 166, 1, 0, 0, 0, 168, 25, 1, 0,
-		0, 0, 169, 170, 5, 33, 0, 0, 170, 171, 3, 2, 1, 0, 171, 172, 5, 34, 0,
-		0, 172, 27, 1, 0, 0, 0, 173, 179, 5, 42, 0, 0, 174, 176, 5, 31, 0, 0, 175,
-		177, 3, 34, 17, 0, 176, 175, 1, 0, 0, 0, 176, 177, 1, 0, 0, 0, 177, 178,
-		1, 0, 0, 0, 178, 180, 5, 32, 0, 0, 179, 174, 1, 0, 0, 0, 179, 180, 1, 0,
-		0, 0, 180, 186, 1, 0, 0, 0, 181, 182, 5, 31, 0, 0, 182, 183, 3, 34, 17,
-		0, 183, 184, 5, 32, 0, 0, 184, 186, 1, 0, 0, 0, 185, 173, 1, 0, 0, 0, 185,
-		181, 1, 0, 0, 0, 186, 29, 1, 0, 0, 0, 187, 188, 3, 62, 31, 0, 188, 189,
-		3, 32, 16, 0, 189, 190, 3, 70, 35, 0, 190, 31, 1, 0, 0, 0, 191, 192, 7,
-		5, 0, 0, 192, 33, 1, 0, 0, 0, 193, 198, 3, 30, 15, 0, 194, 195, 5, 37,
-		0, 0, 195, 197, 3, 30, 15, 0, 196, 194, 1, 0, 0, 0, 197, 200, 1, 0, 0,
-		0, 198, 196, 1, 0, 0, 0, 198, 199, 1, 0, 0, 0, 199, 202, 1, 0, 0, 0, 200,
-		198, 1, 0, 0, 0, 201, 203, 5, 37, 0, 0, 202, 201, 1, 0, 0, 0, 202, 203,
-		1, 0, 0, 0, 203, 35, 1, 0, 0, 0, 204, 205, 3, 28, 14, 0, 205, 206, 5, 40,
-		0, 0, 206, 37, 1, 0, 0, 0, 207, 208, 3, 28, 14, 0, 208, 209, 5, 29, 0,
-		0, 209, 210, 5, 41, 0, 0, 210, 216, 1, 0, 0, 0, 211, 212, 3, 36, 18, 0,
-		212, 213, 5, 29, 0, 0, 213, 214, 5, 41, 0, 0, 214, 216, 1, 0, 0, 0, 215,
-		207, 1, 0, 0, 0, 215, 211, 1, 0, 0, 0, 216, 39, 1, 0, 0, 0, 217, 218, 5,
-		2, 0, 0, 218, 227, 5, 33, 0, 0, 219, 224, 3, 42, 21, 0, 220, 221, 5, 37,
-		0, 0, 221, 223, 3, 42, 21, 0, 222, 220, 1, 0, 0, 0, 223, 226, 1, 0, 0,
-		0, 224, 222, 1, 0, 0, 0, 224, 225, 1, 0, 0, 0, 225, 228, 1, 0, 0, 0, 226,
-		224, 1, 0, 0, 0, 227, 219, 1, 0, 0, 0, 227, 228, 1, 0, 0, 0, 228, 229,
-		1, 0, 0, 0, 229, 230, 5, 34, 0, 0, 230, 41, 1, 0, 0, 0, 231, 234, 3, 68,
-		34, 0, 232, 234, 3, 2, 1, 0, 233, 231, 1, 0, 0, 0, 233, 232, 1, 0, 0, 0,
-		234, 43, 1, 0, 0, 0, 235, 244, 5, 33, 0, 0, 236, 241, 3, 42, 21, 0, 237,
-		238, 5, 37, 0, 0, 238, 240, 3, 42, 21, 0, 239, 237, 1, 0, 0, 0, 240, 243,
-		1, 0, 0, 0, 241, 239, 1, 0, 0, 0, 241, 242, 1, 0, 0, 0, 242, 245, 1, 0,
-		0, 0, 243, 241, 1, 0, 0, 0, 244, 236, 1, 0, 0, 0, 244, 245, 1, 0, 0, 0,
-		245, 246, 1, 0, 0, 0, 246, 247, 5, 34, 0, 0, 247, 45, 1, 0, 0, 0, 248,
-		249, 5, 1, 0, 0, 249, 264, 3, 44, 22, 0, 250, 253, 5, 1, 0, 0, 251, 254,
-		3, 48, 24, 0, 252, 254, 3, 50, 25, 0, 253, 251, 1, 0, 0, 0, 253, 252, 1,
-		0, 0, 0, 254, 255, 1, 0, 0, 0, 255, 256, 3, 44, 22, 0, 256, 264, 1, 0,
-		0, 0, 257, 258, 5, 1, 0, 0, 258, 261, 3, 44, 22, 0, 259, 262, 3, 48, 24,
-		0, 260, 262, 3, 50, 25, 0, 261, 259, 1, 0, 0, 0, 261, 260, 1, 0, 0, 0,
-		262, 264, 1, 0, 0, 0, 263, 248, 1, 0, 0, 0, 263, 250, 1, 0, 0, 0, 263,
-		257, 1, 0, 0, 0, 264, 47, 1, 0, 0, 0, 265, 266, 5, 23, 0, 0, 266, 267,
-		3, 64, 32, 0, 267, 49, 1, 0, 0, 0, 268, 269, 5, 24, 0, 0, 269, 270, 3,
-		64, 32, 0, 270, 51, 1, 0, 0, 0, 271, 274, 3, 54, 27, 0, 272, 274, 3, 56,
-		28, 0, 273, 271, 1, 0, 0, 0, 273, 272, 1, 0, 0, 0, 274, 277, 1, 0, 0, 0,
-		275, 278, 3, 58, 29, 0, 276, 278, 3, 60, 30, 0, 277, 275, 1, 0, 0, 0, 277,
-		276, 1, 0, 0, 0, 277, 278, 1, 0, 0, 0, 278, 53, 1, 0, 0, 0, 279, 280, 5,
-		25, 0, 0, 280, 281, 3, 64, 32, 0, 281, 55, 1, 0, 0, 0, 282, 283, 5, 26,
-		0, 0, 283, 284, 3, 64, 32, 0, 284, 57, 1, 0, 0, 0, 285, 287, 5, 27, 0,
-		0, 286, 288, 3, 64, 32, 0, 287, 286, 1, 0, 0, 0, 287, 288, 1, 0, 0, 0,
-		288, 59, 1, 0, 0, 0, 289, 291, 5, 28, 0, 0, 290, 292, 3, 64, 32, 0, 291,
-		290, 1, 0, 0, 0, 291, 292, 1, 0, 0, 0, 292, 61, 1, 0, 0, 0, 293, 297, 3,
-		66, 33, 0, 294, 297, 5, 42, 0, 0, 295, 297, 5, 43, 0, 0, 296, 293, 1, 0,
-		0, 0, 296, 294, 1, 0, 0, 0, 296, 295, 1, 0, 0, 0, 297, 63, 1, 0, 0, 0,
-		298, 307, 5, 33, 0, 0, 299, 304, 3, 62, 31, 0, 300, 301, 5, 37, 0, 0, 301,
-		303, 3, 62, 31, 0, 302, 300, 1, 0, 0, 0, 303, 306, 1, 0, 0, 0, 304, 302,
-		1, 0, 0, 0, 304, 305, 1, 0, 0, 0, 305, 308, 1, 0, 0, 0, 306, 304, 1, 0,
-		0, 0, 307, 299, 1, 0, 0, 0, 307, 308, 1, 0, 0, 0, 308, 309, 1, 0, 0, 0,
-		309, 310, 5, 34, 0, 0, 310, 65, 1, 0, 0, 0, 311, 312, 7, 6, 0, 0, 312,
-		67, 1, 0, 0, 0, 313, 316, 5, 3, 0, 0, 314, 316, 3, 70, 35, 0, 315, 313,
-		1, 0, 0, 0, 315, 314, 1, 0, 0, 0, 316, 69, 1, 0, 0, 0, 317, 318, 7, 7,
-		0, 0, 318, 71, 1, 0, 0, 0, 35, 80, 115, 117, 124, 128, 132, 136, 139, 143,
-		147, 151, 155, 167, 176, 179, 185, 198, 202, 215, 224, 227, 233, 241, 244,
-		253, 261, 263, 273, 277, 287, 291, 296, 304, 307, 315,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 118, 8, 1, 10, 1, 12,
+		1, 121, 9, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 2, 130, 8, 2,
+		1, 3, 1, 3, 1, 4, 1, 4, 3, 4, 136, 8, 4, 1, 5, 1, 5, 3, 5, 140, 8, 5, 1,
+		6, 1, 6, 3, 6, 144, 8, 6, 1, 7, 1, 7, 3, 7, 148, 8, 7, 1, 7, 3, 7, 151,
+		8, 7, 1, 8, 1, 8, 3, 8, 155, 8, 8, 1, 9, 1, 9, 3, 9, 159, 8, 9, 1, 10,
+		1, 10, 3, 10, 163, 8, 10, 1, 11, 1, 11, 3, 11, 167, 8, 11, 1, 12, 1, 12,
+		1, 12, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 3, 13, 179, 8,
+		13, 1, 14, 1, 14, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 3, 15, 188, 8, 15,
+		1, 15, 3, 15, 191, 8, 15, 1, 15, 1, 15, 1, 15, 1, 15, 3, 15, 197, 8, 15,
+		1, 16, 1, 16, 1, 16, 1, 16, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 5, 18, 208,
+		8, 18, 10, 18, 12, 18, 211, 9, 18, 1, 18, 3, 18, 214, 8, 18, 1, 19, 1,
+		19, 1, 19, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 3, 20,
+		227, 8, 20, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 5, 21, 234, 8, 21, 10, 21,
+		12, 21, 237, 9, 21, 3, 21, 239, 8, 21, 1, 21, 1, 21, 1, 22, 1, 22, 3, 22,
+		245, 8, 22, 1, 23, 1, 23, 1, 23, 1, 23, 5, 23, 251, 8, 23, 10, 23, 12,
+		23, 254, 9, 23, 3, 23, 256, 8, 23, 1, 23, 1, 23, 1, 24, 1, 24, 1, 24, 1,
+		24, 1, 24, 3, 24, 265, 8, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24,
+		3, 24, 273, 8, 24, 3, 24, 275, 8, 24, 1, 25, 1, 25, 1, 25, 1, 26, 1, 26,
+		1, 26, 1, 27, 1, 27, 3, 27, 285, 8, 27, 1, 27, 1, 27, 3, 27, 289, 8, 27,
+		1, 28, 1, 28, 1, 28, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30, 3, 30, 299, 8,
+		30, 1, 31, 1, 31, 3, 31, 303, 8, 31, 1, 32, 1, 32, 1, 32, 3, 32, 308, 8,
+		32, 1, 33, 1, 33, 1, 33, 1, 33, 5, 33, 314, 8, 33, 10, 33, 12, 33, 317,
+		9, 33, 3, 33, 319, 8, 33, 1, 33, 1, 33, 1, 34, 1, 34, 1, 35, 1, 35, 3,
+		35, 327, 8, 35, 1, 36, 1, 36, 1, 36, 0, 1, 2, 37, 0, 2, 4, 6, 8, 10, 12,
+		14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48,
+		50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 0, 8, 1, 0, 5, 6, 1, 0,
+		7, 9, 1, 0, 15, 20, 2, 0, 11, 11, 13, 13, 2, 0, 13, 13, 25, 25, 3, 0, 14,
+		14, 16, 16, 21, 22, 3, 0, 1, 2, 11, 13, 23, 30, 2, 0, 4, 4, 46, 46, 345,
+		0, 74, 1, 0, 0, 0, 2, 82, 1, 0, 0, 0, 4, 129, 1, 0, 0, 0, 6, 131, 1, 0,
+		0, 0, 8, 133, 1, 0, 0, 0, 10, 137, 1, 0, 0, 0, 12, 141, 1, 0, 0, 0, 14,
+		145, 1, 0, 0, 0, 16, 152, 1, 0, 0, 0, 18, 156, 1, 0, 0, 0, 20, 160, 1,
+		0, 0, 0, 22, 164, 1, 0, 0, 0, 24, 168, 1, 0, 0, 0, 26, 178, 1, 0, 0, 0,
+		28, 180, 1, 0, 0, 0, 30, 196, 1, 0, 0, 0, 32, 198, 1, 0, 0, 0, 34, 202,
+		1, 0, 0, 0, 36, 204, 1, 0, 0, 0, 38, 215, 1, 0, 0, 0, 40, 226, 1, 0, 0,
+		0, 42, 228, 1, 0, 0, 0, 44, 244, 1, 0, 0, 0, 46, 246, 1, 0, 0, 0, 48, 274,
+		1, 0, 0, 0, 50, 276, 1, 0, 0, 0, 52, 279, 1, 0, 0, 0, 54, 284, 1, 0, 0,
+		0, 56, 290, 1, 0, 0, 0, 58, 293, 1, 0, 0, 0, 60, 296, 1, 0, 0, 0, 62, 300,
+		1, 0, 0, 0, 64, 307, 1, 0, 0, 0, 66, 309, 1, 0, 0, 0, 68, 322, 1, 0, 0,
+		0, 70, 326, 1, 0, 0, 0, 72, 328, 1, 0, 0, 0, 74, 75, 3, 2, 1, 0, 75, 76,
+		5, 0, 0, 1, 76, 1, 1, 0, 0, 0, 77, 78, 6, 1, -1, 0, 78, 79, 3, 6, 3, 0,
+		79, 80, 3, 2, 1, 9, 80, 83, 1, 0, 0, 0, 81, 83, 3, 26, 13, 0, 82, 77, 1,
+		0, 0, 0, 82, 81, 1, 0, 0, 0, 83, 119, 1, 0, 0, 0, 84, 85, 10, 11, 0, 0,
+		85, 86, 3, 8, 4, 0, 86, 87, 3, 2, 1, 11, 87, 118, 1, 0, 0, 0, 88, 89, 10,
+		8, 0, 0, 89, 90, 3, 10, 5, 0, 90, 91, 3, 2, 1, 9, 91, 118, 1, 0, 0, 0,
+		92, 93, 10, 7, 0, 0, 93, 94, 3, 12, 6, 0, 94, 95, 3, 2, 1, 8, 95, 118,
+		1, 0, 0, 0, 96, 97, 10, 6, 0, 0, 97, 98, 3, 14, 7, 0, 98, 99, 3, 2, 1,
+		7, 99, 118, 1, 0, 0, 0, 100, 101, 10, 5, 0, 0, 101, 102, 3, 16, 8, 0, 102,
+		103, 3, 2, 1, 6, 103, 118, 1, 0, 0, 0, 104, 105, 10, 4, 0, 0, 105, 106,
+		3, 18, 9, 0, 106, 107, 3, 2, 1, 5, 107, 118, 1, 0, 0, 0, 108, 109, 10,
+		3, 0, 0, 109, 110, 3, 20, 10, 0, 110, 111, 3, 2, 1, 4, 111, 118, 1, 0,
+		0, 0, 112, 113, 10, 10, 0, 0, 113, 118, 3, 22, 11, 0, 114, 115, 10, 2,
+		0, 0, 115, 116, 5, 38, 0, 0, 116, 118, 3, 4, 2, 0, 117, 84, 1, 0, 0, 0,
+		117, 88, 1, 0, 0, 0, 117, 92, 1, 0, 0, 0, 117, 96, 1, 0, 0, 0, 117, 100,
+		1, 0, 0, 0, 117, 104, 1, 0, 0, 0, 117, 108, 1, 0, 0, 0, 117, 112, 1, 0,
+		0, 0, 117, 114, 1, 0, 0, 0, 118, 121, 1, 0, 0, 0, 119, 117, 1, 0, 0, 0,
+		119, 120, 1, 0, 0, 0, 120, 3, 1, 0, 0, 0, 121, 119, 1, 0, 0, 0, 122, 130,
+		5, 47, 0, 0, 123, 124, 5, 48, 0, 0, 124, 125, 5, 33, 0, 0, 125, 130, 5,
+		34, 0, 0, 126, 127, 5, 49, 0, 0, 127, 128, 5, 33, 0, 0, 128, 130, 5, 34,
+		0, 0, 129, 122, 1, 0, 0, 0, 129, 123, 1, 0, 0, 0, 129, 126, 1, 0, 0, 0,
+		130, 5, 1, 0, 0, 0, 131, 132, 7, 0, 0, 0, 132, 7, 1, 0, 0, 0, 133, 135,
+		5, 10, 0, 0, 134, 136, 3, 54, 27, 0, 135, 134, 1, 0, 0, 0, 135, 136, 1,
+		0, 0, 0, 136, 9, 1, 0, 0, 0, 137, 139, 7, 1, 0, 0, 138, 140, 3, 54, 27,
+		0, 139, 138, 1, 0, 0, 0, 139, 140, 1, 0, 0, 0, 140, 11, 1, 0, 0, 0, 141,
+		143, 7, 0, 0, 0, 142, 144, 3, 54, 27, 0, 143, 142, 1, 0, 0, 0, 143, 144,
+		1, 0, 0, 0, 144, 13, 1, 0, 0, 0, 145, 147, 7, 2, 0, 0, 146, 148, 5, 30,
+		0, 0, 147, 146, 1, 0, 0, 0, 147, 148, 1, 0, 0, 0, 148, 150, 1, 0, 0, 0,
+		149, 151, 3, 54, 27, 0, 150, 149, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0, 151,
+		15, 1, 0, 0, 0, 152, 154, 7, 3, 0, 0, 153, 155, 3, 54, 27, 0, 154, 153,
+		1, 0, 0, 0, 154, 155, 1, 0, 0, 0, 155, 17, 1, 0, 0, 0, 156, 158, 5, 12,
+		0, 0, 157, 159, 3, 54, 27, 0, 158, 157, 1, 0, 0, 0, 158, 159, 1, 0, 0,
+		0, 159, 19, 1, 0, 0, 0, 160, 162, 7, 4, 0, 0, 161, 163, 3, 54, 27, 0, 162,
+		161, 1, 0, 0, 0, 162, 163, 1, 0, 0, 0, 163, 21, 1, 0, 0, 0, 164, 166, 5,
+		39, 0, 0, 165, 167, 3, 24, 12, 0, 166, 165, 1, 0, 0, 0, 166, 167, 1, 0,
+		0, 0, 167, 23, 1, 0, 0, 0, 168, 169, 5, 29, 0, 0, 169, 170, 5, 41, 0, 0,
+		170, 25, 1, 0, 0, 0, 171, 179, 3, 42, 21, 0, 172, 179, 3, 48, 24, 0, 173,
+		179, 3, 30, 15, 0, 174, 179, 3, 38, 19, 0, 175, 179, 3, 40, 20, 0, 176,
+		179, 3, 70, 35, 0, 177, 179, 3, 28, 14, 0, 178, 171, 1, 0, 0, 0, 178, 172,
+		1, 0, 0, 0, 178, 173, 1, 0, 0, 0, 178, 174, 1, 0, 0, 0, 178, 175, 1, 0,
+		0, 0, 178, 176, 1, 0, 0, 0, 178, 177, 1, 0, 0, 0, 179, 27, 1, 0, 0, 0,
+		180, 181, 5, 33, 0, 0, 181, 182, 3, 2, 1, 0, 182, 183, 5, 34, 0, 0, 183,
+		29, 1, 0, 0, 0, 184, 190, 5, 42, 0, 0, 185, 187, 5, 31, 0, 0, 186, 188,
+		3, 36, 18, 0, 187, 186, 1, 0, 0, 0, 187, 188, 1, 0, 0, 0, 188, 189, 1,
+		0, 0, 0, 189, 191, 5, 32, 0, 0, 190, 185, 1, 0, 0, 0, 190, 191, 1, 0, 0,
+		0, 191, 197, 1, 0, 0, 0, 192, 193, 5, 31, 0, 0, 193, 194, 3, 36, 18, 0,
+		194, 195, 5, 32, 0, 0, 195, 197, 1, 0, 0, 0, 196, 184, 1, 0, 0, 0, 196,
+		192, 1, 0, 0, 0, 197, 31, 1, 0, 0, 0, 198, 199, 3, 64, 32, 0, 199, 200,
+		3, 34, 17, 0, 200, 201, 3, 72, 36, 0, 201, 33, 1, 0, 0, 0, 202, 203, 7,
+		5, 0, 0, 203, 35, 1, 0, 0, 0, 204, 209, 3, 32, 16, 0, 205, 206, 5, 37,
+		0, 0, 206, 208, 3, 32, 16, 0, 207, 205, 1, 0, 0, 0, 208, 211, 1, 0, 0,
+		0, 209, 207, 1, 0, 0, 0, 209, 210, 1, 0, 0, 0, 210, 213, 1, 0, 0, 0, 211,
+		209, 1, 0, 0, 0, 212, 214, 5, 37, 0, 0, 213, 212, 1, 0, 0, 0, 213, 214,
+		1, 0, 0, 0, 214, 37, 1, 0, 0, 0, 215, 216, 3, 30, 15, 0, 216, 217, 5, 40,
+		0, 0, 217, 39, 1, 0, 0, 0, 218, 219, 3, 30, 15, 0, 219, 220, 5, 29, 0,
+		0, 220, 221, 5, 41, 0, 0, 221, 227, 1, 0, 0, 0, 222, 223, 3, 38, 19, 0,
+		223, 224, 5, 29, 0, 0, 224, 225, 5, 41, 0, 0, 225, 227, 1, 0, 0, 0, 226,
+		218, 1, 0, 0, 0, 226, 222, 1, 0, 0, 0, 227, 41, 1, 0, 0, 0, 228, 229, 5,
+		2, 0, 0, 229, 238, 5, 33, 0, 0, 230, 235, 3, 44, 22, 0, 231, 232, 5, 37,
+		0, 0, 232, 234, 3, 44, 22, 0, 233, 231, 1, 0, 0, 0, 234, 237, 1, 0, 0,
+		0, 235, 233, 1, 0, 0, 0, 235, 236, 1, 0, 0, 0, 236, 239, 1, 0, 0, 0, 237,
+		235, 1, 0, 0, 0, 238, 230, 1, 0, 0, 0, 238, 239, 1, 0, 0, 0, 239, 240,
+		1, 0, 0, 0, 240, 241, 5, 34, 0, 0, 241, 43, 1, 0, 0, 0, 242, 245, 3, 70,
+		35, 0, 243, 245, 3, 2, 1, 0, 244, 242, 1, 0, 0, 0, 244, 243, 1, 0, 0, 0,
+		245, 45, 1, 0, 0, 0, 246, 255, 5, 33, 0, 0, 247, 252, 3, 44, 22, 0, 248,
+		249, 5, 37, 0, 0, 249, 251, 3, 44, 22, 0, 250, 248, 1, 0, 0, 0, 251, 254,
+		1, 0, 0, 0, 252, 250, 1, 0, 0, 0, 252, 253, 1, 0, 0, 0, 253, 256, 1, 0,
+		0, 0, 254, 252, 1, 0, 0, 0, 255, 247, 1, 0, 0, 0, 255, 256, 1, 0, 0, 0,
+		256, 257, 1, 0, 0, 0, 257, 258, 5, 34, 0, 0, 258, 47, 1, 0, 0, 0, 259,
+		260, 5, 1, 0, 0, 260, 275, 3, 46, 23, 0, 261, 264, 5, 1, 0, 0, 262, 265,
+		3, 50, 25, 0, 263, 265, 3, 52, 26, 0, 264, 262, 1, 0, 0, 0, 264, 263, 1,
+		0, 0, 0, 265, 266, 1, 0, 0, 0, 266, 267, 3, 46, 23, 0, 267, 275, 1, 0,
+		0, 0, 268, 269, 5, 1, 0, 0, 269, 272, 3, 46, 23, 0, 270, 273, 3, 50, 25,
+		0, 271, 273, 3, 52, 26, 0, 272, 270, 1, 0, 0, 0, 272, 271, 1, 0, 0, 0,
+		273, 275, 1, 0, 0, 0, 274, 259, 1, 0, 0, 0, 274, 261, 1, 0, 0, 0, 274,
+		268, 1, 0, 0, 0, 275, 49, 1, 0, 0, 0, 276, 277, 5, 23, 0, 0, 277, 278,
+		3, 66, 33, 0, 278, 51, 1, 0, 0, 0, 279, 280, 5, 24, 0, 0, 280, 281, 3,
+		66, 33, 0, 281, 53, 1, 0, 0, 0, 282, 285, 3, 56, 28, 0, 283, 285, 3, 58,
+		29, 0, 284, 282, 1, 0, 0, 0, 284, 283, 1, 0, 0, 0, 285, 288, 1, 0, 0, 0,
+		286, 289, 3, 60, 30, 0, 287, 289, 3, 62, 31, 0, 288, 286, 1, 0, 0, 0, 288,
+		287, 1, 0, 0, 0, 288, 289, 1, 0, 0, 0, 289, 55, 1, 0, 0, 0, 290, 291, 5,
+		25, 0, 0, 291, 292, 3, 66, 33, 0, 292, 57, 1, 0, 0, 0, 293, 294, 5, 26,
+		0, 0, 294, 295, 3, 66, 33, 0, 295, 59, 1, 0, 0, 0, 296, 298, 5, 27, 0,
+		0, 297, 299, 3, 66, 33, 0, 298, 297, 1, 0, 0, 0, 298, 299, 1, 0, 0, 0,
+		299, 61, 1, 0, 0, 0, 300, 302, 5, 28, 0, 0, 301, 303, 3, 66, 33, 0, 302,
+		301, 1, 0, 0, 0, 302, 303, 1, 0, 0, 0, 303, 63, 1, 0, 0, 0, 304, 308, 3,
+		68, 34, 0, 305, 308, 5, 42, 0, 0, 306, 308, 5, 43, 0, 0, 307, 304, 1, 0,
+		0, 0, 307, 305, 1, 0, 0, 0, 307, 306, 1, 0, 0, 0, 308, 65, 1, 0, 0, 0,
+		309, 318, 5, 33, 0, 0, 310, 315, 3, 64, 32, 0, 311, 312, 5, 37, 0, 0, 312,
+		314, 3, 64, 32, 0, 313, 311, 1, 0, 0, 0, 314, 317, 1, 0, 0, 0, 315, 313,
+		1, 0, 0, 0, 315, 316, 1, 0, 0, 0, 316, 319, 1, 0, 0, 0, 317, 315, 1, 0,
+		0, 0, 318, 310, 1, 0, 0, 0, 318, 319, 1, 0, 0, 0, 319, 320, 1, 0, 0, 0,
+		320, 321, 5, 34, 0, 0, 321, 67, 1, 0, 0, 0, 322, 323, 7, 6, 0, 0, 323,
+		69, 1, 0, 0, 0, 324, 327, 5, 3, 0, 0, 325, 327, 3, 72, 36, 0, 326, 324,
+		1, 0, 0, 0, 326, 325, 1, 0, 0, 0, 327, 71, 1, 0, 0, 0, 328, 329, 7, 7,
+		0, 0, 329, 73, 1, 0, 0, 0, 36, 82, 117, 119, 129, 135, 139, 143, 147, 150,
+		154, 158, 162, 166, 178, 187, 190, 196, 209, 213, 226, 235, 238, 244, 252,
+		255, 264, 272, 274, 284, 288, 298, 302, 307, 315, 318, 326,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -283,47 +290,53 @@ const (
 	PromQLParserWS                   = 44
 	PromQLParserSL_COMMENT           = 45
 	PromQLParserRAW_STRING           = 46
-	PromQLParserBACKTICK_OPEN        = 47
+	PromQLParserAT_NUMBER            = 47
+	PromQLParserSTART                = 48
+	PromQLParserEND                  = 49
+	PromQLParserAT_WS                = 50
+	PromQLParserAT_OTHER             = 51
+	PromQLParserBACKTICK_OPEN        = 52
 )
 
 // PromQLParser rules.
 const (
-	PromQLParserRULE_expression           = 0
-	PromQLParserRULE_vectorOperation      = 1
-	PromQLParserRULE_unaryOp              = 2
-	PromQLParserRULE_powOp                = 3
-	PromQLParserRULE_multOp               = 4
-	PromQLParserRULE_addOp                = 5
-	PromQLParserRULE_compareOp            = 6
-	PromQLParserRULE_andUnlessOp          = 7
-	PromQLParserRULE_orOp                 = 8
-	PromQLParserRULE_vectorMatchOp        = 9
-	PromQLParserRULE_subqueryOp           = 10
-	PromQLParserRULE_offsetOp             = 11
-	PromQLParserRULE_vector               = 12
-	PromQLParserRULE_parens               = 13
-	PromQLParserRULE_instantSelector      = 14
-	PromQLParserRULE_labelMatcher         = 15
-	PromQLParserRULE_labelMatcherOperator = 16
-	PromQLParserRULE_labelMatcherList     = 17
-	PromQLParserRULE_matrixSelector       = 18
-	PromQLParserRULE_offset               = 19
-	PromQLParserRULE_function_            = 20
-	PromQLParserRULE_parameter            = 21
-	PromQLParserRULE_parameterList        = 22
-	PromQLParserRULE_aggregation          = 23
-	PromQLParserRULE_by                   = 24
-	PromQLParserRULE_without              = 25
-	PromQLParserRULE_grouping             = 26
-	PromQLParserRULE_on_                  = 27
-	PromQLParserRULE_ignoring             = 28
-	PromQLParserRULE_groupLeft            = 29
-	PromQLParserRULE_groupRight           = 30
-	PromQLParserRULE_labelName            = 31
-	PromQLParserRULE_labelNameList        = 32
-	PromQLParserRULE_keyword              = 33
-	PromQLParserRULE_literal              = 34
-	PromQLParserRULE_string               = 35
+	PromQLParserRULE_expression            = 0
+	PromQLParserRULE_vectorOperation       = 1
+	PromQLParserRULE_at_modifier_timestamp = 2
+	PromQLParserRULE_unaryOp               = 3
+	PromQLParserRULE_powOp                 = 4
+	PromQLParserRULE_multOp                = 5
+	PromQLParserRULE_addOp                 = 6
+	PromQLParserRULE_compareOp             = 7
+	PromQLParserRULE_andUnlessOp           = 8
+	PromQLParserRULE_orOp                  = 9
+	PromQLParserRULE_vectorMatchOp         = 10
+	PromQLParserRULE_subqueryOp            = 11
+	PromQLParserRULE_offsetOp              = 12
+	PromQLParserRULE_vector                = 13
+	PromQLParserRULE_parens                = 14
+	PromQLParserRULE_instantSelector       = 15
+	PromQLParserRULE_labelMatcher          = 16
+	PromQLParserRULE_labelMatcherOperator  = 17
+	PromQLParserRULE_labelMatcherList      = 18
+	PromQLParserRULE_matrixSelector        = 19
+	PromQLParserRULE_offset                = 20
+	PromQLParserRULE_function_             = 21
+	PromQLParserRULE_parameter             = 22
+	PromQLParserRULE_parameterList         = 23
+	PromQLParserRULE_aggregation           = 24
+	PromQLParserRULE_by                    = 25
+	PromQLParserRULE_without               = 26
+	PromQLParserRULE_grouping              = 27
+	PromQLParserRULE_on_                   = 28
+	PromQLParserRULE_ignoring              = 29
+	PromQLParserRULE_groupLeft             = 30
+	PromQLParserRULE_groupRight            = 31
+	PromQLParserRULE_labelName             = 32
+	PromQLParserRULE_labelNameList         = 33
+	PromQLParserRULE_keyword               = 34
+	PromQLParserRULE_literal               = 35
+	PromQLParserRULE_string                = 36
 )
 
 // IExpressionContext is an interface to support dynamic dispatch.
@@ -418,11 +431,11 @@ func (p *PromQLParser) Expression() (localctx IExpressionContext) {
 	p.EnterRule(localctx, 0, PromQLParserRULE_expression)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(72)
+		p.SetState(74)
 		p.vectorOperation(0)
 	}
 	{
-		p.SetState(73)
+		p.SetState(75)
 		p.Match(PromQLParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -462,8 +475,9 @@ type IVectorOperationContext interface {
 	AndUnlessOp() IAndUnlessOpContext
 	OrOp() IOrOpContext
 	VectorMatchOp() IVectorMatchOpContext
-	AT() antlr.TerminalNode
 	SubqueryOp() ISubqueryOpContext
+	AT() antlr.TerminalNode
+	At_modifier_timestamp() IAt_modifier_timestampContext
 
 	// IsVectorOperationContext differentiates from other interfaces.
 	IsVectorOperationContext()
@@ -686,10 +700,6 @@ func (s *VectorOperationContext) VectorMatchOp() IVectorMatchOpContext {
 	return t.(IVectorMatchOpContext)
 }
 
-func (s *VectorOperationContext) AT() antlr.TerminalNode {
-	return s.GetToken(PromQLParserAT, 0)
-}
-
 func (s *VectorOperationContext) SubqueryOp() ISubqueryOpContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -704,6 +714,26 @@ func (s *VectorOperationContext) SubqueryOp() ISubqueryOpContext {
 	}
 
 	return t.(ISubqueryOpContext)
+}
+
+func (s *VectorOperationContext) AT() antlr.TerminalNode {
+	return s.GetToken(PromQLParserAT, 0)
+}
+
+func (s *VectorOperationContext) At_modifier_timestamp() IAt_modifier_timestampContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAt_modifier_timestampContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAt_modifier_timestampContext)
 }
 
 func (s *VectorOperationContext) GetRuleContext() antlr.RuleContext {
@@ -742,7 +772,7 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(80)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -751,17 +781,17 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 	switch p.GetTokenStream().LA(1) {
 	case PromQLParserADD, PromQLParserSUB:
 		{
-			p.SetState(76)
+			p.SetState(78)
 			p.UnaryOp()
 		}
 		{
-			p.SetState(77)
+			p.SetState(79)
 			p.vectorOperation(9)
 		}
 
 	case PromQLParserAGGREGATION_OPERATOR, PromQLParserFUNCTION, PromQLParserNUMBER, PromQLParserSTRING, PromQLParserLEFT_BRACE, PromQLParserLEFT_PAREN, PromQLParserMETRIC_NAME, PromQLParserRAW_STRING:
 		{
-			p.SetState(79)
+			p.SetState(81)
 			p.Vector()
 		}
 
@@ -770,7 +800,7 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 		goto errorExit
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(117)
+	p.SetState(119)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -785,7 +815,7 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(115)
+			p.SetState(117)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -795,140 +825,154 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 			case 1:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(82)
+				p.SetState(84)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 11)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 11)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(83)
+					p.SetState(85)
 					p.PowOp()
 				}
 				{
-					p.SetState(84)
+					p.SetState(86)
 					p.vectorOperation(11)
 				}
 
 			case 2:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(86)
+				p.SetState(88)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(87)
+					p.SetState(89)
 					p.MultOp()
 				}
 				{
-					p.SetState(88)
+					p.SetState(90)
 					p.vectorOperation(9)
 				}
 
 			case 3:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(90)
+				p.SetState(92)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(91)
+					p.SetState(93)
 					p.AddOp()
 				}
 				{
-					p.SetState(92)
+					p.SetState(94)
 					p.vectorOperation(8)
 				}
 
 			case 4:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(94)
+				p.SetState(96)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(95)
+					p.SetState(97)
 					p.CompareOp()
 				}
 				{
-					p.SetState(96)
+					p.SetState(98)
 					p.vectorOperation(7)
 				}
 
 			case 5:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(98)
+				p.SetState(100)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(99)
+					p.SetState(101)
 					p.AndUnlessOp()
 				}
 				{
-					p.SetState(100)
+					p.SetState(102)
 					p.vectorOperation(6)
 				}
 
 			case 6:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(102)
+				p.SetState(104)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(103)
+					p.SetState(105)
 					p.OrOp()
 				}
 				{
-					p.SetState(104)
+					p.SetState(106)
 					p.vectorOperation(5)
 				}
 
 			case 7:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(106)
+				p.SetState(108)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(107)
+					p.SetState(109)
 					p.VectorMatchOp()
 				}
 				{
-					p.SetState(108)
+					p.SetState(110)
 					p.vectorOperation(4)
 				}
 
 			case 8:
 				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(110)
+				p.SetState(112)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(113)
+					p.SubqueryOp()
+				}
+
+			case 9:
+				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
+				p.SetState(114)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
 					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(111)
+					p.SetState(115)
 					p.Match(PromQLParserAT)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -936,22 +980,8 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 					}
 				}
 				{
-					p.SetState(112)
-					p.vectorOperation(3)
-				}
-
-			case 9:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, PromQLParserRULE_vectorOperation)
-				p.SetState(113)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
-					goto errorExit
-				}
-				{
-					p.SetState(114)
-					p.SubqueryOp()
+					p.SetState(116)
+					p.At_modifier_timestamp()
 				}
 
 			case antlr.ATNInvalidAltNumber:
@@ -959,7 +989,7 @@ func (p *PromQLParser) vectorOperation(_p int) (localctx IVectorOperationContext
 			}
 
 		}
-		p.SetState(119)
+		p.SetState(121)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -979,6 +1009,189 @@ errorExit:
 		p.SetError(nil)
 	}
 	p.UnrollRecursionContexts(_parentctx)
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IAt_modifier_timestampContext is an interface to support dynamic dispatch.
+type IAt_modifier_timestampContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	AT_NUMBER() antlr.TerminalNode
+	START() antlr.TerminalNode
+	LEFT_PAREN() antlr.TerminalNode
+	RIGHT_PAREN() antlr.TerminalNode
+	END() antlr.TerminalNode
+
+	// IsAt_modifier_timestampContext differentiates from other interfaces.
+	IsAt_modifier_timestampContext()
+}
+
+type At_modifier_timestampContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyAt_modifier_timestampContext() *At_modifier_timestampContext {
+	var p = new(At_modifier_timestampContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = PromQLParserRULE_at_modifier_timestamp
+	return p
+}
+
+func InitEmptyAt_modifier_timestampContext(p *At_modifier_timestampContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = PromQLParserRULE_at_modifier_timestamp
+}
+
+func (*At_modifier_timestampContext) IsAt_modifier_timestampContext() {}
+
+func NewAt_modifier_timestampContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *At_modifier_timestampContext {
+	var p = new(At_modifier_timestampContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = PromQLParserRULE_at_modifier_timestamp
+
+	return p
+}
+
+func (s *At_modifier_timestampContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *At_modifier_timestampContext) AT_NUMBER() antlr.TerminalNode {
+	return s.GetToken(PromQLParserAT_NUMBER, 0)
+}
+
+func (s *At_modifier_timestampContext) START() antlr.TerminalNode {
+	return s.GetToken(PromQLParserSTART, 0)
+}
+
+func (s *At_modifier_timestampContext) LEFT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLParserLEFT_PAREN, 0)
+}
+
+func (s *At_modifier_timestampContext) RIGHT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLParserRIGHT_PAREN, 0)
+}
+
+func (s *At_modifier_timestampContext) END() antlr.TerminalNode {
+	return s.GetToken(PromQLParserEND, 0)
+}
+
+func (s *At_modifier_timestampContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *At_modifier_timestampContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *At_modifier_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLParserListener); ok {
+		listenerT.EnterAt_modifier_timestamp(s)
+	}
+}
+
+func (s *At_modifier_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLParserListener); ok {
+		listenerT.ExitAt_modifier_timestamp(s)
+	}
+}
+
+func (p *PromQLParser) At_modifier_timestamp() (localctx IAt_modifier_timestampContext) {
+	localctx = NewAt_modifier_timestampContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 4, PromQLParserRULE_at_modifier_timestamp)
+	p.SetState(129)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetTokenStream().LA(1) {
+	case PromQLParserAT_NUMBER:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(122)
+			p.Match(PromQLParserAT_NUMBER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case PromQLParserSTART:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(123)
+			p.Match(PromQLParserSTART)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(124)
+			p.Match(PromQLParserLEFT_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(125)
+			p.Match(PromQLParserRIGHT_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case PromQLParserEND:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(126)
+			p.Match(PromQLParserEND)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(127)
+			p.Match(PromQLParserLEFT_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(128)
+			p.Match(PromQLParserRIGHT_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
@@ -1060,12 +1273,12 @@ func (s *UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) UnaryOp() (localctx IUnaryOpContext) {
 	localctx = NewUnaryOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 4, PromQLParserRULE_unaryOp)
+	p.EnterRule(localctx, 6, PromQLParserRULE_unaryOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(120)
+		p.SetState(131)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PromQLParserADD || _la == PromQLParserSUB) {
@@ -1178,19 +1391,19 @@ func (s *PowOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) PowOp() (localctx IPowOpContext) {
 	localctx = NewPowOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, PromQLParserRULE_powOp)
+	p.EnterRule(localctx, 8, PromQLParserRULE_powOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(122)
+		p.SetState(133)
 		p.Match(PromQLParserPOW)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(124)
+	p.SetState(135)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1199,7 +1412,7 @@ func (p *PromQLParser) PowOp() (localctx IPowOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(123)
+			p.SetState(134)
 			p.Grouping()
 		}
 
@@ -1317,12 +1530,12 @@ func (s *MultOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) MultOp() (localctx IMultOpContext) {
 	localctx = NewMultOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, PromQLParserRULE_multOp)
+	p.EnterRule(localctx, 10, PromQLParserRULE_multOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(126)
+		p.SetState(137)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&896) != 0) {
@@ -1332,7 +1545,7 @@ func (p *PromQLParser) MultOp() (localctx IMultOpContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(128)
+	p.SetState(139)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1341,7 +1554,7 @@ func (p *PromQLParser) MultOp() (localctx IMultOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(127)
+			p.SetState(138)
 			p.Grouping()
 		}
 
@@ -1454,12 +1667,12 @@ func (s *AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) AddOp() (localctx IAddOpContext) {
 	localctx = NewAddOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, PromQLParserRULE_addOp)
+	p.EnterRule(localctx, 12, PromQLParserRULE_addOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(130)
+		p.SetState(141)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PromQLParserADD || _la == PromQLParserSUB) {
@@ -1469,7 +1682,7 @@ func (p *PromQLParser) AddOp() (localctx IAddOpContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(132)
+	p.SetState(143)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1478,7 +1691,7 @@ func (p *PromQLParser) AddOp() (localctx IAddOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(131)
+			p.SetState(142)
 			p.Grouping()
 		}
 
@@ -1616,12 +1829,12 @@ func (s *CompareOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 	localctx = NewCompareOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, PromQLParserRULE_compareOp)
+	p.EnterRule(localctx, 14, PromQLParserRULE_compareOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(134)
+		p.SetState(145)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2064384) != 0) {
@@ -1631,7 +1844,7 @@ func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(136)
+	p.SetState(147)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1640,7 +1853,7 @@ func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 
 	if _la == PromQLParserBOOL {
 		{
-			p.SetState(135)
+			p.SetState(146)
 			p.Match(PromQLParserBOOL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1649,7 +1862,7 @@ func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 		}
 
 	}
-	p.SetState(139)
+	p.SetState(150)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1658,7 +1871,7 @@ func (p *PromQLParser) CompareOp() (localctx ICompareOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(138)
+			p.SetState(149)
 			p.Grouping()
 		}
 
@@ -1771,12 +1984,12 @@ func (s *AndUnlessOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 	localctx = NewAndUnlessOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, PromQLParserRULE_andUnlessOp)
+	p.EnterRule(localctx, 16, PromQLParserRULE_andUnlessOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(141)
+		p.SetState(152)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PromQLParserAND || _la == PromQLParserUNLESS) {
@@ -1786,7 +1999,7 @@ func (p *PromQLParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(143)
+	p.SetState(154)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1795,7 +2008,7 @@ func (p *PromQLParser) AndUnlessOp() (localctx IAndUnlessOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(142)
+			p.SetState(153)
 			p.Grouping()
 		}
 
@@ -1903,19 +2116,19 @@ func (s *OrOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) OrOp() (localctx IOrOpContext) {
 	localctx = NewOrOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, PromQLParserRULE_orOp)
+	p.EnterRule(localctx, 18, PromQLParserRULE_orOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(145)
+		p.SetState(156)
 		p.Match(PromQLParserOR)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(147)
+	p.SetState(158)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1924,7 +2137,7 @@ func (p *PromQLParser) OrOp() (localctx IOrOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(146)
+			p.SetState(157)
 			p.Grouping()
 		}
 
@@ -2037,12 +2250,12 @@ func (s *VectorMatchOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) VectorMatchOp() (localctx IVectorMatchOpContext) {
 	localctx = NewVectorMatchOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, PromQLParserRULE_vectorMatchOp)
+	p.EnterRule(localctx, 20, PromQLParserRULE_vectorMatchOp)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(149)
+		p.SetState(160)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PromQLParserUNLESS || _la == PromQLParserON) {
@@ -2052,7 +2265,7 @@ func (p *PromQLParser) VectorMatchOp() (localctx IVectorMatchOpContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(151)
+	p.SetState(162)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2061,7 +2274,7 @@ func (p *PromQLParser) VectorMatchOp() (localctx IVectorMatchOpContext) {
 
 	if _la == PromQLParserON || _la == PromQLParserIGNORING {
 		{
-			p.SetState(150)
+			p.SetState(161)
 			p.Grouping()
 		}
 
@@ -2169,22 +2382,22 @@ func (s *SubqueryOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) SubqueryOp() (localctx ISubqueryOpContext) {
 	localctx = NewSubqueryOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, PromQLParserRULE_subqueryOp)
+	p.EnterRule(localctx, 22, PromQLParserRULE_subqueryOp)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(153)
+		p.SetState(164)
 		p.Match(PromQLParserSUBQUERY_RANGE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(155)
+	p.SetState(166)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 11, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 12, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(154)
+			p.SetState(165)
 			p.OffsetOp()
 		}
 
@@ -2282,10 +2495,10 @@ func (s *OffsetOpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) OffsetOp() (localctx IOffsetOpContext) {
 	localctx = NewOffsetOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, PromQLParserRULE_offsetOp)
+	p.EnterRule(localctx, 24, PromQLParserRULE_offsetOp)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(157)
+		p.SetState(168)
 		p.Match(PromQLParserOFFSET)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2293,7 +2506,7 @@ func (p *PromQLParser) OffsetOp() (localctx IOffsetOpContext) {
 		}
 	}
 	{
-		p.SetState(158)
+		p.SetState(169)
 		p.Match(PromQLParserDURATION)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2500,60 +2713,60 @@ func (s *VectorContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Vector() (localctx IVectorContext) {
 	localctx = NewVectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, PromQLParserRULE_vector)
-	p.SetState(167)
+	p.EnterRule(localctx, 26, PromQLParserRULE_vector)
+	p.SetState(178)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 12, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(160)
+			p.SetState(171)
 			p.Function_()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(161)
+			p.SetState(172)
 			p.Aggregation()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(162)
+			p.SetState(173)
 			p.InstantSelector()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(163)
+			p.SetState(174)
 			p.MatrixSelector()
 		}
 
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(164)
+			p.SetState(175)
 			p.Offset()
 		}
 
 	case 6:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(165)
+			p.SetState(176)
 			p.Literal()
 		}
 
 	case 7:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(166)
+			p.SetState(177)
 			p.Parens()
 		}
 
@@ -2668,10 +2881,10 @@ func (s *ParensContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Parens() (localctx IParensContext) {
 	localctx = NewParensContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, PromQLParserRULE_parens)
+	p.EnterRule(localctx, 28, PromQLParserRULE_parens)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(169)
+		p.SetState(180)
 		p.Match(PromQLParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2679,11 +2892,11 @@ func (p *PromQLParser) Parens() (localctx IParensContext) {
 		}
 	}
 	{
-		p.SetState(170)
+		p.SetState(181)
 		p.vectorOperation(0)
 	}
 	{
-		p.SetState(171)
+		p.SetState(182)
 		p.Match(PromQLParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2803,10 +3016,10 @@ func (s *InstantSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 	localctx = NewInstantSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, PromQLParserRULE_instantSelector)
+	p.EnterRule(localctx, 30, PromQLParserRULE_instantSelector)
 	var _la int
 
-	p.SetState(185)
+	p.SetState(196)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2816,26 +3029,26 @@ func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 	case PromQLParserMETRIC_NAME:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(173)
+			p.SetState(184)
 			p.Match(PromQLParserMETRIC_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(179)
+		p.SetState(190)
 		p.GetErrorHandler().Sync(p)
 
-		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 14, p.GetParserRuleContext()) == 1 {
+		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 15, p.GetParserRuleContext()) == 1 {
 			{
-				p.SetState(174)
+				p.SetState(185)
 				p.Match(PromQLParserLEFT_BRACE)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
 				}
 			}
-			p.SetState(176)
+			p.SetState(187)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -2844,13 +3057,13 @@ func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 
 			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&13196278642694) != 0 {
 				{
-					p.SetState(175)
+					p.SetState(186)
 					p.LabelMatcherList()
 				}
 
 			}
 			{
-				p.SetState(178)
+				p.SetState(189)
 				p.Match(PromQLParserRIGHT_BRACE)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2865,7 +3078,7 @@ func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 	case PromQLParserLEFT_BRACE:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(181)
+			p.SetState(192)
 			p.Match(PromQLParserLEFT_BRACE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2873,11 +3086,11 @@ func (p *PromQLParser) InstantSelector() (localctx IInstantSelectorContext) {
 			}
 		}
 		{
-			p.SetState(182)
+			p.SetState(193)
 			p.LabelMatcherList()
 		}
 		{
-			p.SetState(183)
+			p.SetState(194)
 			p.Match(PromQLParserRIGHT_BRACE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3021,18 +3234,18 @@ func (s *LabelMatcherContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) LabelMatcher() (localctx ILabelMatcherContext) {
 	localctx = NewLabelMatcherContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, PromQLParserRULE_labelMatcher)
+	p.EnterRule(localctx, 32, PromQLParserRULE_labelMatcher)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(187)
+		p.SetState(198)
 		p.LabelName()
 	}
 	{
-		p.SetState(188)
+		p.SetState(199)
 		p.LabelMatcherOperator()
 	}
 	{
-		p.SetState(189)
+		p.SetState(200)
 		p.String_()
 	}
 
@@ -3136,12 +3349,12 @@ func (s *LabelMatcherOperatorContext) ExitRule(listener antlr.ParseTreeListener)
 
 func (p *PromQLParser) LabelMatcherOperator() (localctx ILabelMatcherOperatorContext) {
 	localctx = NewLabelMatcherOperatorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, PromQLParserRULE_labelMatcherOperator)
+	p.EnterRule(localctx, 34, PromQLParserRULE_labelMatcherOperator)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(191)
+		p.SetState(202)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&6373376) != 0) {
@@ -3285,29 +3498,29 @@ func (s *LabelMatcherListContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) LabelMatcherList() (localctx ILabelMatcherListContext) {
 	localctx = NewLabelMatcherListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, PromQLParserRULE_labelMatcherList)
+	p.EnterRule(localctx, 36, PromQLParserRULE_labelMatcherList)
 	var _la int
 
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(193)
+		p.SetState(204)
 		p.LabelMatcher()
 	}
-	p.SetState(198)
+	p.SetState(209)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
-	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 16, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 17, p.GetParserRuleContext())
 	if p.HasError() {
 		goto errorExit
 	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(194)
+				p.SetState(205)
 				p.Match(PromQLParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3315,22 +3528,22 @@ func (p *PromQLParser) LabelMatcherList() (localctx ILabelMatcherListContext) {
 				}
 			}
 			{
-				p.SetState(195)
+				p.SetState(206)
 				p.LabelMatcher()
 			}
 
 		}
-		p.SetState(200)
+		p.SetState(211)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
-		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 16, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 17, p.GetParserRuleContext())
 		if p.HasError() {
 			goto errorExit
 		}
 	}
-	p.SetState(202)
+	p.SetState(213)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3339,7 +3552,7 @@ func (p *PromQLParser) LabelMatcherList() (localctx ILabelMatcherListContext) {
 
 	if _la == PromQLParserCOMMA {
 		{
-			p.SetState(201)
+			p.SetState(212)
 			p.Match(PromQLParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3451,14 +3664,14 @@ func (s *MatrixSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) MatrixSelector() (localctx IMatrixSelectorContext) {
 	localctx = NewMatrixSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, PromQLParserRULE_matrixSelector)
+	p.EnterRule(localctx, 38, PromQLParserRULE_matrixSelector)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(204)
+		p.SetState(215)
 		p.InstantSelector()
 	}
 	{
-		p.SetState(205)
+		p.SetState(216)
 		p.Match(PromQLParserTIME_RANGE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3590,22 +3803,22 @@ func (s *OffsetContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Offset() (localctx IOffsetContext) {
 	localctx = NewOffsetContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, PromQLParserRULE_offset)
-	p.SetState(215)
+	p.EnterRule(localctx, 40, PromQLParserRULE_offset)
+	p.SetState(226)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 18, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 19, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(207)
+			p.SetState(218)
 			p.InstantSelector()
 		}
 		{
-			p.SetState(208)
+			p.SetState(219)
 			p.Match(PromQLParserOFFSET)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3613,7 +3826,7 @@ func (p *PromQLParser) Offset() (localctx IOffsetContext) {
 			}
 		}
 		{
-			p.SetState(209)
+			p.SetState(220)
 			p.Match(PromQLParserDURATION)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3624,11 +3837,11 @@ func (p *PromQLParser) Offset() (localctx IOffsetContext) {
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(211)
+			p.SetState(222)
 			p.MatrixSelector()
 		}
 		{
-			p.SetState(212)
+			p.SetState(223)
 			p.Match(PromQLParserOFFSET)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3636,7 +3849,7 @@ func (p *PromQLParser) Offset() (localctx IOffsetContext) {
 			}
 		}
 		{
-			p.SetState(213)
+			p.SetState(224)
 			p.Match(PromQLParserDURATION)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3796,12 +4009,12 @@ func (s *Function_Context) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 	localctx = NewFunction_Context(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, PromQLParserRULE_function_)
+	p.EnterRule(localctx, 42, PromQLParserRULE_function_)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(217)
+		p.SetState(228)
 		p.Match(PromQLParserFUNCTION)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3809,14 +4022,14 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 		}
 	}
 	{
-		p.SetState(218)
+		p.SetState(229)
 		p.Match(PromQLParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(227)
+	p.SetState(238)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3825,10 +4038,10 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&74777528107134) != 0 {
 		{
-			p.SetState(219)
+			p.SetState(230)
 			p.Parameter()
 		}
-		p.SetState(224)
+		p.SetState(235)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3837,7 +4050,7 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 
 		for _la == PromQLParserCOMMA {
 			{
-				p.SetState(220)
+				p.SetState(231)
 				p.Match(PromQLParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3845,11 +4058,11 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 				}
 			}
 			{
-				p.SetState(221)
+				p.SetState(232)
 				p.Parameter()
 			}
 
-			p.SetState(226)
+			p.SetState(237)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -3859,7 +4072,7 @@ func (p *PromQLParser) Function_() (localctx IFunction_Context) {
 
 	}
 	{
-		p.SetState(229)
+		p.SetState(240)
 		p.Match(PromQLParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3981,25 +4194,25 @@ func (s *ParameterContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Parameter() (localctx IParameterContext) {
 	localctx = NewParameterContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, PromQLParserRULE_parameter)
-	p.SetState(233)
+	p.EnterRule(localctx, 44, PromQLParserRULE_parameter)
+	p.SetState(244)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 21, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 22, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(231)
+			p.SetState(242)
 			p.Literal()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(232)
+			p.SetState(243)
 			p.vectorOperation(0)
 		}
 
@@ -4150,19 +4363,19 @@ func (s *ParameterListContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 	localctx = NewParameterListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, PromQLParserRULE_parameterList)
+	p.EnterRule(localctx, 46, PromQLParserRULE_parameterList)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(235)
+		p.SetState(246)
 		p.Match(PromQLParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(244)
+	p.SetState(255)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4171,10 +4384,10 @@ func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&74777528107134) != 0 {
 		{
-			p.SetState(236)
+			p.SetState(247)
 			p.Parameter()
 		}
-		p.SetState(241)
+		p.SetState(252)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4183,7 +4396,7 @@ func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 
 		for _la == PromQLParserCOMMA {
 			{
-				p.SetState(237)
+				p.SetState(248)
 				p.Match(PromQLParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -4191,11 +4404,11 @@ func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 				}
 			}
 			{
-				p.SetState(238)
+				p.SetState(249)
 				p.Parameter()
 			}
 
-			p.SetState(243)
+			p.SetState(254)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -4205,7 +4418,7 @@ func (p *PromQLParser) ParameterList() (localctx IParameterListContext) {
 
 	}
 	{
-		p.SetState(246)
+		p.SetState(257)
 		p.Match(PromQLParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4349,18 +4562,18 @@ func (s *AggregationContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 	localctx = NewAggregationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, PromQLParserRULE_aggregation)
-	p.SetState(263)
+	p.EnterRule(localctx, 48, PromQLParserRULE_aggregation)
+	p.SetState(274)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 26, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 27, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(248)
+			p.SetState(259)
 			p.Match(PromQLParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4368,21 +4581,21 @@ func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 			}
 		}
 		{
-			p.SetState(249)
+			p.SetState(260)
 			p.ParameterList()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(250)
+			p.SetState(261)
 			p.Match(PromQLParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(253)
+		p.SetState(264)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4391,13 +4604,13 @@ func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 		switch p.GetTokenStream().LA(1) {
 		case PromQLParserBY:
 			{
-				p.SetState(251)
+				p.SetState(262)
 				p.By()
 			}
 
 		case PromQLParserWITHOUT:
 			{
-				p.SetState(252)
+				p.SetState(263)
 				p.Without()
 			}
 
@@ -4406,14 +4619,14 @@ func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 			goto errorExit
 		}
 		{
-			p.SetState(255)
+			p.SetState(266)
 			p.ParameterList()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(257)
+			p.SetState(268)
 			p.Match(PromQLParserAGGREGATION_OPERATOR)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4421,10 +4634,10 @@ func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 			}
 		}
 		{
-			p.SetState(258)
+			p.SetState(269)
 			p.ParameterList()
 		}
-		p.SetState(261)
+		p.SetState(272)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4433,13 +4646,13 @@ func (p *PromQLParser) Aggregation() (localctx IAggregationContext) {
 		switch p.GetTokenStream().LA(1) {
 		case PromQLParserBY:
 			{
-				p.SetState(259)
+				p.SetState(270)
 				p.By()
 			}
 
 		case PromQLParserWITHOUT:
 			{
-				p.SetState(260)
+				p.SetState(271)
 				p.Without()
 			}
 
@@ -4554,10 +4767,10 @@ func (s *ByContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) By() (localctx IByContext) {
 	localctx = NewByContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, PromQLParserRULE_by)
+	p.EnterRule(localctx, 50, PromQLParserRULE_by)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(265)
+		p.SetState(276)
 		p.Match(PromQLParserBY)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4565,7 +4778,7 @@ func (p *PromQLParser) By() (localctx IByContext) {
 		}
 	}
 	{
-		p.SetState(266)
+		p.SetState(277)
 		p.LabelNameList()
 	}
 
@@ -4671,10 +4884,10 @@ func (s *WithoutContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Without() (localctx IWithoutContext) {
 	localctx = NewWithoutContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, PromQLParserRULE_without)
+	p.EnterRule(localctx, 52, PromQLParserRULE_without)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(268)
+		p.SetState(279)
 		p.Match(PromQLParserWITHOUT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4682,7 +4895,7 @@ func (p *PromQLParser) Without() (localctx IWithoutContext) {
 		}
 	}
 	{
-		p.SetState(269)
+		p.SetState(280)
 		p.LabelNameList()
 	}
 
@@ -4834,9 +5047,9 @@ func (s *GroupingContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Grouping() (localctx IGroupingContext) {
 	localctx = NewGroupingContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, PromQLParserRULE_grouping)
+	p.EnterRule(localctx, 54, PromQLParserRULE_grouping)
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(273)
+	p.SetState(284)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4845,13 +5058,13 @@ func (p *PromQLParser) Grouping() (localctx IGroupingContext) {
 	switch p.GetTokenStream().LA(1) {
 	case PromQLParserON:
 		{
-			p.SetState(271)
+			p.SetState(282)
 			p.On_()
 		}
 
 	case PromQLParserIGNORING:
 		{
-			p.SetState(272)
+			p.SetState(283)
 			p.Ignoring()
 		}
 
@@ -4859,7 +5072,7 @@ func (p *PromQLParser) Grouping() (localctx IGroupingContext) {
 		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		goto errorExit
 	}
-	p.SetState(277)
+	p.SetState(288)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4867,13 +5080,13 @@ func (p *PromQLParser) Grouping() (localctx IGroupingContext) {
 	switch p.GetTokenStream().LA(1) {
 	case PromQLParserGROUP_LEFT:
 		{
-			p.SetState(275)
+			p.SetState(286)
 			p.GroupLeft()
 		}
 
 	case PromQLParserGROUP_RIGHT:
 		{
-			p.SetState(276)
+			p.SetState(287)
 			p.GroupRight()
 		}
 
@@ -4984,10 +5197,10 @@ func (s *On_Context) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) On_() (localctx IOn_Context) {
 	localctx = NewOn_Context(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 54, PromQLParserRULE_on_)
+	p.EnterRule(localctx, 56, PromQLParserRULE_on_)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(279)
+		p.SetState(290)
 		p.Match(PromQLParserON)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4995,7 +5208,7 @@ func (p *PromQLParser) On_() (localctx IOn_Context) {
 		}
 	}
 	{
-		p.SetState(280)
+		p.SetState(291)
 		p.LabelNameList()
 	}
 
@@ -5101,10 +5314,10 @@ func (s *IgnoringContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Ignoring() (localctx IIgnoringContext) {
 	localctx = NewIgnoringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, PromQLParserRULE_ignoring)
+	p.EnterRule(localctx, 58, PromQLParserRULE_ignoring)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(282)
+		p.SetState(293)
 		p.Match(PromQLParserIGNORING)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5112,7 +5325,7 @@ func (p *PromQLParser) Ignoring() (localctx IIgnoringContext) {
 		}
 	}
 	{
-		p.SetState(283)
+		p.SetState(294)
 		p.LabelNameList()
 	}
 
@@ -5218,22 +5431,22 @@ func (s *GroupLeftContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) GroupLeft() (localctx IGroupLeftContext) {
 	localctx = NewGroupLeftContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, PromQLParserRULE_groupLeft)
+	p.EnterRule(localctx, 60, PromQLParserRULE_groupLeft)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(285)
+		p.SetState(296)
 		p.Match(PromQLParserGROUP_LEFT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(287)
+	p.SetState(298)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 29, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(286)
+			p.SetState(297)
 			p.LabelNameList()
 		}
 
@@ -5343,22 +5556,22 @@ func (s *GroupRightContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) GroupRight() (localctx IGroupRightContext) {
 	localctx = NewGroupRightContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, PromQLParserRULE_groupRight)
+	p.EnterRule(localctx, 62, PromQLParserRULE_groupRight)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(289)
+		p.SetState(300)
 		p.Match(PromQLParserGROUP_RIGHT)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(291)
+	p.SetState(302)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 31, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(290)
+			p.SetState(301)
 			p.LabelNameList()
 		}
 
@@ -5473,8 +5686,8 @@ func (s *LabelNameContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) LabelName() (localctx ILabelNameContext) {
 	localctx = NewLabelNameContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, PromQLParserRULE_labelName)
-	p.SetState(296)
+	p.EnterRule(localctx, 64, PromQLParserRULE_labelName)
+	p.SetState(307)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5484,14 +5697,14 @@ func (p *PromQLParser) LabelName() (localctx ILabelNameContext) {
 	case PromQLParserAGGREGATION_OPERATOR, PromQLParserFUNCTION, PromQLParserAND, PromQLParserOR, PromQLParserUNLESS, PromQLParserBY, PromQLParserWITHOUT, PromQLParserON, PromQLParserIGNORING, PromQLParserGROUP_LEFT, PromQLParserGROUP_RIGHT, PromQLParserOFFSET, PromQLParserBOOL:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(293)
+			p.SetState(304)
 			p.Keyword()
 		}
 
 	case PromQLParserMETRIC_NAME:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(294)
+			p.SetState(305)
 			p.Match(PromQLParserMETRIC_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5502,7 +5715,7 @@ func (p *PromQLParser) LabelName() (localctx ILabelNameContext) {
 	case PromQLParserLABEL_NAME:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(295)
+			p.SetState(306)
 			p.Match(PromQLParserLABEL_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5658,19 +5871,19 @@ func (s *LabelNameListContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 	localctx = NewLabelNameListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 64, PromQLParserRULE_labelNameList)
+	p.EnterRule(localctx, 66, PromQLParserRULE_labelNameList)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(298)
+		p.SetState(309)
 		p.Match(PromQLParserLEFT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(307)
+	p.SetState(318)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5679,10 +5892,10 @@ func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&13196278642694) != 0 {
 		{
-			p.SetState(299)
+			p.SetState(310)
 			p.LabelName()
 		}
-		p.SetState(304)
+		p.SetState(315)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -5691,7 +5904,7 @@ func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 
 		for _la == PromQLParserCOMMA {
 			{
-				p.SetState(300)
+				p.SetState(311)
 				p.Match(PromQLParserCOMMA)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -5699,11 +5912,11 @@ func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 				}
 			}
 			{
-				p.SetState(301)
+				p.SetState(312)
 				p.LabelName()
 			}
 
-			p.SetState(306)
+			p.SetState(317)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -5713,7 +5926,7 @@ func (p *PromQLParser) LabelNameList() (localctx ILabelNameListContext) {
 
 	}
 	{
-		p.SetState(309)
+		p.SetState(320)
 		p.Match(PromQLParserRIGHT_PAREN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5866,12 +6079,12 @@ func (s *KeywordContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Keyword() (localctx IKeywordContext) {
 	localctx = NewKeywordContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, PromQLParserRULE_keyword)
+	p.EnterRule(localctx, 68, PromQLParserRULE_keyword)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(311)
+		p.SetState(322)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2139109382) != 0) {
@@ -5984,8 +6197,8 @@ func (s *LiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) Literal() (localctx ILiteralContext) {
 	localctx = NewLiteralContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, PromQLParserRULE_literal)
-	p.SetState(315)
+	p.EnterRule(localctx, 70, PromQLParserRULE_literal)
+	p.SetState(326)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5995,7 +6208,7 @@ func (p *PromQLParser) Literal() (localctx ILiteralContext) {
 	case PromQLParserNUMBER:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(313)
+			p.SetState(324)
 			p.Match(PromQLParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -6006,7 +6219,7 @@ func (p *PromQLParser) Literal() (localctx ILiteralContext) {
 	case PromQLParserSTRING, PromQLParserRAW_STRING:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(314)
+			p.SetState(325)
 			p.String_()
 		}
 
@@ -6105,12 +6318,12 @@ func (s *StringContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *PromQLParser) String_() (localctx IStringContext) {
 	localctx = NewStringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, PromQLParserRULE_string)
+	p.EnterRule(localctx, 72, PromQLParserRULE_string)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(317)
+		p.SetState(328)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PromQLParserSTRING || _la == PromQLParserRAW_STRING) {
@@ -6172,10 +6385,10 @@ func (p *PromQLParser) VectorOperation_Sempred(localctx antlr.RuleContext, predI
 		return p.Precpred(p.GetParserRuleContext(), 3)
 
 	case 7:
-		return p.Precpred(p.GetParserRuleContext(), 2)
+		return p.Precpred(p.GetParserRuleContext(), 10)
 
 	case 8:
-		return p.Precpred(p.GetParserRuleContext(), 10)
+		return p.Precpred(p.GetParserRuleContext(), 2)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))

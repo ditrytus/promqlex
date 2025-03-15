@@ -53,8 +53,16 @@ vectorOperation
     | vectorOperation andUnlessOp vectorOperation
     | vectorOperation orOp vectorOperation
     | vectorOperation vectorMatchOp vectorOperation
-    | vectorOperation AT vectorOperation
+    | vectorOperation AT at_modifier_timestamp
     | vector
+    ;
+
+// At modifier
+
+at_modifier_timestamp
+    : AT_NUMBER
+    | START LEFT_PAREN RIGHT_PAREN
+    | END LEFT_PAREN RIGHT_PAREN
     ;
 
 // Operators

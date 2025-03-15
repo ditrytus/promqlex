@@ -148,6 +148,9 @@ type PromQLExParserListener interface {
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
+	// EnterAt_modifier_timestamp is called when entering the at_modifier_timestamp production.
+	EnterAt_modifier_timestamp(c *At_modifier_timestampContext)
+
 	// EnterUnaryOp is called when entering the unaryOp production.
 	EnterUnaryOp(c *UnaryOpContext)
 
@@ -369,6 +372,9 @@ type PromQLExParserListener interface {
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
+
+	// ExitAt_modifier_timestamp is called when exiting the at_modifier_timestamp production.
+	ExitAt_modifier_timestamp(c *At_modifier_timestampContext)
 
 	// ExitUnaryOp is called when exiting the unaryOp production.
 	ExitUnaryOp(c *UnaryOpContext)

@@ -32,6 +32,12 @@ func (s *BasePromQLParserListener) EnterVectorOperation(ctx *VectorOperationCont
 // ExitVectorOperation is called when production vectorOperation is exited.
 func (s *BasePromQLParserListener) ExitVectorOperation(ctx *VectorOperationContext) {}
 
+// EnterAt_modifier_timestamp is called when production at_modifier_timestamp is entered.
+func (s *BasePromQLParserListener) EnterAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+
+// ExitAt_modifier_timestamp is called when production at_modifier_timestamp is exited.
+func (s *BasePromQLParserListener) ExitAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+
 // EnterUnaryOp is called when production unaryOp is entered.
 func (s *BasePromQLParserListener) EnterUnaryOp(ctx *UnaryOpContext) {}
 

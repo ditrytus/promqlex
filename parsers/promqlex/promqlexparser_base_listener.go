@@ -303,6 +303,12 @@ func (s *BasePromQLExParserListener) EnterExpression(ctx *ExpressionContext) {}
 // ExitExpression is called when production expression is exited.
 func (s *BasePromQLExParserListener) ExitExpression(ctx *ExpressionContext) {}
 
+// EnterAt_modifier_timestamp is called when production at_modifier_timestamp is entered.
+func (s *BasePromQLExParserListener) EnterAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+
+// ExitAt_modifier_timestamp is called when production at_modifier_timestamp is exited.
+func (s *BasePromQLExParserListener) ExitAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+
 // EnterUnaryOp is called when production unaryOp is entered.
 func (s *BasePromQLExParserListener) EnterUnaryOp(ctx *UnaryOpContext) {}
 
