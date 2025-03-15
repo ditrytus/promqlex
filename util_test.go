@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/antlr4-go/antlr/v4"
 	"io"
+	"regexp"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -47,9 +49,10 @@ func debugPrintLexer(lexer antlr.Lexer) {
 }
 
 type AsciiAstPrinter struct {
-	io.Writer
+	writer io.Writer
 	prefix string
-	antlr.Recognizer
+	parser antlr.Recognizer
+	lexer  antlr.Recognizer
 }
 
 func (a *AsciiAstPrinter) Visit(tree antlr.ParseTree) interface{} {
@@ -57,18 +60,19 @@ func (a *AsciiAstPrinter) Visit(tree antlr.ParseTree) interface{} {
 	return nil
 }
 
-func NewAsciiAstPrinterVisitor(w io.Writer, recognizer antlr.Recognizer) *AsciiAstPrinter {
+func NewAsciiAstPrinterVisitor(w io.Writer, parser antlr.Recognizer, lexer antlr.Recognizer) *AsciiAstPrinter {
 	return &AsciiAstPrinter{
-		Writer:     w,
-		Recognizer: recognizer,
+		writer: w,
+		parser: parser,
+		lexer:  lexer,
 	}
 }
 
 func (a *AsciiAstPrinter) VisitChildren(node antlr.RuleNode) interface{} {
 	ruleIndex := node.GetRuleContext().GetRuleIndex()
-	ruleName := a.Recognizer.GetRuleNames()[ruleIndex]
+	ruleName := a.parser.GetRuleNames()[ruleIndex]
 	line := fmt.Sprintf("%s%s\n", a.prefix, ruleName)
-	_, _ = a.Write([]byte(line))
+	_, _ = a.writer.Write([]byte(line))
 	const (
 		TREE_DOWN_RIGHT = "├ "
 		TREE_DOWN       = "│ "
@@ -107,13 +111,23 @@ func (a *AsciiAstPrinter) VisitChildren(node antlr.RuleNode) interface{} {
 }
 
 func (a *AsciiAstPrinter) VisitTerminal(node antlr.TerminalNode) interface{} {
-	line := fmt.Sprintf("%s%s\n", a.prefix, node.GetSymbol().String())
-	_, _ = a.Write([]byte(line))
+	re := regexp.MustCompile("<(-?\\d+)>")
+	tokenString := node.GetSymbol().String()
+	tokenString = re.ReplaceAllStringFunc(tokenString, func(match string) string {
+		subMatches := re.FindStringSubmatch(match)
+		tokenType, _ := strconv.Atoi(subMatches[1])
+		if tokenType == antlr.TokenEOF {
+			return "EOF"
+		}
+		return a.lexer.GetRuleNames()[tokenType]
+	})
+	line := fmt.Sprintf("%s%s\n", a.prefix, tokenString)
+	_, _ = a.writer.Write([]byte(line))
 	return nil
 }
 
 func (a *AsciiAstPrinter) VisitErrorNode(node antlr.ErrorNode) interface{} {
 	line := fmt.Sprintf("%s[ERROR] %s\n", a.prefix, node.GetSymbol().String())
-	_, _ = a.Write([]byte(line))
+	_, _ = a.writer.Write([]byte(line))
 	return nil
 }

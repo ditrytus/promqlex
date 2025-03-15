@@ -43,7 +43,7 @@ func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 						fmt.Print()
 					}
 					var builder strings.Builder
-					NewAsciiAstPrinterVisitor(&builder, p).Visit(tree)
+					NewAsciiAstPrinterVisitor(&builder, p, lexer).Visit(tree)
 					fmt.Println(builder.String())
 				})
 			}

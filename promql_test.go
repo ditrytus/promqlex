@@ -2,6 +2,7 @@ package promqlex
 
 import (
 	"errors"
+	"fmt"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/ditrytus/promqlex/parsers/promql"
 	"gopkg.in/yaml.v3"
@@ -32,12 +33,16 @@ func TestPromQLParser_Parse(t *testing.T) {
 					functionSet.AddAggregationOperators(PrometheusExperimentalAggregationOperators)
 					providerInput := NewFunctionProviderInputStream(input, functionSet)
 					lexer := promql.NewPromQLLexer(providerInput)
+					lexer.GetTokenNames()
 					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 					p := promql.NewPromQLParser(tokens)
 					p.RemoveErrorListeners()
 					p.AddErrorListener(NewFailTestErrorListener(t))
 					p.AddErrorListener(antlr.NewConsoleErrorListener())
-					_ = p.Expression()
+					tree := p.Expression()
+					var builder strings.Builder
+					NewAsciiAstPrinterVisitor(&builder, p, lexer).Visit(tree)
+					fmt.Println(builder.String())
 				})
 			}
 		})
