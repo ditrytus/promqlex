@@ -8,7 +8,10 @@ import PromQLLexer;
 
 @header {
 
-import "slices"
+import (
+    "slices"
+    "strings"
+)
 
 }
 
@@ -44,21 +47,17 @@ fragment TIME_RANGE: ;
 
 // PROMQX: extensions
 
-ID options {
-  caseInsensitive = false;
-}: [a-zA-Z] [0-9a-zA-Z_]* {!p.IsLiteralName(p.GetText())}? {
-  if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
-      if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
-          l.SetType(tokenType)
-      }
-  }
-};
-
 METRIC_NAME : { func() bool {
         cnt, ok := p.GetInputStream().(BracketCounter)
-        return !ok || (ok && cnt.BracketCount() == 0)
+        return (!ok || (ok && cnt.BracketCount() == 0))
     }()
-}? [a-z_:] [a-z0-9_:]*;
+}? [a-z_:] [a-z0-9_:]* { !p.IsLiteralName(p.GetText()) }? {
+   if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
+       if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
+           l.SetType(tokenType)
+       }
+   }
+};
 
 IF: 'if';
 
@@ -76,8 +75,8 @@ DIGITS: [0-9]+;
 METRIC_KEYWORD: 'metric';
 LABEL_KEYWORD: 'label';
 
-DEF: 'def';
-CALL_SIGN: '$';
+DEF: 'def' -> pushMode(ID_MODE);
+CALL_SIGN: '$' -> pushMode(ID_MODE);
 
 NL: '\n' | '\r\n' ;
 
@@ -92,3 +91,9 @@ RIGHT_BRACKET : ']' {
         cnt.SetBracketCount(cnt.BracketCount()-1)
     }
 };
+
+mode ID_MODE;
+
+ID options {
+  caseInsensitive = false;
+}: [a-zA-Z] [0-9a-zA-Z_]* -> popMode;
