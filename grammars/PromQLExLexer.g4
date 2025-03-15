@@ -6,11 +6,26 @@ lexer grammar PromQLExLexer;
 
 import PromQLLexer;
 
+@header {
+
+import "slices"
+
+}
+
 @members {
 
 type BracketCounter interface {
     BracketCount() int
     SetBracketCount(val int)
+}
+
+func (l *PromQLExLexer) IsLiteralName(text string) bool {
+	return slices.ContainsFunc(l.LiteralNames, func(literlName string) bool {
+		if strings.ToLower(strings.Trim(literlName, "'")) == strings.ToLower(text) {
+			return true
+		}
+		return false
+	})
 }
 
 }
@@ -31,7 +46,7 @@ fragment TIME_RANGE: ;
 
 ID options {
   caseInsensitive = false;
-}: [a-zA-Z] [0-9a-zA-Z_]* {
+}: [a-zA-Z] [0-9a-zA-Z_]* {!p.IsLiteralName(p.GetText())}? {
   if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
       if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
           l.SetType(tokenType)

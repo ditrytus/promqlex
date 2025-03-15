@@ -111,6 +111,13 @@ func (a *AsciiAstPrinter) VisitChildren(node antlr.RuleNode) interface{} {
 }
 
 func (a *AsciiAstPrinter) VisitTerminal(node antlr.TerminalNode) interface{} {
+	tokenString := a.tokenStringWithName(node)
+	line := fmt.Sprintf("%s%s\n", a.prefix, tokenString)
+	_, _ = a.writer.Write([]byte(line))
+	return nil
+}
+
+func (a *AsciiAstPrinter) tokenStringWithName(node antlr.TerminalNode) string {
 	re := regexp.MustCompile("<(-?\\d+)>")
 	tokenString := node.GetSymbol().String()
 	tokenString = re.ReplaceAllStringFunc(tokenString, func(match string) string {
@@ -121,13 +128,12 @@ func (a *AsciiAstPrinter) VisitTerminal(node antlr.TerminalNode) interface{} {
 		}
 		return a.lexer.GetSymbolicNames()[tokenType]
 	})
-	line := fmt.Sprintf("%s%s\n", a.prefix, tokenString)
-	_, _ = a.writer.Write([]byte(line))
-	return nil
+	return tokenString
 }
 
 func (a *AsciiAstPrinter) VisitErrorNode(node antlr.ErrorNode) interface{} {
-	line := fmt.Sprintf("%s[ERROR] %s\n", a.prefix, node.GetSymbol().String())
+	tokenString := a.tokenStringWithName(node)
+	line := fmt.Sprintf("%s[ERROR] %s\n", a.prefix, tokenString)
 	_, _ = a.writer.Write([]byte(line))
 	return nil
 }

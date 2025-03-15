@@ -39,9 +39,6 @@ func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 					p.AddErrorListener(NewFailTestErrorListener(t))
 					p.AddErrorListener(antlr.NewConsoleErrorListener())
 					tree := p.Promqlx()
-					if query == "rate(http_requests_total[5m])[30m:1m]" {
-						fmt.Print()
-					}
 					var builder strings.Builder
 					NewAsciiAstPrinterVisitor(&builder, p, lexer).Visit(tree)
 					fmt.Println(builder.String())
