@@ -576,15 +576,13 @@ func (s *PromqlxContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PromqlxContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterPromqlx(s)
-	}
-}
+func (s *PromqlxContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitPromqlx(s)
 
-func (s *PromqlxContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitPromqlx(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -769,15 +767,13 @@ func (s *StatementContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StatementContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterStatement(s)
-	}
-}
+func (s *StatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitStatement(s)
 
-func (s *StatementContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitStatement(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -921,15 +917,13 @@ func (s *Alias_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Alias_defContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAlias_def(s)
-	}
-}
+func (s *Alias_defContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAlias_def(s)
 
-func (s *Alias_defContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAlias_def(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1042,15 +1036,13 @@ func (s *Alias_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Alias_callContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAlias_call(s)
-	}
-}
+func (s *Alias_callContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAlias_call(s)
 
-func (s *Alias_callContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAlias_call(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1195,15 +1187,13 @@ func (s *Macro_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Macro_defContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterMacro_def(s)
-	}
-}
+func (s *Macro_defContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitMacro_def(s)
 
-func (s *Macro_defContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitMacro_def(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1372,15 +1362,13 @@ func (s *Macro_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Macro_callContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterMacro_call(s)
-	}
-}
+func (s *Macro_callContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitMacro_call(s)
 
-func (s *Macro_callContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitMacro_call(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1564,15 +1552,13 @@ func (s *Args_declContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Args_declContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterArgs_decl(s)
-	}
-}
+func (s *Args_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitArgs_decl(s)
 
-func (s *Args_declContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitArgs_decl(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1686,15 +1672,13 @@ func (s *Arg_nameContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Arg_nameContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterArg_name(s)
-	}
-}
+func (s *Arg_nameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitArg_name(s)
 
-func (s *Arg_nameContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitArg_name(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1804,15 +1788,13 @@ func (s *Statement_blockContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Statement_blockContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterStatement_block(s)
-	}
-}
+func (s *Statement_blockContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitStatement_block(s)
 
-func (s *Statement_blockContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitStatement_block(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -1960,15 +1942,13 @@ func (s *Arg_listContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Arg_listContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterArg_list(s)
-	}
-}
+func (s *Arg_listContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitArg_list(s)
 
-func (s *Arg_listContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitArg_list(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2116,15 +2096,13 @@ func (s *If_statementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *If_statementContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterIf_statement(s)
-	}
-}
+func (s *If_statementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitIf_statement(s)
 
-func (s *If_statementContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitIf_statement(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2266,15 +2244,13 @@ func (s *ConditionContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ConditionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterCondition(s)
-	}
-}
+func (s *ConditionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitCondition(s)
 
-func (s *ConditionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitCondition(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2440,15 +2416,13 @@ func (s *CompareVectorOperationContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CompareVectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterCompareVectorOperation(s)
-	}
-}
+func (s *CompareVectorOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitCompareVectorOperation(s)
 
-func (s *CompareVectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitCompareVectorOperation(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2540,15 +2514,13 @@ func (s *TrueConstContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TrueConstContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterTrueConst(s)
-	}
-}
+func (s *TrueConstContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitTrueConst(s)
 
-func (s *TrueConstContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitTrueConst(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2636,15 +2608,13 @@ func (s *FalseConstContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FalseConstContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterFalseConst(s)
-	}
-}
+func (s *FalseConstContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitFalseConst(s)
 
-func (s *FalseConstContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitFalseConst(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2761,15 +2731,13 @@ func (s *Time_instant_literalContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Time_instant_literalContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterTime_instant_literal(s)
-	}
-}
+func (s *Time_instant_literalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitTime_instant_literal(s)
 
-func (s *Time_instant_literalContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitTime_instant_literal(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -2968,15 +2936,13 @@ func (s *Iso_date_timeContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Iso_date_timeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterIso_date_time(s)
-	}
-}
+func (s *Iso_date_timeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitIso_date_time(s)
 
-func (s *Iso_date_timeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitIso_date_time(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -3202,15 +3168,13 @@ func (s *Unix_timestampContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Unix_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterUnix_timestamp(s)
-	}
-}
+func (s *Unix_timestampContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitUnix_timestamp(s)
 
-func (s *Unix_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitUnix_timestamp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -3431,15 +3395,13 @@ func (s *Const_num_expressionContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Const_num_expressionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterConst_num_expression(s)
-	}
-}
+func (s *Const_num_expressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitConst_num_expression(s)
 
-func (s *Const_num_expressionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitConst_num_expression(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -3653,15 +3615,13 @@ func (s *Num_literalContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Num_literalContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterNum_literal(s)
-	}
-}
+func (s *Num_literalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitNum_literal(s)
 
-func (s *Num_literalContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitNum_literal(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -3798,15 +3758,13 @@ func (s *DurationContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DurationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterDuration(s)
-	}
-}
+func (s *DurationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitDuration(s)
 
-func (s *DurationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitDuration(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -3912,15 +3870,13 @@ func (s *Time_rangeContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Time_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterTime_range(s)
-	}
-}
+func (s *Time_rangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitTime_range(s)
 
-func (s *Time_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitTime_range(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -4073,15 +4029,13 @@ func (s *Subquery_rangeContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Subquery_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterSubquery_range(s)
-	}
-}
+func (s *Subquery_rangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitSubquery_range(s)
 
-func (s *Subquery_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitSubquery_range(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -4469,15 +4423,13 @@ func (s *VectorOperationContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterVectorOperation(s)
-	}
-}
+func (s *VectorOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitVectorOperation(s)
 
-func (s *VectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitVectorOperation(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -4836,15 +4788,13 @@ func (s *SubqueryOpContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SubqueryOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterSubqueryOp(s)
-	}
-}
+func (s *SubqueryOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitSubqueryOp(s)
 
-func (s *SubqueryOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitSubqueryOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -4957,15 +4907,13 @@ func (s *OffsetOpContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OffsetOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterOffsetOp(s)
-	}
-}
+func (s *OffsetOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitOffsetOp(s)
 
-func (s *OffsetOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitOffsetOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5086,15 +5034,13 @@ func (s *MatrixSelectorContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MatrixSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterMatrixSelector(s)
-	}
-}
+func (s *MatrixSelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitMatrixSelector(s)
 
-func (s *MatrixSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitMatrixSelector(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5233,15 +5179,13 @@ func (s *OffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OffsetContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterOffset(s)
-	}
-}
+func (s *OffsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitOffset(s)
 
-func (s *OffsetContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitOffset(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5397,15 +5341,13 @@ func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LiteralContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLiteral(s)
-	}
-}
+func (s *LiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLiteral(s)
 
-func (s *LiteralContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLiteral(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5548,15 +5490,13 @@ func (s *InstantSelectorContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InstantSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterInstantSelector(s)
-	}
-}
+func (s *InstantSelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitInstantSelector(s)
 
-func (s *InstantSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitInstantSelector(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5750,15 +5690,13 @@ func (s *LabelNameContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelNameContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLabelName(s)
-	}
-}
+func (s *LabelNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLabelName(s)
 
-func (s *LabelNameContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLabelName(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -5878,15 +5816,13 @@ func (s *Metric_nameContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Metric_nameContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterMetric_name(s)
-	}
-}
+func (s *Metric_nameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitMetric_name(s)
 
-func (s *Metric_nameContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitMetric_name(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6011,15 +5947,13 @@ func (s *At_modifier_timestampContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *At_modifier_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAt_modifier_timestamp(s)
-	}
-}
+func (s *At_modifier_timestampContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAt_modifier_timestamp(s)
 
-func (s *At_modifier_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAt_modifier_timestamp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6187,15 +6121,13 @@ func (s *ExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterExpression(s)
-	}
-}
+func (s *ExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitExpression(s)
 
-func (s *ExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitExpression(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6292,15 +6224,13 @@ func (s *UnaryOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnaryOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterUnaryOp(s)
-	}
-}
+func (s *UnaryOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitUnaryOp(s)
 
-func (s *UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitUnaryOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6410,15 +6340,13 @@ func (s *PowOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PowOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterPowOp(s)
-	}
-}
+func (s *PowOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitPowOp(s)
 
-func (s *PowOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitPowOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6549,15 +6477,13 @@ func (s *MultOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MultOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterMultOp(s)
-	}
-}
+func (s *MultOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitMultOp(s)
 
-func (s *MultOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitMultOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6686,15 +6612,13 @@ func (s *AddOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AddOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAddOp(s)
-	}
-}
+func (s *AddOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAddOp(s)
 
-func (s *AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAddOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -6848,15 +6772,13 @@ func (s *CompareOpContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CompareOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterCompareOp(s)
-	}
-}
+func (s *CompareOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitCompareOp(s)
 
-func (s *CompareOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitCompareOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7003,15 +6925,13 @@ func (s *AndUnlessOpContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AndUnlessOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAndUnlessOp(s)
-	}
-}
+func (s *AndUnlessOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAndUnlessOp(s)
 
-func (s *AndUnlessOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAndUnlessOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7135,15 +7055,13 @@ func (s *OrOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OrOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterOrOp(s)
-	}
-}
+func (s *OrOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitOrOp(s)
 
-func (s *OrOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitOrOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7269,15 +7187,13 @@ func (s *VectorMatchOpContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VectorMatchOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterVectorMatchOp(s)
-	}
-}
+func (s *VectorMatchOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitVectorMatchOp(s)
 
-func (s *VectorMatchOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitVectorMatchOp(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7498,15 +7414,13 @@ func (s *VectorContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VectorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterVector(s)
-	}
-}
+func (s *VectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitVector(s)
 
-func (s *VectorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitVector(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7666,15 +7580,13 @@ func (s *ParensContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParensContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterParens(s)
-	}
-}
+func (s *ParensContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitParens(s)
 
-func (s *ParensContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitParens(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7820,15 +7732,13 @@ func (s *LabelMatcherContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLabelMatcher(s)
-	}
-}
+func (s *LabelMatcherContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLabelMatcher(s)
 
-func (s *LabelMatcherContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLabelMatcher(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -7935,15 +7845,13 @@ func (s *LabelMatcherOperatorContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherOperatorContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLabelMatcherOperator(s)
-	}
-}
+func (s *LabelMatcherOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLabelMatcherOperator(s)
 
-func (s *LabelMatcherOperatorContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLabelMatcherOperator(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -8084,15 +7992,13 @@ func (s *LabelMatcherListContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLabelMatcherList(s)
-	}
-}
+func (s *LabelMatcherListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLabelMatcherList(s)
 
-func (s *LabelMatcherListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLabelMatcherList(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -8296,15 +8202,13 @@ func (s *Function_Context) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Function_Context) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterFunction_(s)
-	}
-}
+func (s *Function_Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitFunction_(s)
 
-func (s *Function_Context) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitFunction_(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -8481,15 +8385,13 @@ func (s *ParameterContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParameterContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterParameter(s)
-	}
-}
+func (s *ParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitParameter(s)
 
-func (s *ParameterContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitParameter(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -8650,15 +8552,13 @@ func (s *ParameterListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParameterListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterParameterList(s)
-	}
-}
+func (s *ParameterListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitParameterList(s)
 
-func (s *ParameterListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitParameterList(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -8849,15 +8749,13 @@ func (s *AggregationContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AggregationContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAggregation(s)
-	}
-}
+func (s *AggregationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitAggregation(s)
 
-func (s *AggregationContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAggregation(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9054,15 +8952,13 @@ func (s *ByContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) str
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ByContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterBy(s)
-	}
-}
+func (s *ByContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitBy(s)
 
-func (s *ByContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitBy(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9171,15 +9067,13 @@ func (s *WithoutContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *WithoutContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterWithout(s)
-	}
-}
+func (s *WithoutContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitWithout(s)
 
-func (s *WithoutContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitWithout(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9334,15 +9228,13 @@ func (s *GroupingContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupingContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterGrouping(s)
-	}
-}
+func (s *GroupingContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitGrouping(s)
 
-func (s *GroupingContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitGrouping(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9484,15 +9376,13 @@ func (s *On_Context) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *On_Context) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterOn_(s)
-	}
-}
+func (s *On_Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitOn_(s)
 
-func (s *On_Context) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitOn_(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9601,15 +9491,13 @@ func (s *IgnoringContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IgnoringContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterIgnoring(s)
-	}
-}
+func (s *IgnoringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitIgnoring(s)
 
-func (s *IgnoringContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitIgnoring(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9718,15 +9606,13 @@ func (s *GroupLeftContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupLeftContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterGroupLeft(s)
-	}
-}
+func (s *GroupLeftContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitGroupLeft(s)
 
-func (s *GroupLeftContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitGroupLeft(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -9843,15 +9729,13 @@ func (s *GroupRightContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupRightContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterGroupRight(s)
-	}
-}
+func (s *GroupRightContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitGroupRight(s)
 
-func (s *GroupRightContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitGroupRight(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -10009,15 +9893,13 @@ func (s *LabelNameListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelNameListContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterLabelNameList(s)
-	}
-}
+func (s *LabelNameListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitLabelNameList(s)
 
-func (s *LabelNameListContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitLabelNameList(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -10217,15 +10099,13 @@ func (s *KeywordContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *KeywordContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterKeyword(s)
-	}
-}
+func (s *KeywordContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitKeyword(s)
 
-func (s *KeywordContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitKeyword(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -10323,15 +10203,13 @@ func (s *StringContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StringContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterString(s)
-	}
-}
+func (s *StringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case PromQLExParserVisitor:
+		return t.VisitString(s)
 
-func (s *StringContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitString(s)
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
