@@ -12,10 +12,10 @@ options {
 promqlx : statement (SEMICOLON statement)* EOF;
 
 statement
-    : alias_def
-    | macro_def
-    | if_statement
-    | vectorOperation
+    : alias_def # State_AliasDef
+    | macro_def # State_MacroDef
+    | if_statement # State_IfStatement
+    | vectorOperation # State_VectorOperation
     ;
 
 alias_def : DEF ID EQ vectorOperation;
@@ -48,8 +48,8 @@ falseConst: FALSE;
 // Time literals
 
 time_instant_literal
-    : iso_date_time
-    | unix_timestamp
+    : iso_date_time # TimeInstLit_IsoDateTime
+    | unix_timestamp # TimeInstLit_UnixTimestamp
     ;
 
 iso_date_time
@@ -70,19 +70,19 @@ unix_timestamp: NUMBER;
 // Constant expressions
 
 const_num_expression
-    : <assoc = right> num_literal powOp num_literal
-    | unaryOp num_literal
-    | num_literal multOp num_literal
-    | num_literal addOp num_literal
-    | LEFT_PAREN const_num_expression RIGHT_PAREN
-    | num_literal
+    : <assoc = right> num_literal powOp num_literal # ConsNumExpr_PowerOp
+    | unaryOp num_literal # ConsNumExpr_UnaryOp
+    | num_literal multOp num_literal # ConsNumExpr_MulOp
+    | num_literal addOp num_literal # ConsNumExpr_AddOp
+    | LEFT_PAREN const_num_expression RIGHT_PAREN # PConsNumExpr_arenOp
+    | num_literal # ConsNumExpr_NumLiteral
     ;
 
 num_literal
-    : NUMBER
-    | DURATION
-    | time_instant_literal
-    | alias_call
+    : NUMBER # NumLit_Number
+    | DURATION # NumLit_Duration
+    | time_instant_literal # NumLit_TimeInstantLit
+    | alias_call # NumLit_AliasCall
     ;
 
 duration : const_num_expression;
@@ -97,21 +97,22 @@ subquery_range: LEFT_BRACKET duration COLON duration? RIGHT_BRACKET;
 
 // Overrides of PromQLParser parser rules
 
+
 vectorOperation
-    : <assoc = right> vectorOperation powOp vectorOperation
-    | <assoc = right> vectorOperation subqueryOp
-    | unaryOp vectorOperation
-    | vectorOperation multOp vectorOperation
-    | vectorOperation addOp vectorOperation
-    | vectorOperation compareOp vectorOperation
-    | vectorOperation andUnlessOp vectorOperation
-    | vectorOperation orOp vectorOperation
-    | vectorOperation vectorMatchOp vectorOperation
-    | vectorOperation AT at_modifier_timestamp
-    | vector
+    : <assoc = right> vectorOperation powOp vectorOperation # VecOp_PowOp
+    | <assoc = right> vectorOperation subqueryOp # VecOp_SubOp
+    | unaryOp vectorOperation # VecOp_UnaryOp
+    | vectorOperation multOp vectorOperation # VecOp_MulOp
+    | vectorOperation addOp vectorOperation # VecOp_AddOp
+    | vectorOperation compareOp vectorOperation # VecOp_CompareOp
+    | vectorOperation andUnlessOp vectorOperation # VecOp_AndUnless
+    | vectorOperation orOp vectorOperation # VecOp_OrOp
+    | vectorOperation vectorMatchOp vectorOperation # VecOp_VecMatchOp
+    | vectorOperation AT at_modifier_timestamp # VecOp_At
+    | vector # VecOp_Vec
     // PROMQLX: an alias or macro call can be used anywhere in the context of vector operation.
-    | macro_call
-    | alias_call
+    | macro_call # VecOp_Macro
+    | alias_call # VecOp_Alias
     ;
 
 subqueryOp
@@ -141,8 +142,8 @@ offset
 literal
     // PROMQLX: everything that can be converted to the number of seconds
     // can be used as literal
-    : const_num_expression
-    | string
+    : const_num_expression # Lit_ConstNumExpr
+    | string # Lit_String
     ;
 
 instantSelector

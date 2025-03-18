@@ -576,13 +576,15 @@ func (s *PromqlxContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PromqlxContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitPromqlx(s)
+func (s *PromqlxContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterPromqlx(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *PromqlxContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitPromqlx(s)
 	}
 }
 
@@ -652,13 +654,6 @@ type IStatementContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	Alias_def() IAlias_defContext
-	Macro_def() IMacro_defContext
-	If_statement() IIf_statementContext
-	VectorOperation() IVectorOperationContext
-
 	// IsStatementContext differentiates from other interfaces.
 	IsStatementContext()
 }
@@ -695,23 +690,37 @@ func NewStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 
 func (s *StatementContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *StatementContext) Alias_def() IAlias_defContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IAlias_defContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IAlias_defContext)
+func (s *StatementContext) CopyAll(ctx *StatementContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
-func (s *StatementContext) Macro_def() IMacro_defContext {
+func (s *StatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *StatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type State_MacroDefContext struct {
+	StatementContext
+}
+
+func NewState_MacroDefContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *State_MacroDefContext {
+	var p = new(State_MacroDefContext)
+
+	InitEmptyStatementContext(&p.StatementContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*StatementContext))
+
+	return p
+}
+
+func (s *State_MacroDefContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *State_MacroDefContext) Macro_def() IMacro_defContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IMacro_defContext); ok {
@@ -727,23 +736,37 @@ func (s *StatementContext) Macro_def() IMacro_defContext {
 	return t.(IMacro_defContext)
 }
 
-func (s *StatementContext) If_statement() IIf_statementContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IIf_statementContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
+func (s *State_MacroDefContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterState_MacroDef(s)
 	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIf_statementContext)
 }
 
-func (s *StatementContext) VectorOperation() IVectorOperationContext {
+func (s *State_MacroDefContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitState_MacroDef(s)
+	}
+}
+
+type State_VectorOperationContext struct {
+	StatementContext
+}
+
+func NewState_VectorOperationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *State_VectorOperationContext {
+	var p = new(State_VectorOperationContext)
+
+	InitEmptyStatementContext(&p.StatementContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*StatementContext))
+
+	return p
+}
+
+func (s *State_VectorOperationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *State_VectorOperationContext) VectorOperation() IVectorOperationContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IVectorOperationContext); ok {
@@ -759,21 +782,107 @@ func (s *StatementContext) VectorOperation() IVectorOperationContext {
 	return t.(IVectorOperationContext)
 }
 
-func (s *StatementContext) GetRuleContext() antlr.RuleContext {
+func (s *State_VectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterState_VectorOperation(s)
+	}
+}
+
+func (s *State_VectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitState_VectorOperation(s)
+	}
+}
+
+type State_IfStatementContext struct {
+	StatementContext
+}
+
+func NewState_IfStatementContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *State_IfStatementContext {
+	var p = new(State_IfStatementContext)
+
+	InitEmptyStatementContext(&p.StatementContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*StatementContext))
+
+	return p
+}
+
+func (s *State_IfStatementContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *StatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+func (s *State_IfStatementContext) If_statement() IIf_statementContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIf_statementContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIf_statementContext)
 }
 
-func (s *StatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitStatement(s)
+func (s *State_IfStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterState_IfStatement(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *State_IfStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitState_IfStatement(s)
+	}
+}
+
+type State_AliasDefContext struct {
+	StatementContext
+}
+
+func NewState_AliasDefContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *State_AliasDefContext {
+	var p = new(State_AliasDefContext)
+
+	InitEmptyStatementContext(&p.StatementContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*StatementContext))
+
+	return p
+}
+
+func (s *State_AliasDefContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *State_AliasDefContext) Alias_def() IAlias_defContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAlias_defContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAlias_defContext)
+}
+
+func (s *State_AliasDefContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterState_AliasDef(s)
+	}
+}
+
+func (s *State_AliasDefContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitState_AliasDef(s)
 	}
 }
 
@@ -788,6 +897,7 @@ func (p *PromQLExParser) Statement() (localctx IStatementContext) {
 
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewState_AliasDefContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(132)
@@ -795,6 +905,7 @@ func (p *PromQLExParser) Statement() (localctx IStatementContext) {
 		}
 
 	case 2:
+		localctx = NewState_MacroDefContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(133)
@@ -802,6 +913,7 @@ func (p *PromQLExParser) Statement() (localctx IStatementContext) {
 		}
 
 	case 3:
+		localctx = NewState_IfStatementContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(134)
@@ -809,6 +921,7 @@ func (p *PromQLExParser) Statement() (localctx IStatementContext) {
 		}
 
 	case 4:
+		localctx = NewState_VectorOperationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(135)
@@ -917,13 +1030,15 @@ func (s *Alias_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Alias_defContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAlias_def(s)
+func (s *Alias_defContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAlias_def(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Alias_defContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAlias_def(s)
 	}
 }
 
@@ -1036,13 +1151,15 @@ func (s *Alias_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Alias_callContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAlias_call(s)
+func (s *Alias_callContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAlias_call(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Alias_callContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAlias_call(s)
 	}
 }
 
@@ -1187,13 +1304,15 @@ func (s *Macro_defContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Macro_defContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitMacro_def(s)
+func (s *Macro_defContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterMacro_def(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Macro_defContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitMacro_def(s)
 	}
 }
 
@@ -1362,13 +1481,15 @@ func (s *Macro_callContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Macro_callContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitMacro_call(s)
+func (s *Macro_callContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterMacro_call(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Macro_callContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitMacro_call(s)
 	}
 }
 
@@ -1552,13 +1673,15 @@ func (s *Args_declContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Args_declContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitArgs_decl(s)
+func (s *Args_declContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterArgs_decl(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Args_declContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitArgs_decl(s)
 	}
 }
 
@@ -1672,13 +1795,15 @@ func (s *Arg_nameContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Arg_nameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitArg_name(s)
+func (s *Arg_nameContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterArg_name(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Arg_nameContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitArg_name(s)
 	}
 }
 
@@ -1788,13 +1913,15 @@ func (s *Statement_blockContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Statement_blockContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitStatement_block(s)
+func (s *Statement_blockContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterStatement_block(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Statement_blockContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitStatement_block(s)
 	}
 }
 
@@ -1942,13 +2069,15 @@ func (s *Arg_listContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Arg_listContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitArg_list(s)
+func (s *Arg_listContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterArg_list(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Arg_listContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitArg_list(s)
 	}
 }
 
@@ -2096,13 +2225,15 @@ func (s *If_statementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *If_statementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitIf_statement(s)
+func (s *If_statementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterIf_statement(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *If_statementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitIf_statement(s)
 	}
 }
 
@@ -2244,13 +2375,15 @@ func (s *ConditionContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ConditionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitCondition(s)
+func (s *ConditionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterCondition(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ConditionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitCondition(s)
 	}
 }
 
@@ -2416,13 +2549,15 @@ func (s *CompareVectorOperationContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CompareVectorOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitCompareVectorOperation(s)
+func (s *CompareVectorOperationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterCompareVectorOperation(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *CompareVectorOperationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitCompareVectorOperation(s)
 	}
 }
 
@@ -2514,13 +2649,15 @@ func (s *TrueConstContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TrueConstContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitTrueConst(s)
+func (s *TrueConstContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterTrueConst(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *TrueConstContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitTrueConst(s)
 	}
 }
 
@@ -2608,13 +2745,15 @@ func (s *FalseConstContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FalseConstContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitFalseConst(s)
+func (s *FalseConstContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterFalseConst(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *FalseConstContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitFalseConst(s)
 	}
 }
 
@@ -2650,11 +2789,6 @@ type ITime_instant_literalContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	Iso_date_time() IIso_date_timeContext
-	Unix_timestamp() IUnix_timestampContext
-
 	// IsTime_instant_literalContext differentiates from other interfaces.
 	IsTime_instant_literalContext()
 }
@@ -2691,23 +2825,37 @@ func NewTime_instant_literalContext(parser antlr.Parser, parent antlr.ParserRule
 
 func (s *Time_instant_literalContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Time_instant_literalContext) Iso_date_time() IIso_date_timeContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IIso_date_timeContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIso_date_timeContext)
+func (s *Time_instant_literalContext) CopyAll(ctx *Time_instant_literalContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
-func (s *Time_instant_literalContext) Unix_timestamp() IUnix_timestampContext {
+func (s *Time_instant_literalContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Time_instant_literalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type TimeInstLit_UnixTimestampContext struct {
+	Time_instant_literalContext
+}
+
+func NewTimeInstLit_UnixTimestampContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TimeInstLit_UnixTimestampContext {
+	var p = new(TimeInstLit_UnixTimestampContext)
+
+	InitEmptyTime_instant_literalContext(&p.Time_instant_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Time_instant_literalContext))
+
+	return p
+}
+
+func (s *TimeInstLit_UnixTimestampContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TimeInstLit_UnixTimestampContext) Unix_timestamp() IUnix_timestampContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IUnix_timestampContext); ok {
@@ -2723,21 +2871,61 @@ func (s *Time_instant_literalContext) Unix_timestamp() IUnix_timestampContext {
 	return t.(IUnix_timestampContext)
 }
 
-func (s *Time_instant_literalContext) GetRuleContext() antlr.RuleContext {
+func (s *TimeInstLit_UnixTimestampContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterTimeInstLit_UnixTimestamp(s)
+	}
+}
+
+func (s *TimeInstLit_UnixTimestampContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitTimeInstLit_UnixTimestamp(s)
+	}
+}
+
+type TimeInstLit_IsoDateTimeContext struct {
+	Time_instant_literalContext
+}
+
+func NewTimeInstLit_IsoDateTimeContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TimeInstLit_IsoDateTimeContext {
+	var p = new(TimeInstLit_IsoDateTimeContext)
+
+	InitEmptyTime_instant_literalContext(&p.Time_instant_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Time_instant_literalContext))
+
+	return p
+}
+
+func (s *TimeInstLit_IsoDateTimeContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *Time_instant_literalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+func (s *TimeInstLit_IsoDateTimeContext) Iso_date_time() IIso_date_timeContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIso_date_timeContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIso_date_timeContext)
 }
 
-func (s *Time_instant_literalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitTime_instant_literal(s)
+func (s *TimeInstLit_IsoDateTimeContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterTimeInstLit_IsoDateTime(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *TimeInstLit_IsoDateTimeContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitTimeInstLit_IsoDateTime(s)
 	}
 }
 
@@ -2752,6 +2940,7 @@ func (p *PromQLExParser) Time_instant_literal() (localctx ITime_instant_literalC
 
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewTimeInstLit_IsoDateTimeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(202)
@@ -2759,6 +2948,7 @@ func (p *PromQLExParser) Time_instant_literal() (localctx ITime_instant_literalC
 		}
 
 	case 2:
+		localctx = NewTimeInstLit_UnixTimestampContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(203)
@@ -2936,13 +3126,15 @@ func (s *Iso_date_timeContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Iso_date_timeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitIso_date_time(s)
+func (s *Iso_date_timeContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterIso_date_time(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Iso_date_timeContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitIso_date_time(s)
 	}
 }
 
@@ -3168,13 +3360,15 @@ func (s *Unix_timestampContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Unix_timestampContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitUnix_timestamp(s)
+func (s *Unix_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterUnix_timestamp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Unix_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitUnix_timestamp(s)
 	}
 }
 
@@ -3210,18 +3404,6 @@ type IConst_num_expressionContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	AllNum_literal() []INum_literalContext
-	Num_literal(i int) INum_literalContext
-	PowOp() IPowOpContext
-	UnaryOp() IUnaryOpContext
-	MultOp() IMultOpContext
-	AddOp() IAddOpContext
-	LEFT_PAREN() antlr.TerminalNode
-	Const_num_expression() IConst_num_expressionContext
-	RIGHT_PAREN() antlr.TerminalNode
-
 	// IsConst_num_expressionContext differentiates from other interfaces.
 	IsConst_num_expressionContext()
 }
@@ -3258,7 +3440,83 @@ func NewConst_num_expressionContext(parser antlr.Parser, parent antlr.ParserRule
 
 func (s *Const_num_expressionContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Const_num_expressionContext) AllNum_literal() []INum_literalContext {
+func (s *Const_num_expressionContext) CopyAll(ctx *Const_num_expressionContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *Const_num_expressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Const_num_expressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type ConsNumExpr_NumLiteralContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_NumLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_NumLiteralContext {
+	var p = new(ConsNumExpr_NumLiteralContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_NumLiteralContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_NumLiteralContext) Num_literal() INum_literalContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INum_literalContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INum_literalContext)
+}
+
+func (s *ConsNumExpr_NumLiteralContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_NumLiteral(s)
+	}
+}
+
+func (s *ConsNumExpr_NumLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_NumLiteral(s)
+	}
+}
+
+type ConsNumExpr_MulOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_MulOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_MulOpContext {
+	var p = new(ConsNumExpr_MulOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_MulOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_MulOpContext) AllNum_literal() []INum_literalContext {
 	children := s.GetChildren()
 	len := 0
 	for _, ctx := range children {
@@ -3279,7 +3537,7 @@ func (s *Const_num_expressionContext) AllNum_literal() []INum_literalContext {
 	return tst
 }
 
-func (s *Const_num_expressionContext) Num_literal(i int) INum_literalContext {
+func (s *ConsNumExpr_MulOpContext) Num_literal(i int) INum_literalContext {
 	var t antlr.RuleContext
 	j := 0
 	for _, ctx := range s.GetChildren() {
@@ -3299,39 +3557,7 @@ func (s *Const_num_expressionContext) Num_literal(i int) INum_literalContext {
 	return t.(INum_literalContext)
 }
 
-func (s *Const_num_expressionContext) PowOp() IPowOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IPowOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPowOpContext)
-}
-
-func (s *Const_num_expressionContext) UnaryOp() IUnaryOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IUnaryOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IUnaryOpContext)
-}
-
-func (s *Const_num_expressionContext) MultOp() IMultOpContext {
+func (s *ConsNumExpr_MulOpContext) MultOp() IMultOpContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IMultOpContext); ok {
@@ -3347,7 +3573,227 @@ func (s *Const_num_expressionContext) MultOp() IMultOpContext {
 	return t.(IMultOpContext)
 }
 
-func (s *Const_num_expressionContext) AddOp() IAddOpContext {
+func (s *ConsNumExpr_MulOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_MulOp(s)
+	}
+}
+
+func (s *ConsNumExpr_MulOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_MulOp(s)
+	}
+}
+
+type ConsNumExpr_PowerOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_PowerOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_PowerOpContext {
+	var p = new(ConsNumExpr_PowerOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_PowerOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_PowerOpContext) AllNum_literal() []INum_literalContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(INum_literalContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]INum_literalContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(INum_literalContext); ok {
+			tst[i] = t.(INum_literalContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ConsNumExpr_PowerOpContext) Num_literal(i int) INum_literalContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INum_literalContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INum_literalContext)
+}
+
+func (s *ConsNumExpr_PowerOpContext) PowOp() IPowOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPowOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IPowOpContext)
+}
+
+func (s *ConsNumExpr_PowerOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_PowerOp(s)
+	}
+}
+
+func (s *ConsNumExpr_PowerOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_PowerOp(s)
+	}
+}
+
+type ConsNumExpr_UnaryOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_UnaryOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_UnaryOpContext {
+	var p = new(ConsNumExpr_UnaryOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_UnaryOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_UnaryOpContext) UnaryOp() IUnaryOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IUnaryOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IUnaryOpContext)
+}
+
+func (s *ConsNumExpr_UnaryOpContext) Num_literal() INum_literalContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INum_literalContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INum_literalContext)
+}
+
+func (s *ConsNumExpr_UnaryOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_UnaryOp(s)
+	}
+}
+
+func (s *ConsNumExpr_UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_UnaryOp(s)
+	}
+}
+
+type ConsNumExpr_AddOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_AddOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_AddOpContext {
+	var p = new(ConsNumExpr_AddOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_AddOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_AddOpContext) AllNum_literal() []INum_literalContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(INum_literalContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]INum_literalContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(INum_literalContext); ok {
+			tst[i] = t.(INum_literalContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ConsNumExpr_AddOpContext) Num_literal(i int) INum_literalContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INum_literalContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INum_literalContext)
+}
+
+func (s *ConsNumExpr_AddOpContext) AddOp() IAddOpContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IAddOpContext); ok {
@@ -3363,11 +3809,41 @@ func (s *Const_num_expressionContext) AddOp() IAddOpContext {
 	return t.(IAddOpContext)
 }
 
-func (s *Const_num_expressionContext) LEFT_PAREN() antlr.TerminalNode {
+func (s *ConsNumExpr_AddOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_AddOp(s)
+	}
+}
+
+func (s *ConsNumExpr_AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_AddOp(s)
+	}
+}
+
+type PConsNumExpr_arenOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewPConsNumExpr_arenOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PConsNumExpr_arenOpContext {
+	var p = new(PConsNumExpr_arenOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *PConsNumExpr_arenOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *PConsNumExpr_arenOpContext) LEFT_PAREN() antlr.TerminalNode {
 	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
 }
 
-func (s *Const_num_expressionContext) Const_num_expression() IConst_num_expressionContext {
+func (s *PConsNumExpr_arenOpContext) Const_num_expression() IConst_num_expressionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IConst_num_expressionContext); ok {
@@ -3383,25 +3859,19 @@ func (s *Const_num_expressionContext) Const_num_expression() IConst_num_expressi
 	return t.(IConst_num_expressionContext)
 }
 
-func (s *Const_num_expressionContext) RIGHT_PAREN() antlr.TerminalNode {
+func (s *PConsNumExpr_arenOpContext) RIGHT_PAREN() antlr.TerminalNode {
 	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
 }
 
-func (s *Const_num_expressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+func (s *PConsNumExpr_arenOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterPConsNumExpr_arenOp(s)
+	}
 }
 
-func (s *Const_num_expressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *Const_num_expressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitConst_num_expression(s)
-
-	default:
-		return t.VisitChildren(s)
+func (s *PConsNumExpr_arenOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitPConsNumExpr_arenOp(s)
 	}
 }
 
@@ -3416,6 +3886,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewConsNumExpr_PowerOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(229)
@@ -3431,6 +3902,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 2:
+		localctx = NewConsNumExpr_UnaryOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(233)
@@ -3442,6 +3914,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 3:
+		localctx = NewConsNumExpr_MulOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(236)
@@ -3457,6 +3930,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 4:
+		localctx = NewConsNumExpr_AddOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(240)
@@ -3472,6 +3946,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 5:
+		localctx = NewPConsNumExpr_arenOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 5)
 		{
 			p.SetState(244)
@@ -3495,6 +3970,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 6:
+		localctx = NewConsNumExpr_NumLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 6)
 		{
 			p.SetState(248)
@@ -3524,13 +4000,6 @@ type INum_literalContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	NUMBER() antlr.TerminalNode
-	DURATION() antlr.TerminalNode
-	Time_instant_literal() ITime_instant_literalContext
-	Alias_call() IAlias_callContext
-
 	// IsNum_literalContext differentiates from other interfaces.
 	IsNum_literalContext()
 }
@@ -3567,31 +4036,71 @@ func NewNum_literalContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 
 func (s *Num_literalContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Num_literalContext) NUMBER() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserNUMBER, 0)
+func (s *Num_literalContext) CopyAll(ctx *Num_literalContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
-func (s *Num_literalContext) DURATION() antlr.TerminalNode {
+func (s *Num_literalContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Num_literalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type NumLit_DurationContext struct {
+	Num_literalContext
+}
+
+func NewNumLit_DurationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumLit_DurationContext {
+	var p = new(NumLit_DurationContext)
+
+	InitEmptyNum_literalContext(&p.Num_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Num_literalContext))
+
+	return p
+}
+
+func (s *NumLit_DurationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumLit_DurationContext) DURATION() antlr.TerminalNode {
 	return s.GetToken(PromQLExParserDURATION, 0)
 }
 
-func (s *Num_literalContext) Time_instant_literal() ITime_instant_literalContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITime_instant_literalContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
+func (s *NumLit_DurationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterNumLit_Duration(s)
 	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITime_instant_literalContext)
 }
 
-func (s *Num_literalContext) Alias_call() IAlias_callContext {
+func (s *NumLit_DurationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitNumLit_Duration(s)
+	}
+}
+
+type NumLit_AliasCallContext struct {
+	Num_literalContext
+}
+
+func NewNumLit_AliasCallContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumLit_AliasCallContext {
+	var p = new(NumLit_AliasCallContext)
+
+	InitEmptyNum_literalContext(&p.Num_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Num_literalContext))
+
+	return p
+}
+
+func (s *NumLit_AliasCallContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumLit_AliasCallContext) Alias_call() IAlias_callContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IAlias_callContext); ok {
@@ -3607,21 +4116,95 @@ func (s *Num_literalContext) Alias_call() IAlias_callContext {
 	return t.(IAlias_callContext)
 }
 
-func (s *Num_literalContext) GetRuleContext() antlr.RuleContext {
+func (s *NumLit_AliasCallContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterNumLit_AliasCall(s)
+	}
+}
+
+func (s *NumLit_AliasCallContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitNumLit_AliasCall(s)
+	}
+}
+
+type NumLit_NumberContext struct {
+	Num_literalContext
+}
+
+func NewNumLit_NumberContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumLit_NumberContext {
+	var p = new(NumLit_NumberContext)
+
+	InitEmptyNum_literalContext(&p.Num_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Num_literalContext))
+
+	return p
+}
+
+func (s *NumLit_NumberContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *Num_literalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+func (s *NumLit_NumberContext) NUMBER() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserNUMBER, 0)
 }
 
-func (s *Num_literalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitNum_literal(s)
+func (s *NumLit_NumberContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterNumLit_Number(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *NumLit_NumberContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitNumLit_Number(s)
+	}
+}
+
+type NumLit_TimeInstantLitContext struct {
+	Num_literalContext
+}
+
+func NewNumLit_TimeInstantLitContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumLit_TimeInstantLitContext {
+	var p = new(NumLit_TimeInstantLitContext)
+
+	InitEmptyNum_literalContext(&p.Num_literalContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Num_literalContext))
+
+	return p
+}
+
+func (s *NumLit_TimeInstantLitContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumLit_TimeInstantLitContext) Time_instant_literal() ITime_instant_literalContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITime_instant_literalContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITime_instant_literalContext)
+}
+
+func (s *NumLit_TimeInstantLitContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterNumLit_TimeInstantLit(s)
+	}
+}
+
+func (s *NumLit_TimeInstantLitContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitNumLit_TimeInstantLit(s)
 	}
 }
 
@@ -3636,6 +4219,7 @@ func (p *PromQLExParser) Num_literal() (localctx INum_literalContext) {
 
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 14, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewNumLit_NumberContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(251)
@@ -3647,6 +4231,7 @@ func (p *PromQLExParser) Num_literal() (localctx INum_literalContext) {
 		}
 
 	case 2:
+		localctx = NewNumLit_DurationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(252)
@@ -3658,6 +4243,7 @@ func (p *PromQLExParser) Num_literal() (localctx INum_literalContext) {
 		}
 
 	case 3:
+		localctx = NewNumLit_TimeInstantLitContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(253)
@@ -3665,6 +4251,7 @@ func (p *PromQLExParser) Num_literal() (localctx INum_literalContext) {
 		}
 
 	case 4:
+		localctx = NewNumLit_AliasCallContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(254)
@@ -3758,13 +4345,15 @@ func (s *DurationContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DurationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitDuration(s)
+func (s *DurationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterDuration(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *DurationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitDuration(s)
 	}
 }
 
@@ -3870,13 +4459,15 @@ func (s *Time_rangeContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Time_rangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitTime_range(s)
+func (s *Time_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterTime_range(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Time_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitTime_range(s)
 	}
 }
 
@@ -4029,13 +4620,15 @@ func (s *Subquery_rangeContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Subquery_rangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitSubquery_range(s)
+func (s *Subquery_rangeContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterSubquery_range(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Subquery_rangeContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitSubquery_range(s)
 	}
 }
 
@@ -4107,25 +4700,6 @@ type IVectorOperationContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	UnaryOp() IUnaryOpContext
-	AllVectorOperation() []IVectorOperationContext
-	VectorOperation(i int) IVectorOperationContext
-	Vector() IVectorContext
-	Macro_call() IMacro_callContext
-	Alias_call() IAlias_callContext
-	PowOp() IPowOpContext
-	MultOp() IMultOpContext
-	AddOp() IAddOpContext
-	CompareOp() ICompareOpContext
-	AndUnlessOp() IAndUnlessOpContext
-	OrOp() IOrOpContext
-	VectorMatchOp() IVectorMatchOpContext
-	SubqueryOp() ISubqueryOpContext
-	AT() antlr.TerminalNode
-	At_modifier_timestamp() IAt_modifier_timestampContext
-
 	// IsVectorOperationContext differentiates from other interfaces.
 	IsVectorOperationContext()
 }
@@ -4162,10 +4736,40 @@ func NewVectorOperationContext(parser antlr.Parser, parent antlr.ParserRuleConte
 
 func (s *VectorOperationContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *VectorOperationContext) UnaryOp() IUnaryOpContext {
+func (s *VectorOperationContext) CopyAll(ctx *VectorOperationContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *VectorOperationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VectorOperationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type VecOp_MacroContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_MacroContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_MacroContext {
+	var p = new(VecOp_MacroContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_MacroContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_MacroContext) Macro_call() IMacro_callContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IUnaryOpContext); ok {
+		if _, ok := ctx.(IMacro_callContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -4175,10 +4779,40 @@ func (s *VectorOperationContext) UnaryOp() IUnaryOpContext {
 		return nil
 	}
 
-	return t.(IUnaryOpContext)
+	return t.(IMacro_callContext)
 }
 
-func (s *VectorOperationContext) AllVectorOperation() []IVectorOperationContext {
+func (s *VecOp_MacroContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_Macro(s)
+	}
+}
+
+func (s *VecOp_MacroContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_Macro(s)
+	}
+}
+
+type VecOp_AddOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_AddOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_AddOpContext {
+	var p = new(VecOp_AddOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_AddOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_AddOpContext) AllVectorOperation() []IVectorOperationContext {
 	children := s.GetChildren()
 	len := 0
 	for _, ctx := range children {
@@ -4199,7 +4833,7 @@ func (s *VectorOperationContext) AllVectorOperation() []IVectorOperationContext 
 	return tst
 }
 
-func (s *VectorOperationContext) VectorOperation(i int) IVectorOperationContext {
+func (s *VecOp_AddOpContext) VectorOperation(i int) IVectorOperationContext {
 	var t antlr.RuleContext
 	j := 0
 	for _, ctx := range s.GetChildren() {
@@ -4219,87 +4853,7 @@ func (s *VectorOperationContext) VectorOperation(i int) IVectorOperationContext 
 	return t.(IVectorOperationContext)
 }
 
-func (s *VectorOperationContext) Vector() IVectorContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IVectorContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IVectorContext)
-}
-
-func (s *VectorOperationContext) Macro_call() IMacro_callContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IMacro_callContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IMacro_callContext)
-}
-
-func (s *VectorOperationContext) Alias_call() IAlias_callContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IAlias_callContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IAlias_callContext)
-}
-
-func (s *VectorOperationContext) PowOp() IPowOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IPowOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPowOpContext)
-}
-
-func (s *VectorOperationContext) MultOp() IMultOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IMultOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IMultOpContext)
-}
-
-func (s *VectorOperationContext) AddOp() IAddOpContext {
+func (s *VecOp_AddOpContext) AddOp() IAddOpContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IAddOpContext); ok {
@@ -4315,12 +4869,67 @@ func (s *VectorOperationContext) AddOp() IAddOpContext {
 	return t.(IAddOpContext)
 }
 
-func (s *VectorOperationContext) CompareOp() ICompareOpContext {
+func (s *VecOp_AddOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_AddOp(s)
+	}
+}
+
+func (s *VecOp_AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_AddOp(s)
+	}
+}
+
+type VecOp_OrOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_OrOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_OrOpContext {
+	var p = new(VecOp_OrOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_OrOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_OrOpContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_OrOpContext) VectorOperation(i int) IVectorOperationContext {
 	var t antlr.RuleContext
+	j := 0
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ICompareOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
 		}
 	}
 
@@ -4328,26 +4937,10 @@ func (s *VectorOperationContext) CompareOp() ICompareOpContext {
 		return nil
 	}
 
-	return t.(ICompareOpContext)
+	return t.(IVectorOperationContext)
 }
 
-func (s *VectorOperationContext) AndUnlessOp() IAndUnlessOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IAndUnlessOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IAndUnlessOpContext)
-}
-
-func (s *VectorOperationContext) OrOp() IOrOpContext {
+func (s *VecOp_OrOpContext) OrOp() IOrOpContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IOrOpContext); ok {
@@ -4363,10 +4956,40 @@ func (s *VectorOperationContext) OrOp() IOrOpContext {
 	return t.(IOrOpContext)
 }
 
-func (s *VectorOperationContext) VectorMatchOp() IVectorMatchOpContext {
+func (s *VecOp_OrOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_OrOp(s)
+	}
+}
+
+func (s *VecOp_OrOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_OrOp(s)
+	}
+}
+
+type VecOp_VecContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_VecContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_VecContext {
+	var p = new(VecOp_VecContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_VecContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_VecContext) Vector() IVectorContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IVectorMatchOpContext); ok {
+		if _, ok := ctx.(IVectorContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -4376,13 +4999,43 @@ func (s *VectorOperationContext) VectorMatchOp() IVectorMatchOpContext {
 		return nil
 	}
 
-	return t.(IVectorMatchOpContext)
+	return t.(IVectorContext)
 }
 
-func (s *VectorOperationContext) SubqueryOp() ISubqueryOpContext {
+func (s *VecOp_VecContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_Vec(s)
+	}
+}
+
+func (s *VecOp_VecContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_Vec(s)
+	}
+}
+
+type VecOp_AtContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_AtContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_AtContext {
+	var p = new(VecOp_AtContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_AtContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_AtContext) VectorOperation() IVectorOperationContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ISubqueryOpContext); ok {
+		if _, ok := ctx.(IVectorOperationContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -4392,14 +5045,14 @@ func (s *VectorOperationContext) SubqueryOp() ISubqueryOpContext {
 		return nil
 	}
 
-	return t.(ISubqueryOpContext)
+	return t.(IVectorOperationContext)
 }
 
-func (s *VectorOperationContext) AT() antlr.TerminalNode {
+func (s *VecOp_AtContext) AT() antlr.TerminalNode {
 	return s.GetToken(PromQLExParserAT, 0)
 }
 
-func (s *VectorOperationContext) At_modifier_timestamp() IAt_modifier_timestampContext {
+func (s *VecOp_AtContext) At_modifier_timestamp() IAt_modifier_timestampContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IAt_modifier_timestampContext); ok {
@@ -4415,21 +5068,620 @@ func (s *VectorOperationContext) At_modifier_timestamp() IAt_modifier_timestampC
 	return t.(IAt_modifier_timestampContext)
 }
 
-func (s *VectorOperationContext) GetRuleContext() antlr.RuleContext {
+func (s *VecOp_AtContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_At(s)
+	}
+}
+
+func (s *VecOp_AtContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_At(s)
+	}
+}
+
+type VecOp_UnaryOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_UnaryOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_UnaryOpContext {
+	var p = new(VecOp_UnaryOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_UnaryOpContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *VectorOperationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+func (s *VecOp_UnaryOpContext) UnaryOp() IUnaryOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IUnaryOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IUnaryOpContext)
 }
 
-func (s *VectorOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitVectorOperation(s)
+func (s *VecOp_UnaryOpContext) VectorOperation() IVectorOperationContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
-	default:
-		return t.VisitChildren(s)
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_UnaryOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_UnaryOp(s)
+	}
+}
+
+func (s *VecOp_UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_UnaryOp(s)
+	}
+}
+
+type VecOp_VecMatchOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_VecMatchOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_VecMatchOpContext {
+	var p = new(VecOp_VecMatchOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_VecMatchOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_VecMatchOpContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_VecMatchOpContext) VectorOperation(i int) IVectorOperationContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_VecMatchOpContext) VectorMatchOp() IVectorMatchOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorMatchOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorMatchOpContext)
+}
+
+func (s *VecOp_VecMatchOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_VecMatchOp(s)
+	}
+}
+
+func (s *VecOp_VecMatchOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_VecMatchOp(s)
+	}
+}
+
+type VecOp_MulOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_MulOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_MulOpContext {
+	var p = new(VecOp_MulOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_MulOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_MulOpContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_MulOpContext) VectorOperation(i int) IVectorOperationContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_MulOpContext) MultOp() IMultOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMultOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMultOpContext)
+}
+
+func (s *VecOp_MulOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_MulOp(s)
+	}
+}
+
+func (s *VecOp_MulOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_MulOp(s)
+	}
+}
+
+type VecOp_SubOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_SubOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_SubOpContext {
+	var p = new(VecOp_SubOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_SubOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_SubOpContext) VectorOperation() IVectorOperationContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_SubOpContext) SubqueryOp() ISubqueryOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISubqueryOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ISubqueryOpContext)
+}
+
+func (s *VecOp_SubOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_SubOp(s)
+	}
+}
+
+func (s *VecOp_SubOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_SubOp(s)
+	}
+}
+
+type VecOp_AliasContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_AliasContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_AliasContext {
+	var p = new(VecOp_AliasContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_AliasContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_AliasContext) Alias_call() IAlias_callContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAlias_callContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAlias_callContext)
+}
+
+func (s *VecOp_AliasContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_Alias(s)
+	}
+}
+
+func (s *VecOp_AliasContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_Alias(s)
+	}
+}
+
+type VecOp_PowOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_PowOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_PowOpContext {
+	var p = new(VecOp_PowOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_PowOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_PowOpContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_PowOpContext) VectorOperation(i int) IVectorOperationContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_PowOpContext) PowOp() IPowOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPowOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IPowOpContext)
+}
+
+func (s *VecOp_PowOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_PowOp(s)
+	}
+}
+
+func (s *VecOp_PowOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_PowOp(s)
+	}
+}
+
+type VecOp_CompareOpContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_CompareOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_CompareOpContext {
+	var p = new(VecOp_CompareOpContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_CompareOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_CompareOpContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_CompareOpContext) VectorOperation(i int) IVectorOperationContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_CompareOpContext) CompareOp() ICompareOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICompareOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICompareOpContext)
+}
+
+func (s *VecOp_CompareOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_CompareOp(s)
+	}
+}
+
+func (s *VecOp_CompareOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_CompareOp(s)
+	}
+}
+
+type VecOp_AndUnlessContext struct {
+	VectorOperationContext
+}
+
+func NewVecOp_AndUnlessContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *VecOp_AndUnlessContext {
+	var p = new(VecOp_AndUnlessContext)
+
+	InitEmptyVectorOperationContext(&p.VectorOperationContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*VectorOperationContext))
+
+	return p
+}
+
+func (s *VecOp_AndUnlessContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *VecOp_AndUnlessContext) AllVectorOperation() []IVectorOperationContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVectorOperationContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVectorOperationContext); ok {
+			tst[i] = t.(IVectorOperationContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *VecOp_AndUnlessContext) VectorOperation(i int) IVectorOperationContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVectorOperationContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVectorOperationContext)
+}
+
+func (s *VecOp_AndUnlessContext) AndUnlessOp() IAndUnlessOpContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAndUnlessOpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAndUnlessOpContext)
+}
+
+func (s *VecOp_AndUnlessContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVecOp_AndUnless(s)
+	}
+}
+
+func (s *VecOp_AndUnlessContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVecOp_AndUnless(s)
 	}
 }
 
@@ -4457,6 +5709,10 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 16, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewVecOp_UnaryOpContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+
 		{
 			p.SetState(272)
 			p.UnaryOp()
@@ -4467,18 +5723,27 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 		}
 
 	case 2:
+		localctx = NewVecOp_VecContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
 			p.SetState(275)
 			p.Vector()
 		}
 
 	case 3:
+		localctx = NewVecOp_MacroContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
 			p.SetState(276)
 			p.Macro_call()
 		}
 
 	case 4:
+		localctx = NewVecOp_AliasContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
 			p.SetState(277)
 			p.Alias_call()
@@ -4511,7 +5776,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 
 			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 17, p.GetParserRuleContext()) {
 			case 1:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_PowOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(280)
 
@@ -4529,7 +5794,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 2:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_MulOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(284)
 
@@ -4547,7 +5812,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 3:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_AddOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(288)
 
@@ -4565,7 +5830,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 4:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_CompareOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(292)
 
@@ -4583,7 +5848,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 5:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_AndUnlessContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(296)
 
@@ -4601,7 +5866,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 6:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_OrOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(300)
 
@@ -4619,7 +5884,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 7:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_VecMatchOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(304)
 
@@ -4637,7 +5902,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 8:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_SubOpContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(308)
 
@@ -4651,7 +5916,7 @@ func (p *PromQLExParser) vectorOperation(_p int) (localctx IVectorOperationConte
 				}
 
 			case 9:
-				localctx = NewVectorOperationContext(p, _parentctx, _parentState)
+				localctx = NewVecOp_AtContext(p, NewVectorOperationContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, PromQLExParserRULE_vectorOperation)
 				p.SetState(310)
 
@@ -4788,13 +6053,15 @@ func (s *SubqueryOpContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SubqueryOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitSubqueryOp(s)
+func (s *SubqueryOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterSubqueryOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *SubqueryOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitSubqueryOp(s)
 	}
 }
 
@@ -4907,13 +6174,15 @@ func (s *OffsetOpContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OffsetOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitOffsetOp(s)
+func (s *OffsetOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterOffsetOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *OffsetOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitOffsetOp(s)
 	}
 }
 
@@ -5034,13 +6303,15 @@ func (s *MatrixSelectorContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MatrixSelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitMatrixSelector(s)
+func (s *MatrixSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterMatrixSelector(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *MatrixSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitMatrixSelector(s)
 	}
 }
 
@@ -5179,13 +6450,15 @@ func (s *OffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OffsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitOffset(s)
+func (s *OffsetContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterOffset(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *OffsetContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitOffset(s)
 	}
 }
 
@@ -5260,11 +6533,6 @@ type ILiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	Const_num_expression() IConst_num_expressionContext
-	String_() IStringContext
-
 	// IsLiteralContext differentiates from other interfaces.
 	IsLiteralContext()
 }
@@ -5301,7 +6569,37 @@ func NewLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 
 func (s *LiteralContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *LiteralContext) Const_num_expression() IConst_num_expressionContext {
+func (s *LiteralContext) CopyAll(ctx *LiteralContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *LiteralContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type Lit_ConstNumExprContext struct {
+	LiteralContext
+}
+
+func NewLit_ConstNumExprContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Lit_ConstNumExprContext {
+	var p = new(Lit_ConstNumExprContext)
+
+	InitEmptyLiteralContext(&p.LiteralContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*LiteralContext))
+
+	return p
+}
+
+func (s *Lit_ConstNumExprContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Lit_ConstNumExprContext) Const_num_expression() IConst_num_expressionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IConst_num_expressionContext); ok {
@@ -5317,7 +6615,37 @@ func (s *LiteralContext) Const_num_expression() IConst_num_expressionContext {
 	return t.(IConst_num_expressionContext)
 }
 
-func (s *LiteralContext) String_() IStringContext {
+func (s *Lit_ConstNumExprContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLit_ConstNumExpr(s)
+	}
+}
+
+func (s *Lit_ConstNumExprContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLit_ConstNumExpr(s)
+	}
+}
+
+type Lit_StringContext struct {
+	LiteralContext
+}
+
+func NewLit_StringContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Lit_StringContext {
+	var p = new(Lit_StringContext)
+
+	InitEmptyLiteralContext(&p.LiteralContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*LiteralContext))
+
+	return p
+}
+
+func (s *Lit_StringContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Lit_StringContext) String_() IStringContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IStringContext); ok {
@@ -5333,21 +6661,15 @@ func (s *LiteralContext) String_() IStringContext {
 	return t.(IStringContext)
 }
 
-func (s *LiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+func (s *Lit_StringContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLit_String(s)
+	}
 }
 
-func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *LiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
+func (s *Lit_StringContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLit_String(s)
 	}
 }
 
@@ -5362,6 +6684,7 @@ func (p *PromQLExParser) Literal() (localctx ILiteralContext) {
 
 	switch p.GetTokenStream().LA(1) {
 	case PromQLExParserCALL_SIGN, PromQLExParserNUMBER, PromQLExParserADD, PromQLExParserSUB, PromQLExParserLEFT_PAREN, PromQLExParserDURATION:
+		localctx = NewLit_ConstNumExprContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(338)
@@ -5369,6 +6692,7 @@ func (p *PromQLExParser) Literal() (localctx ILiteralContext) {
 		}
 
 	case PromQLExParserSTRING, PromQLExParserRAW_STRING:
+		localctx = NewLit_StringContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(339)
@@ -5490,13 +6814,15 @@ func (s *InstantSelectorContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InstantSelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitInstantSelector(s)
+func (s *InstantSelectorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterInstantSelector(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *InstantSelectorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitInstantSelector(s)
 	}
 }
 
@@ -5690,13 +7016,15 @@ func (s *LabelNameContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLabelName(s)
+func (s *LabelNameContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLabelName(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LabelNameContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLabelName(s)
 	}
 }
 
@@ -5816,13 +7144,15 @@ func (s *Metric_nameContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Metric_nameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitMetric_name(s)
+func (s *Metric_nameContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterMetric_name(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Metric_nameContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitMetric_name(s)
 	}
 }
 
@@ -5947,13 +7277,15 @@ func (s *At_modifier_timestampContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *At_modifier_timestampContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAt_modifier_timestamp(s)
+func (s *At_modifier_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAt_modifier_timestamp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *At_modifier_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAt_modifier_timestamp(s)
 	}
 }
 
@@ -6121,13 +7453,15 @@ func (s *ExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitExpression(s)
+func (s *ExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterExpression(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitExpression(s)
 	}
 }
 
@@ -6224,13 +7558,15 @@ func (s *UnaryOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnaryOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitUnaryOp(s)
+func (s *UnaryOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterUnaryOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitUnaryOp(s)
 	}
 }
 
@@ -6340,13 +7676,15 @@ func (s *PowOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PowOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitPowOp(s)
+func (s *PowOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterPowOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *PowOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitPowOp(s)
 	}
 }
 
@@ -6477,13 +7815,15 @@ func (s *MultOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MultOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitMultOp(s)
+func (s *MultOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterMultOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *MultOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitMultOp(s)
 	}
 }
 
@@ -6612,13 +7952,15 @@ func (s *AddOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AddOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAddOp(s)
+func (s *AddOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAddOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAddOp(s)
 	}
 }
 
@@ -6772,13 +8114,15 @@ func (s *CompareOpContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CompareOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitCompareOp(s)
+func (s *CompareOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterCompareOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *CompareOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitCompareOp(s)
 	}
 }
 
@@ -6925,13 +8269,15 @@ func (s *AndUnlessOpContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AndUnlessOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAndUnlessOp(s)
+func (s *AndUnlessOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAndUnlessOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *AndUnlessOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAndUnlessOp(s)
 	}
 }
 
@@ -7055,13 +8401,15 @@ func (s *OrOpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OrOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitOrOp(s)
+func (s *OrOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterOrOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *OrOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitOrOp(s)
 	}
 }
 
@@ -7187,13 +8535,15 @@ func (s *VectorMatchOpContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VectorMatchOpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitVectorMatchOp(s)
+func (s *VectorMatchOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVectorMatchOp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *VectorMatchOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVectorMatchOp(s)
 	}
 }
 
@@ -7414,13 +8764,15 @@ func (s *VectorContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitVector(s)
+func (s *VectorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterVector(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *VectorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitVector(s)
 	}
 }
 
@@ -7580,13 +8932,15 @@ func (s *ParensContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParensContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitParens(s)
+func (s *ParensContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterParens(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ParensContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitParens(s)
 	}
 }
 
@@ -7732,13 +9086,15 @@ func (s *LabelMatcherContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLabelMatcher(s)
+func (s *LabelMatcherContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLabelMatcher(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LabelMatcherContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLabelMatcher(s)
 	}
 }
 
@@ -7845,13 +9201,15 @@ func (s *LabelMatcherOperatorContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLabelMatcherOperator(s)
+func (s *LabelMatcherOperatorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLabelMatcherOperator(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LabelMatcherOperatorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLabelMatcherOperator(s)
 	}
 }
 
@@ -7992,13 +9350,15 @@ func (s *LabelMatcherListContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelMatcherListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLabelMatcherList(s)
+func (s *LabelMatcherListContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLabelMatcherList(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LabelMatcherListContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLabelMatcherList(s)
 	}
 }
 
@@ -8202,13 +9562,15 @@ func (s *Function_Context) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Function_Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitFunction_(s)
+func (s *Function_Context) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterFunction_(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Function_Context) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitFunction_(s)
 	}
 }
 
@@ -8385,13 +9747,15 @@ func (s *ParameterContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitParameter(s)
+func (s *ParameterContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterParameter(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ParameterContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitParameter(s)
 	}
 }
 
@@ -8552,13 +9916,15 @@ func (s *ParameterListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ParameterListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitParameterList(s)
+func (s *ParameterListContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterParameterList(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ParameterListContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitParameterList(s)
 	}
 }
 
@@ -8749,13 +10115,15 @@ func (s *AggregationContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AggregationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitAggregation(s)
+func (s *AggregationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAggregation(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *AggregationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAggregation(s)
 	}
 }
 
@@ -8952,13 +10320,15 @@ func (s *ByContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) str
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ByContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitBy(s)
+func (s *ByContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterBy(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ByContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitBy(s)
 	}
 }
 
@@ -9067,13 +10437,15 @@ func (s *WithoutContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *WithoutContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitWithout(s)
+func (s *WithoutContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterWithout(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *WithoutContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitWithout(s)
 	}
 }
 
@@ -9228,13 +10600,15 @@ func (s *GroupingContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupingContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitGrouping(s)
+func (s *GroupingContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterGrouping(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *GroupingContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitGrouping(s)
 	}
 }
 
@@ -9376,13 +10750,15 @@ func (s *On_Context) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *On_Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitOn_(s)
+func (s *On_Context) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterOn_(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *On_Context) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitOn_(s)
 	}
 }
 
@@ -9491,13 +10867,15 @@ func (s *IgnoringContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IgnoringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitIgnoring(s)
+func (s *IgnoringContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterIgnoring(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *IgnoringContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitIgnoring(s)
 	}
 }
 
@@ -9606,13 +10984,15 @@ func (s *GroupLeftContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupLeftContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitGroupLeft(s)
+func (s *GroupLeftContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterGroupLeft(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *GroupLeftContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitGroupLeft(s)
 	}
 }
 
@@ -9729,13 +11109,15 @@ func (s *GroupRightContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupRightContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitGroupRight(s)
+func (s *GroupRightContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterGroupRight(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *GroupRightContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitGroupRight(s)
 	}
 }
 
@@ -9893,13 +11275,15 @@ func (s *LabelNameListContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LabelNameListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitLabelNameList(s)
+func (s *LabelNameListContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterLabelNameList(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LabelNameListContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitLabelNameList(s)
 	}
 }
 
@@ -10099,13 +11483,15 @@ func (s *KeywordContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *KeywordContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitKeyword(s)
+func (s *KeywordContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterKeyword(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *KeywordContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitKeyword(s)
 	}
 }
 
@@ -10203,13 +11589,15 @@ func (s *StringContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case PromQLExParserVisitor:
-		return t.VisitString(s)
+func (s *StringContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterString(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *StringContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitString(s)
 	}
 }
 
