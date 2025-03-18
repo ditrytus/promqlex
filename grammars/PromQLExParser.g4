@@ -74,7 +74,7 @@ const_num_expression
     | unaryOp num_literal # ConsNumExpr_UnaryOp
     | num_literal multOp num_literal # ConsNumExpr_MulOp
     | num_literal addOp num_literal # ConsNumExpr_AddOp
-    | LEFT_PAREN const_num_expression RIGHT_PAREN # PConsNumExpr_arenOp
+    | LEFT_PAREN const_num_expression RIGHT_PAREN # ConsNumExpr_ParenOp
     | num_literal # ConsNumExpr_NumLiteral
     ;
 
@@ -163,7 +163,7 @@ metric_name
     ;
 
 at_modifier_timestamp
-    : const_num_expression
-    | START LEFT_PAREN RIGHT_PAREN
-    | END LEFT_PAREN RIGHT_PAREN
+    : const_num_expression # AtModTime_ConstNumExpr
+    | START LEFT_PAREN RIGHT_PAREN # AtModTime_Start
+    | END LEFT_PAREN RIGHT_PAREN # AtModTime_End
     ;
