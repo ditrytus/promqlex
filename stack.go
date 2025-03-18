@@ -21,6 +21,14 @@ func (s *Stack[T]) Pop() (T, bool) {
 	return value, true
 }
 
+func (s *Stack[T]) MustPop() T {
+	value, ok := s.Pop()
+	if !ok {
+		panic("stack is empty")
+	}
+	return value
+}
+
 // Peek returns the top element without removing it
 func (s *Stack[T]) Peek() (T, bool) {
 	if len(s.elements) == 0 {
@@ -28,6 +36,14 @@ func (s *Stack[T]) Peek() (T, bool) {
 		return zeroVal, false
 	}
 	return s.elements[len(s.elements)-1], true
+}
+
+func (s *Stack[T]) MustPeek() T {
+	value, ok := s.Peek()
+	if !ok {
+		panic("stack is empty")
+	}
+	return value
 }
 
 // IsEmpty checks if the stack is empty

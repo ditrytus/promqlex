@@ -3734,6 +3734,60 @@ func (s *ConsNumExpr_UnaryOpContext) ExitRule(listener antlr.ParseTreeListener) 
 	}
 }
 
+type ConsNumExpr_ParenOpContext struct {
+	Const_num_expressionContext
+}
+
+func NewConsNumExpr_ParenOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConsNumExpr_ParenOpContext {
+	var p = new(ConsNumExpr_ParenOpContext)
+
+	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Const_num_expressionContext))
+
+	return p
+}
+
+func (s *ConsNumExpr_ParenOpContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ConsNumExpr_ParenOpContext) LEFT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
+}
+
+func (s *ConsNumExpr_ParenOpContext) Const_num_expression() IConst_num_expressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IConst_num_expressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IConst_num_expressionContext)
+}
+
+func (s *ConsNumExpr_ParenOpContext) RIGHT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
+}
+
+func (s *ConsNumExpr_ParenOpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterConsNumExpr_ParenOp(s)
+	}
+}
+
+func (s *ConsNumExpr_ParenOpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitConsNumExpr_ParenOp(s)
+	}
+}
+
 type ConsNumExpr_AddOpContext struct {
 	Const_num_expressionContext
 }
@@ -3821,60 +3875,6 @@ func (s *ConsNumExpr_AddOpContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-type PConsNumExpr_arenOpContext struct {
-	Const_num_expressionContext
-}
-
-func NewPConsNumExpr_arenOpContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PConsNumExpr_arenOpContext {
-	var p = new(PConsNumExpr_arenOpContext)
-
-	InitEmptyConst_num_expressionContext(&p.Const_num_expressionContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Const_num_expressionContext))
-
-	return p
-}
-
-func (s *PConsNumExpr_arenOpContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *PConsNumExpr_arenOpContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
-}
-
-func (s *PConsNumExpr_arenOpContext) Const_num_expression() IConst_num_expressionContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IConst_num_expressionContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IConst_num_expressionContext)
-}
-
-func (s *PConsNumExpr_arenOpContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
-}
-
-func (s *PConsNumExpr_arenOpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterPConsNumExpr_arenOp(s)
-	}
-}
-
-func (s *PConsNumExpr_arenOpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitPConsNumExpr_arenOp(s)
-	}
-}
-
 func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionContext) {
 	localctx = NewConst_num_expressionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 36, PromQLExParserRULE_const_num_expression)
@@ -3946,7 +3946,7 @@ func (p *PromQLExParser) Const_num_expression() (localctx IConst_num_expressionC
 		}
 
 	case 5:
-		localctx = NewPConsNumExpr_arenOpContext(p, localctx)
+		localctx = NewConsNumExpr_ParenOpContext(p, localctx)
 		p.EnterOuterAlt(localctx, 5)
 		{
 			p.SetState(244)

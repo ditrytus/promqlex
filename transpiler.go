@@ -1,20 +1,65 @@
 package promqlex
 
 import (
+	"errors"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/ditrytus/promqlex/parsers/promqlex"
-	"io"
 	math "math"
+	"strconv"
+	"time"
 )
 
-type Transpiler struct {
-	writer io.Writer
-
-	constNumExprStack []float64
+type IsoDateTimeElements struct {
+	Year   *float64
+	Month  *float64
+	Day    *float64
+	Hour   *float64
+	Minute *float64
+	Second *float64
 }
 
-func NewTranspiler(writer io.Writer) *Transpiler {
-	return &Transpiler{writer: writer}
+func (i *IsoDateTimeElements) Elements() []*float64 {
+	return []*float64{i.Year, i.Month, i.Day, i.Hour, i.Minute, i.Second}
+}
+
+func (i *IsoDateTimeElements) Time() (time.Time, error) {
+	if i.Year == nil {
+		return time.Time{}, errors.New("missing year")
+	}
+	sec, nano := secondsToSecAndNano(coalesce(i.Second, 0))
+	date := time.Date(
+		int(*i.Year),
+		time.Month(coalesce(i.Month, 1)),
+		int(coalesce(i.Day, 1)),
+		int(coalesce(i.Hour, 0)),
+		int(coalesce(i.Minute, 0)),
+		sec,
+		nano,
+		time.UTC,
+	)
+	return date, nil
+}
+
+func coalesce[T any](a *T, b T) T {
+	if a == nil {
+		return b
+	}
+	return *a
+}
+
+type Transpiler struct {
+	rewriter            *antlr.TokenStreamRewriter
+	constNumExprStack   Stack[float64]
+	unixTimestamp       float64
+	timeInstantLiteral  time.Time
+	isoDateTimeElements IsoDateTimeElements
+}
+
+func NewTranspiler(tokenStream antlr.TokenStream) *Transpiler {
+	return &Transpiler{
+		rewriter:          antlr.NewTokenStreamRewriter(tokenStream),
+		constNumExprStack: Stack[float64]{},
+	}
 }
 
 var _ promqlex.PromQLExParserListener = &Transpiler{}
@@ -63,11 +108,22 @@ func (t *Transpiler) EnterTrueConst(c *promqlex.TrueConstContext) {}
 
 func (t *Transpiler) EnterFalseConst(c *promqlex.FalseConstContext) {}
 
-func (t *Transpiler) EnterTimeInstLit_IsoDateTime(c *promqlex.TimeInstLit_IsoDateTimeContext) {}
+func (t *Transpiler) EnterTimeInstLit_IsoDateTime(c *promqlex.TimeInstLit_IsoDateTimeContext) {
+}
 
 func (t *Transpiler) EnterTimeInstLit_UnixTimestamp(c *promqlex.TimeInstLit_UnixTimestampContext) {}
 
 func (t *Transpiler) EnterIso_date_time(c *promqlex.Iso_date_timeContext) {}
+
+func (t *Transpiler) setFloat64FieldFromToken(parser antlr.Parser, field **float64, token antlr.Token) {
+	if token != nil {
+		val, err := strconv.ParseFloat(token.GetText(), 64)
+		if err != nil {
+			parser.NotifyErrorListeners(err.Error(), token, nil)
+		}
+		*field = &val
+	}
+}
 
 func (t *Transpiler) EnterUnix_timestamp(c *promqlex.Unix_timestampContext) {}
 
@@ -79,7 +135,7 @@ func (t *Transpiler) EnterConsNumExpr_MulOp(c *promqlex.ConsNumExpr_MulOpContext
 
 func (t *Transpiler) EnterConsNumExpr_AddOp(c *promqlex.ConsNumExpr_AddOpContext) {}
 
-func (t *Transpiler) EnterPConsNumExpr_arenOp(c *promqlex.PConsNumExpr_arenOpContext) {}
+func (t *Transpiler) EnterConsNumExpr_ParenOp(c *promqlex.ConsNumExpr_ParenOpContext) {}
 
 func (t *Transpiler) EnterConsNumExpr_NumLiteral(c *promqlex.ConsNumExpr_NumLiteralContext) {}
 
@@ -235,52 +291,110 @@ func (t *Transpiler) ExitTrueConst(c *promqlex.TrueConstContext) {}
 
 func (t *Transpiler) ExitFalseConst(c *promqlex.FalseConstContext) {}
 
-func (t *Transpiler) ExitTimeInstLit_IsoDateTime(c *promqlex.TimeInstLit_IsoDateTimeContext) {}
+func (t *Transpiler) ExitTimeInstLit_IsoDateTime(c *promqlex.TimeInstLit_IsoDateTimeContext) {
+	timestamp, err := t.isoDateTimeElements.Time()
+	if err != nil {
+		c.GetParser().NotifyErrorListeners(err.Error(), c.GetStart(), nil)
+	}
+	t.timeInstantLiteral = timestamp
+}
 
-func (t *Transpiler) ExitTimeInstLit_UnixTimestamp(c *promqlex.TimeInstLit_UnixTimestampContext) {}
+func (t *Transpiler) ExitTimeInstLit_UnixTimestamp(c *promqlex.TimeInstLit_UnixTimestampContext) {
+	timeVal := unixFloatToTime(t.unixTimestamp)
+	t.timeInstantLiteral = timeVal
+}
 
-func (t *Transpiler) ExitIso_date_time(c *promqlex.Iso_date_timeContext) {}
+func (t *Transpiler) ExitIso_date_time(c *promqlex.Iso_date_timeContext) {
+	isoDateTimeElements := IsoDateTimeElements{}
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Year, c.GetYear())
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Month, c.GetMonth())
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Day, c.GetDay())
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Hour, c.GetHour())
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Minute, c.GetMinutes())
+	t.setFloat64FieldFromToken(c.GetParser(), &isoDateTimeElements.Second, c.GetSeconds())
+	t.isoDateTimeElements = isoDateTimeElements
+}
 
-func (t *Transpiler) ExitUnix_timestamp(c *promqlex.Unix_timestampContext) {}
+func (t *Transpiler) ExitUnix_timestamp(c *promqlex.Unix_timestampContext) {
+	txt := c.NUMBER().GetText()
+	float, err := strconv.ParseFloat(txt, 64)
+	if err != nil {
+		c.GetParser().NotifyErrorListeners(err.Error(), c.NUMBER().GetSymbol(), nil)
+	}
+	t.unixTimestamp = float
+}
 
 func (t *Transpiler) ExitConsNumExpr_PowerOp(c *promqlex.ConsNumExpr_PowerOpContext) {
-	l := len(t.constNumExprStack)
-	t.constNumExprStack[l-2] = math.Pow(t.constNumExprStack[l-2], t.constNumExprStack[l-1])
-	t.constNumExprStack = t.constNumExprStack[:l-1]
+	b := t.constNumExprStack.MustPop()
+	a := t.constNumExprStack.MustPop()
+	result := math.Pow(a, b)
+	t.constNumExprStack.Push(result)
 }
 
 func (t *Transpiler) ExitConsNumExpr_UnaryOp(c *promqlex.ConsNumExpr_UnaryOpContext) {
 	if c.UnaryOp().ADD() != nil {
 		return
 	}
-	l := len(t.constNumExprStack)
-	t.constNumExprStack[l-1] = -t.constNumExprStack[l-1]
+	t.constNumExprStack.Push(-t.constNumExprStack.MustPop())
 }
 
 func (t *Transpiler) ExitConsNumExpr_MulOp(c *promqlex.ConsNumExpr_MulOpContext) {
-	l := len(t.constNumExprStack)
+	b := t.constNumExprStack.MustPop()
+	a := t.constNumExprStack.MustPop()
+	var result float64
 	switch {
 	case c.MultOp().MULT() != nil:
-		t.constNumExprStack[l-2] = t.constNumExprStack[l-2] * t.constNumExprStack[l-1]
+		result = a * b
 	case c.MultOp().DIV() != nil:
-		t.constNumExprStack[l-2] = t.constNumExprStack[l-2] / t.constNumExprStack[l-1]
+		if b == 0 {
+			c.GetParser().NotifyErrorListeners("division by zero", c.MultOp().DIV().GetSymbol(), nil)
+		}
+		result = a / b
 	}
-	t.constNumExprStack = t.constNumExprStack[:l-1]
+	t.constNumExprStack.Push(result)
 }
 
-func (t *Transpiler) ExitConsNumExpr_AddOp(c *promqlex.ConsNumExpr_AddOpContext) {}
+func (t *Transpiler) ExitConsNumExpr_AddOp(c *promqlex.ConsNumExpr_AddOpContext) {
+	b := t.constNumExprStack.MustPop()
+	a := t.constNumExprStack.MustPop()
+	var result float64
+	switch {
+	case c.AddOp().ADD() != nil:
+		result = a + b
+	case c.AddOp().SUB() != nil:
+		result = a - b
+	}
+	t.constNumExprStack.Push(result)
+}
 
-func (t *Transpiler) ExitPConsNumExpr_arenOp(c *promqlex.PConsNumExpr_arenOpContext) {}
+func (t *Transpiler) ExitConsNumExpr_ParenOp(c *promqlex.ConsNumExpr_ParenOpContext) {}
 
 func (t *Transpiler) ExitConsNumExpr_NumLiteral(c *promqlex.ConsNumExpr_NumLiteralContext) {}
 
-func (t *Transpiler) ExitNumLit_Number(c *promqlex.NumLit_NumberContext) {}
+func (t *Transpiler) ExitNumLit_Number(c *promqlex.NumLit_NumberContext) {
+	txt := c.NUMBER().GetText()
+	num, err := strconv.ParseFloat(txt, 64)
+	if err != nil {
+		c.GetParser().NotifyErrorListeners(err.Error(), c.NUMBER().GetSymbol(), nil)
+	}
+	t.constNumExprStack.Push(num)
+}
 
-func (t *Transpiler) ExitNumLit_Duration(c *promqlex.NumLit_DurationContext) {}
+func (t *Transpiler) ExitNumLit_Duration(c *promqlex.NumLit_DurationContext) {
+	txt := c.DURATION().GetText()
+	duration, err := ParseDuration(txt)
+	if err != nil {
+		c.GetParser().NotifyErrorListeners(err.Error(), c.DURATION().GetSymbol(), nil)
+	}
+	t.constNumExprStack.Push(float64(duration))
+}
 
 func (t *Transpiler) ExitNumLit_TimeInstantLit(c *promqlex.NumLit_TimeInstantLitContext) {}
 
-func (t *Transpiler) ExitNumLit_AliasCall(c *promqlex.NumLit_AliasCallContext) {}
+func (t *Transpiler) ExitNumLit_AliasCall(c *promqlex.NumLit_AliasCallContext) {
+	// TODO: implement
+	panic("alias call as numeric literal is not yet supported")
+}
 
 func (t *Transpiler) ExitDuration(c *promqlex.DurationContext) {}
 
@@ -389,3 +503,14 @@ func (t *Transpiler) ExitLabelNameList(c *promqlex.LabelNameListContext) {}
 func (t *Transpiler) ExitKeyword(c *promqlex.KeywordContext) {}
 
 func (t *Transpiler) ExitString(c *promqlex.StringContext) {}
+
+func unixFloatToTime(unixTimestamp float64) time.Time {
+	sec, nano := secondsToSecAndNano(unixTimestamp)
+	return time.Unix(int64(sec), int64(nano))
+}
+
+func secondsToSecAndNano(seconds float64) (int, int) {
+	sec := int(seconds)
+	nano := int((seconds - float64(sec)) * 1e9)
+	return sec, nano
+}

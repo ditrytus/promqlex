@@ -85,8 +85,8 @@ type PromQLExParserListener interface {
 	// EnterConsNumExpr_AddOp is called when entering the ConsNumExpr_AddOp production.
 	EnterConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
 
-	// EnterPConsNumExpr_arenOp is called when entering the PConsNumExpr_arenOp production.
-	EnterPConsNumExpr_arenOp(c *PConsNumExpr_arenOpContext)
+	// EnterConsNumExpr_ParenOp is called when entering the ConsNumExpr_ParenOp production.
+	EnterConsNumExpr_ParenOp(c *ConsNumExpr_ParenOpContext)
 
 	// EnterConsNumExpr_NumLiteral is called when entering the ConsNumExpr_NumLiteral production.
 	EnterConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)
@@ -343,8 +343,8 @@ type PromQLExParserListener interface {
 	// ExitConsNumExpr_AddOp is called when exiting the ConsNumExpr_AddOp production.
 	ExitConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
 
-	// ExitPConsNumExpr_arenOp is called when exiting the PConsNumExpr_arenOp production.
-	ExitPConsNumExpr_arenOp(c *PConsNumExpr_arenOpContext)
+	// ExitConsNumExpr_ParenOp is called when exiting the ConsNumExpr_ParenOp production.
+	ExitConsNumExpr_ParenOp(c *ConsNumExpr_ParenOpContext)
 
 	// ExitConsNumExpr_NumLiteral is called when exiting the ConsNumExpr_NumLiteral production.
 	ExitConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)

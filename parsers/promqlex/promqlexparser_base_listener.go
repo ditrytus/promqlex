@@ -181,11 +181,11 @@ func (s *BasePromQLExParserListener) EnterConsNumExpr_AddOp(ctx *ConsNumExpr_Add
 // ExitConsNumExpr_AddOp is called when production ConsNumExpr_AddOp is exited.
 func (s *BasePromQLExParserListener) ExitConsNumExpr_AddOp(ctx *ConsNumExpr_AddOpContext) {}
 
-// EnterPConsNumExpr_arenOp is called when production PConsNumExpr_arenOp is entered.
-func (s *BasePromQLExParserListener) EnterPConsNumExpr_arenOp(ctx *PConsNumExpr_arenOpContext) {}
+// EnterConsNumExpr_ParenOp is called when production ConsNumExpr_ParenOp is entered.
+func (s *BasePromQLExParserListener) EnterConsNumExpr_ParenOp(ctx *ConsNumExpr_ParenOpContext) {}
 
-// ExitPConsNumExpr_arenOp is called when production PConsNumExpr_arenOp is exited.
-func (s *BasePromQLExParserListener) ExitPConsNumExpr_arenOp(ctx *PConsNumExpr_arenOpContext) {}
+// ExitConsNumExpr_ParenOp is called when production ConsNumExpr_ParenOp is exited.
+func (s *BasePromQLExParserListener) ExitConsNumExpr_ParenOp(ctx *ConsNumExpr_ParenOpContext) {}
 
 // EnterConsNumExpr_NumLiteral is called when production ConsNumExpr_NumLiteral is entered.
 func (s *BasePromQLExParserListener) EnterConsNumExpr_NumLiteral(ctx *ConsNumExpr_NumLiteralContext) {
