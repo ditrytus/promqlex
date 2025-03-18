@@ -178,8 +178,14 @@ type PromQLExParserListener interface {
 	// EnterMetric_name is called when entering the metric_name production.
 	EnterMetric_name(c *Metric_nameContext)
 
-	// EnterAt_modifier_timestamp is called when entering the at_modifier_timestamp production.
-	EnterAt_modifier_timestamp(c *At_modifier_timestampContext)
+	// EnterAtModTime_ConstNumExpr is called when entering the AtModTime_ConstNumExpr production.
+	EnterAtModTime_ConstNumExpr(c *AtModTime_ConstNumExprContext)
+
+	// EnterAtModTime_Start is called when entering the AtModTime_Start production.
+	EnterAtModTime_Start(c *AtModTime_StartContext)
+
+	// EnterAtModTime_End is called when entering the AtModTime_End production.
+	EnterAtModTime_End(c *AtModTime_EndContext)
 
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
@@ -436,8 +442,14 @@ type PromQLExParserListener interface {
 	// ExitMetric_name is called when exiting the metric_name production.
 	ExitMetric_name(c *Metric_nameContext)
 
-	// ExitAt_modifier_timestamp is called when exiting the at_modifier_timestamp production.
-	ExitAt_modifier_timestamp(c *At_modifier_timestampContext)
+	// ExitAtModTime_ConstNumExpr is called when exiting the AtModTime_ConstNumExpr production.
+	ExitAtModTime_ConstNumExpr(c *AtModTime_ConstNumExprContext)
+
+	// ExitAtModTime_Start is called when exiting the AtModTime_Start production.
+	ExitAtModTime_Start(c *AtModTime_StartContext)
+
+	// ExitAtModTime_End is called when exiting the AtModTime_End production.
+	ExitAtModTime_End(c *AtModTime_EndContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)

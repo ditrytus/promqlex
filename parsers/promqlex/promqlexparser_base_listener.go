@@ -368,11 +368,24 @@ func (s *BasePromQLExParserListener) EnterMetric_name(ctx *Metric_nameContext) {
 // ExitMetric_name is called when production metric_name is exited.
 func (s *BasePromQLExParserListener) ExitMetric_name(ctx *Metric_nameContext) {}
 
-// EnterAt_modifier_timestamp is called when production at_modifier_timestamp is entered.
-func (s *BasePromQLExParserListener) EnterAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+// EnterAtModTime_ConstNumExpr is called when production AtModTime_ConstNumExpr is entered.
+func (s *BasePromQLExParserListener) EnterAtModTime_ConstNumExpr(ctx *AtModTime_ConstNumExprContext) {
+}
 
-// ExitAt_modifier_timestamp is called when production at_modifier_timestamp is exited.
-func (s *BasePromQLExParserListener) ExitAt_modifier_timestamp(ctx *At_modifier_timestampContext) {}
+// ExitAtModTime_ConstNumExpr is called when production AtModTime_ConstNumExpr is exited.
+func (s *BasePromQLExParserListener) ExitAtModTime_ConstNumExpr(ctx *AtModTime_ConstNumExprContext) {}
+
+// EnterAtModTime_Start is called when production AtModTime_Start is entered.
+func (s *BasePromQLExParserListener) EnterAtModTime_Start(ctx *AtModTime_StartContext) {}
+
+// ExitAtModTime_Start is called when production AtModTime_Start is exited.
+func (s *BasePromQLExParserListener) ExitAtModTime_Start(ctx *AtModTime_StartContext) {}
+
+// EnterAtModTime_End is called when production AtModTime_End is entered.
+func (s *BasePromQLExParserListener) EnterAtModTime_End(ctx *AtModTime_EndContext) {}
+
+// ExitAtModTime_End is called when production AtModTime_End is exited.
+func (s *BasePromQLExParserListener) ExitAtModTime_End(ctx *AtModTime_EndContext) {}
 
 // EnterExpression is called when production expression is entered.
 func (s *BasePromQLExParserListener) EnterExpression(ctx *ExpressionContext) {}

@@ -7193,14 +7193,6 @@ type IAt_modifier_timestampContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	Const_num_expression() IConst_num_expressionContext
-	START() antlr.TerminalNode
-	LEFT_PAREN() antlr.TerminalNode
-	RIGHT_PAREN() antlr.TerminalNode
-	END() antlr.TerminalNode
-
 	// IsAt_modifier_timestampContext differentiates from other interfaces.
 	IsAt_modifier_timestampContext()
 }
@@ -7237,7 +7229,121 @@ func NewAt_modifier_timestampContext(parser antlr.Parser, parent antlr.ParserRul
 
 func (s *At_modifier_timestampContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *At_modifier_timestampContext) Const_num_expression() IConst_num_expressionContext {
+func (s *At_modifier_timestampContext) CopyAll(ctx *At_modifier_timestampContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *At_modifier_timestampContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *At_modifier_timestampContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type AtModTime_StartContext struct {
+	At_modifier_timestampContext
+}
+
+func NewAtModTime_StartContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AtModTime_StartContext {
+	var p = new(AtModTime_StartContext)
+
+	InitEmptyAt_modifier_timestampContext(&p.At_modifier_timestampContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*At_modifier_timestampContext))
+
+	return p
+}
+
+func (s *AtModTime_StartContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *AtModTime_StartContext) START() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserSTART, 0)
+}
+
+func (s *AtModTime_StartContext) LEFT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
+}
+
+func (s *AtModTime_StartContext) RIGHT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
+}
+
+func (s *AtModTime_StartContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAtModTime_Start(s)
+	}
+}
+
+func (s *AtModTime_StartContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAtModTime_Start(s)
+	}
+}
+
+type AtModTime_EndContext struct {
+	At_modifier_timestampContext
+}
+
+func NewAtModTime_EndContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AtModTime_EndContext {
+	var p = new(AtModTime_EndContext)
+
+	InitEmptyAt_modifier_timestampContext(&p.At_modifier_timestampContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*At_modifier_timestampContext))
+
+	return p
+}
+
+func (s *AtModTime_EndContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *AtModTime_EndContext) END() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserEND, 0)
+}
+
+func (s *AtModTime_EndContext) LEFT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
+}
+
+func (s *AtModTime_EndContext) RIGHT_PAREN() antlr.TerminalNode {
+	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
+}
+
+func (s *AtModTime_EndContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.EnterAtModTime_End(s)
+	}
+}
+
+func (s *AtModTime_EndContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(PromQLExParserListener); ok {
+		listenerT.ExitAtModTime_End(s)
+	}
+}
+
+type AtModTime_ConstNumExprContext struct {
+	At_modifier_timestampContext
+}
+
+func NewAtModTime_ConstNumExprContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AtModTime_ConstNumExprContext {
+	var p = new(AtModTime_ConstNumExprContext)
+
+	InitEmptyAt_modifier_timestampContext(&p.At_modifier_timestampContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*At_modifier_timestampContext))
+
+	return p
+}
+
+func (s *AtModTime_ConstNumExprContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *AtModTime_ConstNumExprContext) Const_num_expression() IConst_num_expressionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IConst_num_expressionContext); ok {
@@ -7253,39 +7359,15 @@ func (s *At_modifier_timestampContext) Const_num_expression() IConst_num_express
 	return t.(IConst_num_expressionContext)
 }
 
-func (s *At_modifier_timestampContext) START() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserSTART, 0)
-}
-
-func (s *At_modifier_timestampContext) LEFT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserLEFT_PAREN, 0)
-}
-
-func (s *At_modifier_timestampContext) RIGHT_PAREN() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserRIGHT_PAREN, 0)
-}
-
-func (s *At_modifier_timestampContext) END() antlr.TerminalNode {
-	return s.GetToken(PromQLExParserEND, 0)
-}
-
-func (s *At_modifier_timestampContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *At_modifier_timestampContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *At_modifier_timestampContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *AtModTime_ConstNumExprContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.EnterAt_modifier_timestamp(s)
+		listenerT.EnterAtModTime_ConstNumExpr(s)
 	}
 }
 
-func (s *At_modifier_timestampContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *AtModTime_ConstNumExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(PromQLExParserListener); ok {
-		listenerT.ExitAt_modifier_timestamp(s)
+		listenerT.ExitAtModTime_ConstNumExpr(s)
 	}
 }
 
@@ -7300,6 +7382,7 @@ func (p *PromQLExParser) At_modifier_timestamp() (localctx IAt_modifier_timestam
 
 	switch p.GetTokenStream().LA(1) {
 	case PromQLExParserCALL_SIGN, PromQLExParserNUMBER, PromQLExParserADD, PromQLExParserSUB, PromQLExParserLEFT_PAREN, PromQLExParserDURATION:
+		localctx = NewAtModTime_ConstNumExprContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(363)
@@ -7307,6 +7390,7 @@ func (p *PromQLExParser) At_modifier_timestamp() (localctx IAt_modifier_timestam
 		}
 
 	case PromQLExParserSTART:
+		localctx = NewAtModTime_StartContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(364)
@@ -7334,6 +7418,7 @@ func (p *PromQLExParser) At_modifier_timestamp() (localctx IAt_modifier_timestam
 		}
 
 	case PromQLExParserEND:
+		localctx = NewAtModTime_EndContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(367)

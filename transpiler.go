@@ -197,7 +197,11 @@ func (t *Transpiler) EnterLabelName(c *promqlex.LabelNameContext) {}
 
 func (t *Transpiler) EnterMetric_name(c *promqlex.Metric_nameContext) {}
 
-func (t *Transpiler) EnterAt_modifier_timestamp(c *promqlex.At_modifier_timestampContext) {}
+func (t *Transpiler) EnterAtModTime_ConstNumExpr(c *promqlex.AtModTime_ConstNumExprContext) {}
+
+func (t *Transpiler) EnterAtModTime_Start(c *promqlex.AtModTime_StartContext) {}
+
+func (t *Transpiler) EnterAtModTime_End(c *promqlex.AtModTime_EndContext) {}
 
 func (t *Transpiler) EnterExpression(c *promqlex.ExpressionContext) {}
 
@@ -446,7 +450,11 @@ func (t *Transpiler) ExitLabelName(c *promqlex.LabelNameContext) {}
 
 func (t *Transpiler) ExitMetric_name(c *promqlex.Metric_nameContext) {}
 
-func (t *Transpiler) ExitAt_modifier_timestamp(c *promqlex.At_modifier_timestampContext) {}
+func (t *Transpiler) ExitAtModTime_ConstNumExpr(c *promqlex.AtModTime_ConstNumExprContext) {}
+
+func (t *Transpiler) ExitAtModTime_Start(c *promqlex.AtModTime_StartContext) {}
+
+func (t *Transpiler) ExitAtModTime_End(c *promqlex.AtModTime_EndContext) {}
 
 func (t *Transpiler) ExitExpression(c *promqlex.ExpressionContext) {}
 
