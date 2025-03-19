@@ -47,6 +47,14 @@ fragment TIME_RANGE: ;
 
 // PROMQX: extensions
 
+RFC_3339_TIMESTAMP : DIGIT DIGIT DIGIT DIGIT SUB DIGIT DIGIT SUB DIGIT DIGIT T DIGIT DIGIT COLON DIGIT DIGIT COLON DIGIT DIGIT (DOT DIGIT+)? (Z | ((ADD|SUB) DIGIT DIGIT COLON DIGIT DIGIT));
+
+fragment DIGIT : [0-9];
+fragment T: 'T';
+fragment Z : 'Z';
+COLON: ':';
+fragment DOT: '.';
+
 METRIC_NAME : { func() bool {
         cnt, ok := p.GetInputStream().(BracketCounter)
         return (!ok || (ok && cnt.BracketCount() == 0))
@@ -64,10 +72,7 @@ IF: 'if';
 TRUE: 'true';
 FALSE: 'false';
 
-T: 'T';
-COLON: ':';
 SEMICOLON: ';';
-DOT: '.';
 
 METRIC_KEYWORD: 'metric';
 LABEL_KEYWORD: 'label';

@@ -67,12 +67,6 @@ type PromQLExParserListener interface {
 	// EnterTimeInstLit_UnixTimestamp is called when entering the TimeInstLit_UnixTimestamp production.
 	EnterTimeInstLit_UnixTimestamp(c *TimeInstLit_UnixTimestampContext)
 
-	// EnterIso_date_time is called when entering the iso_date_time production.
-	EnterIso_date_time(c *Iso_date_timeContext)
-
-	// EnterUnix_timestamp is called when entering the unix_timestamp production.
-	EnterUnix_timestamp(c *Unix_timestampContext)
-
 	// EnterConsNumExpr_PowerOp is called when entering the ConsNumExpr_PowerOp production.
 	EnterConsNumExpr_PowerOp(c *ConsNumExpr_PowerOpContext)
 
@@ -330,12 +324,6 @@ type PromQLExParserListener interface {
 
 	// ExitTimeInstLit_UnixTimestamp is called when exiting the TimeInstLit_UnixTimestamp production.
 	ExitTimeInstLit_UnixTimestamp(c *TimeInstLit_UnixTimestampContext)
-
-	// ExitIso_date_time is called when exiting the iso_date_time production.
-	ExitIso_date_time(c *Iso_date_timeContext)
-
-	// ExitUnix_timestamp is called when exiting the unix_timestamp production.
-	ExitUnix_timestamp(c *Unix_timestampContext)
 
 	// ExitConsNumExpr_PowerOp is called when exiting the ConsNumExpr_PowerOp production.
 	ExitConsNumExpr_PowerOp(c *ConsNumExpr_PowerOpContext)

@@ -48,24 +48,9 @@ falseConst: FALSE;
 // Time literals
 
 time_instant_literal
-    : iso_date_time # TimeInstLit_IsoDateTime
-    | unix_timestamp # TimeInstLit_UnixTimestamp
+    : RFC_3339_TIMESTAMP # TimeInstLit_IsoDateTime
+    | NUMBER # TimeInstLit_UnixTimestamp
     ;
-
-iso_date_time
-    : year=NUMBER SUB (
-        month=NUMBER (
-            SUB day=NUMBER (
-                T hour=NUMBER (
-                    COLON minutes=NUMBER (
-                        COLON seconds=NUMBER
-                    )?
-                )?
-            )?
-        )?
-    )?;
-
-unix_timestamp: NUMBER;
 
 // Constant expressions
 

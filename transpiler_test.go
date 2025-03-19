@@ -9,7 +9,7 @@ import (
 )
 
 func Test(t *testing.T) {
-	input := antlr.NewInputStream("http_requests_count @ 2024-01-01T00:00:00")
+	input := antlr.NewInputStream("http_requests_count @ 2024-01-01T00:00:00Z")
 	functionSet := NewPrometheusFunctionSet(
 		parser.PromQLExLexerFUNCTION,
 		parser.PromQLExLexerAGGREGATION_OPERATOR,

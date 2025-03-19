@@ -145,18 +145,6 @@ func (s *BasePromQLExParserListener) EnterTimeInstLit_UnixTimestamp(ctx *TimeIns
 func (s *BasePromQLExParserListener) ExitTimeInstLit_UnixTimestamp(ctx *TimeInstLit_UnixTimestampContext) {
 }
 
-// EnterIso_date_time is called when production iso_date_time is entered.
-func (s *BasePromQLExParserListener) EnterIso_date_time(ctx *Iso_date_timeContext) {}
-
-// ExitIso_date_time is called when production iso_date_time is exited.
-func (s *BasePromQLExParserListener) ExitIso_date_time(ctx *Iso_date_timeContext) {}
-
-// EnterUnix_timestamp is called when production unix_timestamp is entered.
-func (s *BasePromQLExParserListener) EnterUnix_timestamp(ctx *Unix_timestampContext) {}
-
-// ExitUnix_timestamp is called when production unix_timestamp is exited.
-func (s *BasePromQLExParserListener) ExitUnix_timestamp(ctx *Unix_timestampContext) {}
-
 // EnterConsNumExpr_PowerOp is called when production ConsNumExpr_PowerOp is entered.
 func (s *BasePromQLExParserListener) EnterConsNumExpr_PowerOp(ctx *ConsNumExpr_PowerOpContext) {}
 
