@@ -55,10 +55,9 @@ type Transpiler struct {
 	isoDateTimeElements IsoDateTimeElements
 }
 
-func NewTranspiler(tokenStream antlr.TokenStream) *Transpiler {
+func NewTranspiler(tokenStream *antlr.TokenStreamRewriter) *Transpiler {
 	return &Transpiler{
-		rewriter:          antlr.NewTokenStreamRewriter(tokenStream),
-		constNumExprStack: Stack[float64]{},
+		rewriter: tokenStream,
 	}
 }
 
@@ -440,7 +439,11 @@ func (t *Transpiler) ExitMatrixSelector(c *promqlex.MatrixSelectorContext) {}
 
 func (t *Transpiler) ExitOffset(c *promqlex.OffsetContext) {}
 
-func (t *Transpiler) ExitLit_ConstNumExpr(c *promqlex.Lit_ConstNumExprContext) {}
+func (t *Transpiler) ExitLit_ConstNumExpr(c *promqlex.Lit_ConstNumExprContext) {
+	num := t.constNumExprStack.MustPop()
+	txt := strconv.FormatFloat(num, 'f', -1, 64)
+	t.rewriter.ReplaceTokenDefault(c.GetStart(), c.GetStop(), txt)
+}
 
 func (t *Transpiler) ExitLit_String(c *promqlex.Lit_StringContext) {}
 

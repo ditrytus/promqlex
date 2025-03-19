@@ -9,7 +9,7 @@ import (
 )
 
 func Test(t *testing.T) {
-	input := antlr.NewInputStream("metric @ 2024-01-01T00:00:00")
+	input := antlr.NewInputStream("http_requests_count @ 2024-01-01T00:00:00")
 	functionSet := NewPrometheusFunctionSet(
 		parser.PromQLExLexerFUNCTION,
 		parser.PromQLExLexerAGGREGATION_OPERATOR,
@@ -25,8 +25,10 @@ func Test(t *testing.T) {
 	tree := p.Promqlx()
 	var builder strings.Builder
 	NewAsciiAstPrinterVisitor(&builder, p, lexer).Visit(tree)
-	var transpiler Transpiler
-	walker := antlr.NewParseTreeWalker()
-	walker.Walk(&transpiler, tree)
 	fmt.Println(builder.String())
+	rewriter := antlr.NewTokenStreamRewriter(tokens)
+	transpiler := NewTranspiler(rewriter)
+	walker := antlr.NewParseTreeWalker()
+	walker.Walk(transpiler, tree)
+	fmt.Println(rewriter.GetTextDefault())
 }
