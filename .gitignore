@@ -26,3 +26,7 @@ go.work.sum
 
 # IDE files
 .idea/
+
+# Antlr Plugin files
+gen/
+grammars/gen
