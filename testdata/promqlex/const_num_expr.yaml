@@ -1,0 +1,19 @@
+- name: const num expressions
+  sub:
+    - name: as number literal
+      sub:
+        - name: integer
+          promqlex: 123
+          promql: 123
+        - name: float
+          promqlex: 123.456
+          promql: 123.456
+        - name: science
+          promqlex: 1.23e-05
+          promql: 1.23e-05
+        - name: add
+          promqlex: 1 + 2
+          promql: 3
+        - name: sub
+          promqlex: 1 - 2
+          promql: -1

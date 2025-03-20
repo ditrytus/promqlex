@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//go:embed test/promql_examples.yaml
+//go:embed testdata/promql/promql_examples.yaml
 var promqlExamplesYaml string
 
 type Examples struct {

@@ -466,7 +466,7 @@ type replaceableNode interface {
 
 func (t *Transpiler) replaceWithConstNumExprValue(c replaceableNode) {
 	num := t.constNumExprStack.MustPop()
-	txt := strconv.FormatFloat(num, 'f', -1, 64)
+	txt := strconv.FormatFloat(num, 'g', -1, 64)
 	t.rewriter.ReplaceTokenDefault(c.GetStart(), c.GetStop(), txt)
 }
 
