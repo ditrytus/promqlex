@@ -1,53 +1,105 @@
 - name: as number literal
   sub:
-    - name: integer
-      promqlex: 123
-      promql: 123
-    - name: float
-      promqlex: 123.456
-      promql: 123.456
-    - name: science
-      promqlex: 1.23e-05
-      promql: 1.23e-05
-    - name: add
-      promqlex: 1 + 2
-      promql: 3
-    - name: sub
-      promqlex: 1 - 2
-      promql: -1
-    - name: mul
-      promqlex: 2 * 2.5
-      promql: 5
-    - name: div
-      promqlex: 1 / 2
-      promql: 0.5
-    - name: unary plus
-      promqlex: +1
-      promql: 1
-    - name: unary minus
-      promqlex: -1
-      promql: -1
-    - name: pow
-      promqlex: 2 ^ 3
-      promql: 8
-    - name: paren
-      promqlex: (1 + 2) * 3
-      promql: 9
-    - name: precedence
-      promqlex: 1 + 2 ^ 3 * 4
-      promql: 33
-    - name: duration
-      promqlex: 1m
-      promql: 60
-    - name: complex duration
-      promqlex: 1h30m12s78ms
-      promql: 5412.078
-    - name: iso timestamp
-      promqlex: 2021-01-01T00:00:00Z
-      promql: 1609459200
-    - name: complex and mixed types
-      promqlex: (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
-      promql: 7173
+  - name: in vector
+    sub:
+      - name: integer
+        promqlex: 123
+        promql: 123
+      - name: float
+        promqlex: 123.456
+        promql: 123.456
+      - name: science
+        promqlex: 1.23e-05
+        promql: 1.23e-05
+      - name: add
+        promqlex: 1 + 2
+        promql: 3
+      - name: sub
+        promqlex: 1 - 2
+        promql: -1
+      - name: mul
+        promqlex: 2 * 2.5
+        promql: 5
+      - name: div
+        promqlex: 1 / 2
+        promql: 0.5
+      - name: unary plus
+        promqlex: +1
+        promql: 1
+      - name: unary minus
+        promqlex: -1
+        promql: -1
+      - name: pow
+        promqlex: 2 ^ 3
+        promql: 8
+      - name: paren
+        promqlex: (1 + 2) * 3
+        promql: 9
+      - name: precedence
+        promqlex: 1 + 2 ^ 3 * 4
+        promql: 33
+      - name: duration
+        promqlex: 1m
+        promql: 60
+      - name: complex duration
+        promqlex: 1h30m12s78ms
+        promql: 5412.078
+      - name: iso timestamp
+        promqlex: 2021-01-01T00:00:00Z
+        promql: 1609459200
+      - name: complex and mixed types
+        promqlex: (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
+        promql: 7173
+  - name: in function parameter
+    sub:
+      - name: integer
+        promqlex: vector(123)
+        promql: vector(123)
+      - name: float
+        promqlex: vector(123.456)
+        promql: vector(123.456)
+      - name: science
+        promqlex: vector(1.23e-05)
+        promql: vector(1.23e-05)
+      - name: add
+        promqlex: vector(1 + 2)
+        promql: vector(3)
+      - name: sub
+        promqlex: vector(1 - 2)
+        promql: vector(-1)
+      - name: mul
+        promqlex: vector(2 * 2.5)
+        promql: vector(5)
+      - name: div
+        promqlex: vector(1 / 2)
+        promql: vector(0.5)
+      - name: unary plus
+        promqlex: vector(+1)
+        promql: vector(1)
+      - name: unary minus
+        promqlex: vector(-1)
+        promql: vector(-1)
+      - name: pow
+        promqlex: vector(2 ^ 3)
+        promql: vector(8)
+      - name: paren
+        promqlex: vector((1 + 2) * 3)
+        promql: vector(9)
+      - name: precedence
+        promqlex: vector(1 + 2 ^ 3 * 4)
+        promql: vector(33)
+      - name: duration
+        promqlex: vector(1m)
+        promql: vector(60)
+      - name: complex duration
+        promqlex: vector(1h30m12s78ms)
+        promql: vector(5412.078)
+      - name: iso timestamp
+        promqlex: vector(2021-01-01T00:00:00Z)
+        promql: vector(1609459200)
+      - name: complex and mixed types
+        promqlex: vector((2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3) # (1609459200 / (8*60*60) + 1500) / 8
+        promql: vector(7173)
 - name: as at modifier timestamp
   sub:
     - name: integer
