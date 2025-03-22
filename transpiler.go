@@ -124,8 +124,6 @@ func (t *Transpiler) EnterVecOp_VecMatchOp(c *promqlex.VecOp_VecMatchOpContext) 
 
 func (t *Transpiler) EnterVecOp_MulOp(c *promqlex.VecOp_MulOpContext) {}
 
-func (t *Transpiler) EnterVecOp_SubOp(c *promqlex.VecOp_SubOpContext) {}
-
 func (t *Transpiler) EnterVecOp_Alias(c *promqlex.VecOp_AliasContext) {}
 
 func (t *Transpiler) EnterVecOp_PowOp(c *promqlex.VecOp_PowOpContext) {}
@@ -133,6 +131,10 @@ func (t *Transpiler) EnterVecOp_PowOp(c *promqlex.VecOp_PowOpContext) {}
 func (t *Transpiler) EnterVecOp_CompareOp(c *promqlex.VecOp_CompareOpContext) {}
 
 func (t *Transpiler) EnterVecOp_AndUnless(c *promqlex.VecOp_AndUnlessContext) {}
+
+func (t *Transpiler) EnterVecOp_SubqueryOp(c *promqlex.VecOp_SubqueryOpContext) {}
+
+func (t *Transpiler) EnterVecOp_OffsetOp(c *promqlex.VecOp_OffsetOpContext) {}
 
 func (t *Transpiler) EnterVecOp_ConstNumExpr(c *promqlex.VecOp_ConstNumExprContext) {}
 
@@ -372,8 +374,6 @@ func (t *Transpiler) ExitVecOp_VecMatchOp(c *promqlex.VecOp_VecMatchOpContext) {
 
 func (t *Transpiler) ExitVecOp_MulOp(c *promqlex.VecOp_MulOpContext) {}
 
-func (t *Transpiler) ExitVecOp_SubOp(c *promqlex.VecOp_SubOpContext) {}
-
 func (t *Transpiler) ExitVecOp_Alias(c *promqlex.VecOp_AliasContext) {}
 
 func (t *Transpiler) ExitVecOp_PowOp(c *promqlex.VecOp_PowOpContext) {}
@@ -381,6 +381,10 @@ func (t *Transpiler) ExitVecOp_PowOp(c *promqlex.VecOp_PowOpContext) {}
 func (t *Transpiler) ExitVecOp_CompareOp(c *promqlex.VecOp_CompareOpContext) {}
 
 func (t *Transpiler) ExitVecOp_AndUnless(c *promqlex.VecOp_AndUnlessContext) {}
+
+func (t *Transpiler) ExitVecOp_SubqueryOp(c *promqlex.VecOp_SubqueryOpContext) {}
+
+func (t *Transpiler) ExitVecOp_OffsetOp(c *promqlex.VecOp_OffsetOpContext) {}
 
 func (t *Transpiler) ExitVecOp_ConstNumExpr(c *promqlex.VecOp_ConstNumExprContext) {
 	t.replaceWithConstNumExprAsFloat(c)

@@ -236,6 +236,12 @@ func (s *BasePromQLExParserListener) EnterVecOp_AddOp(ctx *VecOp_AddOpContext) {
 // ExitVecOp_AddOp is called when production VecOp_AddOp is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_AddOp(ctx *VecOp_AddOpContext) {}
 
+// EnterVecOp_SubqueryOp is called when production VecOp_SubqueryOp is entered.
+func (s *BasePromQLExParserListener) EnterVecOp_SubqueryOp(ctx *VecOp_SubqueryOpContext) {}
+
+// ExitVecOp_SubqueryOp is called when production VecOp_SubqueryOp is exited.
+func (s *BasePromQLExParserListener) ExitVecOp_SubqueryOp(ctx *VecOp_SubqueryOpContext) {}
+
 // EnterVecOp_OrOp is called when production VecOp_OrOp is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_OrOp(ctx *VecOp_OrOpContext) {}
 
@@ -278,11 +284,11 @@ func (s *BasePromQLExParserListener) EnterVecOp_ConstNumExpr(ctx *VecOp_ConstNum
 // ExitVecOp_ConstNumExpr is called when production VecOp_ConstNumExpr is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_ConstNumExpr(ctx *VecOp_ConstNumExprContext) {}
 
-// EnterVecOp_SubOp is called when production VecOp_SubOp is entered.
-func (s *BasePromQLExParserListener) EnterVecOp_SubOp(ctx *VecOp_SubOpContext) {}
+// EnterVecOp_OffsetOp is called when production VecOp_OffsetOp is entered.
+func (s *BasePromQLExParserListener) EnterVecOp_OffsetOp(ctx *VecOp_OffsetOpContext) {}
 
-// ExitVecOp_SubOp is called when production VecOp_SubOp is exited.
-func (s *BasePromQLExParserListener) ExitVecOp_SubOp(ctx *VecOp_SubOpContext) {}
+// ExitVecOp_OffsetOp is called when production VecOp_OffsetOp is exited.
+func (s *BasePromQLExParserListener) ExitVecOp_OffsetOp(ctx *VecOp_OffsetOpContext) {}
 
 // EnterVecOp_Alias is called when production VecOp_Alias is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_Alias(ctx *VecOp_AliasContext) {}

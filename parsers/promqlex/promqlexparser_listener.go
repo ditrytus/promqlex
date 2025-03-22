@@ -112,6 +112,9 @@ type PromQLExParserListener interface {
 	// EnterVecOp_AddOp is called when entering the VecOp_AddOp production.
 	EnterVecOp_AddOp(c *VecOp_AddOpContext)
 
+	// EnterVecOp_SubqueryOp is called when entering the VecOp_SubqueryOp production.
+	EnterVecOp_SubqueryOp(c *VecOp_SubqueryOpContext)
+
 	// EnterVecOp_OrOp is called when entering the VecOp_OrOp production.
 	EnterVecOp_OrOp(c *VecOp_OrOpContext)
 
@@ -133,8 +136,8 @@ type PromQLExParserListener interface {
 	// EnterVecOp_ConstNumExpr is called when entering the VecOp_ConstNumExpr production.
 	EnterVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
 
-	// EnterVecOp_SubOp is called when entering the VecOp_SubOp production.
-	EnterVecOp_SubOp(c *VecOp_SubOpContext)
+	// EnterVecOp_OffsetOp is called when entering the VecOp_OffsetOp production.
+	EnterVecOp_OffsetOp(c *VecOp_OffsetOpContext)
 
 	// EnterVecOp_Alias is called when entering the VecOp_Alias production.
 	EnterVecOp_Alias(c *VecOp_AliasContext)
@@ -373,6 +376,9 @@ type PromQLExParserListener interface {
 	// ExitVecOp_AddOp is called when exiting the VecOp_AddOp production.
 	ExitVecOp_AddOp(c *VecOp_AddOpContext)
 
+	// ExitVecOp_SubqueryOp is called when exiting the VecOp_SubqueryOp production.
+	ExitVecOp_SubqueryOp(c *VecOp_SubqueryOpContext)
+
 	// ExitVecOp_OrOp is called when exiting the VecOp_OrOp production.
 	ExitVecOp_OrOp(c *VecOp_OrOpContext)
 
@@ -394,8 +400,8 @@ type PromQLExParserListener interface {
 	// ExitVecOp_ConstNumExpr is called when exiting the VecOp_ConstNumExpr production.
 	ExitVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
 
-	// ExitVecOp_SubOp is called when exiting the VecOp_SubOp production.
-	ExitVecOp_SubOp(c *VecOp_SubOpContext)
+	// ExitVecOp_OffsetOp is called when exiting the VecOp_OffsetOp production.
+	ExitVecOp_OffsetOp(c *VecOp_OffsetOpContext)
 
 	// ExitVecOp_Alias is called when exiting the VecOp_Alias production.
 	ExitVecOp_Alias(c *VecOp_AliasContext)
