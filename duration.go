@@ -28,6 +28,7 @@ package promqlex
 import (
 	"errors"
 	"fmt"
+	"golang.org/x/exp/constraints"
 	"strconv"
 	"strings"
 	"time"
@@ -112,6 +113,10 @@ func FormatDuration(d time.Duration) string {
 		return "0s"
 	}
 	var parts []string
+	if d < 0 {
+		parts = append(parts, "-")
+	}
+	absDur := abs(d)
 	for _, u := range []struct {
 		unit string
 		div  time.Duration
@@ -124,10 +129,17 @@ func FormatDuration(d time.Duration) string {
 		{"s", time.Second},
 		{"ms", time.Millisecond},
 	} {
-		if v := uint64(d / u.div); v > 0 {
+		if v := uint64(abs(absDur) / u.div); v > 0 {
 			parts = append(parts, fmt.Sprintf("%d%s", v, u.unit))
-			d -= time.Duration(v) * u.div
+			absDur -= time.Duration(v) * u.div
 		}
 	}
 	return strings.Join(parts, "")
+}
+
+func abs[T constraints.Integer](x T) T {
+	if x < T(0) {
+		return -x
+	}
+	return x
 }

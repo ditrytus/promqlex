@@ -346,9 +346,6 @@ func (t *Transpiler) ExitNumLit_AliasCall(c *promqlex.NumLit_AliasCallContext) {
 }
 
 func (t *Transpiler) ExitDuration(c *promqlex.DurationContext) {
-	if t.constNumExprStack.MustPeek() < 0 {
-		c.GetParser().NotifyErrorListeners("duration must be non-negative", c.GetStart(), nil)
-	}
 	t.replaceWithConstNumExprAsDuration(c)
 }
 

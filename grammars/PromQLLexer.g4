@@ -129,7 +129,7 @@ SUBQUERY_RANGE: LEFT_BRACKET DURATION ':' DURATION? RIGHT_BRACKET;
 TIME_RANGE: LEFT_BRACKET DURATION RIGHT_BRACKET;
 
 // The proper order (longest to the shortest) must be validated after parsing
-DURATION: ([0-9]+ ('ms' | [smhdwy]))+;
+DURATION: (ADD | SUB)? ([0-9]+ ('ms' | [smhdwy]))+;
 
 METRIC_NAME : [a-z_:] [a-z0-9_:]* {
     if prov, ok := l.GetInputStream().(FunctionsProvider); ok {

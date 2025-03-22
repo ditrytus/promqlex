@@ -150,4 +150,155 @@
         - name: complex and mixed types
           promqlex: http_requests_count[(2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3] # (1609459200 / (8*60*60) + 1500) / 8
           promql: http_requests_count[1h59m33s]
-    - name:
+    - name: in offset modifier
+      sub:
+      - name: in instant vector selector
+        sub:
+        - name: integer
+          promqlex: http_requests_count offset 123
+          promql: http_requests_count offset 2m3s
+        - name: float
+          promqlex: http_requests_count offset 123.456
+          promql: http_requests_count offset 2m3s456ms
+        - name: science
+          promqlex: http_requests_count offset 1.23e+05
+          promql: http_requests_count offset 1d10h10m
+        - name: add
+          promqlex: http_requests_count offset 1 + 2
+          promql: http_requests_count offset 3s
+        - name: sub
+          promqlex: http_requests_count offset 3 - 1
+          promql: http_requests_count offset 2s
+        - name: mul
+          promqlex: http_requests_count offset 2 * 2.5
+          promql: http_requests_count offset 5s
+        - name: div
+          promqlex: http_requests_count offset 1 / 2
+          promql: http_requests_count offset 500ms
+        - name: unary plus
+          promqlex: http_requests_count offset +1
+          promql: http_requests_count offset 1s
+        - name: unary minus
+          promqlex: http_requests_count offset -1
+          promql: http_requests_count offset -1s
+        - name: pow
+          promqlex: http_requests_count offset 2 ^ 3
+          promql: http_requests_count offset 8s
+        - name: paren
+          promqlex: http_requests_count offset (1 + 2) * 3
+          promql: http_requests_count offset 9s
+        - name: precedence
+          promqlex: http_requests_count offset 1 + 2 ^ 3 * 4
+          promql: http_requests_count offset 33s
+        - name: duration
+          promqlex: http_requests_count offset 1m
+          promql: http_requests_count offset 1m
+        - name: complex duration
+          promqlex: http_requests_count offset 1h30m12s78ms
+          promql: http_requests_count offset 1h30m12s78ms
+        - name: iso timestamp
+          promqlex: http_requests_count offset 2021-01-01T00:00:00Z
+          promql: http_requests_count offset 51y1w6d
+        - name: complex and mixed types
+          promqlex: http_requests_count offset (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
+          promql: http_requests_count offset 1h59m33s
+      - name: in matrix vector selector
+        sub:
+        - name: integer
+          promqlex: http_requests_count [5m] offset 123
+          promql: http_requests_count [5m] offset 2m3s
+        - name: float
+          promqlex: http_requests_count [5m] offset 123.456
+          promql: http_requests_count [5m] offset 2m3s456ms
+        - name: science
+          promqlex: http_requests_count [5m] offset 1.23e+05
+          promql: http_requests_count [5m] offset 1d10h10m
+        - name: add
+          promqlex: http_requests_count [5m] offset 1 + 2
+          promql: http_requests_count [5m] offset 3s
+        - name: sub
+          promqlex: http_requests_count [5m] offset 3 - 1
+          promql: http_requests_count [5m] offset 2s
+        - name: mul
+          promqlex: http_requests_count [5m] offset 2 * 2.5
+          promql: http_requests_count [5m] offset 5s
+        - name: div
+          promqlex: http_requests_count [5m] offset 1 / 2
+          promql: http_requests_count [5m] offset 500ms
+        - name: unary plus
+          promqlex: http_requests_count [5m] offset +1
+          promql: http_requests_count [5m] offset 1s
+        - name: unary minus
+          promqlex: http_requests_count [5m] offset -1
+          promql: http_requests_count [5m] offset -1s
+        - name: pow
+          promqlex: http_requests_count [5m] offset 2 ^ 3
+          promql: http_requests_count [5m] offset 8s
+        - name: paren
+          promqlex: http_requests_count [5m] offset (1 + 2) * 3
+          promql: http_requests_count [5m] offset 9s
+        - name: precedence
+          promqlex: http_requests_count [5m] offset 1 + 2 ^ 3 * 4
+          promql: http_requests_count [5m] offset 33s
+        - name: duration
+          promqlex: http_requests_count [5m] offset 1m
+          promql: http_requests_count [5m] offset 1m
+        - name: complex duration
+          promqlex: http_requests_count [5m] offset 1h30m12s78ms
+          promql: http_requests_count [5m] offset 1h30m12s78ms
+        - name: iso timestamp
+          promqlex: http_requests_count [5m] offset 2021-01-01T00:00:00Z
+          promql: http_requests_count [5m] offset 51y1w6d
+        - name: complex and mixed types
+          promqlex: http_requests_count [5m] offset (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
+          promql: http_requests_count [5m] offset 1h59m33s
+      - name: in subquery
+        sub:
+        - name: integer
+          promqlex: http_requests_count [5m:10m] offset 123
+          promql: http_requests_count [5m:10m] offset 2m3s
+        - name: float
+          promqlex: http_requests_count [5m:10m] offset 123.456
+          promql: http_requests_count [5m:10m] offset 2m3s456ms
+        - name: science
+          promqlex: http_requests_count [5m:10m] offset 1.23e+05
+          promql: http_requests_count [5m:10m] offset 1d10h10m
+        - name: add
+          promqlex: http_requests_count [5m:10m] offset 1 + 2
+          promql: http_requests_count [5m:10m] offset 3s
+        - name: sub
+          promqlex: http_requests_count [5m:10m] offset 3 - 1
+          promql: http_requests_count [5m:10m] offset 2s
+        - name: mul
+          promqlex: http_requests_count [5m:10m] offset 2 * 2.5
+          promql: http_requests_count [5m:10m] offset 5s
+        - name: div
+          promqlex: http_requests_count [5m:10m] offset 1 / 2
+          promql: http_requests_count [5m:10m] offset 500ms
+        - name: unary plus
+          promqlex: http_requests_count [5m:10m] offset +1
+          promql: http_requests_count [5m:10m] offset 1s
+        - name: unary minus
+          promqlex: http_requests_count [5m:10m] offset -1
+          promql: http_requests_count [5m:10m] offset -1s
+        - name: pow
+          promqlex: http_requests_count [5m:10m] offset 2 ^ 3
+          promql: http_requests_count [5m:10m] offset 8s
+        - name: paren
+          promqlex: http_requests_count [5m:10m] offset (1 + 2) * 3
+          promql: http_requests_count [5m:10m] offset 9s
+        - name: precedence
+          promqlex: http_requests_count [5m:10m] offset 1 + 2 ^ 3 * 4
+          promql: http_requests_count [5m:10m] offset 33s
+        - name: duration
+          promqlex: http_requests_count [5m:10m] offset 1m
+          promql: http_requests_count [5m:10m] offset 1m
+        - name: complex duration
+          promqlex: http_requests_count [5m:10m] offset 1h30m12s78ms
+          promql: http_requests_count [5m:10m] offset 1h30m12s78ms
+        - name: iso timestamp
+          promqlex: http_requests_count [5m:10m] offset 2021-01-01T00:00:00Z
+          promql: http_requests_count [5m:10m] offset 51y1w6d
+        - name: complex and mixed types
+          promqlex: http_requests_count [5m:10m] offset (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
+          promql: http_requests_count [5m:10m] offset 1h59m33s
