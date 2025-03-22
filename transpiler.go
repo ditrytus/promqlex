@@ -134,6 +134,8 @@ func (t *Transpiler) EnterVecOp_CompareOp(c *promqlex.VecOp_CompareOpContext) {}
 
 func (t *Transpiler) EnterVecOp_AndUnless(c *promqlex.VecOp_AndUnlessContext) {}
 
+func (t *Transpiler) EnterVecOp_ConstNumExpr(c *promqlex.VecOp_ConstNumExprContext) {}
+
 func (t *Transpiler) EnterSubqueryOp(c *promqlex.SubqueryOpContext) {}
 
 func (t *Transpiler) EnterOffsetOp(c *promqlex.OffsetOpContext) {}
@@ -331,7 +333,7 @@ func (t *Transpiler) ExitNumLit_Duration(c *promqlex.NumLit_DurationContext) {
 	if err != nil {
 		c.GetParser().NotifyErrorListeners(err.Error(), c.DURATION().GetSymbol(), nil)
 	}
-	t.constNumExprStack.Push(float64(duration))
+	t.constNumExprStack.Push(duration.Seconds())
 }
 
 func (t *Transpiler) ExitNumLit_TimeInstantLit(c *promqlex.NumLit_TimeInstantLitContext) {
@@ -374,6 +376,10 @@ func (t *Transpiler) ExitVecOp_PowOp(c *promqlex.VecOp_PowOpContext) {}
 func (t *Transpiler) ExitVecOp_CompareOp(c *promqlex.VecOp_CompareOpContext) {}
 
 func (t *Transpiler) ExitVecOp_AndUnless(c *promqlex.VecOp_AndUnlessContext) {}
+
+func (t *Transpiler) ExitVecOp_ConstNumExpr(c *promqlex.VecOp_ConstNumExprContext) {
+	t.replaceWithConstNumExprValue(c)
+}
 
 func (t *Transpiler) ExitSubqueryOp(c *promqlex.SubqueryOpContext) {}
 
@@ -466,7 +472,7 @@ type replaceableNode interface {
 
 func (t *Transpiler) replaceWithConstNumExprValue(c replaceableNode) {
 	num := t.constNumExprStack.MustPop()
-	txt := strconv.FormatFloat(num, 'g', -1, 64)
+	txt := strconv.FormatFloat(num, 'g', 12, 64)
 	t.rewriter.ReplaceTokenDefault(c.GetStart(), c.GetStop(), txt)
 }
 

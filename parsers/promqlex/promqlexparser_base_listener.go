@@ -145,6 +145,19 @@ func (s *BasePromQLExParserListener) EnterTimeInstLit_UnixTimestamp(ctx *TimeIns
 func (s *BasePromQLExParserListener) ExitTimeInstLit_UnixTimestamp(ctx *TimeInstLit_UnixTimestampContext) {
 }
 
+// EnterConsNumExpr_NumLiteral is called when production ConsNumExpr_NumLiteral is entered.
+func (s *BasePromQLExParserListener) EnterConsNumExpr_NumLiteral(ctx *ConsNumExpr_NumLiteralContext) {
+}
+
+// ExitConsNumExpr_NumLiteral is called when production ConsNumExpr_NumLiteral is exited.
+func (s *BasePromQLExParserListener) ExitConsNumExpr_NumLiteral(ctx *ConsNumExpr_NumLiteralContext) {}
+
+// EnterConsNumExpr_MulOp is called when production ConsNumExpr_MulOp is entered.
+func (s *BasePromQLExParserListener) EnterConsNumExpr_MulOp(ctx *ConsNumExpr_MulOpContext) {}
+
+// ExitConsNumExpr_MulOp is called when production ConsNumExpr_MulOp is exited.
+func (s *BasePromQLExParserListener) ExitConsNumExpr_MulOp(ctx *ConsNumExpr_MulOpContext) {}
+
 // EnterConsNumExpr_PowerOp is called when production ConsNumExpr_PowerOp is entered.
 func (s *BasePromQLExParserListener) EnterConsNumExpr_PowerOp(ctx *ConsNumExpr_PowerOpContext) {}
 
@@ -157,30 +170,17 @@ func (s *BasePromQLExParserListener) EnterConsNumExpr_UnaryOp(ctx *ConsNumExpr_U
 // ExitConsNumExpr_UnaryOp is called when production ConsNumExpr_UnaryOp is exited.
 func (s *BasePromQLExParserListener) ExitConsNumExpr_UnaryOp(ctx *ConsNumExpr_UnaryOpContext) {}
 
-// EnterConsNumExpr_MulOp is called when production ConsNumExpr_MulOp is entered.
-func (s *BasePromQLExParserListener) EnterConsNumExpr_MulOp(ctx *ConsNumExpr_MulOpContext) {}
-
-// ExitConsNumExpr_MulOp is called when production ConsNumExpr_MulOp is exited.
-func (s *BasePromQLExParserListener) ExitConsNumExpr_MulOp(ctx *ConsNumExpr_MulOpContext) {}
-
-// EnterConsNumExpr_AddOp is called when production ConsNumExpr_AddOp is entered.
-func (s *BasePromQLExParserListener) EnterConsNumExpr_AddOp(ctx *ConsNumExpr_AddOpContext) {}
-
-// ExitConsNumExpr_AddOp is called when production ConsNumExpr_AddOp is exited.
-func (s *BasePromQLExParserListener) ExitConsNumExpr_AddOp(ctx *ConsNumExpr_AddOpContext) {}
-
 // EnterConsNumExpr_ParenOp is called when production ConsNumExpr_ParenOp is entered.
 func (s *BasePromQLExParserListener) EnterConsNumExpr_ParenOp(ctx *ConsNumExpr_ParenOpContext) {}
 
 // ExitConsNumExpr_ParenOp is called when production ConsNumExpr_ParenOp is exited.
 func (s *BasePromQLExParserListener) ExitConsNumExpr_ParenOp(ctx *ConsNumExpr_ParenOpContext) {}
 
-// EnterConsNumExpr_NumLiteral is called when production ConsNumExpr_NumLiteral is entered.
-func (s *BasePromQLExParserListener) EnterConsNumExpr_NumLiteral(ctx *ConsNumExpr_NumLiteralContext) {
-}
+// EnterConsNumExpr_AddOp is called when production ConsNumExpr_AddOp is entered.
+func (s *BasePromQLExParserListener) EnterConsNumExpr_AddOp(ctx *ConsNumExpr_AddOpContext) {}
 
-// ExitConsNumExpr_NumLiteral is called when production ConsNumExpr_NumLiteral is exited.
-func (s *BasePromQLExParserListener) ExitConsNumExpr_NumLiteral(ctx *ConsNumExpr_NumLiteralContext) {}
+// ExitConsNumExpr_AddOp is called when production ConsNumExpr_AddOp is exited.
+func (s *BasePromQLExParserListener) ExitConsNumExpr_AddOp(ctx *ConsNumExpr_AddOpContext) {}
 
 // EnterNumLit_Number is called when production NumLit_Number is entered.
 func (s *BasePromQLExParserListener) EnterNumLit_Number(ctx *NumLit_NumberContext) {}
@@ -271,6 +271,12 @@ func (s *BasePromQLExParserListener) EnterVecOp_MulOp(ctx *VecOp_MulOpContext) {
 
 // ExitVecOp_MulOp is called when production VecOp_MulOp is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_MulOp(ctx *VecOp_MulOpContext) {}
+
+// EnterVecOp_ConstNumExpr is called when production VecOp_ConstNumExpr is entered.
+func (s *BasePromQLExParserListener) EnterVecOp_ConstNumExpr(ctx *VecOp_ConstNumExprContext) {}
+
+// ExitVecOp_ConstNumExpr is called when production VecOp_ConstNumExpr is exited.
+func (s *BasePromQLExParserListener) ExitVecOp_ConstNumExpr(ctx *VecOp_ConstNumExprContext) {}
 
 // EnterVecOp_SubOp is called when production VecOp_SubOp is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_SubOp(ctx *VecOp_SubOpContext) {}

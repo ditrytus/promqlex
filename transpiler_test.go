@@ -49,17 +49,21 @@ func runTestCases(t *testing.T, testCases []TranspilerTestCase) {
 	for _, testCase := range testCases {
 		t.Run(testCase.Name, func(t *testing.T) {
 			if testCase.PromQLEx != "" {
-				transpiledPromQL := transpilePromQLEx(t, testCase.PromQLEx)
+				transpiledPromQL, promQLExASCIITree := transpilePromQLEx(t, testCase.PromQLEx)
+				assert.Equal(t, testCase.PromQL, transpiledPromQL)
 				transpiledPromQLASCIITree := parsePromQL(t, transpiledPromQL)
 				expectedPromQLASCIITree := parsePromQL(t, testCase.PromQL)
-				assert.Equal(t, expectedPromQLASCIITree, transpiledPromQLASCIITree)
+				if !assert.Equal(t, expectedPromQLASCIITree, transpiledPromQLASCIITree) {
+					t.Log("PromQLEx AST:")
+					t.Log(promQLExASCIITree)
+				}
 			}
 			runTestCases(t, testCase.Sub)
 		})
 	}
 }
 
-func transpilePromQLEx(t *testing.T, promQLEx string) string {
+func transpilePromQLEx(t *testing.T, promQLEx string) (promQL string, promQLExASCIITree string) {
 	promQLExInputStream := newInputStream(
 		parser.PromQLExLexerFUNCTION,
 		parser.PromQLExLexerAGGREGATION_OPERATOR,
@@ -71,12 +75,13 @@ func transpilePromQLEx(t *testing.T, promQLEx string) string {
 	setErrorListeners(t, promQLExParser)
 	promQLExTree := promQLExParser.Promqlx()
 	var promQLExBuilder strings.Builder
+	NewAsciiAstPrinterVisitor(&promQLExBuilder, promQLExParser, promQLExLexer).Visit(promQLExTree)
+	promQLExASCIITree = promQLExBuilder.String()
 	if promQLExParser.HasError() {
-		NewAsciiAstPrinterVisitor(&promQLExBuilder, promQLExParser, promQLExLexer).Visit(promQLExTree)
 		t.Log("PromQLEx text:\n")
 		t.Log(promQLEx + "\n")
 		t.Log("PromQLEx AST:\n")
-		t.Log(promQLExBuilder.String())
+		t.Log(promQLExASCIITree)
 	}
 
 	rewriter := antlr.NewTokenStreamRewriter(promQLExTokens)
@@ -84,8 +89,8 @@ func transpilePromQLEx(t *testing.T, promQLEx string) string {
 	walker := antlr.NewParseTreeWalker()
 
 	walker.Walk(transpiler, promQLExTree)
-	result := rewriter.GetTextDefault()
-	return result
+	promQL = rewriter.GetTextDefault()
+	return promQL, promQLExASCIITree
 }
 
 func parsePromQL(t *testing.T, result string) string {

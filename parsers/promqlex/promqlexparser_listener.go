@@ -67,23 +67,23 @@ type PromQLExParserListener interface {
 	// EnterTimeInstLit_UnixTimestamp is called when entering the TimeInstLit_UnixTimestamp production.
 	EnterTimeInstLit_UnixTimestamp(c *TimeInstLit_UnixTimestampContext)
 
+	// EnterConsNumExpr_NumLiteral is called when entering the ConsNumExpr_NumLiteral production.
+	EnterConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)
+
+	// EnterConsNumExpr_MulOp is called when entering the ConsNumExpr_MulOp production.
+	EnterConsNumExpr_MulOp(c *ConsNumExpr_MulOpContext)
+
 	// EnterConsNumExpr_PowerOp is called when entering the ConsNumExpr_PowerOp production.
 	EnterConsNumExpr_PowerOp(c *ConsNumExpr_PowerOpContext)
 
 	// EnterConsNumExpr_UnaryOp is called when entering the ConsNumExpr_UnaryOp production.
 	EnterConsNumExpr_UnaryOp(c *ConsNumExpr_UnaryOpContext)
 
-	// EnterConsNumExpr_MulOp is called when entering the ConsNumExpr_MulOp production.
-	EnterConsNumExpr_MulOp(c *ConsNumExpr_MulOpContext)
-
-	// EnterConsNumExpr_AddOp is called when entering the ConsNumExpr_AddOp production.
-	EnterConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
-
 	// EnterConsNumExpr_ParenOp is called when entering the ConsNumExpr_ParenOp production.
 	EnterConsNumExpr_ParenOp(c *ConsNumExpr_ParenOpContext)
 
-	// EnterConsNumExpr_NumLiteral is called when entering the ConsNumExpr_NumLiteral production.
-	EnterConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)
+	// EnterConsNumExpr_AddOp is called when entering the ConsNumExpr_AddOp production.
+	EnterConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
 
 	// EnterNumLit_Number is called when entering the NumLit_Number production.
 	EnterNumLit_Number(c *NumLit_NumberContext)
@@ -129,6 +129,9 @@ type PromQLExParserListener interface {
 
 	// EnterVecOp_MulOp is called when entering the VecOp_MulOp production.
 	EnterVecOp_MulOp(c *VecOp_MulOpContext)
+
+	// EnterVecOp_ConstNumExpr is called when entering the VecOp_ConstNumExpr production.
+	EnterVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
 
 	// EnterVecOp_SubOp is called when entering the VecOp_SubOp production.
 	EnterVecOp_SubOp(c *VecOp_SubOpContext)
@@ -325,23 +328,23 @@ type PromQLExParserListener interface {
 	// ExitTimeInstLit_UnixTimestamp is called when exiting the TimeInstLit_UnixTimestamp production.
 	ExitTimeInstLit_UnixTimestamp(c *TimeInstLit_UnixTimestampContext)
 
+	// ExitConsNumExpr_NumLiteral is called when exiting the ConsNumExpr_NumLiteral production.
+	ExitConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)
+
+	// ExitConsNumExpr_MulOp is called when exiting the ConsNumExpr_MulOp production.
+	ExitConsNumExpr_MulOp(c *ConsNumExpr_MulOpContext)
+
 	// ExitConsNumExpr_PowerOp is called when exiting the ConsNumExpr_PowerOp production.
 	ExitConsNumExpr_PowerOp(c *ConsNumExpr_PowerOpContext)
 
 	// ExitConsNumExpr_UnaryOp is called when exiting the ConsNumExpr_UnaryOp production.
 	ExitConsNumExpr_UnaryOp(c *ConsNumExpr_UnaryOpContext)
 
-	// ExitConsNumExpr_MulOp is called when exiting the ConsNumExpr_MulOp production.
-	ExitConsNumExpr_MulOp(c *ConsNumExpr_MulOpContext)
-
-	// ExitConsNumExpr_AddOp is called when exiting the ConsNumExpr_AddOp production.
-	ExitConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
-
 	// ExitConsNumExpr_ParenOp is called when exiting the ConsNumExpr_ParenOp production.
 	ExitConsNumExpr_ParenOp(c *ConsNumExpr_ParenOpContext)
 
-	// ExitConsNumExpr_NumLiteral is called when exiting the ConsNumExpr_NumLiteral production.
-	ExitConsNumExpr_NumLiteral(c *ConsNumExpr_NumLiteralContext)
+	// ExitConsNumExpr_AddOp is called when exiting the ConsNumExpr_AddOp production.
+	ExitConsNumExpr_AddOp(c *ConsNumExpr_AddOpContext)
 
 	// ExitNumLit_Number is called when exiting the NumLit_Number production.
 	ExitNumLit_Number(c *NumLit_NumberContext)
@@ -387,6 +390,9 @@ type PromQLExParserListener interface {
 
 	// ExitVecOp_MulOp is called when exiting the VecOp_MulOp production.
 	ExitVecOp_MulOp(c *VecOp_MulOpContext)
+
+	// ExitVecOp_ConstNumExpr is called when exiting the VecOp_ConstNumExpr production.
+	ExitVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
 
 	// ExitVecOp_SubOp is called when exiting the VecOp_SubOp production.
 	ExitVecOp_SubOp(c *VecOp_SubOpContext)

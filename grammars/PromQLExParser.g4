@@ -55,10 +55,10 @@ time_instant_literal
 // Constant expressions
 
 const_num_expression
-    : <assoc = right> num_literal powOp num_literal # ConsNumExpr_PowerOp
-    | unaryOp num_literal # ConsNumExpr_UnaryOp
-    | num_literal multOp num_literal # ConsNumExpr_MulOp
-    | num_literal addOp num_literal # ConsNumExpr_AddOp
+    : <assoc = right> const_num_expression powOp const_num_expression # ConsNumExpr_PowerOp
+    | unaryOp const_num_expression # ConsNumExpr_UnaryOp
+    | const_num_expression multOp const_num_expression # ConsNumExpr_MulOp
+    | const_num_expression addOp const_num_expression # ConsNumExpr_AddOp
     | LEFT_PAREN const_num_expression RIGHT_PAREN # ConsNumExpr_ParenOp
     | num_literal # ConsNumExpr_NumLiteral
     ;
@@ -82,9 +82,9 @@ subquery_range: LEFT_BRACKET duration COLON duration? RIGHT_BRACKET;
 
 // Overrides of PromQLParser parser rules
 
-
 vectorOperation
-    : <assoc = right> vectorOperation powOp vectorOperation # VecOp_PowOp
+    : const_num_expression # VecOp_ConstNumExpr
+    | <assoc = right> vectorOperation powOp vectorOperation # VecOp_PowOp
     | <assoc = right> vectorOperation subqueryOp # VecOp_SubOp
     | unaryOp vectorOperation # VecOp_UnaryOp
     | vectorOperation multOp vectorOperation # VecOp_MulOp
