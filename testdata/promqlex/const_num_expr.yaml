@@ -48,3 +48,53 @@
     - name: complex and mixed types
       promqlex: (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
       promql: 7173
+- name: as at modifier timestamp
+  sub:
+    - name: integer
+      promqlex: http_requests_count @ 123
+      promql: http_requests_count @ 123
+    - name: float
+      promqlex: http_requests_count @ 123.456
+      promql: http_requests_count @ 123.456
+    - name: science
+      promqlex: http_requests_count @ 1.23e-05
+      promql: http_requests_count @ 1.23e-05
+    - name: add
+      promqlex: http_requests_count @ 1 + 2
+      promql: http_requests_count @ 3
+    - name: sub
+      promqlex: http_requests_count @ 1 - 2
+      promql: http_requests_count @ -1
+    - name: mul
+      promqlex: http_requests_count @ 2 * 2.5
+      promql: http_requests_count @ 5
+    - name: div
+      promqlex: http_requests_count @ 1 / 2
+      promql: http_requests_count @ 0.5
+    - name: unary plus
+      promqlex: http_requests_count @ +1
+      promql: http_requests_count @ 1
+    - name: unary minus
+      promqlex: http_requests_count @ -1
+      promql: http_requests_count @ -1
+    - name: pow
+      promqlex: http_requests_count @ 2 ^ 3
+      promql: http_requests_count @ 8
+    - name: paren
+      promqlex: http_requests_count @ (1 + 2) * 3
+      promql: http_requests_count @ 9
+    - name: precedence
+      promqlex: http_requests_count @ 1 + 2 ^ 3 * 4
+      promql: http_requests_count @ 33
+    - name: duration
+      promqlex: http_requests_count @ 1m
+      promql: http_requests_count @ 60
+    - name: complex duration
+      promqlex: http_requests_count @ 1h30m12s78ms
+      promql: http_requests_count @ 5412.078
+    - name: iso timestamp
+      promqlex: http_requests_count @ 2021-01-01T00:00:00Z
+      promql: http_requests_count @ 1609459200
+    - name: complex and mixed types
+      promqlex: http_requests_count @ (2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3 # (1609459200 / (8*60*60) + 1500) / 8
+      promql: http_requests_count @ 7173
