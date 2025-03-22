@@ -132,7 +132,7 @@ queries:
   - time() - kube_cronjob_next_schedule_time > 3600
 ---
 source: this repo
+queries:
   - http_requests_total offset 7m
   - http_requests_total [5m:10m]
   - http_requests_total [5m:10m] offset 7m
-  - http_requests_total offset 7m offset 2m

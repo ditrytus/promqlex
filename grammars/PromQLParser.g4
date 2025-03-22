@@ -46,7 +46,6 @@ expression
 vectorOperation
     : <assoc = right> vectorOperation powOp vectorOperation
     | <assoc = right> vectorOperation subqueryOp
-    | <assoc = right> vectorOperation offsetOp
     | unaryOp vectorOperation
     | vectorOperation multOp vectorOperation
     | vectorOperation addOp vectorOperation
@@ -101,7 +100,7 @@ vectorMatchOp
     ;
 
 subqueryOp
-    : SUBQUERY_RANGE
+    : SUBQUERY_RANGE offsetOp?
     ;
 
 offsetOp

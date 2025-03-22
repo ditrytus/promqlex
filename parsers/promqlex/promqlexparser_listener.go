@@ -136,9 +136,6 @@ type PromQLExParserListener interface {
 	// EnterVecOp_ConstNumExpr is called when entering the VecOp_ConstNumExpr production.
 	EnterVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
 
-	// EnterVecOp_OffsetOp is called when entering the VecOp_OffsetOp production.
-	EnterVecOp_OffsetOp(c *VecOp_OffsetOpContext)
-
 	// EnterVecOp_Alias is called when entering the VecOp_Alias production.
 	EnterVecOp_Alias(c *VecOp_AliasContext)
 
@@ -399,9 +396,6 @@ type PromQLExParserListener interface {
 
 	// ExitVecOp_ConstNumExpr is called when exiting the VecOp_ConstNumExpr production.
 	ExitVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
-
-	// ExitVecOp_OffsetOp is called when exiting the VecOp_OffsetOp production.
-	ExitVecOp_OffsetOp(c *VecOp_OffsetOpContext)
 
 	// ExitVecOp_Alias is called when exiting the VecOp_Alias production.
 	ExitVecOp_Alias(c *VecOp_AliasContext)

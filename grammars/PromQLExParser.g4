@@ -86,7 +86,6 @@ vectorOperation
     : const_num_expression # VecOp_ConstNumExpr
     | <assoc = right> vectorOperation powOp vectorOperation # VecOp_PowOp
     | <assoc = right> vectorOperation subqueryOp # VecOp_SubqueryOp
-    | <assoc = right> vectorOperation offsetOp # VecOp_OffsetOp
     | unaryOp vectorOperation # VecOp_UnaryOp
     | vectorOperation multOp vectorOperation # VecOp_MulOp
     | vectorOperation addOp vectorOperation # VecOp_AddOp
@@ -103,7 +102,7 @@ vectorOperation
 
 subqueryOp
     // PROMQLX: SUBQUERY_RANGE was converted from token to rule.
-    : subquery_range
+    : subquery_range offsetOp?
     ;
 
 offsetOp

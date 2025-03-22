@@ -150,3 +150,4 @@
         - name: complex and mixed types
           promqlex: http_requests_count[(2021-01-01T00:00:00Z / 8h + 1.5e+3) / 2 ^ 3] # (1609459200 / (8*60*60) + 1500) / 8
           promql: http_requests_count[1h59m33s]
+    - name:

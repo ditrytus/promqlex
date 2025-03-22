@@ -2,9 +2,6 @@ package promqlex
 
 import (
 	"errors"
-	"fmt"
-	"github.com/antlr4-go/antlr/v4"
-	parser "github.com/ditrytus/promqlex/parsers/promqlex"
 	"gopkg.in/yaml.v3"
 	"io"
 	"strings"
@@ -25,23 +22,7 @@ func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 		t.Run(example.Source, func(t *testing.T) {
 			for _, query := range example.Queries {
 				t.Run(query, func(t *testing.T) {
-					input := antlr.NewInputStream(query)
-					functionSet := NewPrometheusFunctionSet(
-						parser.PromQLExLexerFUNCTION,
-						parser.PromQLExLexerAGGREGATION_OPERATOR,
-					)
-					functionSet.AddAggregationOperators(PrometheusExperimentalAggregationOperators)
-					providerInput := NewInputStream(input, functionSet)
-					lexer := parser.NewPromQLExLexer(providerInput)
-					tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-					p := parser.NewPromQLExParser(tokens)
-					p.RemoveErrorListeners()
-					p.AddErrorListener(NewFailTestErrorListener(t))
-					p.AddErrorListener(antlr.NewConsoleErrorListener())
-					tree := p.Promqlx()
-					var builder strings.Builder
-					NewAsciiAstPrinterVisitor(&builder, p, lexer).Visit(tree)
-					fmt.Println(builder.String())
+					_, _, _ = parsePromQLEx(t, query)
 				})
 			}
 		})

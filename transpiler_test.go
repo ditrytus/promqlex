@@ -64,6 +64,18 @@ func runTestCases(t *testing.T, testCases []TranspilerTestCase) {
 }
 
 func transpilePromQLEx(t *testing.T, promQLEx string) (promQL string, promQLExASCIITree string) {
+	promQLExTokens, promQLExTree, promQLExASCIITree := parsePromQLEx(t, promQLEx)
+
+	rewriter := antlr.NewTokenStreamRewriter(promQLExTokens)
+	transpiler := NewTranspiler(rewriter)
+	walker := antlr.NewParseTreeWalker()
+
+	walker.Walk(transpiler, promQLExTree)
+	promQL = rewriter.GetTextDefault()
+	return promQL, promQLExASCIITree
+}
+
+func parsePromQLEx(t *testing.T, promQLEx string) (*antlr.CommonTokenStream, parser.IPromqlxContext, string) {
 	promQLExInputStream := newInputStream(
 		parser.PromQLExLexerFUNCTION,
 		parser.PromQLExLexerAGGREGATION_OPERATOR,
@@ -76,21 +88,14 @@ func transpilePromQLEx(t *testing.T, promQLEx string) (promQL string, promQLExAS
 	promQLExTree := promQLExParser.Promqlx()
 	var promQLExBuilder strings.Builder
 	NewAsciiAstPrinterVisitor(&promQLExBuilder, promQLExParser, promQLExLexer).Visit(promQLExTree)
-	promQLExASCIITree = promQLExBuilder.String()
+	promQLExASCIITree := promQLExBuilder.String()
 	if promQLExParser.HasError() {
 		t.Log("PromQLEx text:\n")
 		t.Log(promQLEx + "\n")
 		t.Log("PromQLEx AST:\n")
 		t.Log(promQLExASCIITree)
 	}
-
-	rewriter := antlr.NewTokenStreamRewriter(promQLExTokens)
-	transpiler := NewTranspiler(rewriter)
-	walker := antlr.NewParseTreeWalker()
-
-	walker.Walk(transpiler, promQLExTree)
-	promQL = rewriter.GetTextDefault()
-	return promQL, promQLExASCIITree
+	return promQLExTokens, promQLExTree, promQLExASCIITree
 }
 
 func parsePromQL(t *testing.T, result string) string {

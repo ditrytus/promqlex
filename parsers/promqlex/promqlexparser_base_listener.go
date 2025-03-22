@@ -284,12 +284,6 @@ func (s *BasePromQLExParserListener) EnterVecOp_ConstNumExpr(ctx *VecOp_ConstNum
 // ExitVecOp_ConstNumExpr is called when production VecOp_ConstNumExpr is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_ConstNumExpr(ctx *VecOp_ConstNumExprContext) {}
 
-// EnterVecOp_OffsetOp is called when production VecOp_OffsetOp is entered.
-func (s *BasePromQLExParserListener) EnterVecOp_OffsetOp(ctx *VecOp_OffsetOpContext) {}
-
-// ExitVecOp_OffsetOp is called when production VecOp_OffsetOp is exited.
-func (s *BasePromQLExParserListener) ExitVecOp_OffsetOp(ctx *VecOp_OffsetOpContext) {}
-
 // EnterVecOp_Alias is called when production VecOp_Alias is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_Alias(ctx *VecOp_AliasContext) {}
 
