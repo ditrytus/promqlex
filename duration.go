@@ -29,6 +29,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -104,4 +105,29 @@ func ParseDuration(s string) (time.Duration, error) {
 		}
 	}
 	return time.Duration(dur), nil
+}
+
+func FormatDuration(d time.Duration) string {
+	if d == 0 {
+		return "0s"
+	}
+	var parts []string
+	for _, u := range []struct {
+		unit string
+		div  time.Duration
+	}{
+		{"y", 365 * 24 * time.Hour},
+		{"w", 7 * 24 * time.Hour},
+		{"d", 24 * time.Hour},
+		{"h", time.Hour},
+		{"m", time.Minute},
+		{"s", time.Second},
+		{"ms", time.Millisecond},
+	} {
+		if v := uint64(d / u.div); v > 0 {
+			parts = append(parts, fmt.Sprintf("%d%s", v, u.unit))
+			d -= time.Duration(v) * u.div
+		}
+	}
+	return strings.Join(parts, "")
 }

@@ -345,7 +345,12 @@ func (t *Transpiler) ExitNumLit_AliasCall(c *promqlex.NumLit_AliasCallContext) {
 	panic("alias call as numeric literal is not yet supported")
 }
 
-func (t *Transpiler) ExitDuration(c *promqlex.DurationContext) {}
+func (t *Transpiler) ExitDuration(c *promqlex.DurationContext) {
+	if t.constNumExprStack.MustPeek() < 0 {
+		c.GetParser().NotifyErrorListeners("duration must be non-negative", c.GetStart(), nil)
+	}
+	t.replaceWithConstNumExprAsDuration(c)
+}
 
 func (t *Transpiler) ExitTime_range(c *promqlex.Time_rangeContext) {}
 
@@ -378,7 +383,7 @@ func (t *Transpiler) ExitVecOp_CompareOp(c *promqlex.VecOp_CompareOpContext) {}
 func (t *Transpiler) ExitVecOp_AndUnless(c *promqlex.VecOp_AndUnlessContext) {}
 
 func (t *Transpiler) ExitVecOp_ConstNumExpr(c *promqlex.VecOp_ConstNumExprContext) {
-	t.replaceWithConstNumExprValue(c)
+	t.replaceWithConstNumExprAsFloat(c)
 }
 
 func (t *Transpiler) ExitSubqueryOp(c *promqlex.SubqueryOpContext) {}
@@ -390,7 +395,7 @@ func (t *Transpiler) ExitMatrixSelector(c *promqlex.MatrixSelectorContext) {}
 func (t *Transpiler) ExitOffset(c *promqlex.OffsetContext) {}
 
 func (t *Transpiler) ExitLit_ConstNumExpr(c *promqlex.Lit_ConstNumExprContext) {
-	t.replaceWithConstNumExprValue(c)
+	t.replaceWithConstNumExprAsFloat(c)
 }
 
 func (t *Transpiler) ExitLit_String(c *promqlex.Lit_StringContext) {}
@@ -402,7 +407,7 @@ func (t *Transpiler) ExitLabelName(c *promqlex.LabelNameContext) {}
 func (t *Transpiler) ExitMetric_name(c *promqlex.Metric_nameContext) {}
 
 func (t *Transpiler) ExitAtModTime_ConstNumExpr(c *promqlex.AtModTime_ConstNumExprContext) {
-	t.replaceWithConstNumExprValue(c)
+	t.replaceWithConstNumExprAsFloat(c)
 }
 
 func (t *Transpiler) ExitAtModTime_Start(c *promqlex.AtModTime_StartContext) {}
@@ -470,9 +475,15 @@ type replaceableNode interface {
 	GetStop() antlr.Token
 }
 
-func (t *Transpiler) replaceWithConstNumExprValue(c replaceableNode) {
+func (t *Transpiler) replaceWithConstNumExprAsFloat(c replaceableNode) {
 	num := t.constNumExprStack.MustPop()
 	txt := strconv.FormatFloat(num, 'g', 12, 64)
+	t.rewriter.ReplaceTokenDefault(c.GetStart(), c.GetStop(), txt)
+}
+
+func (t *Transpiler) replaceWithConstNumExprAsDuration(c *promqlex.DurationContext) {
+	num := t.constNumExprStack.MustPop()
+	txt := FormatDuration(time.Duration(float64(time.Second) * num))
 	t.rewriter.ReplaceTokenDefault(c.GetStart(), c.GetStop(), txt)
 }
 
