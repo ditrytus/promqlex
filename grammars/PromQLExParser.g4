@@ -22,7 +22,7 @@ alias_def : DEF ID EQ vectorOperation;
 alias_call : CALL_SIGN ID;
 
 macro_def : DEF ID LEFT_PAREN args_decl? RIGHT_PAREN statement_block;
-macro_call: CALL_SIGN ID ID LEFT_PAREN arg_list? RIGHT_PAREN;
+macro_call: CALL_SIGN ID LEFT_PAREN arg_list? RIGHT_PAREN;
 
 args_decl : arg_name (COMMA arg_name)*;
 
