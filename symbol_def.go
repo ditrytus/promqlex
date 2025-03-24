@@ -7,6 +7,7 @@ import (
 
 type SymbolsDefiner struct {
 	scopes       map[antlr.ParseTree]*Scope
+	errors       []*ParseTreeError
 	currentScope *Scope
 }
 
@@ -45,20 +46,18 @@ func (m *SymbolsDefiner) EnterState_IfStatement(c *promqlex.State_IfStatementCon
 func (m *SymbolsDefiner) EnterState_VectorOperation(c *promqlex.State_VectorOperationContext) {}
 
 func (m *SymbolsDefiner) EnterAlias_def(c *promqlex.Alias_defContext) {
-	m.defineAliasSymbol(c)
+	m.defineAliasSymbol(c.ID())
 }
 
-type aliasSymbolRule interface {
-	ID() antlr.TerminalNode
-	GetParser() antlr.Parser
-}
-
-func (m *SymbolsDefiner) defineAliasSymbol(rule aliasSymbolRule) {
-	idTerminal := rule.ID()
+func (m *SymbolsDefiner) defineAliasSymbol(idTerminal antlr.TerminalNode) {
 	err := m.currentScope.Define(NewAliasSymbol(idTerminal.GetText()))
 	if err != nil {
-		rule.GetParser().NotifyErrorListeners(err.Error(), idTerminal.GetSymbol(), nil)
+		m.addError(err, idTerminal)
 	}
+}
+
+func (m *SymbolsDefiner) addError(err error, idTerminal antlr.ParseTree) {
+	m.errors = append(m.errors, NewParseTreeError(err, idTerminal))
 }
 
 func (m *SymbolsDefiner) EnterAlias_call(c *promqlex.Alias_callContext) {}
@@ -70,7 +69,7 @@ func (m *SymbolsDefiner) EnterMacro_def(c *promqlex.Macro_defContext) {
 	}
 	err := m.currentScope.Define(NewMacroSymbol(c.ID().GetText(), ary))
 	if err != nil {
-		c.GetParser().NotifyErrorListeners(err.Error(), c.ID().GetSymbol(), nil)
+		m.addError(err, c.ID())
 	}
 	m.enterNewScope(c)
 }
@@ -80,7 +79,7 @@ func (m *SymbolsDefiner) EnterMacro_call(c *promqlex.Macro_callContext) {}
 func (m *SymbolsDefiner) EnterArgs_decl(c *promqlex.Args_declContext) {}
 
 func (m *SymbolsDefiner) EnterArg_name(c *promqlex.Arg_nameContext) {
-	m.defineAliasSymbol(c)
+	m.defineAliasSymbol(c.ID())
 }
 
 func (m *SymbolsDefiner) EnterStatement_block(c *promqlex.Statement_blockContext) {}
@@ -418,5 +417,13 @@ func (m *SymbolsDefiner) ExitLabelNameList(c *promqlex.LabelNameListContext) {}
 func (m *SymbolsDefiner) ExitKeyword(c *promqlex.KeywordContext) {}
 
 func (m *SymbolsDefiner) ExitString(c *promqlex.StringContext) {}
+
+func (m *SymbolsDefiner) HasErrors() bool {
+	return len(m.errors) > 0
+}
+
+func (m *SymbolsDefiner) Errors() []*ParseTreeError {
+	return m.errors
+}
 
 var _ promqlex.PromQLExParserListener = &SymbolsDefiner{}
