@@ -67,7 +67,7 @@ func transpilePromQLEx(t *testing.T, promQLEx string) (promQL string, promQLExAS
 	promQLExTokens, promQLExTree, promQLExASCIITree := parsePromQLEx(t, promQLEx)
 
 	rewriter := antlr.NewTokenStreamRewriter(promQLExTokens)
-	transpiler := NewConstNumExporEvaluator(rewriter)
+	transpiler := NewConstNumExprEvaluator(rewriter)
 	walker := antlr.NewParseTreeWalker()
 
 	walker.Walk(transpiler, promQLExTree)

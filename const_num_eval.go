@@ -15,7 +15,7 @@ type ConstNumExprEvaluator struct {
 	timeInstantLiteral time.Time
 }
 
-func NewConstNumExporEvaluator(tokenStream *antlr.TokenStreamRewriter) *ConstNumExprEvaluator {
+func NewConstNumExprEvaluator(tokenStream *antlr.TokenStreamRewriter) *ConstNumExprEvaluator {
 	return &ConstNumExprEvaluator{
 		rewriter: tokenStream,
 	}
