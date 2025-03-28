@@ -55,17 +55,22 @@ fragment Z : 'Z';
 COLON: ':';
 fragment DOT: '.';
 
-METRIC_NAME : { func() bool {
-        cnt, ok := p.GetInputStream().(BracketCounter)
-        return (!ok || (ok && cnt.BracketCount() == 0))
-    }()
-}? [a-z_:] [a-z0-9_:]* { !p.IsLiteralName(p.GetText()) }? {
-   if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
-       if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
-           l.SetType(tokenType)
-       }
-   }
-};
+//METRIC_NAME : { func() bool {
+//        cnt, ok := p.GetInputStream().(BracketCounter)
+//        return (!ok || (ok && cnt.BracketCount() == 0))
+//    }()
+//}? [a-z_:] [a-z0-9_:]* { !p.IsLiteralName(p.GetText()) }? {
+//   if prov, ok := l.GetInputStream().(FunctionsProvider); ok {
+//       if tokenType, ok := prov.GetTokenType(l.GetText()); ok {
+//           l.SetType(tokenType)
+//       }
+//   }
+//};
+//METRIC_NAME : ':' ID [a-z_:] [a-z0-9_:];
+
+fragment METRIC_NAME:;
+fragment FUNCTION:;
+fragment AGGREGATION_OPERATOR:;
 
 IF: 'if';
 
@@ -77,8 +82,8 @@ SEMICOLON: ';';
 METRIC_KEYWORD: 'metric';
 LABEL_KEYWORD: 'label';
 
-DEF: 'def' -> pushMode(ID_MODE);
-CALL_SIGN: '$' -> pushMode(ID_MODE);
+DEF: 'def';
+DOLLAR: '$';
 
 LEFT_BRACKET  : '[' {
     if cnt, ok := l.GetInputStream().(BracketCounter); ok {
@@ -92,10 +97,20 @@ RIGHT_BRACKET : ']' {
     }
 };
 
-mode ID_MODE;
+AND    : 'and';
+OR     : 'or';
+UNLESS : 'unless';
+BY      : 'by';
+WITHOUT : 'without';
+ON          : 'on';
+IGNORING    : 'ignoring';
+GROUP_LEFT  : 'group_left';
+GROUP_RIGHT : 'group_right';
+OFFSET: 'offset';
+BOOL: 'bool';
+START: 'start';
+END: 'end';
 
 ID options {
   caseInsensitive = false;
-}: [a-zA-Z] [0-9a-zA-Z_]* -> popMode;
-
-ID_WS : [\r\t\n ]+ -> channel(WHITESPACE);
+}: [a-zA-Z] [0-9a-zA-Z_]*;

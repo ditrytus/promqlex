@@ -56,23 +56,17 @@ func (s *BasePromQLExParserListener) EnterAlias_def(ctx *Alias_defContext) {}
 // ExitAlias_def is called when production alias_def is exited.
 func (s *BasePromQLExParserListener) ExitAlias_def(ctx *Alias_defContext) {}
 
-// EnterAlias_call is called when production alias_call is entered.
-func (s *BasePromQLExParserListener) EnterAlias_call(ctx *Alias_callContext) {}
-
-// ExitAlias_call is called when production alias_call is exited.
-func (s *BasePromQLExParserListener) ExitAlias_call(ctx *Alias_callContext) {}
-
 // EnterMacro_def is called when production macro_def is entered.
 func (s *BasePromQLExParserListener) EnterMacro_def(ctx *Macro_defContext) {}
 
 // ExitMacro_def is called when production macro_def is exited.
 func (s *BasePromQLExParserListener) ExitMacro_def(ctx *Macro_defContext) {}
 
-// EnterMacro_call is called when production macro_call is entered.
-func (s *BasePromQLExParserListener) EnterMacro_call(ctx *Macro_callContext) {}
+// EnterSubstitute is called when production substitute is entered.
+func (s *BasePromQLExParserListener) EnterSubstitute(ctx *SubstituteContext) {}
 
-// ExitMacro_call is called when production macro_call is exited.
-func (s *BasePromQLExParserListener) ExitMacro_call(ctx *Macro_callContext) {}
+// ExitSubstitute is called when production substitute is exited.
+func (s *BasePromQLExParserListener) ExitSubstitute(ctx *SubstituteContext) {}
 
 // EnterArgs_decl is called when production args_decl is entered.
 func (s *BasePromQLExParserListener) EnterArgs_decl(ctx *Args_declContext) {}
@@ -91,12 +85,6 @@ func (s *BasePromQLExParserListener) EnterStatement_block(ctx *Statement_blockCo
 
 // ExitStatement_block is called when production statement_block is exited.
 func (s *BasePromQLExParserListener) ExitStatement_block(ctx *Statement_blockContext) {}
-
-// EnterArg_list is called when production arg_list is entered.
-func (s *BasePromQLExParserListener) EnterArg_list(ctx *Arg_listContext) {}
-
-// ExitArg_list is called when production arg_list is exited.
-func (s *BasePromQLExParserListener) ExitArg_list(ctx *Arg_listContext) {}
 
 // EnterIf_statement is called when production if_statement is entered.
 func (s *BasePromQLExParserListener) EnterIf_statement(ctx *If_statementContext) {}
@@ -200,11 +188,11 @@ func (s *BasePromQLExParserListener) EnterNumLit_TimeInstantLit(ctx *NumLit_Time
 // ExitNumLit_TimeInstantLit is called when production NumLit_TimeInstantLit is exited.
 func (s *BasePromQLExParserListener) ExitNumLit_TimeInstantLit(ctx *NumLit_TimeInstantLitContext) {}
 
-// EnterNumLit_AliasCall is called when production NumLit_AliasCall is entered.
-func (s *BasePromQLExParserListener) EnterNumLit_AliasCall(ctx *NumLit_AliasCallContext) {}
+// EnterNumLit_Substitute is called when production NumLit_Substitute is entered.
+func (s *BasePromQLExParserListener) EnterNumLit_Substitute(ctx *NumLit_SubstituteContext) {}
 
-// ExitNumLit_AliasCall is called when production NumLit_AliasCall is exited.
-func (s *BasePromQLExParserListener) ExitNumLit_AliasCall(ctx *NumLit_AliasCallContext) {}
+// ExitNumLit_Substitute is called when production NumLit_Substitute is exited.
+func (s *BasePromQLExParserListener) ExitNumLit_Substitute(ctx *NumLit_SubstituteContext) {}
 
 // EnterDuration is called when production duration is entered.
 func (s *BasePromQLExParserListener) EnterDuration(ctx *DurationContext) {}
@@ -224,12 +212,6 @@ func (s *BasePromQLExParserListener) EnterSubquery_range(ctx *Subquery_rangeCont
 // ExitSubquery_range is called when production subquery_range is exited.
 func (s *BasePromQLExParserListener) ExitSubquery_range(ctx *Subquery_rangeContext) {}
 
-// EnterVecOp_Macro is called when production VecOp_Macro is entered.
-func (s *BasePromQLExParserListener) EnterVecOp_Macro(ctx *VecOp_MacroContext) {}
-
-// ExitVecOp_Macro is called when production VecOp_Macro is exited.
-func (s *BasePromQLExParserListener) ExitVecOp_Macro(ctx *VecOp_MacroContext) {}
-
 // EnterVecOp_AddOp is called when production VecOp_AddOp is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_AddOp(ctx *VecOp_AddOpContext) {}
 
@@ -247,6 +229,12 @@ func (s *BasePromQLExParserListener) EnterVecOp_OrOp(ctx *VecOp_OrOpContext) {}
 
 // ExitVecOp_OrOp is called when production VecOp_OrOp is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_OrOp(ctx *VecOp_OrOpContext) {}
+
+// EnterVecOp_Substitute is called when production VecOp_Substitute is entered.
+func (s *BasePromQLExParserListener) EnterVecOp_Substitute(ctx *VecOp_SubstituteContext) {}
+
+// ExitVecOp_Substitute is called when production VecOp_Substitute is exited.
+func (s *BasePromQLExParserListener) ExitVecOp_Substitute(ctx *VecOp_SubstituteContext) {}
 
 // EnterVecOp_Vec is called when production VecOp_Vec is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_Vec(ctx *VecOp_VecContext) {}
@@ -283,12 +271,6 @@ func (s *BasePromQLExParserListener) EnterVecOp_ConstNumExpr(ctx *VecOp_ConstNum
 
 // ExitVecOp_ConstNumExpr is called when production VecOp_ConstNumExpr is exited.
 func (s *BasePromQLExParserListener) ExitVecOp_ConstNumExpr(ctx *VecOp_ConstNumExprContext) {}
-
-// EnterVecOp_Alias is called when production VecOp_Alias is entered.
-func (s *BasePromQLExParserListener) EnterVecOp_Alias(ctx *VecOp_AliasContext) {}
-
-// ExitVecOp_Alias is called when production VecOp_Alias is exited.
-func (s *BasePromQLExParserListener) ExitVecOp_Alias(ctx *VecOp_AliasContext) {}
 
 // EnterVecOp_PowOp is called when production VecOp_PowOp is entered.
 func (s *BasePromQLExParserListener) EnterVecOp_PowOp(ctx *VecOp_PowOpContext) {}
@@ -344,6 +326,12 @@ func (s *BasePromQLExParserListener) EnterLit_String(ctx *Lit_StringContext) {}
 // ExitLit_String is called when production Lit_String is exited.
 func (s *BasePromQLExParserListener) ExitLit_String(ctx *Lit_StringContext) {}
 
+// EnterAggregation is called when production aggregation is entered.
+func (s *BasePromQLExParserListener) EnterAggregation(ctx *AggregationContext) {}
+
+// ExitAggregation is called when production aggregation is exited.
+func (s *BasePromQLExParserListener) ExitAggregation(ctx *AggregationContext) {}
+
 // EnterInstantSelector is called when production instantSelector is entered.
 func (s *BasePromQLExParserListener) EnterInstantSelector(ctx *InstantSelectorContext) {}
 
@@ -380,6 +368,12 @@ func (s *BasePromQLExParserListener) EnterAtModTime_End(ctx *AtModTime_EndContex
 
 // ExitAtModTime_End is called when production AtModTime_End is exited.
 func (s *BasePromQLExParserListener) ExitAtModTime_End(ctx *AtModTime_EndContext) {}
+
+// EnterFunction_ is called when production function_ is entered.
+func (s *BasePromQLExParserListener) EnterFunction_(ctx *Function_Context) {}
+
+// ExitFunction_ is called when production function_ is exited.
+func (s *BasePromQLExParserListener) ExitFunction_(ctx *Function_Context) {}
 
 // EnterExpression is called when production expression is entered.
 func (s *BasePromQLExParserListener) EnterExpression(ctx *ExpressionContext) {}
@@ -465,12 +459,6 @@ func (s *BasePromQLExParserListener) EnterLabelMatcherList(ctx *LabelMatcherList
 // ExitLabelMatcherList is called when production labelMatcherList is exited.
 func (s *BasePromQLExParserListener) ExitLabelMatcherList(ctx *LabelMatcherListContext) {}
 
-// EnterFunction_ is called when production function_ is entered.
-func (s *BasePromQLExParserListener) EnterFunction_(ctx *Function_Context) {}
-
-// ExitFunction_ is called when production function_ is exited.
-func (s *BasePromQLExParserListener) ExitFunction_(ctx *Function_Context) {}
-
 // EnterParameter is called when production parameter is entered.
 func (s *BasePromQLExParserListener) EnterParameter(ctx *ParameterContext) {}
 
@@ -482,12 +470,6 @@ func (s *BasePromQLExParserListener) EnterParameterList(ctx *ParameterListContex
 
 // ExitParameterList is called when production parameterList is exited.
 func (s *BasePromQLExParserListener) ExitParameterList(ctx *ParameterListContext) {}
-
-// EnterAggregation is called when production aggregation is entered.
-func (s *BasePromQLExParserListener) EnterAggregation(ctx *AggregationContext) {}
-
-// ExitAggregation is called when production aggregation is exited.
-func (s *BasePromQLExParserListener) ExitAggregation(ctx *AggregationContext) {}
 
 // EnterBy is called when production by is entered.
 func (s *BasePromQLExParserListener) EnterBy(ctx *ByContext) {}

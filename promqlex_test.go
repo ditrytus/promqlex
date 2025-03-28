@@ -22,6 +22,9 @@ func TestPromQLExParser_ValidPromQLIsValidPromQLEx(t *testing.T) {
 		t.Run(example.Source, func(t *testing.T) {
 			for _, query := range example.Queries {
 				t.Run(query, func(t *testing.T) {
+					//if strings.HasPrefix(query, "sum by") {
+					//	runtime.Breakpoint()
+					//}
 					_, _, _ = parsePromQLEx(t, query)
 				})
 			}

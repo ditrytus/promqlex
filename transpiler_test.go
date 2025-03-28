@@ -89,7 +89,7 @@ func parsePromQLEx(t *testing.T, promQLEx string) (*antlr.CommonTokenStream, par
 	var promQLExBuilder strings.Builder
 	NewAsciiAstPrinterVisitor(&promQLExBuilder, promQLExParser, promQLExLexer).Visit(promQLExTree)
 	promQLExASCIITree := promQLExBuilder.String()
-	if promQLExParser.HasError() {
+	if t.Failed() {
 		t.Log("PromQLEx text:\n")
 		t.Log(promQLEx + "\n")
 		t.Log("PromQLEx AST:\n")

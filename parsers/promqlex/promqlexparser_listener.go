@@ -25,14 +25,11 @@ type PromQLExParserListener interface {
 	// EnterAlias_def is called when entering the alias_def production.
 	EnterAlias_def(c *Alias_defContext)
 
-	// EnterAlias_call is called when entering the alias_call production.
-	EnterAlias_call(c *Alias_callContext)
-
 	// EnterMacro_def is called when entering the macro_def production.
 	EnterMacro_def(c *Macro_defContext)
 
-	// EnterMacro_call is called when entering the macro_call production.
-	EnterMacro_call(c *Macro_callContext)
+	// EnterSubstitute is called when entering the substitute production.
+	EnterSubstitute(c *SubstituteContext)
 
 	// EnterArgs_decl is called when entering the args_decl production.
 	EnterArgs_decl(c *Args_declContext)
@@ -42,9 +39,6 @@ type PromQLExParserListener interface {
 
 	// EnterStatement_block is called when entering the statement_block production.
 	EnterStatement_block(c *Statement_blockContext)
-
-	// EnterArg_list is called when entering the arg_list production.
-	EnterArg_list(c *Arg_listContext)
 
 	// EnterIf_statement is called when entering the if_statement production.
 	EnterIf_statement(c *If_statementContext)
@@ -94,8 +88,8 @@ type PromQLExParserListener interface {
 	// EnterNumLit_TimeInstantLit is called when entering the NumLit_TimeInstantLit production.
 	EnterNumLit_TimeInstantLit(c *NumLit_TimeInstantLitContext)
 
-	// EnterNumLit_AliasCall is called when entering the NumLit_AliasCall production.
-	EnterNumLit_AliasCall(c *NumLit_AliasCallContext)
+	// EnterNumLit_Substitute is called when entering the NumLit_Substitute production.
+	EnterNumLit_Substitute(c *NumLit_SubstituteContext)
 
 	// EnterDuration is called when entering the duration production.
 	EnterDuration(c *DurationContext)
@@ -106,9 +100,6 @@ type PromQLExParserListener interface {
 	// EnterSubquery_range is called when entering the subquery_range production.
 	EnterSubquery_range(c *Subquery_rangeContext)
 
-	// EnterVecOp_Macro is called when entering the VecOp_Macro production.
-	EnterVecOp_Macro(c *VecOp_MacroContext)
-
 	// EnterVecOp_AddOp is called when entering the VecOp_AddOp production.
 	EnterVecOp_AddOp(c *VecOp_AddOpContext)
 
@@ -117,6 +108,9 @@ type PromQLExParserListener interface {
 
 	// EnterVecOp_OrOp is called when entering the VecOp_OrOp production.
 	EnterVecOp_OrOp(c *VecOp_OrOpContext)
+
+	// EnterVecOp_Substitute is called when entering the VecOp_Substitute production.
+	EnterVecOp_Substitute(c *VecOp_SubstituteContext)
 
 	// EnterVecOp_Vec is called when entering the VecOp_Vec production.
 	EnterVecOp_Vec(c *VecOp_VecContext)
@@ -135,9 +129,6 @@ type PromQLExParserListener interface {
 
 	// EnterVecOp_ConstNumExpr is called when entering the VecOp_ConstNumExpr production.
 	EnterVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
-
-	// EnterVecOp_Alias is called when entering the VecOp_Alias production.
-	EnterVecOp_Alias(c *VecOp_AliasContext)
 
 	// EnterVecOp_PowOp is called when entering the VecOp_PowOp production.
 	EnterVecOp_PowOp(c *VecOp_PowOpContext)
@@ -166,6 +157,9 @@ type PromQLExParserListener interface {
 	// EnterLit_String is called when entering the Lit_String production.
 	EnterLit_String(c *Lit_StringContext)
 
+	// EnterAggregation is called when entering the aggregation production.
+	EnterAggregation(c *AggregationContext)
+
 	// EnterInstantSelector is called when entering the instantSelector production.
 	EnterInstantSelector(c *InstantSelectorContext)
 
@@ -183,6 +177,9 @@ type PromQLExParserListener interface {
 
 	// EnterAtModTime_End is called when entering the AtModTime_End production.
 	EnterAtModTime_End(c *AtModTime_EndContext)
+
+	// EnterFunction_ is called when entering the function_ production.
+	EnterFunction_(c *Function_Context)
 
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
@@ -226,17 +223,11 @@ type PromQLExParserListener interface {
 	// EnterLabelMatcherList is called when entering the labelMatcherList production.
 	EnterLabelMatcherList(c *LabelMatcherListContext)
 
-	// EnterFunction_ is called when entering the function_ production.
-	EnterFunction_(c *Function_Context)
-
 	// EnterParameter is called when entering the parameter production.
 	EnterParameter(c *ParameterContext)
 
 	// EnterParameterList is called when entering the parameterList production.
 	EnterParameterList(c *ParameterListContext)
-
-	// EnterAggregation is called when entering the aggregation production.
-	EnterAggregation(c *AggregationContext)
 
 	// EnterBy is called when entering the by production.
 	EnterBy(c *ByContext)
@@ -286,14 +277,11 @@ type PromQLExParserListener interface {
 	// ExitAlias_def is called when exiting the alias_def production.
 	ExitAlias_def(c *Alias_defContext)
 
-	// ExitAlias_call is called when exiting the alias_call production.
-	ExitAlias_call(c *Alias_callContext)
-
 	// ExitMacro_def is called when exiting the macro_def production.
 	ExitMacro_def(c *Macro_defContext)
 
-	// ExitMacro_call is called when exiting the macro_call production.
-	ExitMacro_call(c *Macro_callContext)
+	// ExitSubstitute is called when exiting the substitute production.
+	ExitSubstitute(c *SubstituteContext)
 
 	// ExitArgs_decl is called when exiting the args_decl production.
 	ExitArgs_decl(c *Args_declContext)
@@ -303,9 +291,6 @@ type PromQLExParserListener interface {
 
 	// ExitStatement_block is called when exiting the statement_block production.
 	ExitStatement_block(c *Statement_blockContext)
-
-	// ExitArg_list is called when exiting the arg_list production.
-	ExitArg_list(c *Arg_listContext)
 
 	// ExitIf_statement is called when exiting the if_statement production.
 	ExitIf_statement(c *If_statementContext)
@@ -355,8 +340,8 @@ type PromQLExParserListener interface {
 	// ExitNumLit_TimeInstantLit is called when exiting the NumLit_TimeInstantLit production.
 	ExitNumLit_TimeInstantLit(c *NumLit_TimeInstantLitContext)
 
-	// ExitNumLit_AliasCall is called when exiting the NumLit_AliasCall production.
-	ExitNumLit_AliasCall(c *NumLit_AliasCallContext)
+	// ExitNumLit_Substitute is called when exiting the NumLit_Substitute production.
+	ExitNumLit_Substitute(c *NumLit_SubstituteContext)
 
 	// ExitDuration is called when exiting the duration production.
 	ExitDuration(c *DurationContext)
@@ -367,9 +352,6 @@ type PromQLExParserListener interface {
 	// ExitSubquery_range is called when exiting the subquery_range production.
 	ExitSubquery_range(c *Subquery_rangeContext)
 
-	// ExitVecOp_Macro is called when exiting the VecOp_Macro production.
-	ExitVecOp_Macro(c *VecOp_MacroContext)
-
 	// ExitVecOp_AddOp is called when exiting the VecOp_AddOp production.
 	ExitVecOp_AddOp(c *VecOp_AddOpContext)
 
@@ -378,6 +360,9 @@ type PromQLExParserListener interface {
 
 	// ExitVecOp_OrOp is called when exiting the VecOp_OrOp production.
 	ExitVecOp_OrOp(c *VecOp_OrOpContext)
+
+	// ExitVecOp_Substitute is called when exiting the VecOp_Substitute production.
+	ExitVecOp_Substitute(c *VecOp_SubstituteContext)
 
 	// ExitVecOp_Vec is called when exiting the VecOp_Vec production.
 	ExitVecOp_Vec(c *VecOp_VecContext)
@@ -396,9 +381,6 @@ type PromQLExParserListener interface {
 
 	// ExitVecOp_ConstNumExpr is called when exiting the VecOp_ConstNumExpr production.
 	ExitVecOp_ConstNumExpr(c *VecOp_ConstNumExprContext)
-
-	// ExitVecOp_Alias is called when exiting the VecOp_Alias production.
-	ExitVecOp_Alias(c *VecOp_AliasContext)
 
 	// ExitVecOp_PowOp is called when exiting the VecOp_PowOp production.
 	ExitVecOp_PowOp(c *VecOp_PowOpContext)
@@ -427,6 +409,9 @@ type PromQLExParserListener interface {
 	// ExitLit_String is called when exiting the Lit_String production.
 	ExitLit_String(c *Lit_StringContext)
 
+	// ExitAggregation is called when exiting the aggregation production.
+	ExitAggregation(c *AggregationContext)
+
 	// ExitInstantSelector is called when exiting the instantSelector production.
 	ExitInstantSelector(c *InstantSelectorContext)
 
@@ -444,6 +429,9 @@ type PromQLExParserListener interface {
 
 	// ExitAtModTime_End is called when exiting the AtModTime_End production.
 	ExitAtModTime_End(c *AtModTime_EndContext)
+
+	// ExitFunction_ is called when exiting the function_ production.
+	ExitFunction_(c *Function_Context)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
@@ -487,17 +475,11 @@ type PromQLExParserListener interface {
 	// ExitLabelMatcherList is called when exiting the labelMatcherList production.
 	ExitLabelMatcherList(c *LabelMatcherListContext)
 
-	// ExitFunction_ is called when exiting the function_ production.
-	ExitFunction_(c *Function_Context)
-
 	// ExitParameter is called when exiting the parameter production.
 	ExitParameter(c *ParameterContext)
 
 	// ExitParameterList is called when exiting the parameterList production.
 	ExitParameterList(c *ParameterListContext)
-
-	// ExitAggregation is called when exiting the aggregation production.
-	ExitAggregation(c *AggregationContext)
 
 	// ExitBy is called when exiting the by production.
 	ExitBy(c *ByContext)

@@ -19,18 +19,15 @@ statement
     ;
 
 alias_def : DEF ID EQ vectorOperation;
-alias_call : CALL_SIGN ID;
 
 macro_def : DEF ID LEFT_PAREN args_decl? RIGHT_PAREN LEFT_BRACE statement_block RIGHT_BRACE;
-macro_call: CALL_SIGN ID LEFT_PAREN arg_list? RIGHT_PAREN;
+substitute: DOLLAR ID parameterList?;
 
 args_decl : arg_name (COMMA arg_name)*;
 
 arg_name : ID;
 
 statement_block : statement (SEMICOLON statement)* ;
-
-arg_list : vectorOperation (COMMA vectorOperation)+;
 
 if_statement : IF condition statement_block;
 
@@ -67,7 +64,7 @@ num_literal
     : NUMBER # NumLit_Number
     | DURATION # NumLit_Duration
     | time_instant_literal # NumLit_TimeInstantLit
-    | alias_call # NumLit_AliasCall
+    | substitute # NumLit_Substitute
     ;
 
 duration : const_num_expression;
@@ -95,9 +92,8 @@ vectorOperation
     | vectorOperation vectorMatchOp vectorOperation # VecOp_VecMatchOp
     | vectorOperation AT at_modifier_timestamp # VecOp_At
     | vector # VecOp_Vec
-    // PROMQLX: an alias or macro call can be used anywhere in the context of vector operation.
-    | macro_call # VecOp_Macro
-    | alias_call # VecOp_Alias
+    // PROMQLX: a substitute can be used anywhere in the context of vector operation.
+    | substitute # VecOp_Substitute
     ;
 
 subqueryOp
@@ -131,6 +127,12 @@ literal
     | string # Lit_String
     ;
 
+aggregation
+    : ID parameterList
+    | ID (by | without) parameterList
+    | ID parameterList ( by | without)
+    ;
+
 instantSelector
     : metric_name (LEFT_BRACE labelMatcherList? RIGHT_BRACE)?
     | LEFT_BRACE labelMatcherList RIGHT_BRACE
@@ -144,11 +146,17 @@ labelName
 
 metric_name
     : ID
-    | METRIC_NAME
+    | COLON
+    | (COLON ID)+ COLON?
+    | (ID COLON)+ ID?
     ;
 
 at_modifier_timestamp
     : const_num_expression # AtModTime_ConstNumExpr
     | START LEFT_PAREN RIGHT_PAREN # AtModTime_Start
     | END LEFT_PAREN RIGHT_PAREN # AtModTime_End
+    ;
+
+function_
+    : ID LEFT_PAREN (parameter (COMMA parameter)*)? RIGHT_PAREN
     ;
