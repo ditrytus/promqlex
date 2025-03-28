@@ -2,8 +2,8 @@ ANTLR4 = antlr4
 ANTLR4_OUTPUT_DIR = parsers/$(LOWERCASE_GRAMMAR_NAME)
 ANTLR4_ARGS = -Dlanguage=Go -o ../$(ANTLR4_OUTPUT_DIR) -package $(LOWERCASE_GRAMMAR_NAME)
 
-.PHONY: all
-all: $(wildcard parsers/promql/*.go) $(wildcard parsers/promqlex/*.go)
+.PHONY: grammars
+grammars: $(wildcard parsers/promql/*.go) $(wildcard parsers/promqlex/*.go)
 
 define build_lexer_and_parser
 
