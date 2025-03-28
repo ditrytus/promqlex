@@ -48,7 +48,7 @@ func promqlexparserParserInit() {
 		"LE", "RE", "NRE", "BY", "WITHOUT", "ON", "IGNORING", "GROUP_LEFT",
 		"GROUP_RIGHT", "OFFSET", "BOOL", "LEFT_BRACE", "RIGHT_BRACE", "LEFT_PAREN",
 		"RIGHT_PAREN", "COMMA", "AT", "DURATION", "LABEL_NAME", "WS", "SL_COMMENT",
-		"ID", "RAW_STRING", "BACKTICK_OPEN",
+		"ID", "ID_WS", "RAW_STRING", "BACKTICK_OPEN",
 	}
 	staticData.RuleNames = []string{
 		"promqlx", "statement", "alias_def", "alias_call", "macro_def", "macro_call",
@@ -65,7 +65,7 @@ func promqlexparserParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 58, 510, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 59, 510, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -123,7 +123,7 @@ func promqlexparserParserInit() {
 		90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 0, 9,
 		2, 0, 5, 5, 56, 56, 1, 0, 18, 19, 1, 0, 20, 22, 1, 0, 30, 35, 2, 0, 24,
 		24, 26, 26, 2, 0, 26, 26, 40, 40, 3, 0, 29, 29, 31, 31, 36, 37, 3, 0, 1,
-		2, 24, 26, 38, 45, 2, 0, 17, 17, 57, 57, 525, 0, 118, 1, 0, 0, 0, 2, 125,
+		2, 24, 26, 38, 45, 2, 0, 17, 17, 58, 58, 525, 0, 118, 1, 0, 0, 0, 2, 125,
 		1, 0, 0, 0, 4, 127, 1, 0, 0, 0, 6, 132, 1, 0, 0, 0, 8, 135, 1, 0, 0, 0,
 		10, 146, 1, 0, 0, 0, 12, 154, 1, 0, 0, 0, 14, 162, 1, 0, 0, 0, 16, 164,
 		1, 0, 0, 0, 18, 172, 1, 0, 0, 0, 20, 179, 1, 0, 0, 0, 22, 186, 1, 0, 0,
@@ -384,8 +384,9 @@ const (
 	PromQLExParserWS                   = 54
 	PromQLExParserSL_COMMENT           = 55
 	PromQLExParserID                   = 56
-	PromQLExParserRAW_STRING           = 57
-	PromQLExParserBACKTICK_OPEN        = 58
+	PromQLExParserID_WS                = 57
+	PromQLExParserRAW_STRING           = 58
+	PromQLExParserBACKTICK_OPEN        = 59
 )
 
 // PromQLExParser rules.
@@ -1471,7 +1472,7 @@ func (p *PromQLExParser) Macro_call() (localctx IMacro_callContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&221028225463033902) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&365143413538889774) != 0 {
 		{
 			p.SetState(149)
 			p.Arg_list()
@@ -9344,7 +9345,7 @@ func (p *PromQLExParser) Function_() (localctx IFunction_Context) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&221028225463033902) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&365143413538889774) != 0 {
 		{
 			p.SetState(418)
 			p.Parameter()
@@ -9690,7 +9691,7 @@ func (p *PromQLExParser) ParameterList() (localctx IParameterListContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&221028225463033902) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&365143413538889774) != 0 {
 		{
 			p.SetState(435)
 			p.Parameter()

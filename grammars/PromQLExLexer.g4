@@ -97,3 +97,5 @@ mode ID_MODE;
 ID options {
   caseInsensitive = false;
 }: [a-zA-Z] [0-9a-zA-Z_]* -> popMode;
+
+ID_WS : [\r\t\n ]+ -> channel(WHITESPACE);
