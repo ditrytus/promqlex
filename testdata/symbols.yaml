@@ -1,0 +1,39 @@
+- name: promql
+  promqlex: sum(rate(http_requests_total{job="api-server"}[5m]))
+  count: 1
+- name: just aliases
+  promqlex: |-
+    def x = http_requests_total{job="api-server"}[5m];
+    def y = rate($x);
+    sum($y)
+  count: 1
+- name: alias and macro
+  promqlex: |-
+    def x = http_requests_total{job="api-server"}[5m];
+    def y(x) {
+      rate($x)
+    };
+    sum($y($x))
+  count: 2
+- name: two macros
+  promqlex: |-
+    def x = http_requests_total{job="api-server"}[5m];
+    def y(x) {
+      rate($x)
+    };
+    def z(y) {
+      sum($y)
+    };
+    $z($y($x))
+  count: 3
+- name: nested macros
+  promqlex: |-
+    def x = http_requests_total{job="api-server"}[5m];
+    def z(y) {
+      def y(x) {
+        rate($x)
+      };
+      sum($y($x))
+    };
+    $z($x)
+  count: 3

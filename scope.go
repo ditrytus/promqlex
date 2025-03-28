@@ -10,13 +10,19 @@ func (e *ErrorSymbolAlreadyDefined) Error() string {
 	return fmt.Sprintf("symbol '%s' is already defined in this scope", e.otherDef.Name())
 }
 
-type Scope struct {
-	parent  *Scope
+type Scope interface {
+	Define(symbol Symbol) error
+	Resolve(name string) Symbol
+	Parent() Scope
+}
+
+type scopeImpl struct {
+	parent  Scope
 	symbols map[string]Symbol
 }
 
-func NewScope(parent *Scope) *Scope {
-	return &Scope{
+func NewScope(parent Scope) Scope {
+	return &scopeImpl{
 		parent:  parent,
 		symbols: make(map[string]Symbol),
 	}
@@ -28,7 +34,7 @@ func NewErrorSymbolAlreadyDefined(otherDef Symbol) *ErrorSymbolAlreadyDefined {
 	}
 }
 
-func (s *Scope) Define(symbol Symbol) error {
+func (s *scopeImpl) Define(symbol Symbol) error {
 	if otherDef, ok := s.symbols[symbol.Name()]; ok {
 		return NewErrorSymbolAlreadyDefined(otherDef)
 	}
@@ -36,7 +42,7 @@ func (s *Scope) Define(symbol Symbol) error {
 	return nil
 }
 
-func (s *Scope) Resolve(name string) Symbol {
+func (s *scopeImpl) Resolve(name string) Symbol {
 	if s == nil {
 		return nil
 	}
@@ -46,7 +52,7 @@ func (s *Scope) Resolve(name string) Symbol {
 	return s.Parent().Resolve(name)
 }
 
-func (s *Scope) Parent() *Scope {
+func (s *scopeImpl) Parent() Scope {
 	if s == nil {
 		return nil
 	}

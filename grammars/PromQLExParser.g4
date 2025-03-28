@@ -9,7 +9,7 @@ options {
     tokenVocab = PromQLExLexer;
 }
 
-promqlx : statement (SEMICOLON statement)* EOF;
+promqlx : statement_block EOF;
 
 statement
     : alias_def # State_AliasDef
@@ -21,14 +21,14 @@ statement
 alias_def : DEF ID EQ vectorOperation;
 alias_call : CALL_SIGN ID;
 
-macro_def : DEF ID LEFT_PAREN args_decl? RIGHT_PAREN statement_block;
+macro_def : DEF ID LEFT_PAREN args_decl? RIGHT_PAREN LEFT_BRACE statement_block RIGHT_BRACE;
 macro_call: CALL_SIGN ID LEFT_PAREN arg_list? RIGHT_PAREN;
 
 args_decl : arg_name (COMMA arg_name)*;
 
 arg_name : ID;
 
-statement_block : LEFT_BRACE promqlx RIGHT_BRACE;
+statement_block : statement (SEMICOLON statement)* ;
 
 arg_list : vectorOperation (COMMA vectorOperation)+;
 

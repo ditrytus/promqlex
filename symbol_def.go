@@ -5,15 +5,18 @@ import (
 	"github.com/ditrytus/promqlex/parsers/promqlex"
 )
 
+type ParseTreeProperty[T any] map[antlr.ParseTree]T
+
 type SymbolsDefiner struct {
-	scopes       map[antlr.ParseTree]*Scope
+	scopes       ParseTreeProperty[Scope]
 	errors       []*ParseTreeError
-	currentScope *Scope
+	globalScope  Scope
+	currentScope Scope
 }
 
 func NewSymbolsDefiner() *SymbolsDefiner {
 	return &SymbolsDefiner{
-		scopes: make(map[antlr.ParseTree]*Scope),
+		scopes: make(map[antlr.ParseTree]Scope),
 	}
 }
 
@@ -25,14 +28,15 @@ func (m *SymbolsDefiner) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 
 func (m *SymbolsDefiner) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
-func (m *SymbolsDefiner) EnterPromqlx(c *promqlex.PromqlxContext) {
-	m.enterNewScope(c)
-}
+func (m *SymbolsDefiner) EnterPromqlx(c *promqlex.PromqlxContext) {}
 
 func (m *SymbolsDefiner) enterNewScope(c antlr.ParseTree) {
 	newScope := NewScope(m.currentScope)
 	if m.currentScope == nil {
 		m.currentScope = newScope
+	}
+	if m.globalScope == nil {
+		m.globalScope = newScope
 	}
 	m.scopes[c] = newScope
 }
@@ -82,7 +86,9 @@ func (m *SymbolsDefiner) EnterArg_name(c *promqlex.Arg_nameContext) {
 	m.defineAliasSymbol(c.ID())
 }
 
-func (m *SymbolsDefiner) EnterStatement_block(c *promqlex.Statement_blockContext) {}
+func (m *SymbolsDefiner) EnterStatement_block(c *promqlex.Statement_blockContext) {
+	m.enterNewScope(c)
+}
 
 func (m *SymbolsDefiner) EnterArg_list(c *promqlex.Arg_listContext) {}
 
@@ -235,9 +241,7 @@ func (m *SymbolsDefiner) EnterKeyword(c *promqlex.KeywordContext) {}
 
 func (m *SymbolsDefiner) EnterString(c *promqlex.StringContext) {}
 
-func (m *SymbolsDefiner) ExitPromqlx(c *promqlex.PromqlxContext) {
-	m.exitScope()
-}
+func (m *SymbolsDefiner) ExitPromqlx(c *promqlex.PromqlxContext) {}
 
 func (m *SymbolsDefiner) exitScope() {
 	m.currentScope = m.currentScope.Parent()
@@ -265,7 +269,9 @@ func (m *SymbolsDefiner) ExitArgs_decl(c *promqlex.Args_declContext) {}
 
 func (m *SymbolsDefiner) ExitArg_name(c *promqlex.Arg_nameContext) {}
 
-func (m *SymbolsDefiner) ExitStatement_block(c *promqlex.Statement_blockContext) {}
+func (m *SymbolsDefiner) ExitStatement_block(c *promqlex.Statement_blockContext) {
+	m.exitScope()
+}
 
 func (m *SymbolsDefiner) ExitArg_list(c *promqlex.Arg_listContext) {}
 
@@ -424,6 +430,14 @@ func (m *SymbolsDefiner) HasErrors() bool {
 
 func (m *SymbolsDefiner) Errors() []*ParseTreeError {
 	return m.errors
+}
+
+func (m *SymbolsDefiner) Scopes() ParseTreeProperty[Scope] {
+	return m.scopes
+}
+
+func (m *SymbolsDefiner) GlobalScope() Scope {
+	return m.globalScope
 }
 
 var _ promqlex.PromQLExParserListener = &SymbolsDefiner{}
