@@ -30,3 +30,7 @@ go.work.sum
 # Antlr Plugin files
 gen/
 grammars/gen
+
+# Build directories
+
+bin/
