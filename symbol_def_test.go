@@ -11,9 +11,20 @@ import (
 )
 
 type ExpectedSymbol struct {
-	Name string `yaml:"name" json:"name"`
-	Type string `yaml:"type" json:"type"`
-	Ary  int    `yaml:"ary,omitempty" json:"ary,omitempty"`
+	Name string `yaml:"name"`
+	Type string `yaml:"type"`
+	Ary  int    `yaml:"ary,omitempty"`
+}
+
+func (s ExpectedSymbol) MarshalJSON() ([]byte, error) {
+	fields := map[string]any{
+		"name": s.Name,
+		"type": s.Type,
+	}
+	if s.Type == "macro" {
+		fields["ary"] = s.Ary
+	}
+	return json.Marshal(fields)
 }
 
 type ExpectedScope struct {

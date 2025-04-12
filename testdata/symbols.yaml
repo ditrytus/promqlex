@@ -37,6 +37,46 @@
             type: alias
         children:
           - {}
+- name: zero-ary macro
+  promqlex: |-
+    def m() {
+      rate(http_requests_total{job="api-server"}[5m])
+    };
+    sum($m())
+  scope:
+    symbols:
+      m:
+        name: m
+        type: macro
+        ary: 0
+    children:
+      - children:
+          - {}
+- name: ternary macro
+  promqlex: |-
+    def m(x,y,z) {
+      rate($x)
+    };
+    sum($m(1,2,3))
+  scope:
+    symbols:
+      m:
+        name: m
+        type: macro
+        ary: 3
+    children:
+      - symbols:
+          x:
+            name: x
+            type: alias
+          y:
+            name: y
+            type: alias
+          z:
+            name: z
+            type: alias
+        children:
+          - {}
 - name: two macros
   promqlex: |-
     def x = http_requests_total{job="api-server"}[5m];
