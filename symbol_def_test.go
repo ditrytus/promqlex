@@ -10,11 +10,22 @@ import (
 	"testing"
 )
 
+type ExpectedSymbol struct {
+	Name string `yaml:"name" json:"name"`
+	Type string `yaml:"type" json:"type"`
+	Ary  int    `yaml:"ary,omitempty" json:"ary,omitempty"`
+}
+
+type ExpectedScope struct {
+	Symbols  map[string]ExpectedSymbol `yaml:"symbols,omitempty" json:"symbols,omitempty"`
+	Children []ExpectedScope           `yaml:"children,omitempty" json:"children,omitempty"`
+}
+
 type SymbolDefinerTestCase struct {
 	Name     string
 	PromQLEx string
-	Count    int
 	Errors   []string
+	Scope    ExpectedScope
 }
 
 //go:embed testdata/symbols.yaml
@@ -66,11 +77,18 @@ func TestSymbolDefiner(t *testing.T) {
 				}
 				assert.Equal(t, pathFromScopes, pathFromAST)
 			}
-			marshal, err := json.Marshal(symbolsDefiner.GlobalScope())
+			actualSymbols, err := json.MarshalIndent(symbolsDefiner.GlobalScope(), "", "  ")
 			if err != nil {
 				t.Fatal(err)
 			}
-			t.Log(string(marshal))
+			expectedSymbols, err := json.MarshalIndent(testCase.Scope, "", "  ")
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !assert.JSONEq(t, string(expectedSymbols), string(actualSymbols)) {
+				t.Log(string(expectedSymbols))
+				t.Log(string(actualSymbols))
+			}
 		})
 	}
 }

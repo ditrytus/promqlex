@@ -1,12 +1,19 @@
 - name: promql
   promqlex: sum(rate(http_requests_total{job="api-server"}[5m]))
-  count: 1
+  scope: {}
 - name: just aliases
   promqlex: |-
     def x = http_requests_total{job="api-server"}[5m];
     def y = rate($x);
     sum($y)
-  count: 1
+  scope:
+    symbols:
+      x:
+        name: x
+        type: alias
+      y:
+        name: y
+        type: alias
 - name: alias and macro
   promqlex: |-
     def x = http_requests_total{job="api-server"}[5m];
@@ -14,7 +21,22 @@
       rate($x)
     };
     sum($y($x))
-  count: 2
+  scope:
+    symbols:
+      x:
+        name: x
+        type: alias
+      y:
+        name: y
+        type: macro
+        ary: 1
+    children:
+      - symbols:
+          x:
+            name: x
+            type: alias
+        children:
+          - {}
 - name: two macros
   promqlex: |-
     def x = http_requests_total{job="api-server"}[5m];
@@ -25,15 +47,66 @@
       sum($y)
     };
     $z($y($x))
-  count: 3
+  scope:
+    symbols:
+      x:
+        name: x
+        type: alias
+      y:
+        name: y
+        type: macro
+        ary: 1
+      z:
+        name: z
+        type: macro
+        ary: 1
+    children:
+      - symbols:
+          x:
+            name: x
+            type: alias
+        children:
+          - {}
+      - symbols:
+          y:
+            name: y
+            type: alias
+        children:
+          - {}
 - name: nested macros
   promqlex: |-
     def x = http_requests_total{job="api-server"}[5m];
-    def z(y) {
+    def z(w) {
       def y(x) {
         rate($x)
       };
-      sum($y($x))
+      sum($y($w))
     };
     $z($x)
-  count: 3
+  scope:
+    symbols:
+      x:
+        name: x
+        type: alias
+      z:
+        name: z
+        type: macro
+        ary: 1
+    children:
+      - symbols:
+          w:
+            name: w
+            type: alias
+        children:
+          - symbols:
+              y:
+                name: y
+                type: macro
+                ary: 1
+            children:
+              - symbols:
+                  x:
+                    name: x
+                    type: alias
+                children:
+                  - {}
