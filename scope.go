@@ -1,6 +1,9 @@
 package promqlex
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type ErrorSymbolAlreadyDefined struct {
 	otherDef Symbol
@@ -11,21 +14,29 @@ func (e *ErrorSymbolAlreadyDefined) Error() string {
 }
 
 type Scope interface {
+	json.Marshaler
 	Define(symbol Symbol) error
 	Resolve(name string) Symbol
 	Parent() Scope
+	Children() []Scope
 }
 
 type scopeImpl struct {
-	parent  Scope
-	symbols map[string]Symbol
+	parent   Scope
+	symbols  map[string]Symbol
+	children []Scope
 }
 
 func NewScope(parent Scope) Scope {
-	return &scopeImpl{
-		parent:  parent,
-		symbols: make(map[string]Symbol),
+	newScope := &scopeImpl{
+		parent:   parent,
+		symbols:  make(map[string]Symbol),
+		children: nil,
 	}
+	if impl, ok := parent.(*scopeImpl); ok {
+		impl.addChild(newScope)
+	}
+	return newScope
 }
 
 func NewErrorSymbolAlreadyDefined(otherDef Symbol) *ErrorSymbolAlreadyDefined {
@@ -57,4 +68,25 @@ func (s *scopeImpl) Parent() Scope {
 		return nil
 	}
 	return s.parent
+}
+
+func (s *scopeImpl) Children() []Scope {
+	return s.children
+}
+
+func (s *scopeImpl) addChild(scope *scopeImpl) {
+	if s == nil {
+		return
+	}
+	s.children = append(s.children, scope)
+}
+
+func (s *scopeImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(struct {
+		Symbols  map[string]Symbol `json:"symbols,omitempty"`
+		Children []Scope           `json:"children,omitempty"`
+	}{
+		Symbols:  s.symbols,
+		Children: s.children,
+	})
 }

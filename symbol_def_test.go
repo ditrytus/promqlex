@@ -2,6 +2,7 @@ package promqlex
 
 import (
 	_ "embed"
+	"encoding/json"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v3"
@@ -53,18 +54,23 @@ func TestSymbolDefiner(t *testing.T) {
 			}
 			assert.Equal(t, symbolsDefiner.GlobalScope(), symbolsDefiner.Scopes()[tree.Statement_block()])
 			for parseTree, scope := range symbolsDefiner.Scopes() {
-				var pathToRoot []Scope
+				var pathFromScopes []Scope
 				for currentScope := scope; currentScope != nil; currentScope = currentScope.Parent() {
-					pathToRoot = append(pathToRoot, currentScope)
+					pathFromScopes = append(pathFromScopes, currentScope)
 				}
-				var secondPathToRoot []Scope
+				var pathFromAST []Scope
 				for currentNode := parseTree; currentNode != nil; currentNode = castOrDefault[antlr.ParseTree](currentNode.GetParent()) {
 					if parentScope, ok := symbolsDefiner.Scopes()[currentNode]; ok {
-						secondPathToRoot = append(secondPathToRoot, parentScope)
+						pathFromAST = append(pathFromAST, parentScope)
 					}
 				}
-				assert.Equal(t, pathToRoot, secondPathToRoot)
+				assert.Equal(t, pathFromScopes, pathFromAST)
 			}
+			marshal, err := json.Marshal(symbolsDefiner.GlobalScope())
+			if err != nil {
+				t.Fatal(err)
+			}
+			t.Log(string(marshal))
 		})
 	}
 }
