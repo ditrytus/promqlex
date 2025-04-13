@@ -9,8 +9,8 @@ type ParseTreeErrorCollector struct {
 	errors []*ParseTreeError
 }
 
-func (c *ParseTreeErrorCollector) addError(err error, idTerminal antlr.ParseTree) {
-	c.errors = append(c.errors, NewParseTreeError(err, idTerminal))
+func (c *ParseTreeErrorCollector) addError(err error, site antlr.ParseTree) {
+	c.errors = append(c.errors, NewParseTreeError(err, site))
 }
 
 type SymbolsDefiner struct {

@@ -4,13 +4,13 @@ import "github.com/antlr4-go/antlr/v4"
 
 type ParseTreeError struct {
 	innerErr error
-	location antlr.ParseTree
+	site     antlr.ParseTree
 }
 
-func NewParseTreeError(innerErr error, location antlr.ParseTree) *ParseTreeError {
+func NewParseTreeError(innerErr error, site antlr.ParseTree) *ParseTreeError {
 	return &ParseTreeError{
 		innerErr: innerErr,
-		location: location,
+		site:     site,
 	}
 }
 
@@ -19,7 +19,7 @@ func (f *ParseTreeError) Error() string {
 }
 
 func (f *ParseTreeError) Location() antlr.ParseTree {
-	return f.location
+	return f.site
 }
 
 func (f *ParseTreeError) InnerError() error {
