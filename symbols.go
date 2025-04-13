@@ -35,6 +35,10 @@ func (v *MacroSymbol) Name() string {
 	return v.name
 }
 
+func (v *MacroSymbol) Ary() int {
+	return v.ary
+}
+
 func NewMacroSymbol(name string, ary int) *MacroSymbol {
 	return &MacroSymbol{name: name, ary: ary}
 }
