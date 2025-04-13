@@ -1,6 +1,23 @@
 package promqlex
 
-import "github.com/ditrytus/promqlex/parsers/promqlex"
+import (
+	"fmt"
+	"github.com/ditrytus/promqlex/parsers/promqlex"
+)
+
+type ErrorSymbolUndefined struct {
+	name string
+}
+
+func NewErrorSymbolUndefined(name string) *ErrorSymbolUndefined {
+	return &ErrorSymbolUndefined{
+		name: name,
+	}
+}
+
+func (e *ErrorSymbolUndefined) Error() string {
+	return fmt.Sprintf("symbol '%s' is undefined", e.name)
+}
 
 type SymbolsResolver struct {
 	promqlex.BasePromQLExParserListener

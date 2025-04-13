@@ -19,20 +19,6 @@ func (e *ErrorSymbolAlreadyDefined) Error() string {
 	return fmt.Sprintf("symbol '%s' is already defined in this scope", e.otherDef.Name())
 }
 
-type ErrorSymbolUndefined struct {
-	name string
-}
-
-func NewErrorSymbolUndefined(name string) *ErrorSymbolUndefined {
-	return &ErrorSymbolUndefined{
-		name: name,
-	}
-}
-
-func (e *ErrorSymbolUndefined) Error() string {
-	return fmt.Sprintf("symbol '%s' is undefined", e.name)
-}
-
 type Scope interface {
 	json.Marshaler
 	Define(symbol Symbol) error
