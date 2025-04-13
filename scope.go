@@ -9,8 +9,28 @@ type ErrorSymbolAlreadyDefined struct {
 	otherDef Symbol
 }
 
+func NewErrorSymbolAlreadyDefined(otherDef Symbol) *ErrorSymbolAlreadyDefined {
+	return &ErrorSymbolAlreadyDefined{
+		otherDef: otherDef,
+	}
+}
+
 func (e *ErrorSymbolAlreadyDefined) Error() string {
 	return fmt.Sprintf("symbol '%s' is already defined in this scope", e.otherDef.Name())
+}
+
+type ErrorSymbolUndefined struct {
+	name string
+}
+
+func NewErrorSymbolUndefined(name string) *ErrorSymbolUndefined {
+	return &ErrorSymbolUndefined{
+		name: name,
+	}
+}
+
+func (e *ErrorSymbolUndefined) Error() string {
+	return fmt.Sprintf("symbol '%s' is undefined", e.name)
 }
 
 type Scope interface {
@@ -37,12 +57,6 @@ func NewScope(parent Scope) Scope {
 		impl.addChild(newScope)
 	}
 	return newScope
-}
-
-func NewErrorSymbolAlreadyDefined(otherDef Symbol) *ErrorSymbolAlreadyDefined {
-	return &ErrorSymbolAlreadyDefined{
-		otherDef: otherDef,
-	}
 }
 
 func (s *scopeImpl) Define(symbol Symbol) error {

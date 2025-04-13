@@ -7,10 +7,32 @@ import (
 
 type ParseTreeProperty[T any] map[antlr.ParseTree]T
 
+func (p ParseTreeProperty[T]) Get(tree antlr.ParseTree) T {
+	for {
+		prop, ok := p[tree]
+		if ok {
+			return prop
+		}
+		tree = tree.GetParent().(antlr.ParseTree)
+		if tree == nil {
+			var empty T
+			return empty
+		}
+	}
+}
+
+type ParseTreeErrorCollector struct {
+	errors []*ParseTreeError
+}
+
+func (c *ParseTreeErrorCollector) addError(err error, idTerminal antlr.ParseTree) {
+	c.errors = append(c.errors, NewParseTreeError(err, idTerminal))
+}
+
 type SymbolsDefiner struct {
 	promqlex.BasePromQLExParserListener
+	ParseTreeErrorCollector
 	scopes       ParseTreeProperty[Scope]
-	errors       []*ParseTreeError
 	globalScope  Scope
 	currentScope Scope
 }
@@ -85,10 +107,6 @@ func (m *SymbolsDefiner) defineAliasSymbol(idTerminal antlr.TerminalNode) {
 	if err != nil {
 		m.addError(err, idTerminal)
 	}
-}
-
-func (m *SymbolsDefiner) addError(err error, idTerminal antlr.ParseTree) {
-	m.errors = append(m.errors, NewParseTreeError(err, idTerminal))
 }
 
 func (m *SymbolsDefiner) exitScope() {
