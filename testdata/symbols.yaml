@@ -34,7 +34,7 @@
       - symbols:
           x:
             name: x
-            type: alias
+            type: arg
         children:
           - {}
 - name: zero-ary macro
@@ -68,13 +68,13 @@
       - symbols:
           x:
             name: x
-            type: alias
+            type: arg
           y:
             name: y
-            type: alias
+            type: arg
           z:
             name: z
-            type: alias
+            type: arg
         children:
           - {}
 - name: two macros
@@ -104,13 +104,13 @@
       - symbols:
           x:
             name: x
-            type: alias
+            type: arg
         children:
           - {}
       - symbols:
           y:
             name: y
-            type: alias
+            type: arg
         children:
           - {}
 - name: nested macros
@@ -136,7 +136,7 @@
       - symbols:
           w:
             name: w
-            type: alias
+            type: arg
         children:
           - symbols:
               y:
@@ -147,6 +147,6 @@
               - symbols:
                   x:
                     name: x
-                    type: alias
+                    type: arg
                 children:
                   - {}

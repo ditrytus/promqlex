@@ -30,7 +30,11 @@ func NewSymbolsDefiner() *SymbolsDefiner {
 var _ promqlex.PromQLExParserListener = &SymbolsDefiner{}
 
 func (m *SymbolsDefiner) EnterAlias_def(c *promqlex.Alias_defContext) {
-	m.defineAliasSymbol(c.ID())
+	var idTerminal antlr.TerminalNode = c.ID()
+	err := m.currentScope.Define(NewAliasSymbol(idTerminal.GetText(), c))
+	if err != nil {
+		m.addError(err, idTerminal)
+	}
 }
 
 func (m *SymbolsDefiner) EnterMacro_def(c *promqlex.Macro_defContext) {
@@ -38,7 +42,7 @@ func (m *SymbolsDefiner) EnterMacro_def(c *promqlex.Macro_defContext) {
 	if c.Args_decl() != nil {
 		ary = len(c.Args_decl().AllArg_name())
 	}
-	err := m.currentScope.Define(NewMacroSymbol(c.ID().GetText(), ary))
+	err := m.currentScope.Define(NewMacroSymbol(c.ID().GetText(), ary, c))
 	if err != nil {
 		m.addError(err, c.ID())
 	}
@@ -46,7 +50,11 @@ func (m *SymbolsDefiner) EnterMacro_def(c *promqlex.Macro_defContext) {
 }
 
 func (m *SymbolsDefiner) EnterArg_name(c *promqlex.Arg_nameContext) {
-	m.defineAliasSymbol(c.ID())
+	var idTerminal antlr.TerminalNode = c.ID()
+	err := m.currentScope.Define(NewArgSymbol(idTerminal.GetText(), c))
+	if err != nil {
+		m.addError(err, idTerminal)
+	}
 }
 
 func (m *SymbolsDefiner) EnterStatement_block(c *promqlex.Statement_blockContext) {
@@ -84,13 +92,6 @@ func (m *SymbolsDefiner) enterNewScope(c antlr.ParseTree) {
 		m.globalScope = newScope
 	}
 	m.scopes[c] = newScope
-}
-
-func (m *SymbolsDefiner) defineAliasSymbol(idTerminal antlr.TerminalNode) {
-	err := m.currentScope.Define(NewAliasSymbol(idTerminal.GetText()))
-	if err != nil {
-		m.addError(err, idTerminal)
-	}
 }
 
 func (m *SymbolsDefiner) exitScope() {
