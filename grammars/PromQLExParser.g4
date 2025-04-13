@@ -64,7 +64,6 @@ num_literal
     : NUMBER # NumLit_Number
     | DURATION # NumLit_Duration
     | time_instant_literal # NumLit_TimeInstantLit
-    | substitute # NumLit_Substitute
     ;
 
 duration : const_num_expression;

@@ -88,9 +88,6 @@ type PromQLExParserListener interface {
 	// EnterNumLit_TimeInstantLit is called when entering the NumLit_TimeInstantLit production.
 	EnterNumLit_TimeInstantLit(c *NumLit_TimeInstantLitContext)
 
-	// EnterNumLit_Substitute is called when entering the NumLit_Substitute production.
-	EnterNumLit_Substitute(c *NumLit_SubstituteContext)
-
 	// EnterDuration is called when entering the duration production.
 	EnterDuration(c *DurationContext)
 
@@ -339,9 +336,6 @@ type PromQLExParserListener interface {
 
 	// ExitNumLit_TimeInstantLit is called when exiting the NumLit_TimeInstantLit production.
 	ExitNumLit_TimeInstantLit(c *NumLit_TimeInstantLitContext)
-
-	// ExitNumLit_Substitute is called when exiting the NumLit_Substitute production.
-	ExitNumLit_Substitute(c *NumLit_SubstituteContext)
 
 	// ExitDuration is called when exiting the duration production.
 	ExitDuration(c *DurationContext)

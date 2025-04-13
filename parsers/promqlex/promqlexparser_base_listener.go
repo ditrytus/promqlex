@@ -188,12 +188,6 @@ func (s *BasePromQLExParserListener) EnterNumLit_TimeInstantLit(ctx *NumLit_Time
 // ExitNumLit_TimeInstantLit is called when production NumLit_TimeInstantLit is exited.
 func (s *BasePromQLExParserListener) ExitNumLit_TimeInstantLit(ctx *NumLit_TimeInstantLitContext) {}
 
-// EnterNumLit_Substitute is called when production NumLit_Substitute is entered.
-func (s *BasePromQLExParserListener) EnterNumLit_Substitute(ctx *NumLit_SubstituteContext) {}
-
-// ExitNumLit_Substitute is called when production NumLit_Substitute is exited.
-func (s *BasePromQLExParserListener) ExitNumLit_Substitute(ctx *NumLit_SubstituteContext) {}
-
 // EnterDuration is called when production duration is entered.
 func (s *BasePromQLExParserListener) EnterDuration(ctx *DurationContext) {}
 
